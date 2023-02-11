@@ -1,0 +1,86 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 9}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 9 problem 5\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $P$ be a partial order on the finite set $X$. A \emph{chain} in $P$ is a totally ordered subset.  Let $c(P)$ be the size of the largest chain of $P$.
+An \emph{antichain} $A$ in $P$ is a totally unordered subset, meaning that no two elements of $A$ are comparable in the partial order.  An \emph{antichain partition} of $P$ is a partition of $X$ each of whose parts is an antichain.  Let $\alpha(P)$ be the smallest number of parts in any antichain partition.  The purpose of this problem is to prove the following interesting theorem: For any finite partially ordered set $P$, $c(P)=\alpha(P)$.\\
+
+
+Hint Lemma: For each $x \in X$ define $h(x)$ to be the size of the largest chain that has $x$ as its maximum element.  
+Prove that for any integer $j$, $preim_h(j)$ is an antichain. \\
+	
+Proof:  Let the function $h: X \to \Z_{\geq0}$ be given by $h(x)$ is the size of the largest chain that has $x$ as it's maximum element.  We must show for all $j \in \Z_{\geq 0}$ that $preim_h(j)$ is an antichain.  Suppose $j \in \Z_{\geq 0}$.  We must show $preim_h(j)$ is an antichain.  Assume for contradiction that $preim_h(j)$ is not an antichain.  Then by definition of $h$ we have a set of maximum elements of chains $M_j = \{m_{j1},\ldots,m_{js}\}$.  Since $M_j$ is not an antichain then there exists $m_{jl}, m_{jk} \in M_j$ such that without loss of generality $m_{jl} \leq_P m_{js}.$  Then by definition of chain $m_{js}$ is the maximum element of the chain containing $m_{jl}$. This is a contradiction as $h(m_{js}) = j+1,$ but $h(m_{js})$ was defined to be $j$.  Therefore $preim_h(j)$ is an antichain.\\
+
+
+\begin{enumerate}
+\item Prove $\alpha(P) \geq c(P)$.\\ %Want to do induction on C
+Suppose $P$ is an arbitrary partial order on $X$.  We must show that $\alpha(P) \geq c(P)$.  
+	Since $\alpha(P)$ is the minimum number for an anti chain, then by defininition of minimum, for all antichain partitions $\Pi, |\Pi| \geq \alpha(P).$  Since $c(P)$ is the maximum length of the chain then for all chains $C, c(P) \geq |C|.$  Therefore we must show for all partitions $\Pi$ and chains $C$ that $|\Pi| \geq |C|.$  Assume for contradiction that $|\Pi| <|C|.$  Then since $|\Pi| < |C|$ there exists a part of the partition $\Pi$ that has more than one element from a chain $C$.  This is a contradiction as the parts of $\Pi$ must be an antichain.  Therefore $\alpha(P) \geq c(P)$.
+
+% By the principal of mathematical induction, for all finite partial orders $Q$ on $X$ if $\alpha(Q) < \alpha(P)$ then $\alpha(Q) \geq c(Q).$ We have two cases:
+\iffalse
+\begin{itemize}
+		
+
+	\item Assume $\alpha(P) = 0.$ Then the anti-chain partition is empty, therefore $X$ is empty, so the longest chain is also the empty set, having a length of 0.  Therefore $\alpha(P) \leq c(P).$
+	\item Assume $\alpha(P) = 1.$  Then the entire partial order is in a single antichain.  Therefore the longest chain is just the length of a single node, $1=c(P).$  Therefore $\alpha(P) \leq c(P).$
+	\item Assume $\alpha(P) > 1.$  Therefore there must exists a chain of length 2.  Let the set $M = \{m_1,\ldots,m_n\}$ be the set of maximal elements of $P$.  By Zorn's lemma, since $P$ is a finite partial order, then $M$ is non-empty.  Since the chains are at least of length 2, then $X\backslash M$ is non-empty.  We claim that $M$ is an anti-chain.  We now have two cases:\begin{itemize}
+	\item Assume $|M| = 1$.  Then $M = \{m_1\}.$  Since $m_1$ is the only element in $M$, then there are no other elements to compare against.  Therefore $M$ is an antichain.
+	\item Assume $|M| > 1$. Assume for contradiction that $M$ is not an anti-chain. Then by definition there exists $m_i, m_j \in M$ such that without loss of generality $m_i \leq_P m_j$.  By definition of maximal element for all $x \in X$ if $m_i \leq_P x$ then $m_i = x.$  This is a contradiction as $m_i \neq m_j$ but $m_i \leq_P m_j.$  Therefore $M$ is an antichain.
+\end{itemize}
+	We claim that after the removal of connections to the elements in $M$ to form a new poset $Q$, a new antichain partition can be formed such that $\alpha(Q) = \alpha(P) - 1.$  Since $M$ is already an antichain, then any part already containing an element of $M$ can contain the entirety of $M$ and still be an antichain.\\
+	We claim that one of the smallest antichain partitions of $P$ is given by 
+
+			
+	     %Therefore by definition of minimal for all $m_j \in M, x \in X,$ if $x \leq $  
+	%Since $\alpha(P) > 1$ then by definition of $\alpha$ then all of the longest chains must be of at least length 2.  Therefore by definition of chain there must exists at least one element $(x,y) \in pairs(P)$ such that $x \leq_P y, x \neq y.$ 
+	 %Suppose $Q$ is given by all the relations in $P$ except $x \leq_P y$, where $x,y$ belong to the longest chain, and $x$ is the smallest element in the chain.  By definition of longest chain, all other chains have at most a size     
+	 
+\end{itemize}  
+\fi
+
+\item Prove $\alpha(P) \leq c(P)$. For those who want a hint, see the footnote. (Acknowledge the hint if you use it.)\footnote{For each $x \in X$ define $h(x)$ to be the size of the largest chain that has $x$ as its maximum element.  Prove that for any integer $j$, $preim_h(j)$ is an antichain.  Use this to prove the theorem.}\\
+	We must show for all posets $P$ on $X$ that $\alpha(P) \leq c(P).$  By the principal of mathematical induction for all posets Q of size $k,$ if $k < n,$ then $\alpha(Q) \leq c(Q).$  
+	Let $S$ denote the set of minimal elements of $P$, since $P$ is finite $S$ is guaranteed to be non-zero.  We claim that $\alpha(P \backslash S) \leq c(P) - 1$.  
+	By the induction hypothesis we have that $\alpha(P\backslash S) \leq c(P \backslash S)$.  
+	Since $c(P)$ is the longest chain, and $S$ contains the minimal elements of $P$, then the removal of just the minimal element of the longest chain is simply a decrement by one.  
+	Therefore $\alpha(P \backslash S) \leq c(P) - 1$.  We claim that $\alpha(P) \leq \alpha(P\backslash S) + 1$.  Since $S = preim_h(1),$ then $S$ is an antichain.  Therefore any antichain partition of $P \backslash S$ with $S$ appended is a valid antichain partition of $P$, and therefore it's size of $\alpha(P \backslash S) +1$ is bounded by $\alpha(P),$ thus $\alpha(P) \leq \alpha(P \backslash S) +1$.  Therefore since $\alpha(P) \leq \alpha(P \backslash S) +1$ and $\alpha(P \backslash S) \leq c(P) - 1$, then we can write:
+	\begin{align*}
+	\alpha(P \backslash S) &\leq c(P) - 1\\
+	\alpha(P \backslash S) + 1 &\leq c(P)\\
+	\alpha(P) &\leq c(P).
+\end{align*}	 
+\end{enumerate}
+\end{document}

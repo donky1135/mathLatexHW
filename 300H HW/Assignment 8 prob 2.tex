@@ -1,0 +1,52 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\usepackage{cancel}
+\author{Alex Valentino}
+\title{Assignment 8}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 8 problem 2\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $Q$ be the relation on the set $\mathbb{R}$ consisting
+of all pairs $(x,y) \in \mathbb{R}^2$ satisfying $x+1 < y$.
+Let $P$ be the relation on the set $\mathbb{R}$ consisting of
+of all pairs $(x,y) \in \mathbb{R}^2$ satisfying $x< y+1$.
+Prove or disprove:
+\begin{enumerate}
+\item $Q$ is antisymmetric.\\
+	We must show that for all $x,y \in \R$ if $x \neq y$ and $x + 1 < y$ then $y + 1 \nless x.$  Suppose $x,y \in \R, x \neq y, x+1 < y.$  We must show $y+1 \nless x.$  By definition of $<$, we must show that $x \leq y+1.$  Since $\R$ is complete under subtraction, $x <y -1$ holds.  Therefore since $y -1 \leq y + 1,$ as $-1 \leq 1,$ then $x \leq y + 1.$
+\item $Q$ is transitive.\\
+	Suppose $x=0.9, y = 0, z = -0.5.$  $0.9 < 0+1,$ and $0 < 1-0.5.$  However, $0.9 \nless 0.5.$  Therefore $Q$ is not transitive.
+\item $P$ is antisymmetric.
+	Suppose $x = 1, y = 0.5.$  Then $1 < 0.5+1,$ but $0.5 < 1 + 1.$  Therefore $P$ is not antisymmetric.
+\item $P$ is transitive.
+	Suppose $x = 1.3, y = 0.4, z = 0.$  Then $1.3 < 1 + 0.4, 0.4 < 1 + 0,$ however $1.3 \nless 1.$
+\end{enumerate}
+\end{document}

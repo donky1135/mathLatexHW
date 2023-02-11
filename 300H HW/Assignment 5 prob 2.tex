@@ -1,0 +1,59 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Hs}{\mathcal{H}}
+\newcommand{\G}{\mathcal{G}}
+
+
+\author{Alex Valentino}
+\title{Assignment 5}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 5 problem 2\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Recall that if $S$ is a set, a partition of $S$ is a set $\mathcal{P}$ such that 
+	\begin{enumerate}
+	\item Every member of $\mathcal{P}$ is a nonempty subset of $S$,
+	\item for each $s \in S$, there is an $M \in \mathcal{P}$ such that $s \in M$, and
+	\item For each pair $M_1, M_2 \in \mathcal{P}$ such that $M_1 \neq M_2$, we have $M_1 \cap M_2=\emptyset$.
+	\end{enumerate} 
+	Now suppose $X$ is a nonempty set. For $\mathcal{H}, \mathcal{G} \subseteq \mathcal{P}(X)$ define\\ $\mathcal{H} \sqcap \mathcal{G}$ to be the set $\{A \cap B: A \in$ $\mathcal{H}, B \in \mathcal{G}, A \cap B \neq \emptyset\}$.\\
+(a) Construct an example of two different partitions $\mathcal{H}$ and $\mathcal{G}$ of $\{1,2,3,4,5,6\}$ each having two parts, and construct $\mathcal{H} \sqcap \mathcal{G}$.\\
+Let $\mathcal{H} =\{\{1,2,3\},\{4,5,6\}\}$, $\mathcal{G} = \{\{1,2\},\{3,4\},\{5,6\}\}$.  Then $H \sqcap G = \{\{1,2,3\} \cap \{1,2\}, \{1,2,3\} \cap \{3,4\}, \{4,5,6\} \cap \{3,4\}, \{4,5,6\} \cap \{5,6\}\} = \{\{1,2\},\{3\},\{4\},\{5,6\}\}$\\
+(b) Prove: for any two partitions $\mathcal{H}$ and $\mathcal{G}$ of $X, \mathcal{H} \sqcap \mathcal{G}$ is also a partition. (In your proof, carefully verify that $\mathcal{H} \sqcap \mathcal{G}$ satisfies the requirements of a partition.)\\
+Suppose $X$ is an arbitrary non-empty set, and $\Hs, \G$ are arbitrary partitions of $X$.  We must show $\Hs \sqcap \G$ is a partition of $X$.  Since there are three requirements for a set to be a partition of another, the proof will be split into three parts:
+\begin{enumerate}
+	\item We must show that every member of $\Hs \sqcap \G$ is a non-empty subset of $X$.  Suppose $S$ is an arbitrary member of $\Hs \sqcap \G$.  Then by definition $S = A \cap B,$ where $A \in \Hs, B \in \G$ and $A \cap B \neq \emptyset$.   
+	 By definition of partition $\forall A \in \Hs, A \subset X$.  Suppose $x$ is an arbitrary member of $S$.  Then by definition of set intersection $x \in A$ and $x \in B$.  
+	 Since $x \in A$ and $A \subset X$, then $x \in X.$  Therefore we can say that $S$ is a subset of $X$.  
+	 It is non-empty since by defintion $S = A \cap B, A \cap B \neq \emptyset $.  Therefore the first requirement is satisfied.
+	 \item We must show that for each $e \in X$ that there is an $S \in \Hs \sqcap \G$ such that $e \in S.$  Suppose $e$ is an arbitrary element in $X$, and the set $S$ is a member of $\Hs \sqcap \G$.  By definition $S = A \cap B,$ where $A \in \Hs, B \in \G$ and $A \cap B \neq \emptyset$.  We can construct $ \Hs = \{ X \backslash e, \{e\}\}$ and $\G  = \{X\}$, where $A = \{e\}$, and $B = X.$  Then by definition $S = A \cap B = \{e\} \cap X = \{e\}.$  Therefore $e \in S.$
+	 \item We must show for each pair $S_1, S_2 \in \Hs \sqcap \G$ such that $S_1 \neq S_2$, we have $S_1 \cap S_2 = \emptyset.$  Suppose $S_1,S_2$ are arbitrary unique members of $ \Hs \sqcap \G$.  By Definition $S_1 = A_1 \cap B_1, A_1 \in \Hs, B_1 \in \G, A_1 \cap B_1 \neq \emptyset$ and $S_2 = A_2 \cap B_2, A_2 \in \Hs, B_2 \in \G, A_2 \cap B_2 \neq \emptyset$.  We must now show for each pair $S_1, S_2 \in \Hs \sqcap \G$ such that $S_1 \neq S_2$, we have $(A_1 \cap B_1) \cap (A_2 \cap B_2) = \emptyset.$ Suppose $x$ is an arbitrary element in $S_1 \cap S_2.$ Therefore by the definition of set intersection (applied twice) $x \in A_1$  and $x \in B_1$ and $x \in A_2$ and $x \in B_2)$.  By implicitly applying the axiom of and commutativity to the definition of set intersection, $x \in (A_1 \cap A_2)$ and $x \in (B_1 \cap B_2)$.  Since $A_1, A_2$ and $B_1, B_2$ are from the same partition, but are defined to be unique, then by the definition of a partition $A_1 \cap A_2 = \emptyset$ and $B_1 \cap B_2 = \emptyset$.  Therefore $x \in \emptyset$ and $x \in \emptyset$, which is equivalent to $x \in \emptyset$.  Thus $S_1 \cap S_2 = \emptyset.$  
+\end{enumerate}
+\end{document}

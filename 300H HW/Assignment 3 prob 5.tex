@@ -1,0 +1,50 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 3}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 3 problem 5\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{array}{ccc|c@{}c@{}c@{}ccc@{}ccc@{}ccc@{}ccc@{}ccc@{}c@{}c@{}c}
+A&B&C&(&(&(&A&\rightarrow&B&)&\rightarrow&C&)&\leftrightarrow&(&A&\rightarrow&(&B&\rightarrow&C&)&)&)\\\hline
+T&T&T&&&&T&T&T&&T&T&&\mathbf{T}&&T&T&&T&T&T&&&\\
+T&T&F&&&&T&T&T&&F&F&&\mathbf{T}&&T&F&&T&F&F&&&\\
+T&F&T&&&&T&F&F&&T&T&&\mathbf{T}&&T&T&&F&T&T&&&\\
+T&F&F&&&&T&F&F&&T&F&&\mathbf{T}&&T&T&&F&T&F&&&\\
+F&T&T&&&&F&T&T&&T&T&&\mathbf{T}&&F&T&&T&T&T&&&\\
+F&T&F&&&&F&T&T&&F&F&&\mathbf{F}&&F&T&&T&F&F&&&\\
+F&F&T&&&&F&T&F&&T&T&&\mathbf{T}&&F&T&&F&T&T&&&\\
+F&F&F&&&&F&T&F&&F&F&&\mathbf{F}&&F&T&&F&T&F&&&
+\end{array}\\
+
+These statements aren't logically equivalent, as the third 6th and 8th rows are false, and thus have a different truth value on the same inputs.
+\end{document}

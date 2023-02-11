@@ -1,0 +1,54 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Midterm 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Midterm 2 problem 2\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Suppose $R$ is a relation on a set $A$ that is transitive, symmetric, and reflexive.  Prove that the set $\{R(x): x \in A \}$ is a partition of $A$.\\
+	
+	Proof:  We must show that $\{R(x): x \in A \}$ is a partition of $A$.  Let $\Pi = \{R(x): x \in A \}$.  We must show that $\Pi$ is a partition of $A$.  Since the partition of $\emptyset$ behaves differently than any other set, then we have two cases:
+	\begin{itemize}
+		\item Assume $A = \emptyset$. Then the set $\{R(x): x \in A\}$ will be empty because $x \in A$ is always false as $A = \emptyset.$   Since there exists no sets satisfying condition to be an element of $\Pi,$ then $\Pi = \emptyset.$  Since the definition of partition  requires that it be a collection of non-empty subsets of $A$, and there exists no set which is a subset of $\emptyset,$ then the only partition of the empty set is $\emptyset.$  Since $\Pi = \emptyset,$ then $\Pi$ is a partition of $\emptyset$.
+		\item Assume $A \neq \emptyset$.  By definition of partition we must show, (1) every $P \in \Pi$ is not empty, (2) for each $a \in A,$ there exists a $P \in \Pi$ such that $a \in P,$ and (3) for all $ P_1, P_2 \in \Pi$ if $P_1 \neq P_2$ then $P_1 \cap P_2 = \emptyset.$ 
+		\begin{enumerate}
+			\item We must show that every $P \in \Pi$ is non-empty.  Suppose $P \in \Pi.$  Since $P\in \Pi$ is defined by an element in $a \in A$ such that $P = R(a),$ and $R$ is reflexive, then $a \in P.$ Since $a \in P,$ then $P$ is non-empty.
+			\item  We must show that for all $a \in A,$ there exists a $P \in \Pi$ such that $a \in P$.  Suppose $a \in A.$ We must show there exists a $P \in \Pi$ such that $a \in P.$ Since $R(a) \in \Pi,$ and $a \in R(a)$ by the reflexivity of $R$, then $P=R(a)$ satisfies the requirements.
+			
+			%Suppose $a\in A.$  we must show that there exists $P \in \Pi$ such that $a \in P.$  Since $R$ is reflexive, then $a \in R(a).$  Since the members of $\Pi$ are defined to be $R(x)$ for all $x \in A,$ and $a \in A,$ then $R(a) \in \Pi.$  Therefore $P = R(a).$
+			
+			\item We must show for all $P_1, P_2 \in \Pi$ if $P_1 \neq P_2$ then $P_1 \cap P_2 = \emptyset.$  We are going to prove this by contrapositive.  Suppose $P_1 \cap P_2 \neq \emptyset$.  We must show $P_1 = P_2.$  Since $P_1 \cap P_2 \neq \emptyset$, then $P_1 \cap P_2 = S,$ where there exists $x \in S.$  Since $P_1, P_2 \in \Pi,$ then there exists $a_1, a_2 \in A$ such that $P_1 = R(a_1), P_2 = R(a_2).$  Since $P_1 = R(a_1), P_2 = R(a_2),$ and $x \in P_1, P_2,$ then by the definition of $R(a),$ $a_1Rx, a_2Rx.$  By the symmetry of $R$, we have that $xRa_2.$  By the transitivity of $R$ we have that $a_1Ra_2.$  Therefore by the transitivity of $R$ $R(a_1) = R(a_2)$ as all elements that are related to $a_1$ are related to $a_2$ and all elements that are related to $a_2$ are related to $a_1.$  Thus $P_1 = P_2.$
+\end{enumerate}	
+	Since $\Pi$ satisfies the requirements, then $\{R(x):x\in A\}$ is a Partition.	                                                                                    
+	\end{itemize}
+	
+\end{document}

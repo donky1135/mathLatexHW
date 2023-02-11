@@ -1,0 +1,65 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\poly}{\textbf{Poly}}
+\author{Alex Valentino}
+\title{Assignment 3}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 11 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+ Consider the following two partially ordered sets:
+\begin{itemize}
+\item $D(\mathbb{N})$ consisting of the natural numbers ordered by divisibility.
+\item The poset $\textbf{Poly}$ consisting of all polynomials in the variable $x$ with
+coefficients in $\mathbb{Z}_{\geq 0}$ with the ordering $q(x) \leq p(x)$ if
+$degree(q) \leq degree(p)$ and $q_i \leq p_i$ for each $i \in \{0,\ldots,degree(q)\}$. Here $q_i$ means the coefficient of $x^i$ in $q$.\end{itemize}
+Prove that  there is an isomorphism between $D(\mathbb{N})$ and $\textbf{Poly}$\\
+
+
+Note that $p_1\cdots p_l$ represents the product from the first prime number to the $l$th prime number.\\  
+
+
+Proof.  We must show that there is an isomorphism between $D(\mathbb{N})$ and $\textbf{Poly}$.  By definition of isomorphism we must show there exists a bijection $f: \N \to \Z_{\geq 0}[x]$ such that for all $p,q \in \N$ $q \leq_D p$ iff $f(q) \leq_\poly f(p).$  Suppose $f$ is given by for any $z \in \N,$ with unique prime factorization (as guaranteed by the FTA) $z=p_1^{\delta_1}\cdots p_k^{\delta_k}$, then $f(z) = \sum^{k-1}_{i=0} \delta_{i+1} x^i.$  We must show that $f$ is a bijection.  \begin{itemize}
+	\item We must show that $f$ is injective. Suppose $p,q \in \N, f(p) = f(q).$  We must show $p = q.$ By the FTA we have that $p$ has a unique representation as $p = p_1^{\alpha_1}\cdots p_n^{\alpha_n}$, and $q$ has the unique representation as $q = p_1^{\beta_1}\cdots p_m^{\beta_m}$  By definition of being a member of $\Z_{\geq 0}[x]$ we have $f(p) = \sum^{n-1}_{i=0} \alpha_{i+1} x^i, f(q) = \sum^{m-1}_{i=0} \beta_{i+1} x^i.$  Since $f(p) = f(q),$ then $m=n, \alpha_k = \beta_k, k \in [n].$  Since $p,q$ have been shown to have equivalent prime factorizations, then $p=q$. 
+	\item we must show that $f$ is surjective.  Suppose $y(x) \in \Z_{\geq 0}[x].$  We must show there exists $x_* \in \N$ such that $f(x_*) = y.$  Since $y \in \Z_{\geq 0}[x]$ then by definition we have $y(x) = \sum^n_{i=0} y_i x^i$.  We claim that $x_*$ is given by prime exponents $\gamma_{i+1} = y_i, i \in \{0\}\cup [n]$ such that $x_* = p_1^{\gamma_1}\cdots p_{n+1}^{\gamma_{n+1}}.$  Therefore by algebraic manipulation we have,
+	\begin{align*}
+		f(x_*) &= f(p_1^{\gamma_1}\cdots p_{n+1}^{\gamma_{n+1}})\\
+		&= \sum^n_{i=0} \gamma_{i+1}x^i \\
+		&= \sum^n_{i=0} y_{i}x^i \\
+		&= y.
+	\end{align*}
+\end{itemize}
+	We must show for all $p,q \in \N$ $q \leq_D p$ iff $f(q) \leq_\poly f(p).$  Suppose $p,q \in \N$.  By the FTA since $p,q \in \N$, then there exists unique non-negative integers $\alpha_1,\ldots\alpha_n,\beta_1,\ldots,\beta_m \in \Z_{\geq 0}$ such that $p = p_1^{\alpha_1}\cdots p_n^{\alpha_n}, q=p_1^{\beta_1}\cdots p_m^{\beta_m}.$
+	\begin{itemize}
+		\item Suppose $q \leq_D p$.  We must show that $f(q) \leq_\poly f(p).$  By definition of $\leq_\poly$ we must show $deg(f(q)) \leq deg(f(p))$ and for all $i \in [deg(q)], q_i \leq p_i,$ where $q_i$ is the coefficient of $x^i$ in $q$.  By definition of $q \leq_D p$, $q \mid p.$  By definition of divisibility $\frac{p}{q} = r, r \in \N.$  Note that applying our prime factorizations of $p,q$ to $r$ yield $r = p_{m+1}^{\alpha_{m+1}}\cdots p_n^{\alpha_n}\prod_{i=1}^m p_i^{\alpha_i - \beta_i}$.  We claim that $n \geq m.$  Suppose for contradiction that $m > n.$  Therefore there exists primes in the unique factorization of $q$ that don't exists in $p$.  Since $p$ does not contain those prime factors, then there is no way to remove those prime factors from the denominator, therefore $\frac{p}{q} \not\in \N.$  This is a contradiction.  We claim that for all $i \in [m], \alpha_i \geq \beta_i.$  Suppose for contradiction that there exists $i_* \in [m]$ such that $\alpha_{i_*} < \beta_{i_*}.$  Note that $\alpha_{i_*} - \beta_{i_*} < 0.$  Therefore $\alpha_{i_*} - \beta_{i_*}$ is a negative number.  Let $-e=\alpha_{i_*} - \beta_{i_*}.$ Therefore $r$ can now be written as $r=\frac{p_{m+1}^{\alpha_{m+1}}\cdots p_n^{\alpha_n}\prod_{\substack{i=1\\i \neq i_*}}^m p_i^{\alpha_i - \beta_i}}{p_{i_*}^e}$.  Since $p_{i_*}$ is prime and explicitly does not occur in the numerator of $r$, then $p_{i_*}^{e}$ never has anything to divide out with.  Therefore $r \not \in \N.$  This is a contradiction.  By definition of $f$, $f(q) = \sum_{j=0}^{m-1} \beta_{i+1}x^i, f(p) = \sum_{i=0 }^{n-1}\alpha_{i+1}x^i.$  Since $m \leq n, 1 \leq 1,$ then $m-1 \leq n-1,$ therefore $deg(f(q)) \leq deg(f(p))$ as $deg(f(q)) = m - 1,deg(f(p)) = n - 1.$  Since the coefficients of $f(q),f(p)$ from $0$ to $deg(f(q))$ are simply $\alpha_1,\ldots,\alpha_m,$ and $\beta_1,\ldots,\beta_m,$ and it was shown for all $i \in [m] \alpha_i \geq \beta_i,$ then the second requirement is satisfied.  
+		\item Suppose $f(q) \leq_\poly f(p).$  We must show that $q \leq_D p.$  By definition of $f$, $f(q) = \sum_{i=0}^{m-1} \beta_{i+1}x^i, \sum_{j=0}^{n-1} \alpha_{i+1} x^j.$  By definition of $\leq_\poly$ for all $i \in [m], \beta_i \leq \alpha_i, m-1 \leq n-1.$  Therefore $m \leq n$ and for all $i \in [m], 0 \leq \alpha_i - \beta_i.$  Therefore exponentiating the inequality with $p_i$ yields $1 \leq p_i^{\alpha_i - \beta_i}$.  Since $\alpha_i - \beta_i \in \Z,  0 \leq \alpha_i - \beta_i$ then $p_i^{\alpha_i - \beta_i} \in \N$.  Therefore the product $p_{m+1}^{\alpha_{m+1}}\cdots p_{n}^{\alpha_{n}}\prod_{i=1}^m p_i^{\alpha_i - \beta_i} \in \N.$  Therefore $\frac{p}{q} \in \N.$  Thus $q \leq_D p$ by definition.
+	\end{itemize}
+	Thus the requirements have been satisfied.  
+\end{document}

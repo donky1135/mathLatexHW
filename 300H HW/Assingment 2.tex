@@ -1,0 +1,57 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\title{Homework \# 15 }
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	300H\\	
+	Alex Valentino \\
+	Assignment 2
+}
+\begin{document}
+	\begin{enumerate}
+	\item Recall
+		\begin{enumerate}
+			\item \textit{Construct an example of a set of three integers that has no common divisor greater than
+1, but any two integers in the set have a common divisor greater than 1.}\\
+Let $A = \{6,10,15\}$. The $gcd(6,10) = 2,$ the $gcd(6,15) = 3$ and $gcd(15,10)=5.$  However since taking the gcd of three numbers is the equivalent to the gcd of the first two with the third, $gcd(\{6,10,15\}) = gcd(\{6,gcd(15,10)\}) = gcd(6,5) = 1.$   Since $6 = 2*3$ and then as a result, $2 \nmid 5, 3\nmid 5,$ their gcd must be 1.  This example was constructed by taking the first three prime numbers, and then choosing all the combinations of two primes out of that set as the elements of A.  It is by this method that every single number is guaranteed to have a non-zero gcd with it's neighbors, but when scaling it up, one is effectively taking the gcd of three primes, which will go to 1.
+		\item \textit{Generalize the previous example. Explain how, given the positive integer $k \geq 3$ you can
+construct a set of $k$ integers that has no common divisor greater than 1, but any subset
+of size $k - 1$ does have a common divisor greater than $1$.}\\
+		So extending the ideas in the previous example, a sequence $A = \{a_i\}^k_{i=1}$ can be constructed.  For $a_j \in \{a_i\}^k_{i=1}, a_j = \displaystyle\frac{p_1  \cdots p_k}{p_j},$ where $p$ is the $i$th prime. Any $k-1$ subset of $A$ is going to exclude the $a_j$ element, therefore the prime $p_j$ will be a factor of all the numbers in the subset, thus having a gcd of $p_j.$  However when the full set is completed, the $a_j$ element will not have this prime factor, and the whole gcd will go to 1.
+		\end{enumerate}
+		\item \textit{Given an example of a positive integer k that satisfies $2^k > k^{1000} + 1000000$. (Don't forget
+to give an explanation why your choice works.)}
+	$k=13747.$
+		\item \textit{Give an example of a pair of functions $f : \R_{>0} \to \R_{>0}$ and $g : \R_{>0} \to \R_{>0}$ such that
+$f$ and $g$ are continuous, \[ \lim_{x \to \infty} f (x) = \infty \], and there is an infinite sequence of numbers
+$x_1 < x_2 < \cdots < x_n < \cdots$ such that $f (x_j ) > g(x_j $) for $j$ even and $f (x_j ) < g(x_j )$ for $j$ odd.
+(Hint: try to sketch graphs of a possible choice of f and g first.)}\\
+	Let $f(x) = cos^2(\frac{\pi}{2}x)+x$ and $g(x) = sin^2(\frac{\pi}{2}x)+x$
+	\item 
+	\end{enumerate}
+\end{document}

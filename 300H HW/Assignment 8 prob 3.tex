@@ -1,0 +1,80 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment }
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment  problem \\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	(Note: In this problem we will be defining a relation on the set $A \times A$.
+The elements of $A \times A$ are ordered pairs, so a pair of the relation we define is
+an {\em ordered pairs each of whose coordinates is an ordered pairs}. This can be confusing,
+so be sure to read and think about the problem carefully.)  Suppose $A$ is a set and $R$ a partial order relation on $A$.
+Define a new relation $Q$ on the set $A \times A$ as follows:
+For $a_1,a_2,b_1,b_2 \in A$ we have
+$(a_1,a_2)Q(b_1,b_2)$ provided that ($a_1 \neq b_1$ and $a_1Rb_1$)  or
+($a_1=b_1$ and $a_2Rb_2$). 
+\begin{enumerate}
+\item Prove that $Q$ is a partial order
+on the set $A \times A$.  \\
+	\begin{itemize}
+		\item Proof of reflexivity: We must show that for all $(a_1 , a_2) \in A^2, (a_1,a_2)Q(a_1,a_2).$  Suppose $(a_1 , a_2) \in A^2,$.  We must show $(a_1 , a_2) Q (a_1 , a_2)$  Since $a_1 = a_1,$ and by the reflexivity of $R$, $a_2 R a_2,$ then by the definition of $Q$,    $(a_1 , a_2) Q (a_1 , a_2)$.
+		\item Proof of transitivity:  We must show that for all $(a_1,a_2),(b_1,b_2),(c_1,c_2) \in A^2$ if $(a_1,a_2)Q(b_1,b_2)$ and $(b_1,b_2)Q(c_1,c_2)$ then $(a_1,a_2)Q(c_1,c_2).$  Suppose $(a_1,a_2),(b_1,b_2),(c_1,c_2) \in A^2$, $(a_1,a_2)Q(b_1,b_2)$ and $(b_1,b_2)Q(c_1,c_2)$.  We must show that $(a_1,a_2)Q(c_1,c_2).$  By definition of $Q$ we must show that $(a_1 \neq c_1 \text{ and } a_1 R c_1)$ or $(a_1 = c_1 \text{ and } a_2 R c_2)$. We now have four cases:
+		\begin{itemize}
+			\item Suppose $a_1 \neq b_1, b_1 \neq c_1, a_1 R b_1, b_1 R c_1.$  Then by transitivity of $R$ we have $a_1 R c_1.$  However we have the posibility that since $a_1 \neq b_1, b_1 \neq c_1$ that $a_1 = c_1.$  This is not an issue because if $a_1 = c_1$ then we now have $a_1 R c_1$ and $c_1 R a_1$ by the reflexivity of $R$.  However by the anti-symmetry of $R$ we have since $a_1 \neq b_1$ and $a_1 R b_1,$ then $b_1 \cancel{R} a_1$ and similarly $c_1 \cancel{R} b_1.$  However since $c_1 \cancel{R} b_1 = a_1 \cancel{R} b_1,$ we have a contradiction with original assumption of $a_1 R b_1.$  Therefore $a_1 \neq c_1.$  Thus we have $a_1 \neq c_1$ and $a_1 R c_1.$
+			\item Suppose $a_1 = b_1, a_2 R b_2, b_1 = c_1, b_2 R c_2.$  Then by the transitivity $a_1 = c_1$ and $a_2 R c_2.$
+			\item Suppose $a_1 \neq b_1, a_1 R b_1, b_1 = c_1, b_2 R c_2.$  Since $a_1 \neq b_1, b_1 = c_1,$ then $a_1 \neq c_1$.  Since $a_1 R b_1,$ and $b_1 = c_1,$ then $a_1 R c_1.$  
+			\item Suppose $a_1 = b_1, a_2 R b_2, b_1 \neq c_1, b_1 R c_1$.  Since $a_1 = b_1, b_1 \neq c_1, $ then $a_1 \neq c_1.$  Since $a_1 = b_1, b_1 R c_1,$ then $a_1 R c_1$
+		\end{itemize}
+		\item Proof of anti-symmetry.  Suppose $(a_1,a_2),(b_1,b_2) \in A^2, (a_1,a_2)Q(b_1,b_2),(a_1,a_2)\neq(b_1,b_2)$.  We must show that $(b_1,b_2)\cancel{Q}(a_1,a_2)$  By definition of $Q$ we must show $\neg (( b_1 \neq a_1 \wedge b_1 R a_1)\vee (b_1 = a_1 \wedge b_2 R a_2)).$  By first order logic we must show $b_1 = a_1$, or $b_1 \cancel{R} a_1$, and $b_1 \neq a_1$ or $b_2 \cancel{R} a_2.$  Since $(a_1,a_2)Q(b_1,b_2)$ has an or statement, we have two cases:
+		\begin{itemize}
+			\item Suppose $a_1 = b_1, a_2 R b_2.$  By the anti-symmetry of $R$ we have $b_2 \cancel{R} a_2$.  Therefore since we have $a_1 = b_1$ and  $b_2 \cancel{R} a_2$ then we have satisfied the requirement.
+			\item Suppose $a_1 \neq b_1, a_1 R b_1.$  By the anti-symmetry of $R$ we have $b_1 \cancel {R} a_1.$  Therefore since we have $a_1 \neq b_1$ and  $b_1 \cancel{R} a_1$ then we have satisfied the requirement.
+		\end{itemize}
+	\end{itemize}
+\item
+Prove that if $R$ is a total order (which means
+that for all $a,b \in A$ we have $aRb$ or $bRa$) then so is $Q$.
+
+Suppose $R$ is a total order.  We must show that $Q$ is a total order.  By definition of total order we have for all $a,b \in A, aRb$ or $bRa.$  By definition of total order we must show for all $(a_1,a_2),(b_1,b_2) \in A^2$ that $(a_1,a_2)Q(b_1,b_2)$ or $(b_1,b_2)Q(a_1,a_2)$.  Suppose $(a_1,a_2),(b_1,b_2)\in A^2.$  By definition of $R$ being a total order, and $a_1,a_2,b_1,b_2 \in A,$ then we have $a_1 R b_1$ or $b_1 R a_1$ and $a_2 R b_2$ or $b_2 R a_2.$  This provides four cases:
+\begin{itemize}
+	\item Suppose $a_1 R b_1$ and $a_2 R b_2$.  We now have two cases of either $a_1 = b_1$ and $a_1 \neq b_1$.  \begin{itemize}
+		\item Suppose $a_1 = b_1$.  Then since $a_2 R b_2$ and $a_1 = b_1$ by definition $(a_1,a_2)Q(b_1,b_2)$.
+		\item Suppose $a_1 \neq b_1$.  Then since $a_1 R b_1$ and $a_1 \neq b_1$, then by definition  $(a_1,a_2)Q(b_1,b_2)$.
+	\end{itemize}
+	\item Suppose $a_1 R b_1$ and  $b_2 R a_2.$ We now have two cases of either $a_1 = b_1$ and $a_1 \neq b_1$. 
+	\begin{itemize}
+		\item Suppose  $a_1 = b_1.$  By reflexivity $b_1 = a_1.$ Since $b_2 R a_2,$  $(b_1,b_2)R(a_1,a_2)$.
+		\item Suppose $a_1 \neq b_1.$.  Then since $a_1 R b_1$ then $(a_1,a_2) R (b_1,b_2)$
+			\end{itemize}
+\end{itemize}
+\end{enumerate}
+\end{document}

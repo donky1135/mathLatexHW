@@ -1,0 +1,46 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 7}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 7 problem 6\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\textit{Let $a_1,\cdots,a_k$ be a list of intergers.  Define the function $f$ that maps a list of $k$ integers to an integer by the rule $f(x_1,\cdots,x_k) = a_1 x_1 + \cdots a_k x_k.$  Let R be the range of the function $f$. Prove:}
+	\begin{itemize}
+		\item \textit{For all $m,n \in R$ we have $m + n \in R$.}
+		Suppose $m,n$ are arbitrary integers in the range $R$.  We must show that $m+n$ is in the range $R$.  By definition, $m,n$ have representations in the set of the list of integers of length $k$ such that $m = f(m_1,\cdots, m_k)$ and $n = f(n_1,\cdots,n_k).$  Therefore $m+n$ can be rewritten as:\\
+		$m+n = f(m_1,\cdots,m_k) + f(n_1,\cdots,n_k) = a_1 m_1 + \cdots + a_k m_k + a_1 n_1 + \cdots a_k n_k = a_1 ( m_1 + n_1) \cdots a_k (m_k+n_k).$\\
+		Since the integers are closed under addition and multiplication then the list $(m_1+n_1, \cdots, m_k +n_k )$ is a valid list of $k$ integers, which has been shown above defines $m+n,$ then $m+n \in R.$
+		\item \textit{For all $n \in R$ and $c \in Z$ we have $cn \in R.$ }  Suppose $n,c$ are arbitrary integers, and $n \in R.$  By definition of being in the range of $R$ there exist a list $(n_1,\cdots, n_k)$ such that $n = f(n_1,\cdots,n_k) = a_1 n_1 + \cdots a_k n_k.$ Therefore multiplying $n$ by $c$ yields:\\
+		$cn = c(a_1 n_1 + \cdots a_k n_k) = c a_1 n_1 + \cdots c a_k n_k.$  Since the integers are closed under multiplication, then $(cn_1,\cdots,cn_2)$ is a valid list of $k$ integers.  Therefore $f$ is defined over that list, and as shown above that is the representation of $cn$, therefore $cn \in R.$
+	\end{itemize}
+\end{document}

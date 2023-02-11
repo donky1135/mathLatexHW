@@ -1,0 +1,52 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\M}{Mult(m_1,\ldots,m_k)}
+
+\author{Alex Valentino}
+\title{Assignment 11}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 11 problem 5\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Lemma: $Mult(m_1,\ldots,m_k)$ is an ideal.\\
+	Suppose $m_1,\ldots,m_k\in \Z.$  We must show $Mult(m_1,\ldots,m_k)$ is an ideal.  By definition we must show that $Mult(m_1,\ldots,m_k)$ is closed under addition and integer multiplication.
+	\begin{itemize}
+		\item We must show that $Mult(m_1,\ldots,m_k)$ is closed under addition.  Suppose $a,b \in Mult(m_1,\ldots,m_k)$.  We must show that $a+b \in Mult(m_1,\ldots,m_k).$  By definition of being members of $Mult(m_1,\ldots,m_k)$, for all $i \in [k], m_i \mid a, m_i \mid b.$  By definition of division there exists $a_1,\ldots,a_k,b_1,\ldots,b_k \in \Z$ such that $m_i a_i = a, m_i b_i = b$ for all $i \in [k].$  Adding both equations together yields $m_i (a_i + b_i) = a+b.$  Therefore by definition of divides $m_i\mid a+b$ for all $i \in [k].$  Therefore by definition $a+b \in Mult(m_1,\ldots,m_k).$
+		\item We must show that $Mult(m_1,\ldots,m_k)$ is closed under integer multiplication.  Suppose $j \in Z, a \in Mult(m_1,\ldots,m_k).$  We must show $ja \in \M.$  By definition of being a member of $\M,$ for all $i \in [k], m_i \mid a.$  Therefore by definition of divides there exists $a_1,\ldots,a_k \in \Z$ such that $m_i a_i = a$ for all $i \in [k].$  Multiplying both sides by $j$ yields $m_i j a_i = ja.$  Since $\Z$ is closed under multiplication $j a_i \in \Z.$  Therefore by the definition of division $m_i \mid ja.$  By the definition of being a member of $\M$, $ja \in \M.$   
+	\end{itemize}
+
+Let $(b_1,\ldots,b_k)$ and $(m_1,\ldots,m_k)$ be two sequences of integers where all of the $m_i$ are positive.
+Let $S$ be the set of integers $n$ such that for all 
+ $i \in \{1,\ldots,k\}$, $n \equiv_{m_i} b_i$.   Suppose $n_0 \in S$.  Prove that 
+$S=\{n_0+j *lcm(m_1,\ldots,m_k): j \in \mathbb{Z}\}$.  Suppose $a \in S.$  We must show that $a = n_0 + j * lcm(m_1,\ldots,m_k).$  By definition of being a member of $S$, for all $i \in [k], a \equiv_{m_i} b_i.$  Since $n_0$ also has this property, then for all $i \in [k], a \equiv_{m_i} n_0$.  Therefore we have by algebraic manipulation $a - n_0 \equiv_{m_i} 0.$  Therefore $a-n_0$ is a multiple of every $m_1,\ldots,m_k.$  Therefore $a-n_0 \in Mult(m_1,\ldots,m_k)$.  Since $Mult(m_1,\ldots,m_k) = Mult(lcm(m_1,\ldots,m_k))$ as $\M$ is an ideal and $lcm(m_1,\ldots,m_k)$ is it's smallest element, then there exists a $j \in \Z$ such that $a - n_0 = j*lcm(m_1,\ldots,m_k).$  Therefore by algebraic manipulation $a = n_0 + j*lcm(m_1,\ldots,m_k).$
+\end{document}
+
+

@@ -1,0 +1,67 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 9}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 9 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	For a list $d=(d_1,\ldots,d_k)$ of nonnegative integers, define the \emph{factorial sum} of $d$ to be the sum $\sum_{j=1}^k d_j j!$.  Say that the list $d=(d_1,\ldots,d_k)$ is \emph{proper}
+provided that for each $j$, $d_j\leq j$ and $d_k \neq 0$.  A factorial sum is \emph{proper} if the associated list is proper. The purpose of this problem is to prove: Every natural number can be represented uniquely as a proper factorial sum.
+\begin{enumerate}
+\item
+Prove that every natural number can be represented as a proper factorial sum. \\
+	Suppose $n \in \N.$  We must show there exists a list $(d_1,\ldots,d_k) \in \Z_{\geq 0}, d_k \neq 0$ such that $n = \sum_{j=1}^k d_j j!.$  By the principal of mathematical induction for all $m \in \N$ if $m < n,$ then there exists a list  $(d_1,\ldots,d_l) \in \Z_{\geq 0}, d_l \neq 0$ such that $n = \sum_{j=1}^l d_j j!.$  We have two cases:
+	\begin{itemize}
+		\item Assume $n=1.$  Then $1=1!.$
+		\item Assume $n>1.$  Then we have two cases, $n$ is odd and $n$ is even. \begin{itemize}
+			\item  Assume $n$ is odd.  By definition, $n=2p+1, p \in \N.$  Since $n-1 < n$ then by the induction hypothesis there exists  $(d_1,\ldots,d_l) \in \Z_{\geq 0}, d_l \neq 0$ such that $n-1 = \sum_{j=1}^l d_j j!.$  Therefore since $n=2p+1,$ $2p = \sum_{j=1}^l d_j j!.$  Since the only factorial that is not a multiple of $2$ is $1!$, then $d_1 = 0.$  Therefore the proper list representing $n$ is $(1,\ldots,d_l)$.
+			\item Assume $n$ is even.  Since $n-1 < n$ then by the induction hypothesis there exists  $(d_1,\ldots,d_l) \in \Z_{\geq 0}, d_l \neq 0$ such that $n-1 = \sum_{j=1}^l d_j j!.$ To construct the proper list for $n$, append a 0 to the end of the list such that we have the list $(d_1,\ldots, d_k,0)$, then find the first index $i$ in the list such that $i \nmid (d_i + 1)$.  Since by definition $n-1$ is odd, and $2 \mid (1+d_1) = (1+1),$ then we're guaranteed to have this process find an index.  Then there are two cases, $i < k, i = k.$  Assume $i < k,$ then the list representing $n$ would have all entries up to $i$ be set to 0, then increment $d_i$ by 1: $(0,\ldots, d_i +1, \ldots, d_k)$.  If  $k=i,$ then the list would be 0 for the first $k$ terms, and the $k+1$st term would be 1, thus satisfying the definition of a proper list. 
+\end{itemize}		 
+	\end{itemize}
+\item Prove that if two proper lists have the same factorial sum then the lists are equal.\\
+	Suppose there exists $n\in \N,$ and list $(d_1,\ldots,d_k), (e_1,\ldots,e_l) \in \Z_{\geq 0}$ such that $\sum_{j=1}^k d_j j! =  \sum_{i=1}^l e_i i! = n.$ We must show that $(d_1,\ldots,d_k)=(e_1,\ldots,e_l).$  By the principal of mathematical induction for all $m \in \N$ if $m < n$ then there exists a unique proper list $(m_1,\ldots,m_s)$ such that $m = \sum_{r=1}^s m_r r!.$   %By the quotient remainder theorem there exists unique $m \in \Z_{\geq 0}$ and $r\in\{0,1\}$ such that $n=2m+r.$  This naturally leads to the cases where $n>1$ and $n=1$:
+	We have two cases:
+	\begin{itemize}
+		\item Assume $n=1$.  Since $1=1*1!,$ and the list representing that is $(1)$, then the only proper lists of length 1 are $(1),$ thus $(1)$ is a unique representation of $1$.
+		\item Assume $n > 1.$  Then $n = \sum_{j=1}^k d_j j! = \sum_{j=1}^{k-1} d_j j! + d_k k!.$  Let $m = n - d_k k!.$  We now have two cases:
+		\begin{itemize}
+			\item Assume $n - d_k k! = 0$.  Then $n = d_k k!,$ which means that the list $d=(0,\ldots,0,d_k)$, which uniquely represents $n$ as a proper factorial sum.
+			\item Assume $n - d_k k! > 0.$  Then since $n - d_k k! < n$, by the induction hypothesis there exists a unique proper list $(m_1,\ldots,m_r)$ such that $n - d_k k! = \sum_{r=1}^s m_r r!.$ Therefore $\sum_{r=1}^s m_r r! = \sum_{j=1}^{k-1} d_j j!$.  Therefore since the two sums are equal, and there's a unique representation for $m$, then $k! d_k + \sum_{r=1}^s m_r r!$ uniquely represents a natural number. Therefore $n = n -k! d_k  + k! d_k = \sum_{r=1}^s m_r r! + k! d_k = \sum_{j=1}^{k-1} d_j j! + k! d_k = \sum_{j=1}^{k} d_j j!.$   
+\end{itemize}		   
+A similar argument can be had for $\sum_{i=1}^l e_i i!$.  Therefore both lists uniquely represent $n$.  Thus they are equal.  
+		
+		
+		
+		%Let $\hat{d} = \frac{1}{2}\sum_{j=2}^k d_j j!$  Note that this is a natural number since $d_k$ term is a non-zero natural number and so is $\frac{k!}{2}$ as $k\geq 2$. 	Note also that $n = 2 \hat{d} + d_1$ and $d_1$ is an integer between $0$ and $1$.  Now we also have $n=2m+r.$  The quotient remainder theorem states that $m,r$ are unique integers, with $r \in \{0,1\}.$  Therefore $m = \hat{d}, r = d_1.$  By a similar argument if we define $\hat{e} = \frac{1}{2}\sum_{i=2}^l e_i i!$ we have $n=2\hat{e} + e_1$ and $m = \hat{e}, r = e_1.$  Now while $\hat{d}, \hat{e}$ don't have 
+	\end{itemize}
+\end{enumerate} 
+\end{document}

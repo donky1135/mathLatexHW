@@ -1,0 +1,53 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Q}{\mathcal{Q}}
+
+\author{Alex Valentino}
+\title{Assignment 5}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 5 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $X$ be a set and let $\mathcal{H}$ be a set of subsets of $X$. For elements $s, t$ of $X$ we define the notation $s \approx_{\mathcal{H}} t$, to mean that there is a member of $\mathcal{H}$ that has both $s$ and $t$ as a member.\\
+	\newline
+(a) Prove: For any set $S, \mathcal{Q}$ of $S$ and members $s, t, u \in S$, if $s \approx_{\mathcal{Q}} t$ and $t \approx_{\mathcal{Q}} u$ then $s \approx_{\mathcal{Q}} u$.\\
+We must show that $s \approx_{\mathcal{Q}} u$.  Suppose $s,t,u$ are arbitrary members of $S$, where $s \approx_{\mathcal{Q}} t$ and $t \approx_{\mathcal{Q}}.$ By definition of $\approx_{\Q}$ our propositions can be rewritten as there is a subset $A$ of $X$ that has both $s$ and $t$ as members, and there is a subset $B$ of $X$ that has both $t$ and $u$ as members. Therefore, we can define $A \cup B$ to be the set that contains $s, u, $ and $t$ as members.  This set is a member of $\Q$ as any element in $A \cup B$ is implied to lie within $X$.  Therefore if there exist a set in $\Q$ which contains $s,t,$ and $u$, then there exist a set containing $s$ and $u$.\\  
+
+
+(b) In the previous assertion, replace the phrase "for any partition $\mathcal{Q}$ of $S$ " by "for any set $\mathcal{Q}$ of subsets of $S$ ". Prove that the resulting statement is false.\\
+Take $\Q = \{\{1\},\{2\},\{3\}\}$.  The potential propositions of $1 \approx_\Q 2, 2 \approx 3$, and $1 \approx 3$  can never be true.  Therefore the implication, while technically vacuously true, can never be valid for any possible relation in $\Q$.  Therefore this is a partition where (a) could be viewed as false.  
+
+(c) Now go back to your proof of part a. Try to modify your proof for part a, so that it proves the statement in part b. Since the statement in part b is false, this should be impossible, which means that somewhere in your proof there must be a point where it is crucial that $\mathcal{Q}$ is a partition and not just a set of subsets of $S$. Explain where this happens. (Note: If you can't do this, then there's something wrong with your proof and you should fix it!)
+
+I can't find how to construct a proper counter exam, all I know is that the union operation being complete within the set of all subsets can't occur for a partition because by definition a partition's members are all pair-wise disjoint, which explicitly disallows unions.  The only way for (a) to occur for any members $s,t,u$ is for the partition beforehand to have the subset of which contains $s,t$ and $u$.  
+
+
+
+\end{document}

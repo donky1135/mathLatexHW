@@ -1,0 +1,46 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 10}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 10 problem 6\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $p_0(x),p_1(x),p_2(x),\ldots,$ be an arbitrary infinite sequence of polynomials with real number coefficients, such that the degree of $p_i$ is $i$.  Prove that for any polynomial $q$ if degree of $q$ is $n$ then there are real numbers $a_0,a_1,\ldots,a_n$ such that
+$q=\sum_{i=0}^n a_i p_i(x)$.\\
+
+We must show that for any polynomial $q$ of degree $n$ that $q=\sum_{i=0}^n a_i p_i(x)$. Suppose $q$ is a polynomial of degree $n$.  We must show $q=\sum_{i=0}^n a_i p_i(x)$. By the principal of mathematical induction for all polynomials $f$ where $deg(f) = k,$ if $k < n$ then there exists a sequence of real numbers $b_0,\ldots,b_k$ such that $f = \sum_{j=0}^k b_j p_j (x).$  By definition of degree the largest term of $q$ and $p_n$ is $n$.  Therefore if you divide $q$ by $p_n$, since $n-n = 0,$ then the largest possible quotient polynomial is constant, or a non-zero real number 0.  Therefore $\frac{q(x)}{p_n(x)} = c + \frac{f(x)}{p_n(x)}$ where $c\in \R, c \neq 0,$ and $f$ is a polynomial whose degree is less than $n$.  Since $deg(f) < n,$ by the induction hypothesis there exists a list of real numbers $b_0, \ldots, b_{n-1}$ such that $f = \sum_{j=1}^{n-1} b_j p_j (x)$ (Note that if $deg(f) < n-1,$ then all $b_j, j > deg(f)$ can simply be set to 0 and still satisfy the requirements of a list of real numbers). Note also that we now have $q(x) = c p^n(x) + f(x)$. Therefore if we set $a_0 = b_0,\ldots a_{n-1} = b_{n-1},$ and $b_n = c,$ then we have $\sum_{i=1}^n a_i p_i (x) = a_n p_n + \sum_{i=1}^n a_i p_i (x) = c p_n (x) + \sum_{j=1}^{n-1} b_j p_j(x)= c p_n + f(x) = q(x).$
+
+\iffalse
+ By definition of degree the largest term of $q$ must be $cx^n,$ where $c\in \R, c \neq 0.$ Let the polynomial f be given by $f= q - cx^n.$  Since the largest possible degree of $f$ is $n-1$, and $n-1 < n,$ then by the induction hypothesis there exists $b_0,\ldots b_{n-1}$ such that $f = \sum_{j=1}^{n-1} b_j p_j (x).$  Note that if $deg(f) < n-1,$ we can simply set all terms $b_i, i > deg(f)$ to 0.  
+\fi
+
+\end{document}

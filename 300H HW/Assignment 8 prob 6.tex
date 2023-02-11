@@ -1,0 +1,56 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 8}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 8 problem 6\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	If $P$ is a partial order on $X$ and $Q$ is a partial order on $Y$, an \emph{isomorphism} from $P$ to  $Q$ is a bijection $f$ between $X$ and $Y$ with the  property that for all $x,x' \in X$, $x\leq_P x'$ if and only if $y \leq_P y'$.  We say that $P$ and $Q$ are \emph{isomorphic} provided that there is an isomorphism from $P$ to $Q$.  (Intuitively, two partial orders are isomorphic if they have identical structure and you can obtain $Q$ from $P$ by renaming the elements of $P$.)
+Suppose $n$ is a natural number and consider 
+the partially ordered set $(\mathcal{P}_n,\subseteq)$ (the power set of $\{1,\ldots,n\}$ with the subset order) and the partially ordered set $(\{0,1\}^n,\leq^*)$ where
+for $y,z \in \{0,1\}^n$, $y \leq^* z$  means that $y_i \leq z_i$ for each $i \in \{1,\ldots,n\}$.  Prove that $(\mathcal{P}_n,\subseteq)$ is isomorphic to $(\{0,1\}^n, \leq^*)$.\\
+We must show that there is an isomorphism between $(\mathcal{P}_n,\subseteq)$ and $(\{0,1\}^n,\leq^*)$.  Therefore by definition we must show that there exists a bijection $f: \{0,1\}^n \to \mathcal{P}_n$ such that for all $a,b \in \{0,1\}^n$, $a \leq^* b$ if and only if $f(a) \subseteq f(b).$  We claim that $f$ is given by $f(a) = \{i \in [n] : a_i = 1\}.$  Suppose $a,b$ are arbitrary functions in $\{0,1\}^n$.  We must show that $a \leq^* b$ if and only if $f(a) \subseteq f(b).$
+\begin{itemize}
+	\item Suppose $a \leq^* b$.  We must show that $f(a) \subseteq f(b).$  By definition of $\leq^*$ for all $i \in [n], a_i \leq b_i.$  
+	By definition of $f$, $f(a) =\{i \in [n] : a_i = 1\}, f(b) = \{i \in [n] : b_i = 1\}$.  Since $a_i \leq b_i,$ and $f(a)$ is the set of all elements where $a_i = 1,$ then by the definition of $\leq$, $b_i$ must equal $1$ for the inequality to hold.  Therefore by the definition of $f$, if $x \in f(a),$ then it must be in $f(b).$  Therefore by the definition of subset $f(a) \subseteq f(b).$	
+%Since the range of $a,b$ is $\{0,1\},$ we can look at all the possible values of $a_i \leq b_i:$
+%	\begin{itemize}
+%		\item $a_i = 1, b_i = 1, \leq $
+%	\end{itemize}
+	\item Suppose $f(a) \subseteq f(b).$  We must show that $a \leq^* b.$  By definition of $\subseteq$ we have for all $i\in [n]$ if $i \in f(a),$ then $i \in f(b).$ Therefore if $i \in f(a),$ by the definition of $f$, $a_i = 1,$ similarly $b_i = 1.$  Therefore for all $i \in [n]$ such that $a_i = 1,$ then $a_i = b_i = 1, $ thus $a_i \leq b_i$ is equivalent to $1 \leq 1.$  However, if we take $f(a)^c,$ which would be the set where $a_i = 0,$ then we have undefined behavior of $b_i,$ as it could be either 1 or 0.  Therefore this provides two cases:
+	\begin{itemize}
+		\item $a_i = 0, b_i = 0, 0 \leq 0.$
+		\item $a_i = 0, b_i = 1, 0 \leq 1.$
+\end{itemize}	     
+	Thus for all possible $i \in [n], a_i \leq b_i.$
+\end{itemize}
+\end{document}

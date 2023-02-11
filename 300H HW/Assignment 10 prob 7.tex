@@ -1,0 +1,72 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 10}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 10 problem 7\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+The purpose of this problem is to prove: (**) For any $n \geq 1$, if $|X| \geq 2^n$ and $T$ is a tournament on ground-set $X$, then there is a subset $Y$ of $X$ of size $n+1$ such that the relation $T[Y]$ ($T$ restricted to $Y$) is transitive. 
+\begin{enumerate}
+\item Prove that a finite tournament on ground set $X$ has exactly $|X|(|X|-1)/2$ pairs.\\
+
+Suppose $X$ is a finite set and $T$ is a tournament on the set $X$.  We must show there are $|X|(|X|-1)/2$ pairs.  By the principal of mathematical induction for all finite sets $X'$ with a tournament defined on $X'$ if $|X'| < |X|$ then the tournament has exactly $\frac{|X'|(|X'|-1)}{2}$ pairs. % We claim that the sum $\sum_{i=1}^{|X|-1}(|X|-i)$ counts the number of pairs.  
+Note that since $T$ is a tournament then we know that it is full and anti-reflexive, therefore for each $y\in X, x\in            
+ X \backslash y$ either $xTy$ or $yTx$.  Since $|X \backslash y| = |X| - 1,$ then we have that each $x\in X$ occurs in $|X| - 1$ pairs.   We have two cases:
+\begin{itemize}
+	\item Assume $|X| = 1.$  Since a tournament is anti-reflexive, there are 0 pairs.  Therefore $0=|pairs(T)| = \frac{|X|(|X|-1)}{2} = \frac{1(1-1)}{2} = 0.$
+	\item Assume $|X| > 1.$ Suppose $a$ is an element of $X$.  Let $X'$ be given by $X' = X \backslash a.$  Since $|X'| = |X| - 1 < |X|,$ then by the induction hypothesis the tournament $T'$ defined on $X'$ has exactly $\frac{|X'|(|X'|-1)}{2}$ number of pairs.  Note that since $a \in X,$ there are $|X|-1$ pairs which contain $a$ in $T$.  Note also that since $X' = X \backslash a$ that $|pairs(T')| = |pairs(T)| -(|X|-1)$.  Therefore by algebraic manipulation:
+	\begin{align*}
+		 |pairs(T)| &= |pairs(T')| + |X|-1 \\
+		 &= \frac{|X'|(|X'|-1)}{2} + |X|-1 \\
+		 &= \frac{(|X|-1)(|X|-2)}{2}+ |X|-1 \\
+		 &= (|X|-1)(\frac{|X|-2}{2} + 1) \\
+		 &= (|X|-1)(\frac{|X|-2+2}{2}) \\
+		 &= |X|(|X|-1)/2.
+	\end{align*}
+\end{itemize}
+\item Prove: If $T$ is a tournament on $X$ then  there is some $x \in X$ such that $x T y$ for at least $(|X|-1)/2$ elements of $X$.\\
+
+Suppose for contradiction that for each $x\in X, xTy$ for strictly less than $(|X| - 1)/2$ elements of $X$.  Therefore, since $(|X| - 1)/2$ is an upper bound on the potential number of connections per element, then $pairs(T) < |X|(|X| - 1)/2$.  This is a contradiction as by the previous lemma $pairs(T)$ is exactly $|X|(|X| - 1)/2$.
+\item Use induction and the previous part to prove (**).\\
+
+We must show for any $n \geq 1$, if $|X| \geq 2^n$ and $T$ is a tournament on ground-set $X$, then there is a subset $Y$ of $X$ of size $n+1$ such that the relation $T[Y]$ is transitive.  Suppose $n \in \N, n \geq 1, |X| \geq 2^n,$ and that $T$ is a tournament on $X$.  We must show there exists a subset $Y \subseteq X, |Y| = n+1$ such that $T[Y]$ is transitive.  By the principal of mathematical induction for all sets $X'$, tournaments $T'$ defined on $X'$, $k \in \N,$ if $k < n, 2^n \geq |X'| \geq 2^k$  then there exists $Y' \subseteq X', |Y'| = k+1$ such that $T'[Y']$ is transitive.  We have two cases:
+\begin{itemize}
+	\item Assume $n=1$.  Then let $|X| = 2 = 2^1.$  Since there are two elements in $X$, then there exists only one pair in $T$.  Therefore $T$ is vacuously transitive.  Since the only subset of $X$ of size $2$ is $X$, and $T$, then the requirements have been satisifed.
+	\item Assume $n > 1.$  Since $T$ is defined on a finite set $X$, then there exists an element $x_* \in X$ such that $x_*Ty$ for at minimum $(|X|-1)/2$ elements of $X$.  Let $X_*$ be the set of all elements s.t. $x_* T y$.  Since there are $|X| - 1$ pairs which contain $x_*$, then the upper limit on $X_*$ is $|X| - 1$.  Since the lower limit on $X_*$ is $\lceil (|X|-1)/2 \rceil,$ then $|X_*| \geq \lceil (|X|-1)/2 \rceil \geq \lceil (2^n-1)/2 \rceil = 2^n/2 = 2^{n-1}.$  Since $|X| \geq 2^n \geq |X_*| \geq 2^{n-1}$, and $n-1 < n$ then by the induction hypothesis there exists a set $Y_*$ such that $Y_* \subseteq X_*, |Y_*| = n, T[Y_*]$ is transitive.  We claim that $Y_* \cup \{x_*\}$ is transitive.  Suppose $a,b\in Y_*$, therefore $xTa, xTb$ since   $a,b\in Y_*$.  Note that since $T$ is a tournament, then either $aTb$ or $bTa.$  We have two cases.
+	\begin{itemize}
+		\item Suppose $aTb$.  Therefore since $xTa, aTb,$ we must show that $xTb.$  Since $xTb$, then $T[Y_* \cap \{x_*\}]$ is transitive.
+		\item Suppose $bTa$.  Therefore since $xTa, bTa,$ we must show that $xTa.$  Since $xTa,$ then $T[Y_* \cap \{x_*\}]$ is transitive.
+	\end{itemize}
+	Since $Y_*\cup \{x_*\}\subseteq X, |Y_*\cup \{x_*\}| = n+1,$ and that $T[Y_*\cup \{x_*\}]$ is transitive, then the requirements have been satisfied.  
+\end{itemize}
+\end{enumerate}
+\end{document}

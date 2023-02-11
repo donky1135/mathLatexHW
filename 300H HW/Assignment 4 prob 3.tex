@@ -1,0 +1,115 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 4}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 4 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Below several pairs of predicates are given. For each pair do the following:
+\begin{itemize}
+	\item Identify the atomic assertions common to each pair of assertions and assign a variable to each of these assertions.
+	\item  Find logical expressions for each sentence in terms of the variables.
+	\item Determine whether the first can be logically deduced from the second, and whether the second can be logically deduced from the first. Explain your answers.
+\end{itemize}
+\begin{enumerate}
+	\item \begin{enumerate}
+	\item if $n$ is prime or $n+2$ is prime, then $n^2+2$ is prime or $n^2-2$ is prime
+	\item $n^2+2$ is non-prime and $n^2-2$ is non-prime implies $n$ is non-prime and $n+2$ is non-prime.
+	\end{enumerate}
+	$A := n$ is prime.\\
+	$B := n + 2$ is prime.\\
+	$C := n^2 + 2$ is prime.\\
+	$D := n^2 - 2$ is prime.\\
+	\begin{enumerate}
+	\item $(A \vee B) \Rightarrow (C \vee D)$
+	\item $\neg C \wedge \neg D \Rightarrow \neg A \wedge \neg B$ 
+	\end{enumerate}
+	$(A \vee B) \Rightarrow (C \vee D) \leftrightarrow \neg (C \vee D) \Rightarrow \neg (A \vee B)$ (Modus Tollens)\\
+	$\neg C \wedge \neg D \Rightarrow \neg A \wedge \neg B \leftrightarrow \neg (C \vee D) \Rightarrow \neg (A \vee B)$ (DeMorgan's rule)\\
+	Therefore the two statements are logically equivalent.
+	\item \begin{enumerate}
+		\item  For all real numbers $x$, there is a real number $y$ such that $y^2+y+10 x=0$ or $x \leq 9$ and there is a real number $z$ such that $z^2+2 z+15 x=0$.
+		\item For all real numbers $x, x \leq 9$ or there is both a real number $y$ such that $y^2+y+10 x=$ 0 and a real number $z$ such that $z^2+2 z+15 x=0$.
+	\end{enumerate}
+	$A(x,y) := y^2 + y + 10x = 0$\\
+	$B(x) := x \leq 9$\\
+	$C(x,z) := z^2 + 2z + 15x = 0$\\
+	\begin{enumerate}
+	\item $(\forall x \in \R, \exists y \in \R, (A(x,y)\vee B(x))) \wedge (\exists z \in \R, C(x,z))$
+	\item ($\forall x \in \R, B(x)) \vee (\exists y \in \R,\exists z \in \R,( A(x,y) \wedge  C(x,z)))$
+	\end{enumerate}
+	(b) cannot imply (a) as if $A = T, B = T, C = F$ then $T \vee (T \wedge F) = T \vee F = T \not \Rightarrow (T \vee T) \wedge F = T \wedge F = F$.  However (a) implies (b) as if $(\forall x \in \R, \exists y \in \R, (A(x,y)\vee B(x))) \wedge (\exists z \in \R, C(x,z))$ is true then $(A \wedge B)$ is true.  Since it is an or statement we can choose $\forall x \in R B(x)$ to be true.  Since the highest level logical operator in (b) is an or, then $B(x) = T$ satisfies the statement.  
+	
+	\item \begin{enumerate}
+		\item $f(x)>y$ and $g(y)>x$ implies $f(g(y))>y$ and $g(f(x))>x$.
+		\item $f(g(y)) \leq y$ implies $f(x) \leq y$, and $g(f(x)) \leq x$ implies $g(y) \leq x$. \\
+		
+	\end{enumerate}
+	$A(x,y) := f(x) > y$\\
+		$B(x,y) := g(y) > x$\\
+		$C(y) := f(g(y)) > y$\\
+		$D(x) := g(f(x)) > x$
+		\begin{enumerate}
+			\item $(A(x,y) \wedge B(x,y)) \Rightarrow (C(y) \wedge D(x))$
+			\item $(\neg C(y) \Rightarrow \neg A(x,y)) \wedge (\neg D(x) \Rightarrow \neg B(x,y))$		
+		\end{enumerate}
+		$(a) \neg (A \wedge B) \vee (C \wedge D)$ (Implication definiton)\\
+%		$(a) (\neg (A \vee B) \vee C ) \wedge (\neg (A \vee B) \vee D)$ (or distribution) \\
+		$(a) ((\neg A \vee \neg B) \vee C) \wedge ((\neg A \vee \neg B) \vee D$ (DeMorgan's rule)\\
+		$(a) (\neg A \vee( \neg B \vee C)) \wedge (\neg A \vee (\neg B \vee D)) $ (or associativity)\\
+		$(a) (A \Rightarrow (B \Rightarrow C)) \wedge (A \Rightarrow (B \Rightarrow D))$
+%		$(a) (\neg A \vee C) \wedge (\neg B \vee C)) \wedge ((\neg A \vee D) \wedge (\neg B \vee D))$ (or distribution)\\
+%		$(a) ((\neg A \vee D) \wedge (\neg C \vee D)) \wedge ((\neg B \vee C) \wedge (\neg B \vee A))$ (and commutative, distribution)\\
+%		$(a) (A \Rightarrow (C \wedge D)) \wedge (B \Rightarrow (C \wedge D))$ (implication definition)\\
+		$(b) (A \Rightarrow C) \wedge (B \Rightarrow D)$ (Contrapositive)\\
+%		$(a) (A \Rightarrow (B \Rightarrow (C \wedge D))$ (Nested Implication)\\
+%		$(b) (\neg A \vee (\neg B \vee (C \wedge D)))$\\
+%		$(b) (\neg A \vee ((\neg B \wedge C) \vee (\neg B \wedge D))$
+	a does not logically imply b as in the case where $A$ is true and the rest are false then $(T \wedge F) \Rightarrow (F \wedge F) = F \Rightarrow F = T \neq (T \Rightarrow (F \wedge F)) \wedge (F \Rightarrow (F \wedge F)) = (T \Rightarrow F) \wedge (F \Rightarrow F) = F \wedge T = F$.  However b implies a, as if $(A \Rightarrow C) \wedge (B \Rightarrow D) = T, (A \Rightarrow C) = T, (B \Rightarrow D) = T, $ then since we already know $(A \Rightarrow C) \Rightarrow (A \Rightarrow (B \Rightarrow C)) $ from problem 2, then we have $T \wedge (A \Rightarrow T) = T \wedge (\neg A \vee T) = T \wedge T = T.$  
+	
+	
+	\item In this pair of assertions, $S, T , V ,$ and $W$ are all sets. \begin{enumerate}
+		\item $S \subseteq T$ if and only if $S \subseteq V,$ or $S \subseteq T$ if and only if $W \subseteq T$
+		\item $S \subseteq T$ if and only if	($S \subseteq T$ or $W \subseteq T$).
+	\end{enumerate}
+	$A(S,T) := S \subseteq T$\\
+	$B(S,V) := S \subseteq V$\\
+	$C(T,W) := S \subseteq W$\\
+	\begin{enumerate}
+		\item $A(S,T) \Leftrightarrow B(S,V) \vee A(S,T) \Leftrightarrow C(T,W)$
+		\item $A(S,T) \Leftrightarrow (B(S,T) \vee C(T,W))$
+	\end{enumerate}
+	b doesn't imply a since if $A = F, B = T, C = F,$ then $T \Leftrightarrow F \vee F \Leftrightarrow F = F \vee T = T \neq F \Leftrightarrow (T \vee F) = F \Leftrightarrow T = F.$  However it does work the other way around, if we take $(b)$ to be true then we have $A \Leftrightarrow (B \vee C).$  Since we have an or statement, then we can just take $B$ out of it, and we're left with the statement $A \Leftrightarrow B,$ which if substituted into a as true, then we get $T \vee A \Leftrightarrow C = T.$  
+\end{enumerate}
+ 
+ 
+\end{document}

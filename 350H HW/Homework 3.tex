@@ -1,0 +1,95 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Q}{\mathbb{Q}}
+
+
+\author{Alex Valentino}
+\title{Homework 3}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 3\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item  Prove that if $W_1, W_2$ are finite dimensional subspaces of a vector space $V$, then the subspace $W_1 + W_2$ is finite-dimensional, and $dim(W_1 + W_2) = dim(W_1) + dim(W_2) - dim(W_1 \cap W_2)$.
+		\begin{itemize}
+			\item We must show that $W_1 + W_2$ is finite dimensional.  Since $W_1 \cap W_2$ is a finite dimensional subspace then let $\Vec{u}_1, \ldots, \Vec{u}_k$ be a basis of $W_1 \cap W_2$.  Since $W_1 \cap W_2$ is a subspace of $W_1$, then the basis of $W_1 \cap W_2$ may be extended to a full basis of $W_1$ given by $\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m$.  A similar process may be performed for $W_2$ yielding $\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{w}_1,\ldots, \Vec{w}_p$ as $W_2$'s basis.  We claim that $W_1 + W_2$ has a basis of $\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots, \Vec{w}_p$.  
+		\begin{enumerate}
+		\item We must show that $\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots, \Vec{w}_p$ generates $W_1 + W_2$.  Suppose $\Vec{y}  \in W_1 + W_2$.  We must show that $\Vec{y} \in Span(\{\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots, \Vec{w}_p\})$. Since $W_1 + W_2$ is the linear combination of vectors from $W_1, W_2$, then there exists vectors $\Vec{x}_1 \in W_1, \Vec{x}_2 \in W_2$ such that $\Vec{y} = \Vec{x}_1 + \Vec{x}_2$.  Therefore there exists $a_1,\ldots, a_k, b_1, \ldots, b_m, c_1, \ldots, c_k, d_1,\ldots, d_p \in F$ such that $x_1 = \sum_{\alpha =1}^k a_\alpha \Vec{u}_\alpha + \sum_{\beta = 1}^m b_\beta \Vec{v}_\beta$, $x_2 = \sum_{\gamma =1}^k c_\gamma \Vec{u}_\gamma + \sum_{\delta = 1}^p d_\delta \Vec{w}_\delta$.  Therefore: 
+		\begin{align*}
+			\Vec{y} &= \Vec{x}_1 + \Vec{x}_2\\
+			&= \sum_{\alpha =1}^k a_\alpha \Vec{u}_\alpha + \sum_{\beta = 1}^m b_\beta \Vec{v}_\beta + \sum_{\gamma =1}^k c_\gamma \Vec{u}_\gamma + \sum_{\delta = 1}^p d_\delta \Vec{w}_\delta \\
+			&= \sum_{i=1}^k (a_i + c_i) \Vec{u}_i +  \sum_{\beta = 1}^m b_\beta \Vec{v}_\beta + \sum_{\delta = 1}^p d_\delta \Vec{w}_\delta\\
+			&\text{ due to the closure of F under addition,}\\
+			&\text{ let }	 e_i = a_i + c_i, \text{ for all } i \in [k]\\
+			&=  \sum_{i=1}^k e_i \Vec{u}_i +  \sum_{\beta = 1}^m b_\beta \Vec{v}_\beta + \sum_{\delta = 1}^p d_\delta \Vec{w}_\delta.		
+		\end{align*}
+		Thus $\Vec{y} \in Span(\{\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m\})$.
+		\item We must show that 	$\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots, \Vec{w}_p$ is linearly independent.  Suppose for contradiction that they aren't.  Since $\{\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots\}$ and $\{\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{w}_1,\ldots, \Vec{w}_p\}$ are linearly independent, then $\{\Vec{v}_1,\ldots, \Vec{v}_m,\Vec{w}_1,\ldots, \Vec{w}_p\}$ are linearly dependent.  Suppose WLOG $w_1 \in Span(\{\Vec{v}_1,\ldots, \Vec{v}_m\})$.  Then $w_1 \in W_1$.  Therefore $w_1 \in W_1 \cap W_2$.  Therefore $w_1 \in Span(\{\Vec{u}_1,\ldots,\Vec{u}_k\})$.  This is a contradiction as $\{\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{w}_1,\ldots, \Vec{w}_p\}$ are linearly independent.       
+		\end{enumerate}
+		Therefore since $\Vec{u}_1, \ldots, \Vec{u}_k, \Vec{v}_1,\ldots, \Vec{v}_m, \Vec{w}_1,\ldots, \Vec{w}_p$ is a basis of $W_1 + W_2$, and the basis has a finite number of vectors, then $W_1 + W_2$ is finite dimensional.
+		\item We must show that $dim(W_1 + W_2) = dim(W_1) + dim(W_2) - dim(W_1 \cap W_2)$.  Note that $dim(W_1 \cap W_2) = k, dim(W_1) = k+m, dim(W_2) = k+p$, and as we showed above $dim(W_1 + W_2) = k + m + p$.  
+		
+		Therefore: 
+		\begin{align*}
+		dim(W_1 + W_2) &=  k + m + p\\
+		&= k + m + k + p - k\\
+		&= dim(W_1) + dim(W_2) - dim(W_1 \cap W_2).
+		\end{align*}
+		\end{itemize}
+		\newpage
+		
+		\item Let $W_1, W_2$ be subspaces of a vector spaces of $V$, where $dim(W_1) = m, dim(W_2) = n, n \leq m$.
+		\begin{enumerate}
+			\item Prove that $dim(W_1 \cap W_2) \leq n$.
+			Since $W_1 \cap W_2$ is a subspace of $W_2$, and a subset of linearly independent vectors of $W_2$ can have up to $dim(W_2)$ linearly independent vectors, then $dim(W_1 \cap W_2) \leq dim(W_2)$.  Therefore $dim(W_1 \cap W_2) \leq n$.
+			\item Prove that $dim(W_1 + W_2) \leq n+m$.
+			By the previous problem, we have that $dim(W_1 + W_2) = dim(W_1) + dim(W_2) - dim(W_1 \cap W_2)$.  Note that since $dim(W_1 \cap W_2)$ can be $0$, then $ dim(W_1) + dim(W_2) - dim(W_1 \cap W_2) \leq dim(W_1) + dim(W_2) = m + n$.  Therefore $dim(W_1 + W_2) \leq m + n$.
+		\end{enumerate}		  
+		
+		\newpage
+		\item Let $V$ be the set of real numbers regarded as a vector space over the field of rational numbers.  Prove that $V$ is infinite-dimensional.  By theorem $1.19$ we must show that $V$ has an infinite linearly independent subset.  Note that $\pi \in \R$, and $\pi$ is transcendental.  By definition of transcendental, there does not exist a non-zero polynomial with rational coefficients such that it has a root at $\pi$.  Therefore for all $f \in P(\Q) \backslash{\{0\}}$ where $f = \sum_{i=0}^n a_i x^i, a_0,\ldots,a_n \in \Q, f(\pi) = \sum_{i=0}^n a_i \pi^i \neq 0$.  Therefore for each $n$, the only polynomial $f \in P_n(\Q)$ such that $f(\pi) = 0$ is the polynomial $f=0$.  Therefore each $P_n(\Q)$ has the set $\{1,\pi, \pi^2,\ldots, \pi^n\}$ satisfying the definition of linear independence.  Therefore let $S \subset V$ be the collection of the sets of the powers of $\pi$ such that $\{\pi^i$ : for all $i \in [n]\cup \{0\}\}$ is linearly independent.  Therefore by the maximal principle $S$ contains the maximal element $\{1,\pi, \pi^2,\ldots\}$.  Therefore $\R$ has an infinite linearly independent subset.  Thus $V$ is infinite dimensional.
+		\newpage
+		\item Let $S_1, S_2$ be subsets of the vector space $V$, $S_1 \subseteq S_2$.  If $S_1$ is linearly independent, and $Span(S_2) = V$, then there exists a basis $\beta$ of $V$ such that $S_1 \subseteq \beta \subseteq S_2$. 
+		Let $\beta$ be the maximal element be the maximal set of all subsets of $S_2$ containing $S_1$ and linearly independent.  Thus since $\beta$ is a maximal and linearly independent subset of $S_2$, then by theorem 1.12, $\beta$ is a basis of $V$.  
+		\newpage   
+		\item Define $T: P(\R) \to P(\R)$ by $T(f(x)) = \int_0^x f(t) dt.$  Prove that $T$ is linear, 1-1, and not onto.
+		\begin{enumerate}
+			\item We must show that $T$ is linear.  Suppose $f,g \in P(\R), c \in \R$.  Therefore:
+			\begin{align*}
+				T(cf + g) &= \int_0^x cf(t) + g(t) dt\\
+				&= c\int_0^x f(t) dt + \int_0^x g(t) dt\\
+				&= cT(f) + T(g).
+			\end{align*}
+			\item We must show that $T$ is 1-1.  Suppose $f,f^* \in P(\R), T(f) = T(f^*)$.  We must show $f = f^*$.   
+			Since $T$ is linear, then $T(f - f^*) = 0$ implies $\int_0^x f(t) - f^*(t) dt = 0$, however since the only function which integrates to $0$ is $f=0$, then $f(t) - f^*(t) - 0$, thus $f(t)= f^*(t)$.
+			\item We must show that $T$ is not onto.  We claim that for all $f \in P(\R)$ that $T(f) = c, c \in \R$ is impossible.  Suppose for contradiction that there exists $f \in P(\R)$  such that $\int_0^x f(t) dt = c.$  Let $F : \R \to \R$ be given by $F' = f$.  Then evaluating the integral above yields $F(x) - F(0) = c$.  Therefore $F(x) = F(0) + c$.  Differentiating both sides yields $f(x) = 0$.  This is a contradiction as $\int_0^x 0 = 0 \neq c$.  Therefore $T$ is not onto.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

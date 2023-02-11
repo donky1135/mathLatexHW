@@ -1,0 +1,84 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 6}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 6 problem 1\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Suppose $f: S \longrightarrow T$. Recall that for $X \subseteq S$, the image of $X$ under $f$, denoted ${im}_f(X)$ is the set $\{f(x): x \in X\}$ and for $Y \subseteq T$, the preimage of $Y$ under $f$, ${preim}_f(Y)$ is the set $\{x \in S: f(x) \in Y\}$\\
+For each of the following assertions determine whether it's true or false. If it's true prove it. If it's false, disprove it.\\
+(a) For any two subsets $X_1$ and $X_2$ of $S, {im}_f(X_1 \cup X_2)= im_f(X_1) \cup im_f(X_2)$.\\
+	Proof: We must show that for all subsets $X_1,X_2$ of $S$ that ${im}_f(X_1 \cup X_2)= im_f(X_1) \cup im_f(X_2)$.  Suppose $X_1,X_2$ are arbitrary subsets of $S$.  By the definition of set equality our goal becomes showing ${im}_f(X_1 \cup X_2) \subseteq im_f(X_1) \cup im_f(X_2)$ and $im_f(X_1) \cup im_f(X_2) \subseteq {im}_f(X_1 \cup X_2).$  
+	\begin{itemize}
+		\item We must show that ${im}_f(X_1 \cup X_2) \subseteq im_f(X_1) \cup im_f(X_2)$.  Suppose $p$ is an arbitrary member of $im_f(X_1 \cup X_2).$  Then by definition of image $p \in \{f(x): x \in X_1 \cup X_2\}.$  By definition of set union $p \in \{f(x): x \in X_1 \text{ or } x \in X_2\}.$  This provides two cases, when $x\in X_1$ and $x \in X_2.$  
+		\begin{itemize}
+			\item Assume $x \in X_1.$  Then $\{f(x): x \in X_1\} = im_f(X_1).$  Since $p \in im_f(X_1),$ then by definition of union $p \in im_f(X_1) \cup im_f(X_2).$   
+			\item Assume $x \in X_2.$  Then $\{f(x): x \in X_@\} = im_f(X_2).$  Since $p \in im_f(X_2),$ then by definition of union $p \in im_f(X_1) \cup im_f(X_2).$  
+		\end{itemize}
+		\item We must show $im_f(X_1) \cup im_f(X_2) \subseteq {im}_f(X_1 \cup X_2)$.  Suppose $p \in im_f(X_1) \cup im_f(X_2).$  By definition of set union $p \in im_f(X_1)$ or $p \in im_f(X_2)$.  This provides two cases, when $p \in im_f(X_1)$ and when $p \in  im_f(X_2)$.  
+	\begin{itemize}
+		\item Assume $p \in im_f(X_1).$ Then by definition of image $p \in \{f(x): x \in X_1\}$. Therefore if $x \in X_1$ then it by definition $x \in X_1 \cup X_2$.  Thus $p \in im_f(X_1 \cup X_2)$.  	   
+		\item Assume $p \in im_f(X_2).$ Then by definition of image $p \in \{f(x): x \in X_2\}$. Therefore if $x \in X_2$ then it by definition $x \in X_1 \cup X_2$.  Thus $p \in im_f(X_1 \cup X_2)$.  	   
+	\end{itemize}			 
+	\end{itemize}
+	Therefore ${im}_f(X_1 \cup X_2) \subseteq im_f(X_1) \cup im_f(X_2)$.\\
+(b) For any two subsets $X_1$ and $X_2$ of $S, i m_f\left(X_1 \cap X_2\right)=i m_f\left(X_1\right) \cap i m_f\left(X_2\right)$.\\
+	This is false.  Take $f: \R \to \R$ be given by $f(x) = x^2$, $X_1 = \{1,2,3\}$, and $X_2 = \{-1,-2,-3.\}$.  Therefore $im_f(X_1 \cap X_2) = im_f(\{1,2,3\} \cap \{-1,-2,-3\}) = im_f(\emptyset) = \emptyset \neq \{1,4,9\} = \{1^2,2^2,3^2\} \cap \{(-1)^2,(-2)^2,(-3)^2\} = im_f(X_1) \cap im_f(X_2).$
+
+(c) For any two subsets $Y_1$ and $Y_2$ of $T$, $preim_f(Y_1 \cap Y_2)=preim_f (Y_1) \cap {preim}_f(Y_2)$.\\
+We must show for any two subsets of $T$, that $preim_f(Y_1 \cap Y_2)=preim_f (Y_1) \cap {preim}_f(Y_2)$.  By the definition of set equality, our goal is now to show that $preim_f(Y_1 \cap Y_2)   \subseteq preim_f (Y_1) \cap {preim}_f(Y_2)$ and $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_1 \cap Y_2).$ 
+	\begin{itemize}
+		\item We must show $preim_f(Y_1 \cap Y_2) \subseteq preim_f (Y_1) \cap {preim}_f(Y_2)$.  Suppose $p$ is an arbitrary element in $preim_f(Y_1 \cap Y_2)$.  By the definition of set intersection we must show $p \in preim_f(Y_1 \cap Y_2) \subseteq preim_f (Y_1)$ and $p \in preim_f(Y_1 \cap Y_2) \subseteq preim_f (Y_2)$.
+		\begin{itemize}
+			\item We must show $p \in preim_f(Y_1 \cap Y_2) \subseteq preim_f (Y_1)$.  By definition $p \in \{x \in S: f(x) \in Y_1 \text{ and } f(x) \in Y_2\}$.  If $f(x) \in Y_1$ and $f(x) \in Y_2$, then necessarily $f(x) \in Y_1.$  Therefore by definition $p \in preim_f(Y_1).$  
+			\item We must show $p \in preim_f(Y_1 \cap Y_2) \subseteq preim_f (Y_2)$.  By definition $p \in \{x \in S: f(x) \in Y_1 \text{ and } f(x) \in Y_2\}$.  If $f(x) \in Y_1$ and $f(x) \in Y_2$, then necessarily $f(x) \in Y_2.$  Therefore by definition $p \in preim_f(Y_2).$  
+		\end{itemize}
+		\item We must show $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_1 \cap Y_2)$.  Suppose $p$ is an arbitrary element of $preim_f (Y_1) \cap {preim}_f(Y_2)$.  By the definition of set intersection, we must show $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_1 \text{ and } Y_2)$.  Therefore we now have two goals, $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_1)$ and $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_2)$.
+		\begin{itemize}
+			\item We must show $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_1)$.  By the definition of set intersection $p \in preim_f (Y_1)$ and $p \in preim_f (Y_2).$  Therefore $p \in preim_f (Y_1).$
+			\item We must show $preim_f (Y_1) \cap {preim}_f(Y_2) \subseteq preim_f(Y_2)$.  By the definition of set intersection $p \in preim_f (Y_1)$ and $p \in preim_f (Y_2).$  Therefore $p \in preim_f (Y_2).$
+		\end{itemize}
+	\end{itemize}
+
+(d) For any subset $X$ of $S$, $preim_f(im_f(X)) \supseteq X$.\\
+Proof: We must show for any subset $X$ of $S$, $preim_f(im_f(X)) \supseteq X$.  Suppose $x$ is an arbitrary member of X.  By the definition of image we must show $X \subseteq preim_f(\{f(x): x\in X\})$  By definition of preimage we must show $X \subseteq \{s \in S: f(s) \in \{f(x): x \in X \} \}$.  Therefore since we have $x \in X$, we satisfy the internal definition of image, then the preimage of that simply takes all of the potential values in $S$ which satisfy $f(s) = f(x)$, which we know include $x$.\\
+
+(e) For any subset $X$ of $S$, preim $_f\left(\operatorname{im}_f(X)\right)=X$.\\
+False: Let $f: \R \to \R$ be given as $f(x) = x^2,$ and $X = 
+\{1,2\}$.  
+then $X = \{1,2\} \neq \{-2,-1,1,2\} = 
+preim_f(\{1,4\}) = preim_f(im_f(X)).$  \\
+(f) For any subset $Y$ of $T$,$im_f\left(\right.$ preim $\left._f(Y)\right) \supseteq Y$.\\
+	False. Take $f: \R \to \R$ given by $f(x) = \sqrt{x},$ and $Y= \R.$  Then $Y = \R \not \subseteq \R_{\geq 0} = im_f(\R_{\geq 0}) = im_f(preim_f((\R)) = im_f(preim_f((Y)).$ \\
+(g) For any subset $Y$ of $T$, $im_f (preim_f(Y))=Y$.\\
+
+\end{document}

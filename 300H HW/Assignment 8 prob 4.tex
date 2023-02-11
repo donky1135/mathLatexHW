@@ -1,0 +1,106 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\usepackage{cancel}
+\author{Alex Valentino}
+\title{Assignment 8}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 8 problem 4\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{itemize}
+		\item Suppose that $Q$ is a partial order on $B$ and that $f:A \longrightarrow B$.  Define the relation $R$
+on $A$ by $xRy$ if $f(x)Qf(y)$.  Prove that $R$ is a TR relation.
+		\begin{itemize}
+			\item Proof that $f(x) \leq_Q f(y) \Rightarrow xRy.$ Suppose $x,y \in A, f(x) \leq_Q f(y).$ We must show that $xRy$. By definition of the relation $xRy.$
+			\item Proof that $xRy \Rightarrow f(x) \leq_Q f(y)$.  Suppose $x,y \in A, xRy$. We want to show that $f(x) \leq_Q f(y).$  Since $xRy$ is defined as only existing if $f(x) \leq_Q f(y),$ then we must have $f(x) \leq_Q f(y).$
+		\end{itemize}
+		\item For the rest of the problem, suppose $R$ is an arbitrary TR relation on $A$.  Define the relation
+$W$ on $A$ by $xWy$ if and only if $xRy$ and $yRx$.  Prove that $W$ is an equivalence relation.
+		\begin{itemize}
+			\item Proof of the reflexivity of $W$.  We must show for all $x \in A$ that $xWx.$  Suppose $x \in A.$  By definition of the relation $xWx$ we must show $xRx$ and $xRx.$  Since $R$ is a TR relation, then $xRx.$  Therefore $xWx.$
+			\item Proof of the transitivity of $W$.  We must show that for all $x,y,z \in A$ that if $xWy$ and $yWz$ then $xWz.$  Suppose $x,y,z \in A, xWy,yWz.$  We must show $xWz.$  By definition of the relation we have $xRy, yRx, yRz, zRy.$  By definition of the relation we must show $xRz$ and $zRx.$  Since $R$ is transitive we have $xRz$ and $zRx.$ 
+			\item Proof of the symmetry of $W$.  We must show for all $x,y \in A$ if $xWy$ then $yWx.$  Suppose $x,y \in A, xWy.$  We must show $yWx.$  By definition of the relation we have $xRy$ and $yRx.$  Therefore we have $yRx$ and $xRy$ by the commutativity of and.    Therefore by definition we have $yWx.$
+		\end{itemize}
+		\item Let ${\cal C}$ denote the set of equivalence classes of $W$.  Define a relation $P$ on the
+set ${\cal C}$ where for $C,D \in {\cal C}$,  $CPD$ if there exists an $x \in C$ and a $y \in D$ such that $xRy$.  Prove
+that this implies the stronger property that for all $C,D \in {\cal C}$ if $CPD$ then for all $x \in C$ and $y \in D$, $xRy$.\\
+		Proof: We must show for all $C, D \in {\cal C}$ that if $C P D$ then for all $x \in C, y \in D, xRy.$ Suppose $C,D \in {\cal C}, CPD.$  We must show that for all $x \in C, y \in D$, $xRy.$  Suppose $x \in C, y \in D.$  We must show $xRy.$  By definition of $CPD$ we have the existence of $c \in C, d \in D$ such that $c R d.$  Since $c,x$ are members of the equivalence class $C$, then by transitivity $xRd.$  Since $d,y$ are members of the equivalence class $D$, then by transitivity $xRy.$
+		\item Prove that $P$ is a partial order on ${\cal C}$.
+		\begin{itemize}
+			\item Proof of reflexivity.  We must show for all $C \in \cal C$, $C P C.$  Suppose $C \in \cal C.$  We must show $C P C.$  By the definition of $P$, we must show for all $x \in C, xRx.$  Suppose $x \in C.$  We must show $xRx.$  Since $R$ is reflexive, $xRx.$
+			\item Proof of transitivity.  We must show for all $C, D, E \in \cal C,$ if $C P D$ and $D P E$ then $C P E.$  Suppose $C, D, E \in {\cal C}, C P D, D P E.$  We must show $CPE.$  By definition of $P$, for all $x \in C, y \in D, z \in E, xRy, yRz.$  Since $R$ is transitive, then for all $x \in C, z \in E, xRz.$  Therefore by definition $C P E.$
+			\item Proof of antisymmetry.  We must show for all $C,D \in \cal C$ that if $C \neq D$ and $C P D$ then $D \cancel{P} C$.  Suppose $C,D \in {\cal C}, C \neq D, C P D.$  We must show $D \cancel{P} C.$  By definition of $P$ we have for all $x \in C, y \in D, x R y.$  By definition of $P$ we must show for all $x \in C, y \in D, y \cancel{R} x.$  Since $C \neq D,$ and $C,D$ are equivalence classes, then by definition for all $x \in C, y \in D,$ we have $x \cancel{R} y$ or $y \cancel{R} x.$  Since $x R y, $ then for all $x \in C, y \in D$ we have $y \cancel{R} x.$  
+		\end{itemize}
+		\item Finish the proof of the $\Rightarrow$ direction. \\
+		We must show that if $R$ is a TR relation on the set $A$ then there exists a set $B$ with a partial order $Q$ and a function $f: A \to B$ such that for all $x,y \in A, xRy$ if and only if $f(x) \leq_Q f(y)$.  Suppose $R$ is a TR relation on a set $A$.   Let the class of representatives $Rep = \{a,b,\cdots\}$ for $\cal C,$ let B be a set consisting of $R \backslash W$ and $Rep$, let $r: {\cal C} \to Rep$ be given by taking the equivalence class $\cal C$ and returning it's representative, let $f$ be given by 
+		\[ f(x) = \begin{cases}
+		x & \text{ if } x \in R \backslash W\\
+		r(C) & \text{ if } \exists C \in {\cal C}, x \in C\\
+  \end{cases}
+  \] We claim $Q$ is a poset defined as: \begin{itemize} %this has to be proved.
+  \item keeping all of the relations pre-existing between all of the elements in $R\backslash W$
+  \item  mapping $xRy, mRn$ with $x,n \in R \backslash W$ ,$m,y \in W$ to $x \leq_Q r(C), r(D) \leq_Q n$ where $C,D \in {\cal C}, m,y \in C.$ 
+  \item mapping all $C,D \in {\cal C}, CPD$ to $r(C) \leq_Q r(D).$
+\end{itemize}    
+	Proof that $Q$ is a poset:
+	\begin{itemize}
+		\item Proof of reflexivity:  Suppose $x \in B.$  We must show that $x \leq_Q x.$  By definition of $x \in B,$ either $x \in R \backslash W$ or $x \in Rep.$  \begin{itemize}
+			\item Suppose $x \in R \backslash W.$  We must show that $x \leq_Q x.$  Since $x \in R,$ and $R$ is a TR relation, then $x \leq_Q x.$
+			\item Suppose $x \in Rep.$  We must show  that $x \leq_Q x.$  Since $x$ is a representative for an equivalence class $X$, and $P$ is the relation from where it gets it's internal relations from, then we must show $XPX.$  Since $P$ is a poset, then $XPX.$ 
+		\end{itemize}
+		\item Proof of transitivity:  Suppose $x,y,z \in B.$  We must show that if $x \leq_Q y, y \leq_Q z,$ then $x \leq_Q z.$  Suppose  $x \leq_Q y, y \leq_Q z.$  We must show that $x \leq_Q z.$  Since $x \leq_Q y$ and $y \leq_Q z,$ then we know that there exists at least one element $x_a, y_a, z_a \in A$ such that $x_a R y_a$ and $y_a R z_a.$  Therefore by the transitivity of $R, x_a R z_a$.  Therefore since $x_a R z_a,$ then by the definition of $Q$ that relationship maps onto the representative elements in $B$, therefore $x \leq_Q z.$
+		\item Proof of antisymmetry:  Suppose $x,y \in B.$  We must show that if $x \leq_Q y, x \neq y,$ then $y \nleq_Q x.$  Suppose $x \leq_Q y,x \neq y$.  Therefore we must work by cases of what portion of $B$ they reside within:
+		\begin{itemize}
+			\item Suppose $x, y \in Rep.$  Then there exists $X,Y \in \cal C$ such that $x = r(X), y = r(Y).$  Therefore since $Q$ maps all relations from $XPY$ to $x \leq_Q y,$ and $P$ is a poset, then by definition $y \nleq_Q x.$
+			\item Suppose $x,y \in R \backslash W.$  Therefore since $W$ has all elements with  symmetric relationships in $A$, then by definition if $x,y \in R \backslash W$ and $x R y$ then $y \cancel{R} x.$  Therefore $y \nleq_Q x.$
+			\item Suppose $x \in R \backslash W, y \in Rep.$  Since $x \leq_Q y,$ then there must exists $x_a, y_a \in A$ such that $x_a R y_a.$  Since $y_a$ is in an equivalence class and $x_a$ isn't then by definition there isn't a symmetric relationship between $x_a$ and $y_a.$  Therefore $y_a \cancel{R} x_a.$  Since $Q$ only maps preexisting relationships, then $y \nleq_Q x.$ 
+		\end{itemize}
+	\end{itemize}
+
+Suppose $x,y \in A.$  We must show that $xRy$ implies $f(x) \leq_Q f(y)$ and $f(x) \leq_Q f(y)$ implies $xRy.$
+  \begin{itemize}
+  	\item Suppose $xRy$. We must show that $f(x) \leq_Q f(y).$  We now have four cases, $x \in R \backslash W, y \not\in R \backslash W$,$x \not\in R \backslash W, y \in R \backslash W$, $x \in R \backslash W, y \in R \backslash W$, $x \not\in R \backslash W, y \not\in R \backslash W$.
+  	\begin{itemize}
+  		\item Suppose $x \in R \backslash W, y \not\in R \backslash W$.  By definition there is a $C \in \cal C$ such that $y \in C.$  Therefore $f(x) = x, f(y) = r(C).$  By definition of $Q$, $x \leq_Q r(C).$  Therefore $f(x) \leq_Q f(y).$
+  		\item Suppose $x \not\in R \backslash W, y \in R \backslash W$.  By definition there is a $C \in \cal C$ such that $x \in C.$  Therefore $f(x) = r(C), f(y) = y.$  By definition of $Q$, $r(C) \leq_Q x.$  Therefore $f(x) \leq_Q f(y).$
+  		\item Suppose $x \in R \backslash W, y \in R \backslash W$.  By definition of $Q$, $xRy$ maps directly to $x \leq_Q y.$  Since $f(x) = x, f(y) = y,$ then $f(x) \leq_Q f(y).$
+  		\item Suppose $x \not\in R \backslash W, y \not\in R \backslash W$.  By definition there exists $C,D \in \cal C$ such that $x \in C, y \in D.$  Since $xRy$ then $CPD$.  Since $Q$ maps $CPD$ to $r(C) \leq_Q r(D),$ and $f(x) = r(C), f(y) = r(D),$ then $f(x) \leq_Q f(y).$
+  	\end{itemize}
+  	\item Suppose $f(x) \leq_Q f(y)$  We must show that $xRy.$ We now have four cases, $x \in R \backslash W, y \not\in R \backslash W$,$x \not\in R \backslash W, y \in R \backslash W$, $x \in R \backslash W, y \in R \backslash W$, $x \not\in R \backslash W, y \not\in R \backslash W$.
+  	\begin{itemize}
+  		\item Suppose $x \in R \backslash W, y \not\in R \backslash W$. Since $y \not\in R \backslash W$, then there exists $C \in \cal C$ such that $y \in C.$  Therefore $f(x) \leq_Q f(y) = x \leq_Q r(C).$  By definition of $Q$, if $ x \leq_Q r(C)$ then there exists an element $e$ in $C$ which $x R e.$  Since $e,y \in C,$ then $x Ry.$
+  		\item Suppose $x \not\in R \backslash W, y \in R \backslash W$.  The proof is nearly identical to the one above.
+  		\item Suppose $x \in R \backslash W, y \in R \backslash W$.  Then by definition of $f$, $f(x) \leq_Q f(y)$ is equivalent to $x \leq_Q y.$  Therefore by definition of $Q$ $xRy.$
+  		\item Suppose  $x \not\in R \backslash W, y \not\in R \backslash W$.  Therefore there exists $C,D \in \cal C$ such that $x \in C, y \in D.$  Therefore the inequality $f(x) \leq_Q f(y)$ becomes $r(C) \leq_Q r(D).$  Since $r(C) \leq_Q r(D)$ in $Q$ corresponds to $CPD$, and $x \in C, y \in D,$ then $xRy.$
+  	\end{itemize}
+\end{itemize}   
+  	
+	\end{itemize}
+\end{document}

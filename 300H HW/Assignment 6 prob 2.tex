@@ -1,0 +1,45 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 6}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 6 problem 2\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+
+\begin{document}
+Suppose $f : B \to C$ and $g: A \to B$.
+\begin{itemize}
+	\item Prove or disprove:  If $f \circ g$ is onto it's target then $f$ is onto.\\
+	Proof:  We must show that $f$ is onto.  Then by the definition of onto we must show for all $y \in C$ there exist $b \in B$ such that $f(b) = y.$  Suppose $f \circ g$ is onto.  Then by definition for all $y \in C$ then there exist $x \in A$ such that $f \circ g (x) = y.$  By definition of function composition    $f \circ g(x) = f(g(x))$.  Since the $x$ in $A$ exist, we can define $b=g(x).$  Therefore $f$ satisfies the definition of being an onto function.
+	\item Prove or disprove:  If $f \circ g$ is onto it's target then $g$ is onto. \\
+	Disproof: Let $g: \R_{\geq 0} \to \R$ be given as $g(x) = x^2$ and $f \circ g: \R_{\geq 0} \to \R_{\geq 0}$ be given by $f \circ g (x) = x^4.$ Since there exist no value in $R_{\geq 0}$ in which $x^2 < 0$ then clearly $g$ is not onto.  At the same time for all $y\in \R_{\geq 0}$ we can get $y^{\frac{1}{4}}=x,$ which allows us to write $f\circ g (x) = x^4 = (y^{\frac{1}{4}})^4 = |y| = y,$ which demonstrates that $f \circ g$ is onto despite g not being so.    
+\end{itemize}
+\end{document}

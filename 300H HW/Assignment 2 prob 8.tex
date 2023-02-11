@@ -1,0 +1,49 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 2 problem 8\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\textit{(a) If $S$ is a finite set, a permutation of $S$ is a function from $S$ to itself, whose range is all
+of $S$. Give an example of a permutation of $\{1, 2, 3, 4, 5\}$.}\\
+	Example: Let $id_S: S \to S$ be given as $x \in S, id_S(x) = x.$  This gives the permutation of $\{1,2,3,4,5\}$.\\
+	\textit{(b) Recall that if $f$ and $g$ are permutations of $S$ then $f\circ g$ is the function from $S$ to $S$ given
+by the rule $f \circ g(s) = f (g(s))$ for all $s \in S$. The identity permutation is the permutation
+that maps every element to itself. Give an example of two different permutations $f$ and
+$g$ of $\{1, 2, 3, 4, 5\}$ such that neither is the identity permutation, and $f\circ g = g \circ f$.} \\
+Let $f : S \to S$ be given as $f(S) = \{2,1,3,4,5\}$ and $g : S \to S$ be given as $g(S) = \{1,2,3,5,4\}$.  Then $f(g(S)) = \{2,1,3,5,4\}$, and $g(f(S)) = \{2,1,3,5,4\}$.\\
+	\textit{(c) Give an example of two different permutations $f$ and $g$ of $\{1, 2, 3, 4, 5\}$such that neither
+is the identity permutation and such that $f \circ g = g \circ f$ and $f \circ f = g \circ g$.}\\
+	The previous example functions work, as $f \circ f (S) = \{1,2,3,4,5\}$ and $g \circ g (S) = \{1,2,3,4,5\}$  
+	
+\end{document}

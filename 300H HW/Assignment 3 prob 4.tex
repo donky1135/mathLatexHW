@@ -1,0 +1,55 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 3}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 3 problem 4\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Consider the set $S = \{(x,y) \in \R^2 : (y \leq x) \wedge (x \leq y^2)\}$\\
+	\begin{itemize}
+		\item \textit{For each real numbers $x$ define the set $T_x = \{y\in \R : (x,y) \in S\}.$ For each $x$, give a simple description of the set $T_x$}
+		\begin{equation}
+			T_x =\begin{cases}
+				(-\infty,-\sqrt{x}] \cup [\sqrt{x},x] & x>1\\
+				(-\infty,-\sqrt{x}] & 0 < x \leq 1\\
+				(-\infty, x] & x \leq 0
+			\end{cases}
+		\end{equation}
+		\item \textit{For each real numbers $y$ define the set $R_y = \{x\in \R : (x,y) \in S\}.$ For each $y$, give a simple description of the set $R_y$}
+		\begin{equation}
+		R_y = \begin{cases}
+			[y,y^2] & y \geq 1 \vee y \leq 0\\
+			\emptyset & \text{ otherwise}
+		\end{cases}
+		\end{equation}
+	\end{itemize}
+\end{document}

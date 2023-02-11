@@ -1,0 +1,64 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 10}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 10 problem 5\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Lemma 1: We claim that $C\backslash A \subseteq (B \backslash A) \cup (C \backslash B)$.  Suppose $x\in C \backslash A, x \not \in B \backslash A$. We must show $x \in C \backslash B.$  Since $x \not \in B \backslash A$ by the definition of set difference $x \not \in B $ or $x \in A$.  Since $x \in C \backslash A$ then $x \in C$ and $x \not \in A.$  Since $x \not \in A,$ then $x \not \in B.$  Therefore since $x\in C$ and $x \not \in B$ then by the definition of set difference $x \in C \backslash B.$\\	
+	
+Lemma 2: We claim that for all $M,N \in \cal F,$ if $M \neq N, M R N,$ then there exists an element $m_* \in M$ such that for all $x \in N \backslash M, m_* < x.$  Suppose $M,N \in \cal F,$ $M \neq N, M R N$.  Since $M R N$, then $min (M\triangle N) \in M.$  Let $m_* = min (M\triangle N).$  Therefore by definition of $M \triangle N$ and the minimum of a set, for all $y \in (M \backslash N) \cup (N \backslash M), m_* \leq y.$  Since $N \backslash M \subset (M \backslash N) \cup (N \backslash M),$ then for all $z \in N \backslash M, m_* \leq z.$  By definition of $N \backslash M$, for all $z \in N \backslash M$, $z \not \in M.$  Since $m_* \in M,$ then $m_* \neq z$.  Since $m_* \neq z, m_* \leq z,$ then by definition of $<,$ for all $z \in M \backslash N, m_* < z.$
+	
+	
+	Let $\mathcal{F}$ be the set of all finite subsets of $\mathbb{Z}$.  We define a relation $R$
+on $\mathcal{F}$ as follows: For $A,B \in \mathcal{F}$ we say $ARB$ if either $A=B$, or if the smallest member
+of $A \triangle B$ belongs to $A$.  Prove that $R$ is a total order on $\mathcal{F}$. (Recall $A \triangle B=( A \backslash B) \cup (B \backslash A)$.)\\
+
+We must show that $R$ is a total order on $\cal F$.  Therefore we must show that $R$ is anti-symmetric, full, transitive, and reflexive.  
+	\begin{itemize}
+		\item We must show that $R$ is anti-symmetric.  There we must show for all $A,B \in \cal F$ if $A\neq B, ARB$ then $B \cancel{R} A.$  Suppose $A,B \in {\cal F}, A\neq B, ARB.$  We must show that $B \cancel{R}.$  By definition of $R$, we must show that $\min(B \triangle A) \not\in B.$  Since $\triangle$ is symmetric then we must show $\min(A \triangle B) \not\in B$.  By definition of $R$ we have $\min(A \triangle B) \in A$.  Since $\min(A \triangle B) \not\in B$ then it must be in the other set, thus $\min(A \triangle B) \in A.$
+		\item We must show that $R$ is full.  Therefore we must show for all $A,B \in \cal F,$ $ARB$ or $BRA$.  Suppose $B\cancel{R}A.$  We must show $ARB.$  By definition of $R$, $min(B \triangle A) \not \in B.$  Since no other set can contain the minimum except A, then $min(A\triangle B) \in A.$  Therefore $ARB.$
+		\item We must show that $R$ is reflexive.  We must show for all $A \in \cal F$ $ARA.$  Since $A=A,$ then $ARA.$
+		\item We must show that $R$ is transitive.  We must show for all $A,B,C \in \cal F$ if $ARB, BRC$ then $ARC.$  Suppose $A,B,C \in \cal F$, $ARB, BRC$.  Note that if $A=B$ or $B=C,$ then it is vacuously transitive, therefore we assume $A\neq B, B \neq C,$ which from here forward in the proof we assume lemma 2.  Then by definition of $R$, $min(A\triangle B) \in A, min(B\triangle C) \in B.$  let $a_* = min(A\triangle B), b_* = min(B\triangle C)$.  Since $a_* \in A, b_* \in B,$ then $a_* \in A \backslash B, b_* \in B \backslash C.$  However we don't know if $a_* \in C, b_* \in A.$  Therefore we have four cases.
+		\begin{itemize}
+			\item Assume $a_* \not \in C, b_* \not \in A.$  Since $b_* \not \in A,$ then $a_* < b_*$ as $a_*, b_* \in A\triangle B$.  Since $a_* \not \in C,$ then by definition of set difference $a_* \in A \backslash C$.  By lemma 2, $b_* <x,$ for all $x \in C \backslash B$, and $a_* < y$ for all $y \in B \backslash A$.  Since $a_* < b_*$ we may have for all $x \in C \backslash B, a_* < x.$  By the definition of set union we may have for all $z\in C \backslash B \cup B \backslash A, a_* < z.$  Since by the lemma 1 $C \backslash A \subset C \backslash B \cup B \backslash A,$ then for all $w \in C \backslash A, a_* < w.$  Therefore since $a_* \in A \backslash C,$ and $a_*$ is less than all of the elements in $C\backslash A$, then the minimum can't exists in $C \backslash A.$  Therefore $C\cancel{R} A$.  Since $R$ is anti-symmetric, then $ARC.$
+			\item Assume $a_* \not \in C, b_* \in A.$ Since $a_*, b_* \in A,$ and $a_* \not \in B,$ then $a_* \neq b_*.$   Since $a_*, b_* \in \Z,$ then either $a_* < b_*$ or $b_* > a_*.$ Therefore we have two cases:
+			\begin{itemize}
+				\item Assume $a_* < b_*.$  Since $BRC$, then $b_* < c,$ for all $c \in C\backslash B.$  Since $ARB$, then $a_* < b$ for all $b \in B \backslash A.$ 	Since $a_* < b_* < c,$ and for all $c \in C\backslash B, a_* < b$ for all $b \in B \backslash A,$ then by the definition of union for all $x \in  (B \backslash A) \cup (C \backslash B), a_* < x.$  Since $C\backslash A \subseteq (B \backslash A) \cup (C \backslash B)$, then for all $y \in C\backslash A, a_* < y.$  Therefore $ARC.$
+				\item Assume $b_* < a_*.$  Since $ARB$, then $a_* < b$ for all $b \in B \backslash A$.  Since $BRC$ then for all $b_* < c$ for all $c\in C \backslash B.$  Since $b_* < a_*$ then for all $b \in B \backslash A, b_* < b$.  Therefore by the definition of set union for all $x \in (B \backslash A) \cup (C \backslash B), b_* < x.$  Since $C \backslash A \subset (B \backslash A) \cup (C \backslash B)$, then for all $y \in C \backslash A, b_* < y.$  Since $b_* \in A, ARC.$
+			\end{itemize}
+			  
+			\item Assume $a_* \in C, b_* \not \in A.$  By definition of set difference, since $a_* \in C, a_* \not \in B,b_* \in B, b_* \not \in A,$ then $a_* \in C \backslash B, b_* \in B \backslash A.$  By lemma 2 and $ARB$, for all $x \in B \backslash A, a_* < b.$  Since $b_* \in B \backslash A,$ then $a_* < b_*.$  By lemma 2 and $BRC,$ for all $y \in C \backslash B, b_* < y.$  Since $a_* \in C \backslash B,$ then $b_* < a_*.$  Therefore we have a contradiction, so this case can never occur.   
+			\item Assume $a_* \in C, b_* \in A.$  Since $a_* \in C,$ as shown before $a_* \in C \backslash B.$  Since $BRC$ and lemma 2, then as shown before $b_* < a_*.$  By the definition of $R$ and lemma 2 we have for all $x \in B \backslash A, a_* < 	x,$ and for all $y \in C \backslash B, b_* < y.$  Since $b_* < a_*$ then we have for all $x \in B \backslash A, b_* < x.$  By the definition of set union, for all $z \in  (B \backslash A) \cup (C \backslash B), b_* < z.$ By lemma 1, for all $z\in C \backslash A, b_* < z.$  As shown before $b_* \in A \backslash C,$ since it is less than all the elements in $C\backslash A,$ then the minimum can't exists in $C\backslash A,$ therefore $C \cancel{R} A.$  Since $R$ is antisymmetric, then we have $ARC.$
+		\end{itemize}
+	\end{itemize}
+\end{document}

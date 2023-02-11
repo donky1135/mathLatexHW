@@ -1,0 +1,58 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 7}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 7 problem 5\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\textit{
+		For a relation $R$ on a set $X$ and $x,y\in X$ we have the following definitions:
+		\begin{itemize}
+			\item An $R$-walk from $x$ to $y$ is a list of elements $(a_0,a_1,\cdots,a_k)$ of elements in $X$ with $x=a_0$ and $y=a_k$ so that for $i \in \{1,\cdots,k\}$, $a_{i-1}Ra_i$ ($k$ is a allowed to be 0, so a list
+consisting could be $(a0)$.)
+			\item An $R$-walk $a_0,\cdots,a_k$ is an $R$-path if all of the elements appearing are distinct.  
+			\item We say $y$ is $R$-reachable from $x$, denoted $x \longrightarrow_R y$ if there is an $R$-walk from $x$ to $y$.
+			\item The $R$-reachability relation, $R^{\longrightarrow}$ is the relation on $X$ whose pair set is all $(x,y)$ such that $x \longrightarrow_R y$.     
+		\end{itemize}			
+	}
+	\begin{enumerate}
+		\item For all relations $R$ on $X$ and $x,y \in X,$ if $x \longrightarrow_R y$ then there is an $R$-path to from $x$ to $y$. \\ 
+			Suppose for arbitrary $x,y \in X$ that $x \longrightarrow_R y.$  We want to show that there exist an $R$-path from $x$ to $y$.  
+			By definition of $\longrightarrow_R$ there exist an $R$-walk from $x$ to $y$.  Therefore by the definition of $R$-path, we must show that there exist an $R$-walk from $x$ to $y$ with a list of unique elements in $X$.  Assume the $R$-walk is not a list of distinct elements.  Therefore there exist at least one element $a_d$ that appears in the list $(a_0,a_1,\cdots, a_k)$ more then once.  Suppose that $a_d$ has occurrences at indices $i$ and $j$.  Therefore the $R$-walk can be written as $(a_0,\cdots,a_{i-1},a_d,a_{i+1},\cdots,a_{j-1},a_d,a_{j+1},\cdots, a_k)$.  By definition of $R$-walk, $a_d R a_{i+1}$ and $a_{j-1}Ra_d$.  Therefore if you removed all of the elements from index $i+1$ to index $j$ from the list, it would still satisfy the definition of being an $R$-walk as the chain of relations from $x$ to $y$ is unbroken.  Since the list $(a_0,\cdots,a_{i-1},a_d,a_{j+1}\cdots, a_k)$ consist of entirely unique elements, and has already been established as an $R$-walk, then by definition it is an $R$-path.             		
+		
+		\item For all relations $R$, $R^{\longrightarrow}$ is transitive and reflexive.  	
+		\begin{itemize}
+			\item Suppose that the relation $R$ has a subset that is an $R$-reachability relation. We want to show that $R^{\longrightarrow}$ is transitive.  By definition of $R$-reachability we have $x,y,z \in R^{\longrightarrow},$ where $x \longrightarrow_R y$ and $y \longrightarrow_R z$. By definition of transitivity we must show for all $x,y,z \in R^{\longrightarrow}$ that if $x \longrightarrow_R y$ and $y \longrightarrow_R z$ then $x \longrightarrow_R z$.  By definition of $R$-walk there exist lists $(a_0,\cdots,a_k)$ and $(b_0,\cdots b_l)$ where $a_0 = x, a_k = b_0 = y, b_l = z$ in which each element is related to the next.  Therefore $a_{k-1}Ry$ and $yRb_0$.  Thus the list taken by removing $b_0$ from the second list and concatenating with the first list $(a_0, \cdots, a_{k-1},a_k, b_1, \cdots, b_l)$ satisfies the definition of $R$-walk, as every single pair of successive elements is related.  Therefore $x \longrightarrow_R z.$
+			\item Suppose that the relation $R$ has a subset that is an $R$-reachability relation. We want to show that $R^{\longrightarrow}$ is transitive.  By definition we want to show that for all $x \in X,$ $(x,x)\in R^{\longrightarrow}.$  Therefore by definition of $R^{\longrightarrow}$ we must show that for all $x \in X$, $x \longrightarrow_R x.$  Suppose $x$ is an element of $X$.  By definition of the $R$-reachability relation, it contains all pairs from $(x,y) \in X^2$ for which $x \longrightarrow_R y$.  By definition of $R$-walk, an $R$-walk consisting of the list $(x)$ constitutes a valid $R$-walk.  Since the first and last element are both the same, then by definition $xRx.$  Therefore $R$-reachability is reflexive.      
+		\end{itemize}
+	\end{enumerate}
+\end{document}

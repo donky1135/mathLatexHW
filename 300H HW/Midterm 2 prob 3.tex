@@ -1,0 +1,44 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Midterm 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Midterm 2 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Suppose that $X,Y$ are disjoint subsets of $\R$ that are gap-free.  Prove that for all $(x,y) \in X \times Y, x <y,$ or for all $(x,y) \in X \times Y, y < x$.\\
+	
+	Proof: Suppose there exists $(x_0, y_0) \in X \times Y$ such that $x_0 \leq y_0.$  We must show that for all $(x,y) \in X \times Y, x < y.$  Suppose $(x,y) \in X \times Y.$  We must show that $x < y.$ Since $x_0 \in X, y_0 \in Y,$ and $X,Y$ are disjoint, then $x_0 \neq y_0.$  Since $x_0 \leq y_0, x_0 \neq y_0, $ then $x_0 < y_0.$  We have four cases.  \begin{itemize}
+		\item Assume $x \leq x_0, y_0 \leq y.$  Therefore by chaining the inequalities we have $x < y.$
+		\item Assume $x_0 \leq x, y_0 \leq y.$  
+		%Assume for contradiction that for all  $(x,y)\in X \times Y, x \geq y.$  Since $x_0 \in $
+	\end{itemize}
+\end{document}

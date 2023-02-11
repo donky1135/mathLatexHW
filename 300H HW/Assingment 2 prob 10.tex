@@ -1,0 +1,56 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\title{Assignment 2}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 2 problem 10\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\textit{Let $S$ denote the set $\{2, 10, 11, 18, 19, 27\}$.
+For each of the following statements, determine whether the statement is true or false.}
+\begin{enumerate}
+	\item \textit{For all elements $x$ belonging to $S$ there is a $y$ belonging to $S$ such that $x + y$ is a multiple
+of $5$}
+	\begin{itemize}
+		\item Reducing all the elements in the set $\mod 5$ we observe that $\{2, 10, 11, 18, 19, 27\} \equiv \{0,1,2,3,4\} \mod 5.$  Therefore since $S$ includes $5\Z$ and all of the cosets of $\Z / 5 \Z,$ whose addition operation is a group.  Therefore by definition every element has an additive inverse.  Therefore the statement is true. 
+	\end{itemize}
+	\item \textit{There exists an element $x$ belonging to $S$ such that for all elements $y$ belonging to $S$,
+$x + y$ is a multiple of $5$.}
+	\begin{itemize}
+		\item The above statement is false because elements in a group, which are what $S$ forms under division by 5, by definition have unique inverses. 
+	\end{itemize}
+	\item \textit{For all $x$ belonging to $S$ there is a $y$ belonging to $S$ such that $x + y$ is a multiple of $7$.}
+	\begin{itemize}
+		\item Reducing $S \mod 7$ we observe that $\{2, 10, 11, 18, 19, 27\} \equiv \{2,3,4,5,6\}.$  Since $1 \mod 7 \notin S, $ then there exist no element which can be added to $27$ that would make it divisible by $7$.  Therefore the above statement is false. 
+	\end{itemize}
+\end{enumerate}
+\end{document}

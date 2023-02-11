@@ -1,0 +1,65 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+\usepackage{cancel}
+\author{Alex Valentino}
+\title{Assignment 7}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 7 problem 3\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+For each of the following relations, determine which of the properties reflexive, anti-reflexive, transitive, symmetric, and anti-symmetric it satisfies. If the property is not satisfied, give a counterexample; if it's satisfied provide a proof.\\
+
+(a) Let $\mathcal{S}$ be a collection of non-empty subsets of a set $X$ and let $R$ be the relation on $\mathcal{S}$ with $\operatorname{pairs}(R)$ consisting of all pairs $(S, T) \in \mathcal{S} \times \mathcal{S}$ satisfying $S \cap T=\emptyset$.\\
+	\begin{itemize}
+		\item Proof of anti-reflexivity.  Suppose $S \in X.$  We must show that $S \cap S \neq \emptyset.$  By definition of set intersection, $S \cap S = S.$  Therefore since $S$ is non-empty, then $S \cap S \neq \emptyset.$
+		\item Proof of symmetry.  Suppose $S,T \in X,S \cap T = \emptyset$.  We must show that $T \cap S = \emptyset.$  By the definition of set intersection $S \cap T = \{x: x \in S \wedge x \in T\}$.  By the definition of and commutativity $\{x: x \in T \wedge x \in S\}$.  By the definition of set intersection $S \cap T = T \cap S.$ Therefore since $S \cap T = \emptyset,$ then $T \cap S = \emptyset.$
+		\item Counterexample to transitivity.  Suppose $A = \{1\}, B = \{2\}, C = \{1,3\}.$  $A \cap B = \emptyset$ and $B \cap C = \emptyset.$  However, $A \cap C = \{1\},$ therefore the relation is not transitive.
+	\end{itemize}
+(b) Let $\mathcal{S}$ be a collection of non-empty subsets of a set $X$ and let $R$ be the relation on $\mathcal{S}$ with pairs $(R)$ consisting of all pairs $(S, T) \in \mathcal{S} \times \mathcal{S}$ satisfying $S \cap T \neq \emptyset$.\\
+	\begin{itemize}
+		\item Proof of reflexivity.  Suppose $S \in X.$  We must show that $S \cap S \neq \emptyset.$  By definition of set intersection, $S \cap S = S.$  Therefore since $S$ is non-empty, then $S \cap S \neq \emptyset.$
+		\item Proof of symmetry.  Suppose $S,T \in X,S \cap T \neq \emptyset$.  We must show that $T \cap S \neq \emptyset.$  By the definition of set intersection $S \cap T = \{x: x \in S \wedge x \in T\}$.  By the definition of and commutativity $\{x: x \in T \wedge x \in S\}$.  By the definition of set intersection $S \cap T = T \cap S.$ Therefore since $S \cap T \neq \emptyset,$ then $T \cap S \neq \emptyset.$ 
+		\item Counterexample to transitivity.  Suppose $A = \{1\}, B = \{1,2\}, C = \{2\}.$  Therefore $A \cap B \neq \emptyset, B \cap C \neq \emptyset.$  However $A \cap C = \{1\} \cap \{2\} = \emptyset.$
+	\end{itemize}
+(c) Let $R$ be a relation on $\mathbb{Z}$ defined so that for $m, n \in \mathbb{Z},(m, n) \in R$ provided there are odd integer $r$ and $s$ so that $m r=n s$.\\
+\begin{itemize}
+	\item Proof of reflexivity.  Suppose $m\in \Z$  We must show that there exist odd integers $r,s$ so that $mr = ms.$  Suppose $r=s=1.$  Then $m=m.$
+	\item Proof of symmetry. Suppose $m,n \in \Z,$ and there exist odd integers $mr = ns.$  We must show that there exist odd integers $t,u$ such that $nt = mu.$  Let $t=s, u =r.$  Therefore $ns = mr.$
+	\item Proof of transitivity.  Suppose $l,m,n \in \Z$ and there exist odd integers $r,s,t,u$ such that $lr = ms$ and $mt = nu$.  We must show that there exist odd integers $v,w$ such that $lv = nw.$  Since $lr = ms,$ then by definition $\frac{lr}{s} = m.$  Substituting that definition of $m$ into $mt = nu$ yields $\frac{lr}{s}t = nu.$  Multiplying both sides by $s$ yields $lrt = nus.$  Since the product of two odd numbers is odd, then $v = rt$ and $w = us.$ Thus $lv = nw.$
+\end{itemize}
+
+(d) Let $S=\mathbb{R} \times \mathbb{R}$ and let $R$ be the relation defined as follows for $\left(x_1, x_2\right) \in S$ and $\left(y_1, y_2\right) \in S$, we have $\left(x_1, x_2\right) R\left(y_1, y_2\right)$ if $x_1 \leq y_1$ and $x_2>y_2$. (Careful, this one may be confusing because the set $S$ consists of ordered pairs, so $\operatorname{pairs}(R)$ is a set of ordered pairs, and for each ordered pair in pairs $(R)$ each of its coordinates is an ordered pair.)\\
+\begin{itemize}
+	\item Proof of anti-reflexivity.  Suppose $(x,y) \in \R^2.$  We must show for all $(x,y) \in \R^2$ that $(x,y) \cancel{R} (x,y)$.  By definition we must show that $x\leq x \wedge y > y$ is false.  Since by the definition of greater than $y >y$ is always false, $R$ is anti-reflexive. 
+	\item Proof of anti-symmetry.  Suppose $(x,y),(a,b) \in \R^2, (x,y)R(a,b)$.  We must show $(a,b) \cancel{R} (x,y)$, and $(a,b) \neq (x,y).$  Since the relation is anti-reflexive, we can assume $(x,y) \neq (a,b).$  By definition of this relation, $x \leq a$ and $y > b.$  Therefore by definition of the relation we must show that  $\neg (a \leq x \wedge b > y).$  Therefore we must show $a > x$ or $y \leq b.$  Choose $a > x.$  Since we already have $(a,b) \neq (x,y),$ then by definition of ordered pair $a \neq x.$  Therefore since we already have $a \geq x $ and $a \neq x,$ then by definition $a > x.$
+	\item Transitivity proof.  Suppose $(x_1,x_2),(y_1,y_2),(z_1,z_2) \in \R^2, (x_1,x_2)R(y_1,y_2), (y_1,y_2)R(z_1,z_2).$ We must show for all $(x_1,x_2),(y_1,y_2),(z_1,z_2) \in \R^2$ that $(x_1,x_2)R(z_1,z_2).$  By definition of the relation we must show $x_1 \leq z_1$ and $x_2 > z_2.$  By definition of the relation we have $x_1 \leq y_1$, $x_2 > y_2,$ $y_1 \leq z_1,$ $y_2 > z_2.$  By the composition of inequalities we have $x_2 > y_2 > z_2$ and $x_1 \leq y_1 \leq z_1.$  Therefore by the transitivity of greater than and less than or equal to $x_2 > z_2$ and $x_1 \leq z_1.$
+\end{itemize}
+
+\end{document}

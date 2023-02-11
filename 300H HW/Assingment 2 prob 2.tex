@@ -1,0 +1,54 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 2 problem 2\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\textit{Given an example of a positive integer k that satisfies $2^k > k^{1000} + 1000000$.}\\
+	$k=13747.$  I found this answer by getting the inequality in the form 
+\begin{align*}
+	2^k & > k^{1000} + 10^6\\
+	k^{1000}+ 10^6 & > k^{1000}\\
+	2^k & > k^{1000}\\
+	ln(2^k) & > ln(k^1000)\\
+	k\cdot ln(2) & > 1000\cdot ln(k)\\
+	\displaystyle \frac{k}{ln(k)} & > \frac{1000}{ln(2)}	
+\end{align*}
+
+	The bounding of the inequality by a smaller function can be done since the point at which $2^k$ exceeds $k^{1000}$ will be much greater than $10^6$.  This fact can be justified by looking at when $k=10$ and keeping in mind that $2^k$ is a monotonic funciton: 
+	\begin{align*}
+		2^{10} & \approx 10^3\\
+		10^3 &> 10^{1000} + 10^6\\
+	\end{align*}
+	The above inequality doesn't make sense, and given that at such small values $k^{1000}$ is exceeding the size of $10^6$ makes it a negligible term.  Now with the $y$ value of $\frac{1000}{ln(2)}$ found we can now evaluate the function $\frac{x}{ln(x)}$ in a \href{https://www.desmos.com/calculator/en9glvnqyz}{calculator}.  I understand that such a thing as the lambert $W$ function exist, but I don't really know how to use that and this was easy enough.  The function reached the $x$ value of $x=13746.809.$  Now to get the nearest interger we take the ceiling and get a $k=13747.$  We can verify that this is the first interger to satisfy the inequality by looking wolfram alpha at the difference of $2^k - k^{1000}$ at \href{https://www.wolframalpha.com/input?i2d=true&i=k%3D13746%3B+Power%5B2%2Ck%5D-Power%5Bk%2C1000%5D}{$k=13746$} and \href{https://www.wolframalpha.com/input?i2d=true&i=k%3D13747%3B+Power%5B2%2Ck%5D-Power%5Bk%2C1000%5D}{$k=13747$}.  As predicted the values before and after as so massive as to make the $10^6$ term insignificant.  
+\end{document}

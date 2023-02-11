@@ -1,0 +1,61 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\title{Homework \# 15 }
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 1}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\lhead{
+	300H\\	
+	Alex Valentino \\
+	Assignment 1 problem 2
+}
+\begin{document}
+ \textit{Four people, Bob, Carol, Ted and Alice, are walking in the mountains at night with one
+flashlight. They arrive at a chasm that is crossed by a flimsy rope bridge. They decide that
+at most two people can be on the bridge at the same time. , and whoever crosses must have
+the flashlight with them. None of them can throw the flashlight across the bridge. Therefore
+they will cross the bridge in five steps as follows:
+\begin{itemize}
+	\item Step 1. Two cross the bridge together with the flashlight (so there are two on each side)
+	\item Step 2. One walks back with the flashlight (so there are three at the beginning and one at the
+end)
+	\item Step 3. Two cross the bridge together with the flashlight (so there is one at the beginning and
+three at the end)
+	\item Step 4. One walks back with the flashlight (so there are two on each side
+	\item Step 5. Two cross the bridge together with the flashlight (finished!)
+\end{itemize}
+Each person walking alone would need the following amount of time to cross the bridge:\\
+Bob 1 minute\\
+Carol 2 minutes\\
+Alice 5 minutes\\
+Ted 10 minutes\\
+Whenever two people travel together, they go at the speed of the slower person.
+Determine the fastest way to get all four people across the bridge. Give a careful argument
+that your plan is best possible.
+}
+
+The best plan is to have Bob be the flash-light carrier, and have him take everyone across.  If we're going at the slowest speed for the group crossing, and there's the extra time accrued due to returning the flashlight, then obviously the best minimization.  Therefore the fastest time possible is 19 minutes, which is just the sum of the 3 slowest people that takes a total of 17 minutes adding on the 2 minutes it takes for Bob to take the flashlight back across the bridge both times.  
+\end{document}

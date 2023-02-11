@@ -1,0 +1,60 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Assignment 10}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Assignment 10 problem 4\\
+	300H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Suppose that $(b_1,b_2,\ldots,b_k)$ is an arbitrary list of numbers.
+Prove that $\prod_{i=1}^k (1+b_i)=\sum_{S \subseteq \{1,\ldots,k\}} \prod_{j \in S} b_j$.\\
+\iffalse
+Lemma: We must show that for all non-empty sets $A$ for any $a\in A$ that $\Po(A) = \Po(A\backslash a)\cup (\{a\} \cup \Po(A\backslash a))$.
+Suppose $A$ is an arbitrary non-empty set, and $a$ is an arbitrary element in $A$.  We must show $\Po(A) = \Po(A\backslash a)\cup (\{a\} \cup \Po(A\backslash a))$.  Therefore we must prove $\Po(A) \subseteq \Po(A\backslash a)\cup (\{a\} \cup \Po(A\backslash \{a\}))$ and $\Po(A\backslash a)\cup (\{a\} \cup \Po(A\backslash \{a\})) \subseteq \Po(A).$
+\begin{itemize}
+	\item We must show $\Po(A) \subseteq \Po(A\backslash \{a\})\cup (\{a\} \cup \Po(A\backslash a))$.  Suppose $X \in \Po(A), X \not\in \Po(A\backslash \{a\}).$ Then we must show $X \in (\{a\} \cup \Po(A\backslash a)).$  Since $X \in \Po(A), X \not\in \Po(A\backslash \{a\})$ then by definition of the power set $X \subseteq A, X \nsubseteq A \backslash \{a\}.$  Therefore since the only difference between $A$ and $A \backslash \{a\}$ is $\{a\}$ then $a \in X.$  Since $X \subseteq A,$ then $X \backslash \{a\} \subseteq A \backslash \{a\}.$  Therefore $X \backslash \{a\} \in \Po(A\backslash \{a\}).$  Therefore adding $\{a\}$ to both sides yields $X \in \{a\} \cup \Po(A\backslash \{a\}).$
+	\item We must show $\Po(A\backslash \{a\})\cup (\{a\} \cup \Po(A\backslash \{a\})) \subseteq \Po(A).$  \begin{itemize}
+		\item Suppose $X \in \Po(A\backslash \{a\}).$  We must show $X \in \Po(A).$  Since $X \in \Po(A\backslash \{a\})$ by definition $X \subseteq A\backslash \{a\}.$  Since $A \backslash \{a\} \subseteq A,$ then $X \subset A.$
+		\item Suppose $X \in \{a\} \cup \Po(A\backslash \{a\}).$  Since $\{a\} \subseteq A,$ and $ A\backslash \{a\} \subseteq A,$ then  $\{a\} \cup \Po(A\backslash \{a\}) \subset A.$  
+	\end{itemize}
+\end{itemize}
+\fi
+
+
+
+We must show for all lists $(b_1,\ldots,b_k)$ of real numbers that $\prod_{i=1}^k (1+b_i)=\sum_{S \subseteq \{1,\ldots,k\}} \prod_{j \in S} b_j$.  Suppose $(b_1,\ldots,b_k)$ is a list of real numbers.  We must show that $\prod_{i=1}^k (1+b_i)=\sum_{S \subseteq \{1,\ldots,k\}} \prod_{j \in S}$.  By principal of mathematical induction for lists of real numbers $(e_1,\ldots,e_m)$ if $m < k$ then  $\prod_{i=1}^{m} (1+e_i)=\sum_{S \subseteq \{1,\ldots,m\}} \prod_{j \in S} e_j$.  We now have two cases:
+\begin{itemize}
+	\item Assume $k=1$.  Then we have the list $(b_1).$  Therefore $\sum_{S \subseteq \{1\}} \prod_{j \in S} b_j = \sum_{\emptyset,\{1\}} \prod_{j \in S} b_j = \prod_{j \in \emptyset} b_j + \prod_{ \in \{1\}} b_j = 1 + b_1 = \prod_{i=1}^1 (1+b_i).$
+	\item Assume $k > 1.$  Since $k -1 < k$ by the induction hypothesis we have for $(b_1,\ldots,b_{k-1})$ that $\prod_{i=1}^{k-1} (1+b_i)=\sum_{S \subseteq \{1,\ldots,k-1\}} \prod_{j \in S} b_j$.  Since every subset of $\{1,\ldots,n\}$ either includes or excludes $k$, and removing $k$ from $S$ makes $S$ a subset of $\{1,\ldots,k-1\}$, then we must show $\prod_{i=1}^k (1+b_i)=\sum_{S \subseteq \{1,\ldots,k-1\}} \prod_{j \in S} b_j + \sum_{\substack{(S\backslash k) \subseteq \{1,\ldots,k-1\}\\{k \in S}}} \prod_{j \in S} b_j$.  Since for the second sum $k$ is always in $S$, then the $b_k$ term will always be present in every term of the sum, therefore we must show $\prod_{i=1}^k (1+b_i)=\sum_{S \subseteq \{1,\ldots,k-1\}} \prod_{j \in S} b_j + b_k \sum_{S \subseteq \{1,\ldots,k-1\}} \prod_{j \in S} b_j$.  Therefore we must show $\prod_{i=1}^k (1+b_i)=(1+b_k)\sum_{S \subseteq \{1,\ldots,k-1\}} \prod_{j \in S} b_j$.  Since $k-1 < k,$ by the induction hypothesis we must show $\prod_{i=1}^k (1+b_i)=(1+b_k)\prod_{i=1}^{k-1} (1+b_i).$  Therefore by reindixing the product $(1+b_k)\prod_{i=1}^{k-1} (1+b_i)$ we have $(1+b_k)\prod_{i=1}^{k-1} (1+b_i) = \prod_{i=1}^k (1+b_i).$
+	\iffalse By definition of the power set we must show $\prod_{i=1}^k (1+b_i)=\sum_{S \in \Po([k])} \prod_{j \in S} b_j$.  By the lemma above we must show $\prod_{i=1}^k (1+b_i)=\sum_{S \in \Po([k-1]) \cup (\{k\} \cup \Po([k-1]))} \prod_{j \in S} b_j$.  Therefore we must show $\prod_{i=1}^k (1+b_i)=\sum_{S \in \Po([k-1])}\prod_{j \in S} b_j +\sum_{(\{k\} \cup \Po([k-1]))} \prod_{j \in S} b_j = $
+	\fi
+\end{itemize}
+\end{document}
