@@ -80,7 +80,7 @@
 			\end{cases}
 		\]
 		where $a \in \N\cup \{0\}$.
-		Note that at $t=t_0 -arcsin(x_0+2\pi a + \frac{\pi}{2}$, that for $\sin$ we have:
+		Note that at $t=t_0 -arcsin(x_0+2\pi a + \frac{\pi}{2})$, that for $\sin$ we have:
 		\begin{equation*}
 			\sin(t - t_0 + arcsin(x_0)) = \sin(2\pi a + \frac{\pi}{2}) = \sin(\frac{\pi}{2}) = 1
 		\end{equation*}
@@ -93,9 +93,66 @@
 	\item[2.9]
 		\begin{enumerate}
 			\item Note that different classes of solutions are had for $\alpha = 1$ and $\alpha \neq 1$.  Proceeding with the $\alpha \neq 1$ case:
-			\begin{equation}
-			
-			\end{equation}
+			\begin{equation*}
+			x' = x|ln|x||^\alpha
+			\end{equation*}
+			Applying barrow's formula yields:
+			\begin{equation*}
+			\int_{x_0}^x \frac{dx}{x|ln|x||^\alpha} = t-t_0
+			\end{equation*}
+			Note that $x$ is within the maximal interval $(0,1)$, therefore $|x| = x, |ln(x)| = -ln(x)$.  Thus the substitutions of $u = |ln|x||$ and $du = \frac{-1}{x}dx$ may be made:
+			\begin{equation*}
+				- \int_{x_0}^x u^{-\alpha}du = t - t_0. 
+			\end{equation*}			   
+			Therefore after evaluation we have:
+			\begin{equation*}
+				\frac{-1}{1-\alpha}(u(x)^{1-\alpha}-u(x_0)^{1-\alpha}) = t - t_0
+			\end{equation*}
+			Let $k = 1 - \alpha$, therefore by algebraic manipulation we have
+			\begin{align*}
+				\frac{-1}{k}(u(x)^{k}-u(x_0)^{k}) &= t - t_0\\
+				u(x)^{k}-u(x_0)^{k} &= k(t_0-t)\\
+				u(x)^k &= k(t_0-t) + u(x_0)^{k}\\
+				u(x) &= (k(t_0-t) + u(x_0)^{k})^\frac{1}{k}\\
+				-ln(x) &= (k(t_0-t) + u(x_0)^{k})^\frac{1}{k}\\
+				ln(x) &= -(k(t_0-t) + u(x_0)^{k})^\frac{1}{k}\\
+				x &= e^{-(k(t_0-t) + u(x_0)^{k})^\frac{1}{k}}.
+			\end{align*}
+			Some observations:  if $\alpha > 1$ then $1-\alpha = k < 1$.  Since $k$ is negative, then $u(0)^k = (-ln(0))^k = \infty^k = 0, u(1)^k = (-ln(1))^k = 0^k = \infty$.  On the other hand if $\alpha < 1$ then $1-\alpha = k > 1$.  Since $k$ is positive, then $u(1)^k = (-ln(1))^k = 0^k = 0, u(0)^k = (-ln(0))^k = \infty^k = \infty$.  Therefore evaluating $T_0, T_1$ for the cases of $\alpha >1, \alpha < 1$ yields:
+			\begin{enumerate}
+				\item $T_0, \alpha > 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
+				\item $T_1, \alpha > 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) =  -\infty$$
+				\item $T_0, \alpha < 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) =  -\infty$$
+				\item $T_1, \alpha < 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
+\end{enumerate}			 
+			Since $T_0$ is finite for $\alpha > 1$, then the solution does not hold for all $t$, however since $T_1$ is infinite, then we have found the solutions which are valid for $t>t_0$.  Similarly for $\alpha < 1, T_1$ is finite, and $T_0$ is infinite, giving us another partial solution for $t < t_0$. Let us evaluate the $\alpha = 1$ case.  The integral in terms of $u$ from barrow's formula is still valid, but it's evaluation is different:
+			\begin{align*}
+				-\int_{x_0}^x u^{-1}du &= t-t_0\\
+				ln|u(x)| - ln|u(x_0)| &= t_0-t\\
+				ln|u(x)| & = t_0 -t + ln|u(x_0)|\\
+				u(x) &= e^{t_0 -t + ln|u(x_0)|}\\
+				-ln(x) &= e^{t_0 -t + ln|u(x_0)|}\\
+				x &= e^{-e^{t_0 -t + ln|u(x_0)|}}				
+			\end{align*}
+			Evaluating on the endpoints:
+			\begin{enumerate}
+				\item $$T_0 = t_0 + -\int_{x_0}^0 u^{-1}du = t_0 - ln|u(0)| + ln|u(x_0)| = t_0 - ln(\infty) + ln|u(x_0)| = -\infty$$
+				\item $$T_1 = t_0 + -\int_{x_0}^1 u^{-1}du = t_0 - ln|u(1)| + ln|u(x_0)| = t_0 - ln(0) + ln|u(x_0)|= \infty$$
+			\end{enumerate}
+			Since the endpoints take an infinite amount of time to achieve, we have found the unique solution for all $t$.
+			\iffalse
+			However, if $\alpha > 1$, by the equation we got via barrows formula, then $1-\alpha = k < 1$.  Since $k$ is negative, then $u(0)^k = (-ln(0))^k = \infty^k = 0$, therefore: 
+			\begin{equation*}
+				t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty
+			\end{equation*}
+			On the other hand										
+			\fi
+			\item
+			\item For which values of $\alpha$ is $v$ Lipschitz? 	Note that since there does not exists solutions for all values of $\alpha \neq 1$, then $x|ln|x||^\alpha$ is not Lipschitz for those values.  We must test for $\alpha = 1$.  Note that since $x \in (0,1)$ then $v(x) = x|ln|x||= -x ln(x)$.  Now testing the boundedness of $|v'|$ at $0$:
+			\begin{equation*}
+				\lim_{x \to 0} |v'| =\lim_{x \to 0} |-1-ln(x)| = |-1-ln(0)|  = \infty.
+			\end{equation*}
+			Since $v'$ is unbounded
 		\end{enumerate}
 \end{enumerate}
 \end{document}
