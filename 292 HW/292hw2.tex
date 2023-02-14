@@ -122,7 +122,7 @@
 			\begin{enumerate}
 				\item $T_0, \alpha > 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
 				\item $T_1, \alpha > 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) =  -\infty$$
-				\item $T_0, \alpha < 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) =  -\infty$$
+				\item $T_0, \alpha < 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) =  \infty$$
 				\item $T_1, \alpha < 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
 \end{enumerate}			 
 			Since $T_0$ is finite for $\alpha > 1$, then the solution does not hold for all $t$, however since $T_1$ is infinite, then we have found the solutions which are valid for $t>t_0$.  Similarly for $\alpha < 1, T_1$ is finite, and $T_0$ is infinite, giving us another partial solution for $t < t_0$. Let us evaluate the $\alpha = 1$ case.  The integral in terms of $u$ from barrow's formula is still valid, but it's evaluation is different:
@@ -147,14 +147,73 @@
 			\end{equation*}
 			On the other hand										
 			\fi
-			\item
+			\item We claim that for $x(0) = 0$ unique steady state solution occurs when $\alpha \leq 1$.  This gives us two cases to test:
+			\begin{enumerate}
+				\item Suppose $\alpha < 1$.  Since we know from 2.9 that $k>0$, and that $|T_0| = \infty$, which is equivalent to evaluating barrow's formula on the neighborhood $(-\delta,0)$, where $x_0 = -\delta$ , and that $u(x) = |ln|x||$, thus we only need to evaluate the following:
+				$$
+					\lim_{\delta \to 0} \int_{0}^\delta |u^{-\alpha}| du = \lim_{\delta \to 0} \frac{-1}{k}(u(\delta)^k - u(0)^k) = \infty				
+				$$ 
+				Thus we have found the unique solution to be the steady state for $x(0) = 0$.
+				\item Suppose $\alpha = 1$.  Since we know that $|T_0| = \infty$, and that provides our cases for $(-\delta, x_0)$ as we simply can let $x_0 = -\delta$ and due to the absolute values we don't have to worry about sign.  Thus we need to only evaluate the following:
+				$$
+					\lim_{\delta \to 0} -\int_{0}^\delta |u^{-1}| du = \lim_{\delta \to 0} |-ln|u(0)| + ln|u(\delta)|| = \infty.
+				$$
+				Thus the steady state solution is unique for $\alpha = 1, x(0) = 0$.
+				
+				
+				
+				\iffalse						
+				have a formula to evaluate $\lim_{\delta \to 0} \int_0^\delta \frac{1}{v(z)}dz$
+				\fi
+			\end{enumerate}
+			We claim that for $x(0) = 1$ unique steady state solution occurs when $\alpha \geq 1$.  Thus gives us two cases to test:
+			\begin{enumerate}
+				\item Suppose $\alpha > 1$ Since we know that for $\alpha > 1$, $T_1 = \infty$, then we have evaluated on $(1-\delta,1)$.  Thus we only need to evaluate the following:
+				$$
+				\lim_{\delta \to 0} \int_{1}^{1+\delta} |u^{-\alpha}|du =  |\frac{-1}{k}(u(1+\delta)^k - u(1)^k)| = \infty	
+				$$
+				
+				\item Suppose $\alpha = 1$. Since we know that for $\alpha = 1$, $T_1 = \infty$ then we have already evaluated on $(1-\delta, 1)$.  Thus we only need to evaluate the following:
+				$$
+				\lim_{\delta \to 0} \int_{1}^{1+\delta} |u^{-1}|du =  \lim_{\delta \to 0} |-ln|u(1)| + ln|u(\delta)|| = \infty.
+				$$
+			\end{enumerate}
 			\item For which values of $\alpha$ is $v$ Lipschitz? 	Note that since there does not exists solutions for all values of $\alpha \neq 1$, then $x|ln|x||^\alpha$ is not Lipschitz for those values.  We must test for $\alpha = 1$.  Note that since $x \in (0,1)$ then $v(x) = x|ln|x||= -x ln(x)$.  Now testing the boundedness of $|v'|$ at $0$:
 			\begin{equation*}
 				\lim_{x \to 0} |v'| =\lim_{x \to 0} |-1-ln(x)| = |-1-ln(0)|  = \infty.
 			\end{equation*}
-			Since $v'$ is unbounded
+			Since $v'$ is unbounded then the $\alpha = 1$ case is not Lipschitz.
 		\end{enumerate}
 		\item[2.10]
+		\begin{enumerate}
 		
+			\item To show that $H(x',x) = H(v_0, x_0)$, we simply have to show that $\frac{d}{dt}H(x',x) = 0$:
+			\begin{align*}
+				\frac{d}{dt} H(x',x) &= \frac{d}{dt} (\frac{1}{2} (x')^2 + V(x))\\
+				&= x' x'' + \frac{d}{dx}V(x) x'\\
+				&= x' x'' + -F(x)x'\\
+				&= x' x'' + -x'' x'\\
+				&= 0.
+			\end{align*}
+			Therefore $H(x',x)$ is an arbitrary constant, which can be set to $H(v_0, x_0)$.\\
+			Therefore to solve $x' = \pm \sqrt{2(H(v_0,x_0)-V(x))}$ we simply apply barrows formula:
+			$$
+				t(x) = t_0 + \int_{x_0}^x \frac{\pm dz}{\sqrt{2(H(v_0,x_0)-V(z))}}.
+			$$
+			\item Let $V(x) = \frac{1}{2} x^2$, and $x_0 = 1, v_0 = 0$.  Then by the formula above we have:
+			$$
+			t = t_0 + \int_1^x \frac{\pm dz}{\sqrt{2(\frac{1}{2}-\frac{1}{2} z^2)}} = t_0 + \int_1^x \frac{\pm dz}{\sqrt{1 - z^2}}.		
+			$$
+			This is solved by $x(t) = \pm \sin(t-t_0+\frac{\pi}{2})$.
+			Note that this is exactly the equation we found infinite solutions for in 2.4!  Therefore the piecewise solution 
+			\[
+			x(t) = \begin{cases}
+				1 & t > t_0  + 2 \pi a \\
+				\sin(t - t_0 + \frac{\pi}{2}) & t \leq 	t_0 + 2 \pi a
+			\end{cases}
+		\]
+			provides solutions for all $a \in \N$ which have infinite rest periods at the equilibrium point $x=1$.  
+		\end{enumerate}
+
 \end{enumerate}
 \end{document}
