@@ -1,0 +1,57 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{PSS3 - Feb 9th}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	PSS3 - Feb 9th\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $V,W$ be finite dimensional vector spaces, and $\mathcal{L}(V,W)$ be the set of all linear transforms $L: V \to W$.  Note that $cL$ where $c \in F$ and $L_1 + L_2$ where $L_1, L_2 \in\mathcal{L}(V,W) $ are linear transforms.  Also note that when $L(x)$ is written for a linear transform, it is evaluating it's output for all elements in $V$, and represents an element in $W$.  We must show that $\mathcal{L}$ is a vector space over $F$.  
+	\begin{itemize}
+		\item Existence of the additive identity\\
+		We claim that $0_{V,W}: V \to W$ given by $0_{V,W}(v) = 0$ for all $v \in V$ is the additive identity. Since $(0_{V,W} + L) (x) = 0_{V,W}(x) + L(x) = 0 + L(x) = L(x)$, then we have demonstrated that $0_{V,W}$ is the identity.  
+		\item Inverses for vectors\\
+		We claim that $-L(x) := (-1)L(x)$ is the inverse of $L$.  Since $(L-L) (x) = L(x) + (-1) L(x) = 0$ for all $x \in V$, then we found that $L-L  =0_{V,W}$.  Therefore $-L$ is the inverse of $L$.
+		\item Associativity\\
+		Suppose $L_1, L_2, L_3 \in \mathcal{L}(V,W)$.  Then we have $L_1(x) + (L_2 + L_3)(x) = L_1(x) + L_2(x) + L_3(x) = (L_1 + L_2)(x) + L_3(x)$.  Thus we have associativity
+		\item Commutativity\\
+		Suppose $L_1, L_2 \in \mathcal{L}(V,W)$.  Then we have $(L_1+L_2)(x) = L_1(x) + L_2(x) = L_2(x) + L_1(x) = (L_2 + L_1)(x)$.
+		\item Associativity of scalar and vector multiplication\\
+		Suppose $a,b \in F, L \in \mathcal{L}(V,W)$.  Then we have $a(bL)  a(bL)(x) = a b L(x) = (ab) L(x) = (ab)L$.
+		\item Existance of the multiplicative field identity\\
+		We claim that $1\in F$ is the multiplicative scalar identity.  Suppose $L \in  \mathcal{L}(V,W)$.  Since $1L = 1 L(x) = L(x) = L$, then we have found the multiplicative identity.  
+		\item Distributivity of a scalar over vectors\\
+		
+		Suppose $L_1, L_2 \in \mathcal{L}(V,W), c \in F$.  Then we have $c(L_1 + L_2)(x) = c(L_1(x) + L_2(x)) = cL_1(x) + cL_2(x)$.
+		\item Distributivity of scalar multiplication with resepect to field addition\\
+		Suppose $a,b \in F, L \in \mathcal{L}(V,W)$.  Then we have $(a+b)L = (a+b)L(x) = aL(x) + bL(x) = aL + bL$.  
+	\end{itemize}	 
+\end{document}

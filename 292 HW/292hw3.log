@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.21)  14 FEB 2023 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.21)  14 FEB 2023 12:28
 entering extended mode
-**./292hw2.tex
-(292hw2.tex
+**./292hw3.tex
+(292hw3.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03>
 (C:\Users\HaShem\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -820,8 +820,8 @@ ftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count306
 \l__pdf_internal_box=\box61
-) (292hw2.aux)
-\openout1 = `292hw2.aux'.
+) (292hw3.aux)
+\openout1 = `292hw3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
@@ -890,9 +890,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 36.
 LaTeX Info: Redefining \pageref on input line 36.
 LaTeX Info: Redefining \nameref on input line 36.
- (292hw2.out) (292hw2.out)
+ (292hw3.out) (292hw3.out)
 \@outlinefile=\write5
-\openout5 = `292hw2.out'.
+\openout5 = `292hw3.out'.
 
 
 (C:\Users\HaShem\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
@@ -919,18 +919,18 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.17} (current compat level: 1.16).
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
 
 (C:\Users\HaShem\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
 
 
 (C:\Users\HaShem\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 40
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 43
 .
 
 (C:\Users\HaShem\AppData\Local\Programs\MiKTeX\tex/latex/base\ulasy.fd
@@ -955,61 +955,32 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-15.18335pt}.
 
-[2]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 27.18335pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.18335pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-15.18335pt}.
-
-[3]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 27.18335pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.18335pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-15.18335pt}.
-
-[4]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 27.18335pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.18335pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-15.18335pt}.
-
-[5] (292hw2.aux)
-Package rerunfilecheck Info: File `292hw2.out' has not changed.
+[2] (292hw3.aux)
+Package rerunfilecheck Info: File `292hw3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29215 strings out of 479799
- 723907 string characters out of 2869247
- 1099001 words of memory out of 3000000
- 45673 multiletter control sequences out of 15000+200000
- 540741 words of font info for 52 fonts, out of 3000000 for 9000
+ 29201 strings out of 479799
+ 723833 string characters out of 2869247
+ 1098001 words of memory out of 3000000
+ 45675 multiletter control sequences out of 15000+200000
+ 541078 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,127p,726b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmex10.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmmi12.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmmi6.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/HaShem/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/HaShem/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/HaShem/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/HaSh
-em/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
-Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6
-.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb>
-Output written on 292hw2.pdf (5 pages, 125879 bytes).
+ <C:\Users\HaShem\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcr
+m1200.pk><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmex10.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi12.pfb><C:/Users/HaShem/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/HaShem/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/HaShem/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/HaShem/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/HaShem
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Us
+ers/HaShem/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb>
+Output written on 292hw3.pdf (2 pages, 91465 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
+ 58 PDF objects out of 1000 (max. 8388607)
+ 6 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
