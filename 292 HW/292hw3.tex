@@ -64,19 +64,31 @@
 			$$
 			Splitting $\frac{1}{z^2 - 1}$ apart by partial fraction decomposition yields
 			$$
-				\frac{1}{z^2 - 1} = -1 (\frac{1}{2(1-v)} + \frac{1}{2(v+1)}).
+				\frac{1}{z^2 - 1} =  \frac{1}{2(v-1)} + \frac{-1}{2(v+1)}.
 			$$
 			This results in the integral being evaluated as 
 			$$
-				t = -ln(\sqrt{\frac{v+1}{1-v}}) + ln(\sqrt{\frac{v_0+1}{1-v_0}}).			
+				t - t_0 = ln\left(\sqrt{\frac{v-1}{v+1}}\right) - ln(\sqrt{\frac{v_0-1}{v_0 + 1}}).			
 			$$
+			\iffalse
 			Note that $ln\left(\sqrt{\frac{v+1}{1-v}}\right) = artanh(v)$, therefore we can directly express $v$ now:
 			$$
 				v = tanh(artanh(v_0) - t).			
 			$$
+			\fi
+			Inverting to get $v$ yields:
+		$$
+			v(t) = \frac{v_0+1+(v_0-1)e^{2(t-t_0)}}{v_0+1-(v_0-1)e^{2(t-t_0)}}		
+		$$
 			We must show that this solution for $\Vec{u}$ with $\Vec{u}(0) = (u_0,v_0)$ exists uniquely for all $t$ if and only if $|v_0| \leq 1$.
 			\begin{itemize}
-				\item $(\Rightarrow)$  Suppose the solution given above at $\Vec{u} = (u_0, v_0)$ exists for all $t$ and is unique.  Then we must show $|v_0| \leq 1$.  Suppose for contradiction that $|v_0| > 1$.  Then we must evaluate $artanh(v_0)$, however for $v_0>1$, artanh is not defined.  This contradicts $u$ existing for all $t$.  Therefore $|v_0| \leq 1$.
+				\item $(\Rightarrow)$  Suppose the solution given above at $\Vec{u} = (u_0, v_0)$ exists for all $t$ and is unique.  Then we must show $|v_0| \leq 1$.  Suppose for contradiction that $|v_0| > 1$. Then let's see if we can get the denominator of $v$ to be $0$.  
+				\begin{align*}
+					0 &= v_0 + 1 - (v_0-1)e^{2(t-t_0)}\\
+					(v_0-1)e^{2(t-t_0)} &= v_0 + 1\\
+					2(t-t_0) &= ln ( \frac{v_0 + 1}{v_0-1} )\\
+				\end{align*}										Since $v_0 > 1$, then $v_0 - 1 > 0$, therefore the natural log is defined, and we can get a value for t, which means that $v$ has a singularity, which contradicts the solution existing for all t.
+				  Therefore $|v_0| \leq 1$.
 				\item $(\Leftarrow)$  Suppose $|v_0| \leq 1$.  We must show there exists a unique solution for all $t$ at $\Vec{u} = (u_0, v_0)$. Note that by definition we're operating inside of the maximal interval $(-1,1)$ and the endpoints $\{-1,1\}$.  First for the cases where $v_0 \in (-1,1)$.  Since we need to show the existence and uniqueness of a solution, we simply need to show that $\Vec{w}$ is Lipschitz on $(-1,1)$.  Note that since $w_1 = -1$, that for any value of $v_0$, $w_1$ is always bounded.  For $v' = w_2 = v^2 -1$, since $v\in (-1,1)$, then $max(|w_2(v)|) = 1$.  Then we have the inequality 
 				$$				
 				|x^2 - 1 -y^2 + 1| \leq |x^2 - y^2| \leq |x+y| |x-y| \leq 2|x-y|

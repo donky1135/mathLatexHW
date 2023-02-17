@@ -120,10 +120,10 @@
 			\end{align*}
 			Some observations:  if $\alpha > 1$ then $1-\alpha = k < 1$.  Since $k$ is negative, then $u(0)^k = (-ln(0))^k = \infty^k = 0, u(1)^k = (-ln(1))^k = 0^k = \infty$.  On the other hand if $\alpha < 1$ then $1-\alpha = k > 1$.  Since $k$ is positive, then $u(1)^k = (-ln(1))^k = 0^k = 0, u(0)^k = (-ln(0))^k = \infty^k = \infty$.  Therefore evaluating $T_0, T_1$ for the cases of $\alpha >1, \alpha < 1$ yields:
 			\begin{enumerate}
-				\item $T_0, \alpha > 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
-				\item $T_1, \alpha > 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) =  -\infty$$
-				\item $T_0, \alpha < 1$: $$t_0 + -\int_{x_0}^0 u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) =  \infty$$
-				\item $T_1, \alpha < 1$: $$t_0 + -\int_{x_0}^1 u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
+				\item $T_0, \alpha > 1$: $$t_0 + \int_{x_0}^0 -u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
+				\item $T_1, \alpha > 1$: $$t_0 + \int_{x_0}^1 -u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) =  -\infty$$
+				\item $T_0, \alpha < 1$: $$t_0 + \int_{x_0}^0 -u^{-\alpha} = t_0 + \frac{-1}{k}(u(0)^{k}-u(x_0)^{k}) =  \infty$$
+				\item $T_1, \alpha < 1$: $$t_0 + \int_{x_0}^1 -u^{-\alpha} = t_0 + \frac{-1}{k}(u(1)^{k}-u(x_0)^{k}) = t_0 + \frac{u(x_0)^{k}}{k} < \infty$$
 \end{enumerate}			 
 			Since $T_0$ is finite for $\alpha > 1$, then the solution does not hold for all $t$, however since $T_1$ is infinite, then we have found the solutions which are valid for $t>t_0$.  Similarly for $\alpha < 1, T_1$ is finite, and $T_0$ is infinite, giving us another partial solution for $t < t_0$. Let us evaluate the $\alpha = 1$ case.  The integral in terms of $u$ from barrow's formula is still valid, but it's evaluation is different:
 			\begin{align*}
@@ -136,8 +136,8 @@
 			\end{align*}
 			Evaluating on the endpoints:
 			\begin{enumerate}
-				\item $$T_0 = t_0 + -\int_{x_0}^0 u^{-1}du = t_0 - ln|u(0)| + ln|u(x_0)| = t_0 - ln(\infty) + ln|u(x_0)| = -\infty$$
-				\item $$T_1 = t_0 + -\int_{x_0}^1 u^{-1}du = t_0 - ln|u(1)| + ln|u(x_0)| = t_0 - ln(0) + ln|u(x_0)|= \infty$$
+				\item $$T_0 = t_0 + \int_{x_0}^0 -u^{-1}du = t_0 - ln|u(0)| + ln|u(x_0)| = t_0 - ln(\infty) + ln|u(x_0)| = -\infty$$
+				\item $$T_1 = t_0 + \int_{x_0}^1 -u^{-1}du = t_0 - ln|u(1)| + ln|u(x_0)| = t_0 - ln(0) + ln|u(x_0)|= \infty$$
 			\end{enumerate}
 			Since the endpoints take an infinite amount of time to achieve, we have found the unique solution for all $t$.
 			\iffalse
