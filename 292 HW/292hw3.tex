@@ -35,8 +35,50 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item[2.5]
+	\item[2.5] 
+		Note that the $x_1(t), x_2(t)$ are flow transformations, and can be given as $x_1 = \Psi_t (x_1), x_2 = \Psi_t (x_2)$.  Thus the "catching up" condition can be interpreted as $\Psi_0(x_2) = \Psi_T (x_1)$.  Therefore we have:
+		$$
+			\Psi_{(k+1)T} (x_1) = \Psi_{kT} \circ \Psi_T (x_1) = \Psi_{kT} \circ \Psi_0(x_2) = \Psi_{kT}(x_2).		
+		$$  
 	\item[2.6]
+		\begin{enumerate}
+			\item showing that $v(x) = tanh(x)$ is Lipschitz:
+			$$
+			tanh(x) = \frac{e^x - e^{-x}}{e^x+e^{-x}} < \frac{e^x + e^{-x}}{e^x+e^{-x}}	= 1		
+			$$
+			Therefore $|tanh(x) - tanh(y)| < 1 + 1 = 2$.  \\
+			Finding the flow transformation:
+			\begin{align*}
+				t - t_0 &= \int_{x_0}^x \frac{dx}{tanh(x)}\\
+				&= ln(sinh(x)) - ln(sinh(x_0))\\
+				t- t_0 + ln(sinh(x_0)) &= ln(sinh(x))\\
+				sinh(x) &= e^{t- t_0 + ln(sinh(x_0))}\\
+				x &= arsinh(e^{t- t_0 + ln(sinh(x_0))}).
+			\end{align*}
+			Verifying that $\frac{d}{dx_0}\Psi_t (x_0) = \frac{v(\Psi_t (x_0))}{v(x_0)}$:
+			\begin{align*}
+			\frac{d}{dx}\Psi_t &= \frac{d}{dx}arsinh(e^{t- t_0 + ln(sinh(x_0))})\\
+			&=  \frac{e^{t- t_0 + ln(sinh(x_0))}}{\sqrt{1 + e^{2(t- t_0 + ln(sinh(x_0)))}}}cosh(x_0)\\
+			&= \frac{e^{t- t_0 + ln(sinh(x_0))}}{\sqrt{1 + e^{2(t- t_0 + ln(sinh(x_0)))}}}\frac{1}{tanh(x_0)}\\
+			&= \frac{tanh(arsinh(e^{t- t_0 + ln(sinh(x_0))}))}{tanh(x_0)}\\
+			&= \frac{v(\Psi_t(x_0))}{v(x_0)}.
+			\end{align*}
+			Verifying that $\frac{d}{dt} \Psi_t (x_0) = v(\Psi_t (x_0))$:
+			\begin{align*}
+				\frac{d}{dt} \Psi_t &= \frac{d}{dt}arsinh(e^{t- t_0 + ln(sinh(x_0))})\\
+				&= \frac{e^{t- t_0 + ln(sinh(x_0))}}{\sqrt{1 + e^{2(t- t_0 + ln(sinh(x_0)))}}} \\
+				&= tanh(arsinh(e^{t-t_0 + ln(sinh(x_0))})\\
+				&= v(\Psi_t(x_0))
+			\end{align*}
+			\item 
+			Verifying that $\lim_{t \to \infty} x_2(t) - x_1(t) = \int_{x_1}^{x_2} \frac{1}{v(x)}dx$:
+			\begin{align*}
+				\lim_{t \to \infty} x_2(t) - x_1(t) &= \lim_{t \to \infty} \int_{x_1}^{x_2} \frac{d}{dx} \Psi_t(x)dx\\
+				&= \int_{x_1}^{x_2}\frac{\lim_{t \to \infty} v(\Psi_t (x))}{v(x)}dx\\
+				&= \int_{x_1}^{x_2}\frac{\lim_{t \to \infty} \frac{e^{t- t_0 + ln(sinh(x_0))}}{\sqrt{1 + e^{2(t- t_0 + ln(sinh(x_0)))}}}}{v(x)}dx\\
+				&= \int_{x_1}^{x_2}\frac{1}{v(x)}dx.\\
+			\end{align*}
+		\end{enumerate}
 	\item[2.10]
 	\begin{enumerate}
 		\item The inverse transform is given by:
@@ -68,7 +110,7 @@
 			$$
 			This results in the integral being evaluated as 
 			$$
-				t - t_0 = ln\left(\sqrt{\frac{v-1}{v+1}}\right) - ln(\sqrt{\frac{v_0-1}{v_0 + 1}}).			
+				t - t_0 = ln\left(\sqrt{\frac{v-1}{v+1}}\right) - ln \left( \sqrt{\frac{v_0-1}{v_0 + 1}} \right).			
 			$$
 			\iffalse
 			Note that $ln\left(\sqrt{\frac{v+1}{1-v}}\right) = artanh(v)$, therefore we can directly express $v$ now:
@@ -78,15 +120,15 @@
 			\fi
 			Inverting to get $v$ yields:
 		$$
-			v(t) = \frac{v_0+1+(v_0-1)e^{2(t-t_0)}}{v_0+1-(v_0-1)e^{2(t-t_0)}}		
+			v(t) = \frac{v_0+1+(v_0-1)e^{2t}}{v_0+1-(v_0-1)e^{2t}}		
 		$$
 			We must show that this solution for $\Vec{u}$ with $\Vec{u}(0) = (u_0,v_0)$ exists uniquely for all $t$ if and only if $|v_0| \leq 1$.
 			\begin{itemize}
 				\item $(\Rightarrow)$  Suppose the solution given above at $\Vec{u} = (u_0, v_0)$ exists for all $t$ and is unique.  Then we must show $|v_0| \leq 1$.  Suppose for contradiction that $|v_0| > 1$. Then let's see if we can get the denominator of $v$ to be $0$.  
 				\begin{align*}
-					0 &= v_0 + 1 - (v_0-1)e^{2(t-t_0)}\\
-					(v_0-1)e^{2(t-t_0)} &= v_0 + 1\\
-					2(t-t_0) &= ln ( \frac{v_0 + 1}{v_0-1} )\\
+					0 &= v_0 + 1 - (v_0-1)e^{2t}\\
+					(v_0-1)e^{2t} &= v_0 + 1\\
+					2t &= ln \left( \frac{v_0 + 1}{v_0-1} \right)\\
 				\end{align*}										Since $v_0 > 1$, then $v_0 - 1 > 0$, therefore the natural log is defined, and we can get a value for t, which means that $v$ has a singularity, which contradicts the solution existing for all t.
 				  Therefore $|v_0| \leq 1$.
 				\item $(\Leftarrow)$  Suppose $|v_0| \leq 1$.  We must show there exists a unique solution for all $t$ at $\Vec{u} = (u_0, v_0)$. Note that by definition we're operating inside of the maximal interval $(-1,1)$ and the endpoints $\{-1,1\}$.  First for the cases where $v_0 \in (-1,1)$.  Since we need to show the existence and uniqueness of a solution, we simply need to show that $\Vec{w}$ is Lipschitz on $(-1,1)$.  Note that since $w_1 = -1$, that for any value of $v_0$, $w_1$ is always bounded.  For $v' = w_2 = v^2 -1$, since $v\in (-1,1)$, then $max(|w_2(v)|) = 1$.  Then we have the inequality 
@@ -96,6 +138,57 @@
 				Therefore on $(-1,1)$ we have each component of $\Vec{w}$ lipschitz continuous, thus $\|\Vec{w}\|$ is lipschitz.  For the case of $v_0 = 1$, we must show that the constant solution is the only one for $v' = v^2 - 1$.  Since $\lim_{\delta \to 0} \int_{1-\delta}^1 \frac{dz}{|z^2-1|} \geq \lim_{\delta \to 0} |artanh(1-\delta) - artanh(1)| = \lim_{\delta \to 0} \infty = |artanh(1) - artanh(1+\delta)| \leq \lim_{\delta \to 0} \int_{1}^{1+\delta} \frac{dz}{|z^2-1|} $, then the times for which v leaves $1$ is infinite, therefore the constant solution is the unique solution when $v_0 = 1$.  Also note that $|artanh(x)| = |artanh(-x)|$, therefore these inequalities can be converted to also show the uniqueness of the steady state solution for $v=-1$. 
 			\end{itemize}			 
 			\item 
+			$$			
+				\Vec{u}(t) = \left( -1,	\frac{x_0^2 y_0+1+(x_0^2 y_0-1)e^{2t}}{x_0^2 y_0+1-(x_0^2 y_0-1)e^{2t}}\right)		
+			$$
+			$$\Vec{x}(t) = \left( x_0 e^t, \displaystyle \frac{1}{x_0^2 e^{2t}}\frac{x_0^2 y_0+1+(x_0^2 y_0-1)e^{2t}}{x_0^2 y_0+1-(x_0^2 y_0-1)e^{2t}}\right)$$
+			
+				\begin{align*}
+				\Vec{x}' &= (x_0 e^t, \frac{-2}{x_0^2 e^{2t}}\frac{x_0^2 y_0+1+(x_0^2 y_0-1)e^{2t}}{x_0^2 y_0+1-(x_0^2 y_0-1)e^{2t}}\\
+				&+ \frac{2}{x_0^2}\frac{x_0^2 y_0 - 1}{-e^{2t}(x_0^2 y_0-1)+x_0^2 y_0+1}+\frac{2(x_0^2 y_0-1)(e^{2t}(x_0^2 y_0-1)+x_0^2 y_0+1)}{x_0^2(-e^{2t}(x_0^2 y_0-1)+x_0^2 y_0+1)^2})\\
+				&= (x,-2y - \frac{1}{x^2} + x^2 y^2) 		
+				\end{align*}
+			\item Skipped
+			\item To solve the Ricatti equation, we assume  there exists a solution for $y$, denoted $y_1$ given by $y_1 =c e^{\alpha t}$.  Thus our equation becomes:
+			$$
+			\alpha c e^{\alpha t} = c^2 x_0^2 e^{2(\alpha + 1)t} - 2 ce^{\alpha t} - x_0^2 e^{2t}.			
+			$$
+			To remove the $e$ terms, we must solve $\alpha = 2\alpha + 2, \alpha = -2$.  Since $-2 = -4 + 2 = 2(-2) + 2$ then $\alpha = -2$.  Thus our equation becomes:
+			$$
+			-2c = c^2 x_0^2 -2c -x_0^2.			
+			$$
+			Thus $c = x_0^{-2}$.  Let $g := y - y_1$.  Solving for $g'$ :
+			\begin{align*}
+				g' &= g^2 x_0^2 e^{2t}\\
+				\int \frac{dg}{g^2} &= x_0^2 \int e^{2t}dt\\
+				\frac{-1}{g} &= \frac{x_0^2}{2}(e^{2t} + c_1)\\
+				g &= \frac{1}{x_0^2}\frac{-2}{e^{2t}+c_1}\\ 
+				y - x_0^{-2}e^{-2t}  &= \\
+				y &= \frac{1}{x_0^2} \left( e^{-2t} - \frac{2}{e^{2t}+c_1}\right).
+			\end{align*}
+			
+			We can solve for $c_1$ by evaluating $y$ at $0$:
+			\begin{align*}
+				y_0 &= \frac{1}{x_0^2} \left( 1 - \frac{2}{1+c_1}\right)\\
+				x_0^2 y_0 &= 1 - \frac{2}{1+c_1}\\
+				v_0 &= 1 - \frac{2}{1+c_1}\\
+				v_0 -1 &= - \frac{2}{1+c_1}\\
+				1-v_0 &= \frac{2}{1+c_1}\\
+				\frac{2}{1-v_0} &= 1+c_1\\
+				\frac{v_0 +1}{1-v_0} &= c_1.
+			\end{align*}
+			Therefore $y$ is given by:
+			\begin{align*}
+				y &= \frac{1}{x_0^2}\left( e^{-2t} - \frac{2}{e^{2t} + 	\frac{v_0 +1}{1-v_0}} \right)\\
+				  &= \frac{1}{x_0^2}\left( \frac{-2 + 1 + \frac{v_0 +1}{1-v_0}e^{-2t}}{e^{2t} + 	\frac{v_0 +1}{1-v_0}}\right)\\
+				  &= \frac{1}{x_0^2} \frac{\frac{v_0-1}{v_0 +1} + e^{-2t}}{\frac{1-v_0}{v_0 +1}e^{2t} + 1}\\
+				  &= \frac{1}{x_0^2e^{2t}}\frac{\frac{v_0-1}{v_0 +1} + e^{-2t}}{\frac{1-v_0}{v_0 +1} + e^{-2t}}\\
+				  &= \frac{1}{x_0^2e^{2t}}\frac{v_0 -1 + (v_0 + 1)e^{-2t}}{v_0 -1 + (v_0 + 1)e^{-2t}}\\
+				  &= \frac{1}{x_0^2e^{2t}}\frac{v_0+1+(v_0-1)e^{2t}}{v_0+1-(v_0-1)e^{2t}}			
+			\end{align*}
+			Since this is the same as the formula we found via the change of variables, this formula is correct.  
+
+			
 	\end{enumerate}
 \end{enumerate}
 \end{document}
