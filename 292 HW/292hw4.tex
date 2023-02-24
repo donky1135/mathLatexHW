@@ -1,0 +1,75 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework 4}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[3.4] 
+	\begin{enumerate}
+	\item Let $A=\begin{bmatrix} -4 & 2\\ 5 & -1 \end{bmatrix}$. To compute $e^{tA}$ we need to know the eigenvectors and eigenvalues of $A$ 
+	Characteristic polynomial of $A$: $(\lambda + 6)(\lambda - 1)$.  
+	Therefore the eigenvalues are $\lambda = -6,1$, and let them be denoted $\mu_1, \mu_2$ respectively.
+	These correspond to eigenvectors $\Vec{v}_1 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$ and  $\Vec{v}_2 = \begin{bmatrix} 2 \\ 5 \end{bmatrix}$.  
+	Since we know the eigenvectors, we now may compute the columns of $M(t)$, where $e^{tA} = M(t)M(0)^{-1}$:
+	\begin{enumerate}
+		\item $\Vec{z}_1(t) := e^{tA}\Vec{v}_1 = e^{-6t}\begin{bmatrix} -1 \\ 1 \end{bmatrix}$
+		\item $\Vec{z}_2(t) := e^{tA}\Vec{v}_2 = e^{t}\begin{bmatrix} 2 \\ 5 \end{bmatrix}$.
+	\end{enumerate}	  
+	Since we have $M(t)$, we now need $M(0)^{-1}$:
+	$$
+		M(0)^{-1} = \begin{bmatrix} -1 & 2 \\ 1 & 5\end{bmatrix}^{-1} = \frac{-1}{7} \begin{bmatrix} 5 & -2 \\ -1 & -1\end{bmatrix}.		
+	$$
+	Therefore $e^{tA} = \frac{-1}{7} e^{-6t} \begin{bmatrix} -5 -2e^{7t} & 2 - 2e^{7t} \\ 5 - 5e^{7t} & -2 -5e^{7t} \end{bmatrix}$	
+	
+	Let $\Vec{x}_0 = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$.  Therefore the general solution to $\Vec{x}' = A \Vec{x}$ is the following:
+	$$
+	e^{tA}\Vec{x}_0 = \frac{-1}{7} e^{-6t} \begin{bmatrix} (-5 -2e^{7t})x_1 + (2 - 2e^{7t})x_2 \\ (5 - 5e^{7t})x_1 + (-2 -5e^{7t}) x_2 \end{bmatrix}.
+	$$
+	\item To find when the entire solution goes to the zero vector, we simply need to find when one row of the vector goes to zero and test our solution on the entire vector.  Therefore we must solve 
+	$$ 
+		\lim_{t \to \infty} (-5 -2e^{7t})x_1 + (2 - 2e^{7t})x_2 = 0.
+	$$  
+	Rearranging we find $\displaystyle \lim_{t \to \infty} \frac{2 - 2e^{7t}}{5 + 2e^{7t}} = \frac{-2}{2} = -1 = \frac{x_1}{x_2}$.
+	Therefore we have the relation $-x_2 = x_1$.  Testing on the second row we find $\displaystyle \lim_{t\to \infty} (5 - 5e^{7t})x_1 + (-2 -5e^{7t}) x_2 = (5 - 5e^{7t})x_1 + -(-2 -5e^{7t}) x_1 = 7 x_1$.  Since $7 x_1$ is constant and the vector is multiplied by  $e^{-6t}$ then we have $0 \cdot 7 x_1 = 0$.  Thus the vector $\Vec{x}_0 = \begin{bmatrix} -1	\\ 1\end{bmatrix}c$, where $c \in \R$ solves the equation $\lim_{t \to \infty} \Vec{x}(t) = \Vec{0}$.
+	\newpage
+	\item[3.5]
+	Let $A=\begin{bmatrix} 5 & -1\\ 4 & 1 \end{bmatrix}$.  $A$ has the characteristic polynomial $(\lambda - 3)^2$.  Thus $A$ has an eigenvalue of 3 with multiplicity 2.  Note that $(A-3\mathbb{I})^2 = \begin{bmatrix} 0 & 0 \\ 0 & 0\end{bmatrix}$, therefore any vector in $\R^2$ is a generalized eigenvector of $A$.  Therefore we can go ahead and compute $e^{tA}$ directly:
+	$$
+	e^{tA} = e^{3t}e^{t(A - 3\mathbb{I})} = e^{3t}\sum_{k=0}^1 \frac{t^k}{k!} (A-3 \mathbb{I})^k = e^{3t} \left( \mathbb{I} + t\begin{bmatrix}
+	2 & -1\\ 4 & -2	\end{bmatrix}\right) = \begin{bmatrix}1 + 2t & -t\\4t&1-2t	\end{bmatrix}.	
+	$$
+	Therefore the general solution is $\Vec{x}(t) = e^{tA}\Vec{x}_0 = e^{3t}\begin{bmatrix} (1+2t) x_1 + (-t)x_2 \\ 4tx_1 + (1-2t)x_2 \end{bmatrix}$
+	\end{enumerate}		
+\end{enumerate}
+\end{document}

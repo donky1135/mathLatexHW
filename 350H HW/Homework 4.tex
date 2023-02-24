@@ -39,7 +39,7 @@
 	\begin{enumerate}
 		\item   We must show that $T$ is 1-1 if and only if $T$ maps linearly independent subsets of $V$ is linearly independent subsets of $W$.  
 		\begin{itemize}
-			\item $(\Rightarrow)$.  Suppose $T$ is 1-1, and the set $S \subset V$ is linearly independent.  We must show that the set $\{T(\Vec{s}): \Vec{s} \in S\}$ is linearly independent.  Suppose for contradiction not.  Then by definition there exists $a_1,\ldots,a_n \in F$, and since $T$ is 1-1 $\Vec{s}_1,\ldots,\Vec{s}_n \in S$ such that $\sum_{i=1}^n a_i T(\Vec{s}_i) = 0$, and there exists $a_i \neq 0$.  Since $T$ is linear we have that $T(\sum_{i=1}^n a_i \Vec{s}_i) = 0$, and therefore since $T$ is linear $\sum_{i=1}^n a_i \Vec{s}_i = 0$.  This is a contradiction as $\{ \Vec{s}_1,\ldots, \Vec{s}_n \} \subseteq S$, and thus is linearly independent.  Therefore $\{T( \Vec{s}):  \Vec{s} \in S\}$ is linearly independent.  
+			\item $(\Rightarrow)$.  Suppose $T$ is 1-1, and the set $S \subset V$ is linearly independent.  We must show that the set $\{T(\Vec{s}): \Vec{s} \in S\}$ is linearly independent.  Suppose for contradiction $\{T(\Vec{s}): \Vec{s} \in S\}$ is linearly dependent.  Then by definition there exists $a_1,\ldots,a_n \in F$, and $\Vec{s}_1,\ldots,\Vec{s}_n \in S$ such that $\sum_{i=1}^n a_i T(\Vec{s}_i) = 0$.  Since $T$ is linear we have that $T(\sum_{i=1}^n a_i \Vec{s}_i) = 0$, and therefore since $T$ is 1-1 and linear $\sum_{i=1}^n a_i \Vec{s}_i = 0$.  This is a contradiction as $\{ \Vec{s}_1,\ldots, \Vec{s}_n \} \subseteq S$, and thus are linearly independent.  Therefore $\{T( \Vec{s}):  \Vec{s} \in S\}$ is linearly independent.  
 			\item $(\Leftarrow)$ Suppose for all $S \subset V$ which are linearly independent $\{T( \Vec{s}) :  \Vec{s} \in S\}$ is linearly independent.  We must show that $T$ is 1-1.  Suppose for contradiction that $T$ is not 1-1.  Therefore $ker(T)  \neq \{0\}$.  Since $ker(T)$ is a subspace of $V$, then there exists a basis $K$ for $ker(T)$.  Since $K$ is a basis, then it is a linearly independent subset of $V$.  Therefore by definition of $T$, $\{T(\Vec{v}):\Vec{v} \in K\}$ is linearly independent.  This is a contradiction as every member of $\{T(\Vec{v}):\Vec{v} \in K\}$  is $\Vec{0}$.  Therefore $T$ is 1-1.  
 		\end{itemize}
 		\item Suppose $T$ is 1-1 and $S$ is a subset of $V$ We must show that $S$ is linearly independent if and only if $T(S)$ is linearly independent.  
@@ -102,11 +102,16 @@
 		\end{enumerate}
 		\newpage
 		\item Let $V,W$ be vector spaces and let $T,U: V\to W$ be non-zero linear transformations.  If $range(T) \cap range(U) = \{\Vec{0}\}$ then show that $T,U$ form a linearly independent subset of $\mathcal{L}(V,W)$.
-		Suppose for contradiction that $\{T,U\}$ is linearly dependent.  Therefore there exists constants $c_1,c_2 \in F$ such that $(c_1 T + c_2 U)(x) = 0$ for all $x \in V$. Therefore by definition $T(x) = \frac{-c_2}{c_1} U(x)$.  Suppose $z = T(y)$, therefore $z = \frac{-c_2}{c_1} U(y) = U(\frac{-c_2}{c_1} y)$.  Therefore $z \in range(U) \cap range(T)$.  This is a contradiction, therefore $\{T,U\}$ is linearly independent.  
+		Suppose for contradiction that $\{T,U\}$ is linearly dependent.  Therefore there exists non-zero constants $c_1,c_2 \in F$ such that $(c_1 T + c_2 U)(x) = 0$ for all $x \in V$. Therefore by definition $T(x) = \frac{-c_2}{c_1} U(x)$.  Suppose $z = T(y)$, therefore $z = \frac{-c_2}{c_1} U(y) = U(\frac{-c_2}{c_1} y)$.  Therefore $z \in range(U) \cap range(T)$.  This is a contradiction, therefore $\{T,U\}$ is linearly independent.  
 		\newpage
 		\item Let $V$ and $W$ be vector spaces such that $dim(V) = dim(W)$, and let $T: V \to W$ be linear.  Show there exists ordered basis $\beta$ and $\gamma$ for $V$ and $W$, respectively, such that $[T]_\beta^\gamma$ is a diagonal matrix.
 		
-		Let $\beta = (\Vec{v}_1,\ldots,\Vec{v}_n)$ be the ordered basis such that $\{T(\Vec{v}_i) : i \in [m]\}$ is a basis of $R(T)$, and therefore        $\{\Vec{v}_{i+m}: i\in [n-m]\}$ is a basis for $ker(T)$.  
+		Let $\beta = (\Vec{v}_1,\ldots,\Vec{v}_n)$ be the ordered basis such that $\{\Vec{v}_{i+m}: i\in [n-m]\}$ is a basis for $ker(T)$, and therefore $\{T(\Vec{v}_i) : i \in [m]\}$ is a basis of $R(T)$ by the rank nullity theorem.  Let the ordered basis $\gamma$ be given by $T(\Vec{v_i}) = \Vec{w}_i$ for all $i \in [m]$, and the vectors $\Vec{w}_{m+1},\ldots,\Vec{w}_n$ be the extension to all of $V$.  Now we must define the matrix $[T]_{\beta}^\gamma$, since $T$ has a kernel, we will look at the vectors in $\beta$ which do an don't get mapped into the kernel as seperate cases.  
+		\begin{itemize}
+			\item For all $j \in [m]$, we can define $a_{ij} = \delta_{i,j}$ such that $T(\Vec{v}_j) = \sum_{i = 1}^n a_{ij}\Vec{w}_i = 0 \cdot \Vec{w}_1 + \cdots + 0 \cdot \Vec{w}_{j-1} + 1 \cdot \Vec{w}_j +  0 \cdot \Vec{w}_{j+1} + \cdots + 0 \cdot \Vec{w}_n = \Vec{w}_j$ to satisfy the definition of $\gamma$.
+			\item For all $j \in [n-m]$ since $T(v_{j+m}) = \Vec{0}$, then $a_{ij} = 0$ is a unique representation as $T(v_{j+m})= 0 =\sum_{i=1}^n a_{ij}\Vec{w}_i$  being solved by anything but all scalars being $0$ violates the linear independence of $\gamma$. 
+		\end{itemize}
+		Since the only non-zero scalars lie on the diagonal, then $[T]_\beta^\gamma$ is a diagonal matrix.  
 		
 		  
 \end{enumerate}
