@@ -1,0 +1,113 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework 4}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Suppose $V,W$ are vector spaces over $F$ and $T : V \to W$ is a linear transformation.
+	\begin{enumerate}
+		\item   We must show that $T$ is 1-1 if and only if $T$ maps linearly independent subsets of $V$ is linearly independent subsets of $W$.  
+		\begin{itemize}
+			\item $(\Rightarrow)$.  Suppose $T$ is 1-1, and the set $S \subset V$ is linearly independent.  We must show that the set $\{T(\Vec{s}): \Vec{s} \in S\}$ is linearly independent.  Suppose for contradiction not.  Then by definition there exists $a_1,\ldots,a_n \in F$, and since $T$ is 1-1 $\Vec{s}_1,\ldots,\Vec{s}_n \in S$ such that $\sum_{i=1}^n a_i T(\Vec{s}_i) = 0$, and there exists $a_i \neq 0$.  Since $T$ is linear we have that $T(\sum_{i=1}^n a_i \Vec{s}_i) = 0$, and therefore since $T$ is linear $\sum_{i=1}^n a_i \Vec{s}_i = 0$.  This is a contradiction as $\{ \Vec{s}_1,\ldots, \Vec{s}_n \} \subseteq S$, and thus is linearly independent.  Therefore $\{T( \Vec{s}):  \Vec{s} \in S\}$ is linearly independent.  
+			\item $(\Leftarrow)$ Suppose for all $S \subset V$ which are linearly independent $\{T( \Vec{s}) :  \Vec{s} \in S\}$ is linearly independent.  We must show that $T$ is 1-1.  Suppose for contradiction that $T$ is not 1-1.  Therefore $ker(T)  \neq \{0\}$.  Since $ker(T)$ is a subspace of $V$, then there exists a basis $K$ for $ker(T)$.  Since $K$ is a basis, then it is a linearly independent subset of $V$.  Therefore by definition of $T$, $\{T(\Vec{v}):\Vec{v} \in K\}$ is linearly independent.  This is a contradiction as every member of $\{T(\Vec{v}):\Vec{v} \in K\}$  is $\Vec{0}$.  Therefore $T$ is 1-1.  
+		\end{itemize}
+		\item Suppose $T$ is 1-1 and $S$ is a subset of $V$ We must show that $S$ is linearly independent if and only if $T(S)$ is linearly independent.  
+		\begin{itemize}
+			\item $(\Rightarrow)$ Since $T$ is 1-1 and $S$ is a linearly independent subset then $T(S)$ is linearly independent by the proof of $(a)$ above.  
+			\item $(\Leftarrow)$ Suppose $T(S)$ is linearly independent.  We must show that $S$ is linearly dependent.  Suppose for contradiction that $S$ is linearly independent.  Then there exists $\Vec{s}^* \in S$ such that $\Vec{s}^* = \sum_{i=1}^n a_i \Vec{s}_i$ where $a_1,\ldots,a_n \in F, \Vec{s}_1,\ldots,\Vec{s}_n \in S$.  Therefore $T(\Vec{s}^*) = T(\sum_{i=1}^n a_i \Vec{s}_i)$. Since $T$ is $1-1$ then $\sum_{i=1}^n a_i T(\Vec{s}_i) = T(\Vec{s}^*)$, $\sum_{i=1}^n a_i T(\Vec{s}_i) - T(\Vec{s}^*) = 0$.  Since we have found a linearly dependent subset of $T(S)$, then $T(S)$ is linearly dependent.  This is a contradiction.  Therefore $S$ is linearly independent.  
+		\end{itemize}
+	\item Suppose $\beta = \{\Vec{v}_1,\ldots, \Vec{v}_n\}$ is a basis for $V$ and $T$ is 1-1 and onto.  Let $dim(V) = n$.  We must show that $T(\beta) = \{T(\Vec{v}_1),\ldots,T(\Vec{v}_n)\}$ is a basis for $W$.  Since $T$ is 1-1 then $nullity(T) = 0$.  Therefore by the rank nullity theorem $0 + rank(T) = dim(V)$.  Therefore $rank(T) = dim(V)$.  Since $T$ is onto then $range(T) = W$, therefore $rank(T) = dim(W)$.  Since $\beta$ is a linearly independent subset of $V$, then $T(\beta)$ is linearly independent.  Since $T(\beta)$ is a linearly independent subset of $W$ with $n$ vectors, then $T(\beta)$ is a basis for $W$.
+	\end{enumerate}
+	\newpage
+	\item Let $V$ be the vector space of sequences.  Define the function $T,U: V \to V$ by 
+	$$
+		T(a_1,a_2,\ldots) = (a_2,a_3,\ldots) \text{ and } U(a_1,a_2,\ldots) = (0,a_1,a_2,\ldots).
+	$$
+	\begin{enumerate}
+		\item Prove that $T$ and $U$ are linear. Suppose $ a = (a_1,a_2,\ldots), b = (b_1,b_2,\ldots) \in V, c \in F$.  
+		\begin{itemize}
+			\item We must show that $T$ is linear, therefore by algebraic manipulation: 
+			\begin{align*}
+			T(a + cb) &= T((a_1,\ldots) + c(b_1,\ldots))\\
+			&= T(a_1 + c b_1, a_2 + c b_2, \ldots)\\
+			&= (a_2 + c b_2, \ldots)\\
+			&= (a_2,a_3,\ldots) + c(b_2,b_3,\ldots)\\
+			&= T(a) + cT(b).
+			\end{align*}
+			\item We must show that $U$ is linear, therefore by algebraic manipulation: 
+			\begin{align*}
+				U(a + cb) &= T((a_1,\ldots) + c(b_1,\ldots))\\
+			&= U(a_1 + c b_1, a_2 + c b_2, \ldots)\\
+			&= (0,a_1 + c b_1,a_2 + c b_2, \ldots)\\
+			&= (0,a_1,a_2,a_3,\ldots) + c(0,b_1, b_2,b_3,\ldots)\\
+			&= U(a) + c U(b).
+			\end{align*}
+			  
+			\end{itemize}
+			\item We must show that $T$ is onto and not 1-1.  
+			\begin{itemize}
+				\item We must show that $T$ is onto.  Suppose $s=(s_1,s_2,\ldots) \in V$.  We must show there exists $a =(a_1,a_2,\ldots) \in V$ such that $s = T(a)$.  We claim that $(a_1,a_2,a_3,\ldots) = (0,s_1,s_2,\ldots)$.  Therefore we have 
+				\begin{align*}
+				T(a) &= T(0,s_1,s_2,\ldots)\\
+				&= (s_1,s_2,\ldots).
+				\end{align*}
+				Therefore $T$ is onto.  
+				\item We must show that $T$ is not 1-1.   Therefore we must show there exists $a = (a_1,\ldots), b = (b_1,b_2,\ldots) \in V$ such that $T(a) = T(b)$ and $b \neq a$.  
+				Suppose $a = (0,s_1,s_2,\ldots)$ and $b = (1,s_1,s_2,\ldots)$.  Clearly $a\neq b$, and $T(a) = T(0,s_1,s_2,\ldots) = (s_1,s_2,\ldots) = T(1,s_1,s_2,\ldots) = T(b)$.  Therefore $T$ is not 1-1.
+		\end{itemize}
+		\item We must show that $U$ is 1-1 and not onto.
+		\begin{itemize}
+			\item We must show that $U$ is 1-1.  Suppose $a = (a_1,a_2,\ldots), b = (b_1,b_2,\ldots) \in V, U(a) = U(b).$  We must show that $a = b$.  Since $U(a) = U(b)$, then by definition $(0,a_1,a_2,\ldots) = (0,b_1,b_2,\ldots)$.  Therefore by definition of sequence $a_i = b_i$ for all $i \in \N$.  Therefore $(a_1,a_2,\ldots) = (b_1,b_2,\ldots)$.  
+			\item We must show that $U$ is not onto.  We claim that $(1,0,0,\ldots)$ is not in the range of $U$.  Since every sequence in the range of $U$ takes the form $(0,s_1,s_2,\ldots)$, and the sequence $(1,0,\ldots)$ has a 1 in the first position, then $(1,0,0,\ldots)$ is not in the range of $U$.  Therefore $U$ is not onto.  
+		\end{itemize}
+	\end{enumerate}
+	\newpage
+		\item Prove that the subspaces $\{0\}, V, R(T), N(T)$ are $T$-invariant.
+		\begin{enumerate}
+			\item Suppose $\Vec{x} \in \{0\}$.  We must show that $T(x) \in \{0\}$.  Since $\Vec{x},  \{0\}$ then $x= 0$  Since $T$ is linear then $T(0) = 0$.  Therefore $T(x) \in \{0\}$.
+			\item Suppose $\Vec{x} \in V$.  We must show that $T(\Vec{x}) \in V$.  Since by definition $range(T) \subseteq V$, therefore $V$ is $T$-invariant.  
+			\item Suppose $\Vec{x} \in range(T)$.  We must show that $T(\Vec{x}) \in range(T).$  Since by definition of $T$, $range(T) \subseteq V$.  Therefore $\Vec{x} \in V$.  Therefore by definition of the range $T(\Vec{x}) \in range(T)$.  Therefore $range(T)$ is $T$-invariant
+			\item Suppose $\Vec{x} \in ker(T)$.  We must show that $T(\Vec{x}) \in ker(T)$.  Since $\Vec{x} \in ker(T)$, then $T(\Vec{x}) = \Vec{0}$.  Since $T$ is linear then $T(\Vec{0}) = \Vec{0}$.  Therefore $\Vec{0} \in ker(T)$.  Thus $T(\Vec{x}) \in ker(T)$.  Therefore $ker(T)$ is $T$-invariant.  
+		\end{enumerate}
+		\newpage
+		\item Let $V,W$ be vector spaces and let $T,U: V\to W$ be non-zero linear transformations.  If $range(T) \cap range(U) = \{\Vec{0}\}$ then show that $T,U$ form a linearly independent subset of $\mathcal{L}(V,W)$.
+		Suppose for contradiction that $\{T,U\}$ is linearly dependent.  Therefore there exists constants $c_1,c_2 \in F$ such that $(c_1 T + c_2 U)(x) = 0$ for all $x \in V$. Therefore by definition $T(x) = \frac{-c_2}{c_1} U(x)$.  Suppose $z = T(y)$, therefore $z = \frac{-c_2}{c_1} U(y) = U(\frac{-c_2}{c_1} y)$.  Therefore $z \in range(U) \cap range(T)$.  This is a contradiction, therefore $\{T,U\}$ is linearly independent.  
+		\newpage
+		\item Let $V$ and $W$ be vector spaces such that $dim(V) = dim(W)$, and let $T: V \to W$ be linear.  Show there exists ordered basis $\beta$ and $\gamma$ for $V$ and $W$, respectively, such that $[T]_\beta^\gamma$ is a diagonal matrix.
+		
+		Let $\beta = (\Vec{v}_1,\ldots,\Vec{v}_n)$ be the ordered basis such that $\{T(\Vec{v}_i) : i \in [m]\}$ is a basis of $R(T)$, and therefore        $\{\Vec{v}_{i+m}: i\in [n-m]\}$ is a basis for $ker(T)$.  
+		
+		  
+\end{enumerate}
+\end{document}

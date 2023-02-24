@@ -1,0 +1,38 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework }
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework \\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $V, W$ be finite dimensional vector spaces, where $\beta = (v_1,\ldots,v_n)$, $\Gamma = (w_1,\ldots,w_n)$ are vector spaces of $V$ and $W$ respectively. Let $dim(W) = dim(V) = n$. We must show that $V \cong W$.  Let $L : V \to W$ be the linear transformation given by $L(v_i) = w_i$ for all $i \in [n]$.  Since every basis vector in $V$ is mapped to a non-zero vector in $W$, then $rank(L) = n$, therefore by the rank nullity theorem $nullity(T) = 0$.  Therefore $L$ is injective.  Since $L$ is injective and $dim(V) = dim(W)$, then $L$ is onto.  Therefore $T$ is a bijection, thus $V \cong W$.  
+\end{document}
