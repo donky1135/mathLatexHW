@@ -1,0 +1,87 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework 5}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 5\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let $V$ be finite dimensional where $dim(V) = n$ and let $T: V \to V$ be linear.
+	\begin{enumerate}
+		\item \begin{itemize}
+		\item Suppose $rank(T) = rank(T^2)$, and let $rank(T) = m$.  We must show that $R(T) \cap N(T) = \{0\}$.
+			Suppose for contradiction that $R(T) \cap N(T) \neq \{0\}$.  Therefore there exists $v_1 \in V$ such that $v_1 \in R(T) \cap N(T)$.
+			Since $v_1 \in R(T)$, then we may extend $v_1$ to be a basis of $R(T)$, where $\{v_1,\ldots,v_m\}$ is a basis for $R(T)$.  Since $R(T^2) = \{T(v) : v \in R(T)\}$ by definition, then we may apply the book proof of rank nullity and have that $\{T(v_1),\ldots,T(v_m)\}$ is a basis for $R(T^2)$.  However since $T(v_1) = 0$ as $v_1 \in N(T)$ then $\{T(v_2),\ldots,T(v_m)\}$ is a basis for $R(T^2)$, thus $rank(T^2) = m -1$.  This is a contradiction as $rank(T^2) = rank(T) = m$, therefore $R(T) \cap N(T) = \{0\}$.  
+		\item We must show that $R(T) \oplus N(T) = V$. Since $R(T) \cap N(T) = \{0\}$ we must show that $R(T) + N(T) = V$.  Since $dim(N(T) + R(T)) = dim(N(T))+dim(R(T)) - dim(R(T) \cap N(T)) = n + n - m - 0 = n$.  Since $N(T) + R(T)$ is a subspace of $V$ and has the same dimension of $V$ then $N(T) + R(T) = V.$
+		\end{itemize}
+ 		\item We must show that $R(T^k) \oplus N(T^k)$ for some $k\in \N$.  Since $R(T) \oplus N(T)$, then the base case has been demonstrated.  By the principle of mathematical induction for all $j \in \N$ if $j < k$ then $R(T^j) \oplus N(T^j)$.  Since $k -1 < k$ then by the induction hypothesis $R(T^{k-1}) \oplus N(T^{k-1}) = V$.  Let $v_1,\ldots v_m$ be a basis for $R(T^{k-1})$, and $v_{m+1},\ldots,v_{n}$ be a basis for $N(T^{k-1})$.  Note that since $v_1,\ldots,v_m$ is a set of linearly independent vectors not in the kernel, then by the book proof of the rank nullity theorem $\{T(v_1),\ldots,T(v_m)\}$ is a basis for $R(T^k)$.  		Since $N(T^k) = N(T \circ T^{k-1})$ and $R(T) \cap N(T) = \{0\}$ then only vectors in the set $N(T^k)$ must belong to $N(T^{k-1})$ otherwise that implies there are vectors in the range of $T$ that are also in it's kernel.  Since we already have a basis for $N(T^{k-1})$, those same vectors will be the basis for $N(T^k)$. 	Assume for contradiction that $N(T^k) \cap R(T^k) \neq \{0\}$, and WLOG $T(v_1) \in N(T^k) \cap R(T^k)$.  Since $T(v_1) \in N(T^k)$ then $T(v_1) \in T(^{k-1})$.  Therefore $T(v_1) = a_{m+1}v_{m+1} + \ldots a_n v_n.$  Since $v_{m+1},\ldots,v_n$ are elements in the kernel then $T(T(v_1)) = 0$.  This contradicts the fact that $R(T) \cap N(T) = \{0\}$.  Therefore $N(T^k) \cap R(T^k) = \{0\}$.  Since they have an empty intersection, then by the rank nullity theorem their sum has the same dimension as V.  Thus their direct sum is $V$.x
+ 		
+ 		
+ 		
+ 		Note that since $R(T) \cap N(T) = \{0\}$ then none of the vectors comprising the basis for $R(T^k)$ exists in the nullity, .  
+		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+  Since we 
+	\end{enumerate}
+	\newpage		
+	\item Let $A$ and $B$ be $n \times n$ matrices such that $AB$ is intvertible.  
+	\begin{enumerate}
+		\item We must show that $A$ and $B$ are invertible.  Since $AB$ is invertible then $L_{AB}$ is a bijection from $F^n \to F^n$ by defintion.  By definition of matrix multiplication $L_{AB} = L_A \circ L_B$.  Since $L_{AB}$ is a composition and bijective then each function in the composition must be bijective.  Since $L_A$ and $L_B$ are bijective then $A$ and $B$ must be invertible by definition.  
+		\item Let $A = \begin{bmatrix}
+			1 & 0 & 0\\
+			0 & 1 & 0\end{bmatrix}$ and $B =\begin{bmatrix} 1 & 0\\ 0 & 1\\0 &0 \end{bmatrix} $.  Since $A,B$ are non-square then they cannot be inverted by definition.  However $AB = \begin{bmatrix}
+			1 & 0 & 0\\
+			0 & 1 & 0\end{bmatrix} \begin{bmatrix} 1 & 0\\ 0 & 1\\0 &0 \end{bmatrix} = \begin{bmatrix}
+			1 & 0\\
+			0 & 1
+			\end{bmatrix}$.  Since $AB = \mathbb{I}_2$ then $AB$ is invertible.  
+	\end{enumerate}
+	\newpage
+	\item Let $V$ and $W$ be $n$-dimensional vector spaces, and let $T: V \to W$ be a linear transformation.  Suppose that $\beta$ is a basis for $V$.  Prove that $T$ is an isomorphism if and only if $T(\beta)$ is a basis for $W$.  
+	\begin{itemize}
+		\item $(\Rightarrow)$  Suppose that $T$ is an isomorphism.  We must show that $T(\beta)$ is a basis for $W$.  Since $T$ is an isomorphism, then by definition $N(T) = \{0\}$.  Since $\beta$ is a set of $n$ linearly independent vectors, then by the book proof of rank nullity $\{T(v): v \in \beta \}$ is a basis for $R(T)$.  Since $dim(W) = dim(V) = n$ and $T$ is an isomorphism then $R(T) = W$.  Since $T(\beta)$ is a basis for $R(T)$, then $T(\beta)$ is a basis for $W$.  
+		\item $(\Leftarrow)$ Suppose that $T(\beta)$ is a basis for $W$.  We must show that $T$ is an isomorphism.  Since $T(\beta)$ is a basis for $W$ and it is in the range of $T$ then $R(T) = W$.  Since $dim(W) = dim(V)$ then $T$ is also one to one and onto.  Therefore since $T$ is also linear then $T$ is an isomorphism. 
+	\end{itemize} 
+	\newpage 
+	\item Let $B$ be an $n \times n$ invertible matrix.   Define $\Phi : M_{n \times n}(F) \to M_{n \times n}(F)$ by $\Phi(A) = B^{-1} A B$.  We must show that $\Phi$ is an isomorphism. 
+	\begin{itemize} 
+		\item We must show that $\Phi$ is linear.  Suppose $R,S \in M_{n \times n}(F), c \in F$, therefore: 
+		\begin{align*} 
+			\Phi(R + cS) &= B^{-1}(R + cS)B\\ 
+			&= (B^{-1}R+ B^{-1}cS)B\\ 
+			&= B^{-1}RB + c B^{-1}SB\\ 
+			&= \Phi(R) + c\Phi(S). 
+		\end{align*} 
+		\item We must show for arbitrary $A \in  M_{n \times n}(F)$ that there exists a unique $D \in  M_{n \times n}(F)$ such that $\Phi(D) = A$.  We claim that $D = BAB^{-1}$.  Therefore we have that $\Phi(D) = B^{-1} D B^{-1}= B^{-1} BAB^{-1} B = A $. Note that since the inverse of $B$ is unique then our choice for $D$ is unique.  Therefore $\Phi$ is a bijection.
+	\end{itemize}
+	Therefore $\Phi$ is an isomorphism.  
+\end{enumerate}
+\end{document}
