@@ -87,25 +87,43 @@
 		\item 
 		\begin{itemize}
 			\item Show that both $\lambda_1$ and $\lambda_2$ are positive.  Since $x \cdot M x = \|A^{-1}x\|^2$, then all outputs of $x \cdot M x$ are strictly positive.  Suppose $x = u_1$, then $u_1 \cdot M u_1 = u_1 \cdot \lambda_1 u_1 = \lambda_1 \|u_1\|^2 = \lambda_1 > 0$.  A similar proof exists for $u_2$.  Therefore the eigenvalues are strictly positive.   
-			\item Suppose $\lambda_1 = \lambda_2$.  We must show that $\| x(t) \| = \frac{1}{\sqrt{\lambda_1}}$.  Let $V$ be the matrix where $u_1$ and $u_2$ are columns.  Since $u_1, u_2$ are orthonormal, then $V$ is an orthogonal matrix.  Therefore $V^{-1} = V^T$.  Let $D = \begin{bmatrix}
+			\item Suppose $\lambda_1 = \lambda_2$.  We must show that $\| x(t) \| = \frac{1}{\sqrt{\lambda_1}}$.  Let $U$ be the matrix where $u_1$ and $u_2$ are columns.  Since $u_1, u_2$ are orthonormal, then $U$ is an orthogonal matrix.  Therefore $U^{-1} = U^T$.  Let $D = \begin{bmatrix}
 			\lambda_1 & 0\\
 			0 & \lambda_2\\
 \end{bmatrix}			 $, and let $q = \begin{bmatrix}
 q_1(t)\\q_2(t)
-\end{bmatrix} = V^T x$.  Therefore we may rewrite $x \cdot M x$ as follows: 
+\end{bmatrix} = U^T x$.  Therefore we may rewrite $x \cdot M x$ as follows: 
 			$$
 				1 = x \cdot M x = q \cdot D q = \lambda_1 q_1^2(t) + \lambda_2 q_2^2(t).  			
 			$$
 			This equation defines an ellipse paramaterized by $q_1(t) = \pm \frac{1}{\lambda_1}\cos(t), q_2(t) = \pm \frac{1}{\lambda_2}\sin(t)$.  Since $q = V^T x$, then we may explicitly solve for $x$ via $x = Vq = \pm (\frac{1}{\lambda_1}\cos(t)u_1 + \frac{1}{\lambda_2}\sin(t)u_2)$.  Therefore if $\lambda_1 = \lambda_2$, then $\|x\| = \sqrt{\frac{\cos^2(t)}{\lambda_1} + \frac{\sin^2(t)}{\lambda_2} } = \sqrt{\frac{\cos^2(t)}{\lambda_1} + \frac{\sin^2(t)}{\lambda_1} } = \frac{1}{\sqrt{\lambda_1}}$.
-			\item Note that $\lambda_1 > \lambda_2$
+			\item Consider the case where $\lambda_1 > \lambda_2$.  Note that $\|x\|^2 =\frac{\cos^2(t)}{\lambda_1} + \frac{\sin^2(t)}{\lambda_2} = u \cdot \begin{bmatrix}
+			\frac{1}{{\lambda_1}} &0\\ 0 & \frac{1}{{\lambda_2}}
+\end{bmatrix}u			 $, let the matrix in the quadratic function above be denoted $S^2$.  By lemma 19 in the previous carlen multivarible textbook, $ \|x\|^2$ on the unit circle is maximized and minimized by the eigenvalues of $S^2$.  For the matrix $S^2$ the eigenvalues are obviously $\frac{1}{\lambda_1}, \frac{1}{\lambda_2}$.  Since $\lambda_1 > \lambda_2$, then $\frac{1}{\lambda_1} < \frac{1}{\lambda_2}$, therefore making $\frac{1}{\lambda_2}$ the maximum of $\|x\|^2$, and therefore forcing $\frac{1}{\lambda_1}$ to be the minimum.  Since $\sqrt{}$ is a monotonically increasing function on $\R_+$, then $\|x\|$ has a maximum of $\frac{1}{\sqrt{\lambda_2}}$ and a minimum of $\frac{1}{\sqrt{\lambda_1}}$.  We must show that $\|x\|$ is maximal if and only if $x(t) = \pm \frac{1}{\lambda_2}u_2$.
 			\begin{itemize}
 				\item Suppose $x(t) = \pm \frac{1}{\lambda_2} u_2$.  We must show that $\|x(t)\|$ is maximal.  
 				$$
 				\|x(t)\| = \sqrt{\frac{\cos^2(t)}{\lambda_1} + \frac{\sin^2(t)}{\lambda_2} } \leq  \sqrt{\frac{\cos^2(t)}{\lambda_2} + \frac{\sin^2(t)}{\lambda_2} } = \frac{1}{\sqrt{\lambda_2}} = \|\pm \frac{1}{\sqrt{\lambda_2}} u_2\|			
 				$$
 				\item Suppose $\|x(t)\|$ is maximal.  We must show that $x(t) = \pm \frac{1}{\lambda_2} u_2$.  Since $x^2$ is strictly increasing on $\R_+$ then $\|x(t)\|^2$ is maximal.  This is equivalent to $\begin{bmatrix}
-			\frac{\lambda_1} & 0\\ 0 & \lambda_2	
+			\frac{1}{\lambda_1} & 0\\ 0 & \frac{1}{\lambda_2}	
 \end{bmatrix}				 $
+			\end{itemize}
+		\end{itemize}
+		\item Let $$v_1 = \frac{1}{\sqrt{\lambda_1}} A^{-1}u_1, v_2 = \frac{1}{\sqrt{\lambda_2}} A^{-1}u_2.$$
+		\begin{itemize}
+			\item Show that $\{v_1, v_2\}$ is an orthonormal basis for $\R^2$.  By definition of orthonormal basis we must show that $v_1 \cdot v_2 = 0, v_1 \cdot v_1 = v_2 \cdot v_2 = 1.$
+			\begin{itemize}
+				\item \begin{align*}
+					v_1 \cdot v_2 &= v_1^T v_2\\
+					&= \frac{1}{\sqrt{\lambda_1}} (A^{-1}u_1)^T \frac{1}{\sqrt{\lambda_2}} A^{-1}u_2\\
+					&= \frac{1}{\sqrt{\lambda_1 \lambda_2}} u_1^T (A^{-1})^TA^{-1} u_2\\
+					&= \frac{1}{\sqrt{\lambda_1 \lambda_2}} \lambda_2 u_1^T u_2\\
+					&= 0
+				\end{align*}
+				\item \begin{align*}
+					v_1 \cdot v_1 &=\\ 
+				\end{align*}
 			\end{itemize}
 		\end{itemize}
 	\end{enumerate}

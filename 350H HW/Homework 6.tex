@@ -1,0 +1,52 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework 6}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 6\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item Let $T: V \to W$ be a linear transformation from a finite-dimensional vector space $V$ to a finite-dimensional vector space $W$.  Let $
+		\beta$ and $\beta'$ be ordered bases for $V$, and let $\gamma'$ and $\gamma$ be ordered bases for $W$.  We must show that $[T]^{\gamma'}_{\beta'} = P^{-1}[T]^\gamma_\beta Q$ where $Q$ is the $\beta'$ to $\beta$ change of coordinates matrix and $P$ is the $\gamma'$ to $\gamma$ change of coordinates matrix.  By definition $Q = [\mathbb{I}_V]^{\beta'}_\beta$, $P = [\mathbb{I}_W]^{\gamma}_{\gamma'}$.  Note that the statement we're trying to prove is equivalent to $P [T]^{\gamma'}_{\beta'} = [T]^\gamma_\beta Q$.  Therefore, 
+		$$
+					P [T]^{\gamma'}_{\beta'} = [\mathbb{I}_W]^{\gamma}_{\gamma'} [T]^{\gamma'}_{\beta'} = [\mathbb{I}_W T]^\gamma_{\beta'} = [T]^\gamma_{\beta'} = [T \mathbb{I}_V]^\gamma_{\beta'} = [T]^{\gamma}_\beta [\mathbb{I}_V]^{\beta}_{\beta'} = [T]^\gamma_\beta Q.
+		$$  
+		Therefore $[T]^{\gamma'}_{\beta'} = P^{-1}[T]^\gamma_\beta Q$. 
+		
+		\newpage
+		\item Suppose $A,B \in M_{m \times n}(F), P \in GL_m (F), Q \in GL_n (F), B = P^{-1} A Q$.  We must show that there exists an $n$ dimensional vector space $V$ and an $m$ dimensional vector space $W$ over $F$, ordered bases $\beta$ and $\beta'$ for $V$ and $\gamma$ and $\gamma'$ for $W$, and a linear transformation $T: V \to W$ such that $$A = [T]^{\gamma}_\beta \text{ and } B = [T]^{\gamma'}_{\beta'}.$$
+		Let $V = F^n, W= F^m, T = L_A$, and $\beta$ and $\gamma$ be the standard ordered bases for $F^n$ and $F^m$ respectively.
+		\newpage
+		\item Let $V$ be a finite-dimensional vector space with the ordered basis $\beta$.  Prove that $\psi(\beta) = \beta^{**}$.
+			Let $\beta = \{x_1,\ldots,x_n\}$.  Therefore $\beta^{**} = \{\hat{x}_1,\ldots,\hat{x}_n\}$.  We must show that $\psi (\beta) = \beta^{**}$.  Since 
+	\end{enumerate}
+\end{document}
