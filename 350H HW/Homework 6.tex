@@ -36,7 +36,7 @@
 \begin{document}
 	\begin{enumerate}
 		\item Let $T: V \to W$ be a linear transformation from a finite-dimensional vector space $V$ to a finite-dimensional vector space $W$.  Let $
-		\beta$ and $\beta'$ be ordered bases for $V$, and let $\gamma'$ and $\gamma$ be ordered bases for $W$.  We must show that $[T]^{\gamma'}_{\beta'} = P^{-1}[T]^\gamma_\beta Q$ where $Q$ is the $\beta'$ to $\beta$ change of coordinates matrix and $P$ is the $\gamma'$ to $\gamma$ change of coordinates matrix.  By definition $Q = [\mathbb{I}_V]^{\beta'}_\beta$, $P = [\mathbb{I}_W]^{\gamma}_{\gamma'}$.  Note that the statement we're trying to prove is equivalent to $P [T]^{\gamma'}_{\beta'} = [T]^\gamma_\beta Q$.  Therefore, 
+		\beta$ and $\beta'$ be ordered bases for $V$, and let $\gamma'$ and $\gamma$ be ordered bases for $W$.  We must show that $[T]^{\gamma'}_{\beta'} = P^{-1}[T]^\gamma_\beta Q$ where $Q$ is the $\beta'$ to $\beta$ change of coordinates matrix and $P$ is the $\gamma'$ to $\gamma$ change of coordinates matrix.  By definition $Q = [\mathbb{I}_V]^{\beta}_{\beta'}$, $P = [\mathbb{I}_W]^{\gamma}_{\gamma'}$.  Note that the statement we're trying to prove is equivalent to $P [T]^{\gamma'}_{\beta'} = [T]^\gamma_\beta Q$.  Therefore, 
 		$$
 					P [T]^{\gamma'}_{\beta'} = [\mathbb{I}_W]^{\gamma}_{\gamma'} [T]^{\gamma'}_{\beta'} = [\mathbb{I}_W T]^\gamma_{\beta'} = [T]^\gamma_{\beta'} = [T \mathbb{I}_V]^\gamma_{\beta'} = [T]^{\gamma}_\beta [\mathbb{I}_V]^{\beta}_{\beta'} = [T]^\gamma_\beta Q.
 		$$  
@@ -44,18 +44,20 @@
 		
 		\newpage
 		\item Suppose $A,B \in M_{m \times n}(F), P \in GL_m (F), Q \in GL_n (F), B = P^{-1} A Q$.  We must show that there exists an $n$ dimensional vector space $V$ and an $m$ dimensional vector space $W$ over $F$, ordered bases $\beta$ and $\beta'$ for $V$ and $\gamma$ and $\gamma'$ for $W$, and a linear transformation $T: V \to W$ such that $$A = [T]^{\gamma}_\beta \text{ and } B = [T]^{\gamma'}_{\beta'}.$$
-		Let $V = F^n, W= F^m, T = L_A$, and $\beta$ and $\gamma$ be the standard ordered bases for $F^n$ and $F^m$ respectively.  Therfore we trivially have $A = [L_A]^{\gamma}_{\beta} = [T]^{\gamma}_{\beta}$.  We must find $\beta', \gamma'$ such that $B = [T]_{\beta'}^{\gamma'}$.  
+		Let $V = F^n, W= F^m, T = L_A$, and $\beta$ and $\gamma$ denoted $\{e_V^1,\ldots,e_V^n\}$ and $\{e_W^1,\ldots,e_W^m\}$ be the standard ordered bases for $F^n$ and $F^m$ respectively.  Therfore we trivially have $A = [L_A]^{\gamma}_{\beta} = [T]^{\gamma}_{\beta}$.  We must find $\beta', \gamma'$ such that $B = [T]_{\beta'}^{\gamma'}$.  Note that since $Q \in GL_n(F)$, then $L_Q^{-1}$ is a bijection from $V \to V$.  By the book proof of rank nullity, $R(L_Q^{-1})$ has a basis $\{L_Q^{-1}(e_V^1),\ldots,L_Q^{-1}(e_V^n)\}$, which since $L_Q^{-1}$ is a bijection gives us $R(L_Q^{-1}) = V$, thus $\{L_Q^{-1}(e_V^1),\ldots,L_Q^{-1}(e_V^n)\}$ is a basis for $V$.  Let $\beta' = \{L_Q^{-1}(e_V^1),\ldots,L_Q^{-1}(e_V^n)\}$.  Suppose $x \in V, [x]_{\beta'} = \begin{bmatrix}a_1\\ \vdots \\ a_n\end{bmatrix} $.  Therefore $x = a_1 L_Q^{-1}(e_V^1) + \ldots  a_n L_Q^{-1}(e_V^n)$.  Thus $Qx = Q(a_1 L_Q^{-1}(e_V^1) + \ldots  a_n L_Q^{-1}(e_V^n)) = Q(a_1 Q^{-1}(e_V^1) + \ldots  a_n Q^{-1}(e_V^n)) = QQ^{-1} \sum_{i=1}^n a_i e_V^i = \sum_{i=1}^n a_i e_V^i.$  Thus $L_Q = [\mathbb{I}_V]_{\beta'}^{\beta}$.  The proof for $P = [\mathbb{I}_W]_{\gamma'}^{\gamma}$ where $\gamma' = \{L_P^{-1}(e_W^1),\ldots,L_P^{-1}(e_W^n)\}$ is identical.  Therefore $P^{-1} = ([\mathbb{I}_W]_{\gamma'}^{\gamma})^{-1} = [\mathbb{I}_W]_{\gamma}^{\gamma'}$.  Thus $B = P^{-1}A Q =[\mathbb{I}_W]_{\gamma}^{\gamma'} [T]^\gamma_\beta  [\mathbb{I}_V]_{\beta'}^{\beta} = [\mathbb{I}_W T \mathbb{I}_V]^{\gamma'}_{\beta'} = [T]^{\gamma'}_{\beta'}$.
 		
 		
 		\newpage
 		\item Let $V$ be a finite-dimensional vector space with the ordered basis $\beta$.  Prove that $\psi(\beta) = \beta^{**}$.
-			Let $\beta = \{x_1,\ldots,x_n\}$.  Therefore $\psi (\beta) = \{\hat{x}_1,\ldots,\hat{x}_n\}$.  By the corollary to theorem 2.26, there exists a basis $\{v_1,\ldots,v_n\}$ of $V^*$ such that $v^*_i = \hat{x}_i$.  Applying the corollary again gives us $\{x_1,\ldots,x_n\}$ as $\delta_{i,j} = \hat{x}_i (v_j) = v_j(x_i)$.  Therefore $x_i^{**} = \hat{x}_i$, giving us $\psi(\beta) = \beta^{**}$.
+			Let $\beta = \{x_1,\ldots,x_n\}$.  Therefore $\psi (\beta) = \{\hat{x}_1,\ldots,\hat{x}_n\}$.  By the corollary to theorem 2.26, there exists a basis $\{v_1,\ldots,v_n\}$ of $V^*$ such that $v^*_i = \hat{x}_i$ and $\delta_{i,j} = \hat{x}_i (v_j) = v_j(x_i)$.    Therefore, $x_i^* = \hat{x}$, thus $x_i^{**} = \hat{x}_i$. Therefore $\psi(\beta) = \beta^{**}$.
 		\newpage
 		
 		\item Suppose that $V,W$ are finite dimensional vector spaces over $F$ and that $T: V \to W$ is linear.  We must show that $N(T^t) = (R(T))^0$.  Let $\{x_1,\ldots,x_n\}$ and $\{y_1,\ldots,y_m\}$ be ordered bases $\beta$ and $\gamma$ of $V$ and $W$ respectively, and let $\{f_1,\ldots,f_n\}$ and $\{g_1,\ldots,g_m\}$ be ordered bases $\beta^*$ and $\gamma^*$ of $V^*$ and $W^*$ respectively.    
 		\begin{itemize}
 			\item Suppose $v \in N(T^t)$.  We must show that $v \in (R(T))^0$.  By definition of being a member in $N(T^t)$, $v \in W^*, T^t (v) = v(T) = 0$.  By theorem 2.24 of $T^t (v) = \sum_{s = 1}^n (v T)(x_s) f_s$.  Therefore $0 = \sum_{s = 1}^n (v T)(x_s) f_s$.  Since $\beta^*$ is a basis for $V^*$, then for all $s \in [n], (v T)(x_s) = 0$.  Therefore for an arbitrary $x \in R(T)$, by the book proof of rank nullity $R(T)$ is spanned by $T(x_1),\ldots, T(x_n)$, thus there exists $a_1,\ldots, a_n$ such that  $x = a_1 T(x_1) + \ldots + a_n T(x_n)$.  Therefore $v(x) = v(\sum_{i=1}^n a_i T(x_i)) = \sum_{i=1}^n a_i v(T(x_i)) = \sum_{i=1}^n a_i 0 = 0$.  Thus $v \in (R(T))^0$.
-			\item Suppose $v \in (R(T))^0 $.  We must show that $v \in N(T^t)$.  By definition of $v \in N(T^t)$ we must show that $T^t (v) = v(T) = 0$.  By definition of $v \in (R(T))^0$, for all $x \in R(T), v(x) = 0$.  By definition of being a member of $W^*$ by theorem 2.24, $v = \sum_{l = 1}^m v(y_l)g_l$.  
+			\item Suppose $v \in (R(T))^0 $.  We must show that $v \in N(T^t)$.  By definition of $v \in N(T^t)$ we must show that $T^t (v) = v(T) = 0$.  By definition of $v \in (R(T))^0$, for all $x \in R(T), v(x) = 0$.  Since v acting on all the elements of $R(T)$ evaluate to 0, then $v(T) = 0$.  Thus $v \in N(T^t)$.
+			
+			%  By definition of being a member of $W^*$ by theorem 2.24, $v = \sum_{l = 1}^m v(y_l)g_l$.    
 \end{itemize}		 
 	\end{enumerate}
 \end{document}

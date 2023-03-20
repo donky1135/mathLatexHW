@@ -62,14 +62,108 @@
 	$$  
 	Rearranging we find $\displaystyle \lim_{t \to \infty} \frac{2 - 2e^{7t}}{5 + 2e^{7t}} = \frac{-2}{2} = -1 = \frac{x_1}{x_2}$.
 	Therefore we have the relation $-x_2 = x_1$.  Testing on the second row we find $\displaystyle \lim_{t\to \infty} (5 - 5e^{7t})x_1 + (-2 -5e^{7t}) x_2 = (5 - 5e^{7t})x_1 + -(-2 -5e^{7t}) x_1 = 7 x_1$.  Since $7 x_1$ is constant and the vector is multiplied by  $e^{-6t}$ then we have $0 \cdot 7 x_1 = 0$.  Thus the vector $\Vec{x}_0 = \begin{bmatrix} -1	\\ 1\end{bmatrix}c$, where $c \in \R$ solves the equation $\lim_{t \to \infty} \Vec{x}(t) = \Vec{0}$.
+	\end{enumerate}
 	\newpage
 	\item[3.5]
-	Let $A=\begin{bmatrix} 5 & -1\\ 4 & 1 \end{bmatrix}$.  $A$ has the characteristic polynomial $(\lambda - 3)^2$.  Thus $A$ has an eigenvalue of 3 with multiplicity 2.  Note that $(A-3\mathbb{I})^2 = \begin{bmatrix} 0 & 0 \\ 0 & 0\end{bmatrix}$, therefore any vector in $\R^2$ is a generalized eigenvector of $A$.  Therefore we can go ahead and compute $e^{tA}$ directly:
+	\begin{enumerate}
+	
+	\item Let $A=\begin{bmatrix} 5 & -1\\ 4 & 1 \end{bmatrix}$.  $A$ has the characteristic polynomial $(\lambda - 3)^2$.  Thus $A$ has an eigenvalue of 3 with multiplicity 2.  Note that $(A-3\mathbb{I})^2 = \begin{bmatrix} 0 & 0 \\ 0 & 0\end{bmatrix}$, therefore any vector in $\R^2$ is a generalized eigenvector of $A$.  Therefore we can go ahead and compute $e^{tA}$ directly:
 	$$
 	e^{tA} = e^{3t}e^{t(A - 3\mathbb{I})} = e^{3t}\sum_{k=0}^1 \frac{t^k}{k!} (A-3 \mathbb{I})^k = e^{3t} \left( \mathbb{I} + t\begin{bmatrix}
 	2 & -1\\ 4 & -2	\end{bmatrix}\right) = \begin{bmatrix}1 + 2t & -t\\4t&1-2t	\end{bmatrix}.	
 	$$
 	Therefore the general solution is $\Vec{x}(t) = e^{tA}\Vec{x}_0 = e^{3t}\begin{bmatrix} (1+2t) x_1 + (-t)x_2 \\ 4tx_1 + (1-2t)x_2 \end{bmatrix}$
-	\end{enumerate}		
+	\item Note that 
+	$$
+		\lim_{t \to \infty} \Vec{x}(t) = \lim_{t \to \infty} e^{3t}\left( \mathbb{I} + t\begin{bmatrix}
+	2 & -1\\ 4 & -2	\end{bmatrix}\right)\Vec{x}_0 = \lim_{t\to \infty} e^{3t}\Vec{x}_0 + e^{3t}t \begin{bmatrix}2 & -1\\4 & -2 \end{bmatrix}\Vec{x}_0	 
+	$$
+	thus the $e^{3t} \Vec{x}_0$ term will diverge for every non-zero vector.    Therefore no matter the kernel of the matrix on the other term, the first term will diverge.  Thus the only solution which converges to $\Vec{0}$ is $\Vec{0}$.
+	\end{enumerate}
+	\item[3.8]
+		Let $A = \begin{bmatrix} -1 & 2 &2 \\ -2 & -1 & 1\\ -2 & -1 & -1\end{bmatrix}$	.\\  The characteristic polynomial of $A$ is given by $det(A - \lambda \mathbb{I}) = -(\lambda + 1)(\lambda^2 + 2 \lambda + 10 )$.  Therefore we have eigenvalues of $\mu_1 = -1, \mu_2 = -1 + 3i, \mu_3 = -1 - 3i$.  
+		These correspond to the eigenvectors $\Vec{v}_1 = \begin{bmatrix}1 \\ -2 \\ 2 \end{bmatrix}, \Vec{v}_2 = \begin{bmatrix} -2-6i \\ 4-3i\\ 5\end{bmatrix}, \Vec{v}_3 = \begin{bmatrix}-2 + 6i\\4+3i\\5	\end{bmatrix}$.  Columns of $M(t)$:
+		\begin{itemize}
+			\item $\Vec{z}_1(t) := e^{-t}\begin{bmatrix} 1 \\ -2 \\ 2\end{bmatrix}$
+			\item $\Vec{z}_2(t) := e^{(-1+3i)t}\begin{bmatrix} -2-6i \\ 4-3i\\ 5\end{bmatrix}$
+			\item $\Vec{z}_3(t) := e^{(-1-3i)t}\begin{bmatrix} -2+6i \\ 4+3i\\ 5\end{bmatrix}$
+		\end{itemize}
+		Therefore we can now compute $M(0)^{-1}$: 
+		$$
+			M(0)^{-1} = \frac{1}{90}  \begin{bmatrix} 10 & -20 & 20\\
+			-2+6i & 4 + 3i & 5\\
+			-2 -6i & 4-3i & 5 \end{bmatrix}.
+		$$
+		Therefore 
+		\begin{align*}		
+		e^{tA} &= \frac{1}{90} e^{-t} \begin{bmatrix}
+	1 & e^{3it} (-2-6i) &e^{-3it} (-2+6i)\\
+	-2 & e^{3it} (4-3i) & e^{-3it} (4+3i)\\
+	2 &   5e^{3it} & 5e^{-3it}  	
+\end{bmatrix} \begin{bmatrix} 10 & -20 & 20\\
+			-2+6i & 4 + 3i & 5\\
+			-2 -6i & 4-3i & 5 \end{bmatrix}\\ &= 			
+\begin{bmatrix}
+ \frac{e^{-t}}{9} & -\frac{2}{9} (-6 i-2) e^{3 \text{it}-t} &
+   \frac{2}{9} (6 i-2) e^{-3 \text{it}-t} \\
+ \frac{(6 i+18) e^{-t}}{135 i} & -\frac{(9-12 i) (4-3 i) e^{3
+   \text{it}-t}}{270 i} & \frac{1}{18} (3 i+4) e^{-3 \text{it}-t}
+   \\
+ -\frac{(6 i-18) e^{-t}}{135 i} & -\frac{(-12 i-9) e^{3
+   \text{it}-t}}{54 i} & \frac{5}{18} e^{-3 \text{it}-t} \\
+\end{bmatrix}			
+		\end{align*}
+		
+		\item[3.11]
+		Let $A = \begin{bmatrix}
+		4 & -1 & 2\\
+		1 & 2 &2\\
+		-2 & 2 & 1
+\end{bmatrix}$.  The characteristic polynomial is given by $-(\lambda - 1)(\lambda - 3)^2$.  Therefore the eigenvalues are $\lambda = 1,3$.  Since $\lambda = 3$ has a multiplicity of 2, then we will double count the eigenvalue of $3$: let the eigenvalues be denoted $\mu_1 = 1, \mu_2 = 3, \mu_3 = 3$.  The first two correspond to the eigenvectors are given by $\Vec{v}_1 = \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix} , \Vec{v}_2 = \begin{bmatrix}
+1 \\ 1 \\ 0
+\end{bmatrix} $. The generalized eigenvector given by the kernel of $(A-3 \mathbb{I})$ denoted $\Vec{v}_3 = \begin{bmatrix}
+-1 \\ 0 \\ 1
+\end{bmatrix} $.
+
+	Therefore we can compute the columns of $M(t)$:
+	\begin{itemize}
+		\item $\Vec{z}_1(t) := e^t \begin{bmatrix}
+		1 \\ 1 \\ -1
+\end{bmatrix}		 $
+		\item $\Vec{z}_2(t) := e^{3t} \begin{bmatrix}
+		1 \\ 1 \\ 0
+\end{bmatrix}		 $
+		\item $\displaystyle \Vec{z}_3(t) := e^{3t}\sum_{k=0}^1 \frac{t^k}{k!} (A-3 \mathbb{I})^k \Vec{v}_3 = e^{3t}\begin{bmatrix}
+		-1 +t\\ t\\1 \\ 
+\end{bmatrix}		 $
+	\end{itemize}
+		Since we have computed the columns of $M(t)$, we may now compute $M(0)^{-1}$:
+		$$
+		M(0)^{-1} = \begin{bmatrix}
+		
+ -1 & 1 & -1 \\
+ 1 & 0 & 1 \\
+ -1 & 1 & 0 
+\end{bmatrix}.				
+		$$
+		Therefore $e^{tA}$ is given by:
+		\begin{align*}		
+		e^{tA} = M(t)M(0)^{-1} &= \begin{bmatrix}
+		e^t & e^{3 t} & e^{3 t} (t-1) \\
+ e^t & e^{3 t} & e^{3 t} t \\
+ -e^t & 0 & e^{3 t} \\
+\end{bmatrix}		\begin{bmatrix}	
+ -1 & 1 & -1 \\
+ 1 & 0 & 1 \\
+ -1 & 1 & 0 
+\end{bmatrix}\\
+ &= \begin{bmatrix}
+ -e^t \left(e^{2 t} (t-2)+1\right) & e^{3 t} (t-1)+e^t & e^t
+   \left(e^{2 t}-1\right) \\
+ -e^{3 t} (t-1)-e^t & e^{3 t} t+e^t & e^t \left(e^{2 t}-1\right)
+   \\
+ e^t-e^{3 t} & e^t \left(e^{2 t}-1\right) & e^t \\
+\end{bmatrix}  
+		\end{align*}
 \end{enumerate}
 \end{document}
