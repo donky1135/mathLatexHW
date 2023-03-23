@@ -98,8 +98,31 @@
 		\item[b(2?)]
 			Since $\Vec{x} = e^{tB}\Vec{x}_0$, where $\Vec{x}_0 = (x_0,v_0)$, then $x(t) = e^{\frac{-a}{2m}t}(x_0(1+t\frac{a}{2m}) + v_0 t)$.  We want to find $t$ such that $0 = x(t)$.  Thus we have that $0 = e^{\frac{-a}{2m}t}(x_0(1+t\frac{a}{2m}) + v_0 t)$.  Since $e^{\frac{-a}{2m}t}$ is strictly positive then $0 = x_0(1+t\frac{a}{2m}) + v_0 t$.  This may be rewritten as $ \frac{-x_0}{v_0 + \frac{a}{2m}} = t$.  If this value either diverges or is negative then the solution will not pass through the origin, and if it does we have found an explicit single value for $t$.  Thus there is either one or zero times which $x(t) = 0$.  
 		\item[c] Since $\Vec{x} = e^{tB}\Vec{x}_0$, where $\Vec{x}_0 = (x_0,v_0)$, then $x(t) = e^{\frac{-a}{2m}t}(x_0 ( \frac{a}{\rho} \sinh(lt) + \cosh(lt)) + \frac{v_0}{l} \sinh(lt))$.  We want to find when $x(t) = 0$  Since $e^{\frac{-a}{2m}t}$ is strictly positive then we have that $ 0=x_0 ( \frac{a}{\rho} \sinh(lt) + \cosh(lt)) + \frac{v_0}{l} \sinh(lt)$.  Rearrange and assuming that $\frac{x_0 a}{\rho} + \frac{v_0}{l} \neq 0$ we get that $ -(\frac{\frac{x_0 a}{\rho} + \frac{v_0}{l}}{x_0})^{-1} = \tanh(lt)$.  Since $tanh$ is 1-1 then we have a unique $t$ if the value is in the range of $\tanh$, if not then the function doesn't pass through the origin.  If $\frac{x_0 a}{\rho} + \frac{v_0}{l} = 0$ then we have $0= x_0 \cosh(x)$, similarly, since $\text{arcosh}$ is 1-1 then we have a unique $t$ at which the function passes through the origin.  Therefore $x(t) = 0$ occurs at most once for all parameters.  
-		\item[d] Since $\Vec{x} = e^{tB}\Vec{x}_0$, where $\Vec{x}_0 = (x_0,v_0)$, then $x(t) = e^{\frac{-a}{2m}t}(x_0 ( \frac{a}{\rho} \sin(lt) + \cos(lt)) + \frac{v_0}{l} \sin(lt))$. We want to find when $x(t) = 0$.  Since $e^{\frac{-a}{2m}t}$ is strictly positive then we have that $ 0=x_0 ( \frac{a}{\rho} \sin(lt) + \cos(lt)) + \frac{v_0}{l} \sin(lt)$.  Rearrange and assuming that $\frac{x_0 a}{\rho} + \frac{v_0}{l} \neq 0$ we get that $ -(\frac{\frac{x_0 a}{\rho} + \frac{v_0}{l}}{x_0})^{-1} = \tan(lt)$.  Note that since $\tan$ is periodic and $\arctan$ is $1-1$ means that $t = \frac{\pi n + \arctan(-(\frac{\frac{x_0 a}{\rho} + \frac{v_0}{l}}{x_0})^{-1})}{l}$ where $n \in \Z$ are all valid solutions.  If $\frac{x_0 a}{\rho} + \frac{v_0}{l} = 0$ then we have $0= x_0 \cos(x)$, similarly, since $\cos$ is periodic and not the zero function due to $x(t) \neq 0$ then we have $t=\frac{\pi n}{l}$ where $n \in \Z$.  Since all cases have an infinite number of solutions, then $x(t)$ transits the origin an infinite number of times.
-		\item 
+		\item[d] Since $\Vec{x} = e^{tB}\Vec{x}_0$, where $\Vec{x}_0 = (x_0,v_0)$, then $x(t) = e^{\frac{-a}{2m}t}(x_0 ( \frac{a}{\rho} \sin(lt) + \cos(lt)) + \frac{v_0}{l} \sin(lt))$. We want to find when $x(t) = 0$.  Since $e^{\frac{-a}{2m}t}$ is strictly positive then we have that $ 0=x_0 ( \frac{a}{\rho} \sin(lt) + \cos(lt)) + \frac{v_0}{l} \sin(lt)$.  Rearrange and assuming that $\frac{x_0 a}{\rho} + \frac{v_0}{l} \neq 0$ we get that $ -(\frac{\frac{x_0 a}{\rho} + \frac{v_0}{l}}{x_0})^{-1} = \tan(lt)$.  Note that since $\tan$ is periodic and $\arctan$ is $1-1$ means that $t = \frac{\pi n + \arctan(-(\frac{\frac{x_0 a}{\rho} + \frac{v_0}{l}}{x_0})^{-1})}{l}$ where $n \in \Z$ are all valid solutions.  If $\frac{x_0 a}{\rho} + \frac{v_0}{l} = 0$ then we have $0= x_0 \cos(x)$, similarly, since $\cos$ is periodic and not the zero function due to $x(t) \neq 0$ then we have $t=\frac{\pi n}{l}$ where $n \in \Z$.  Since all cases have an infinite number of solutions, then $x(t)$ transits the origin an infinite number of times.\newline
+		\item[e] 
+		\begin{itemize}
+			\item Over dampening\\
+			\includegraphics[scale=0.3]{overdamped292hw6}
+			\item Under dampening\\
+			\includegraphics[scale=0.3]{underdamped292hw6}		
+			\item Critical dampenening\\
+			\includegraphics[scale=0.3]{criticallydampened292hw6.png}
+		\end{itemize}
+	\end{enumerate}
+	\item[7] By our previous expression for $\Vec{x}'$, we can define our new $\Vec{x}'(t) = B \Vec{x} (t) + \begin{bmatrix}0 \\ g(t) \end{bmatrix}$. 
+		Therefore by Duhamel's formula $\Vec{x} = e^{tB}\Vec{x}_0 + \int_{t_0}^t e^{(t-s)B} \begin{bmatrix}0 \\ g(s) \end{bmatrix}ds$	
+	\begin{enumerate}
+		\item[a] 
+		\begin{itemize}
+			\item Suppose $(\frac{a}{m})^2 = \frac{4k}{m}$.  Then our formula becomes 
+			\begin{align*}
+				 x(t) &= e^{\frac{-a}{2m}t} (x_0(1 + t\frac{a}{2m}) + y_0 t) + \int_{t_0}^t  e^{\frac{-a}{2m}(t-s)}(t-s)\cos(\omega s) ds 
+			\end{align*}			  
+			\item Suppose $(\frac{a}{m})^2 < \frac{4k}{m}$.  Then our formula becomes 
+			$$
+							
+			$$
+		\end{itemize}
 	\end{enumerate}
 \end{enumerate}
 \end{document}
