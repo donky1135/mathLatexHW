@@ -35,7 +35,7 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item
+	\item Suppose $A \in M_{m \times n}(F), B \in M_{n \times p}(F)$.  We want to show that there exists matrices $Q_1,\ldots,Q_n \in M_{m \times p}(F)$ such that for all $i \in [n], rank(Q_i) \leq 1$ and $\sum_{i=1}^n Q_i = AB$.  Note that $\mathbb{I}_n = \sum_{i=1}^n E_{ii}$ where $E_{ii}$ is the basis matrix for $M_{n\times n}(F)$ corresponding to the $(i,i)$th element.  Therefore $AB = A \mathbb{I}_n B = A(\sum_{i=1}^n E_{ii})B = \sum_{i=1}^n A E_{ii} B$.  Note that since $E_{ii}$'s only non-zero column corresponds to the $i$th column equal to $e_i$, then $rank(E_i) = 1$.  Therefore by theorem 3.7 $rank(A E_{ii} B) \leq rank(A E_{ii}) \leq rank(E_{ii}) = 1$.  Thus $Q_i = A E_{ii} B$ satisfies the definition.    
 	\newpage
 	 \item Suppose $A \in M_{m \times n} (F), rank(A) = m$.  We must show that there exists $B \in M_{n \times m} (F)$ such that $\mathbb{I}_m = AB$.\\
 	 Proof: We know from the first corollary of theorem 3.6 that there exists $L \in GL_m (F), R \in GL_n (F)$ such that $L A R = 
@@ -43,9 +43,28 @@
 Therefore left multplying by $L^{-1}$ yields $AR = \left[ \begin{array}{c|c} L^{-1} & O \end{array} \right]$. 
 Let $L' \in M_{n \times m}$ be the matrix given by for all $i \in [n], j \in [m], (L')_{ij} = L_{ij}$ if $j \leq n$ otherwise $(L')_{ij} = 0$.  We claim that $RL' = B$.  Since $L' \in M_{n \times m}$ and $R \in GL_n (F)$ then $RL' \in M_{n \times m}$.  Therefore $AB = ARL' =\left[ \begin{array}{c|c} L^{-1} & O \end{array} \right] L'$.  Note that by the definition of matrix multiplication and the identity matrix $\delta_{ij} = \sum_{k = 1}^m (L^{-1})_{ik} L_{kj}$.  Therefore each entry in the new matrix D is given by $ D_{ij} = \sum_{k = 1}^n \left[ \begin{array}{c|c} L^{-1} & O \end{array} \right]_{ik} L'_{kj}$, since for $\left[ \begin{array}{c|c} L^{-1} & O \end{array} \right]_{ik}$ if $k > m$ then the entry is 0 and similarly $L'_{kj} = 0$ by definition means that the matrix multiply reduces to $ D_{ij} = \sum_{k = 1}^m (L^{-1})_{ik} L_{kj} = \delta_{ij}$.  Therefore $AB = \mathbb{I}_m$.
 	\newpage
-	\item
+	\item If the coefficient matrix of the system of $m$ linear equations in $n$ unknowns has rank $m$, then the system has a solution.  
+	Let the coefficent matrix be given by $A \in M_{m \times n} (F)$, the solution to the $m$ equations be given by $b \in F^m$, and the $n$ unknowns be given as a vector $x \in F^n$.  Therefore we can formalize the problem as finding a $x \in F^n$ such that $Ax = b$.  
+	\iffalse
+	Therefore $rank(A) = m$.  Note that by the rank nullity theorem 
+	$rank(A) + nullity(A) = n$.  Since $0\leq nullity(A)$, then $rank(A) \leq n$, thus $m \leq n$.  By the definition of rank, $m = rank(A) = dim(R(T))$.  
+	\fi 
+	Since the rank corresponds directly to the linearly independent columns of $A$, then let the set $\{Ae_{r_1},\ldots,Ae_{r_m}\}$ correspond to the linearly independent columns of $A$ where $e_{r_i} = e_k$ where the $i$th linearly indepedent vector in $A$ is the $k$th column, and $e_k$ is the $k$th standard basis vector for $F^n$.    Note that since this is a linearly indpendent set of vectors, and it is the same number as the dimension of $F^m$ implies that $\{Ae_{r_1},\ldots,Ae_{r_m}\}$ is a basis for $F^m$.  Since $b \in F^m$, then there exists $a_1,\ldots,a_m \in F$ such that $a_1 Ae_{r_1} + \ldots + a_m Ae_{r_m} = b$.  Therefore if we let $x = a_1 e_{r_1} + \ldots a_n e_{r_m}$ then we have solved the equation $Ax = b$.   
 	\newpage
-	\item
+	\item Let $rref(A) = \begin{bmatrix}
+	1 & 0 & 2 & 0 & -2\\
+	0 & 1 & -5 & 0 & -3\\
+	0 & 0 & 0 & 1 & 6
+\end{bmatrix}	 $.  If $Ae_1 = \begin{bmatrix}1 \\ -1 \\3 \end{bmatrix},Ae_2 = \begin{bmatrix}0 \\ -1 \\1 \end{bmatrix},Ae_4 = \begin{bmatrix} 1 \\ -2 \\1 \end{bmatrix} $, then find $A$. By theorem 3.16, we know that a given column of a matrix in RREF being the sum of standard basis vectors corresponds to the sum of those same coefficents with the columns of the original matrix.  Therefore we have an easy way to compute the other columns:
+\begin{enumerate}
+	\item[3] $Ae_3 = 2 Ae_1 - 5 A_2 = \begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}	 $
+	\item[5] $A e_5 = -2 Ae_1 - 3 Ae_2 + 6e_4 = \begin{bmatrix} 4 \\ -7 \\ -9 \end{bmatrix}$
+\end{enumerate} 
+	Therefore our matrix $A = \begin{bmatrix}
+	1 & 0 & 2 & 1 & 4\\
+	-1 & -1 & 3 & -2 & -7\\
+	3 & 1 & 1 & 0 & -9
+\end{bmatrix}	 $. \\ It just so happens after row reducing this matrix in mathematica we get the same expression our problem began with.  Who would've guessed?
 	\newpage
 \end{enumerate}
 \end{document}
