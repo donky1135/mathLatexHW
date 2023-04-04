@@ -116,13 +116,45 @@
 		\begin{itemize}
 			\item Suppose $(\frac{a}{m})^2 = \frac{4k}{m}$.  Then our formula becomes 
 			\begin{align*}
-				 x(t) &= e^{\frac{-a}{2m}t} (x_0(1 + t\frac{a}{2m}) + y_0 t) + \int_{t_0}^t  e^{\frac{-a}{2m}(t-s)}(t-s)\cos(\omega s) ds 
+				 x(t) &= e^{\frac{-a}{2m}t} (x_0(1 + t\frac{a}{2m}) + y_0 t) + \int_{0}^t  e^{\frac{-a}{2m}(t-s)}(t-s)\cos(\omega s) ds 
 			\end{align*}			  
 			\item Suppose $(\frac{a}{m})^2 < \frac{4k}{m}$.  Then our formula becomes 
 			$$
-							
+			x(t) = e^{\frac{-a}{2m}t}(x_0 ( \frac{a}{\rho} \sin(lt) + \cos(lt)) + \frac{v_0}{l} \sin(lt)) + \int_0^t e^{\frac{-a}{2m}(t-s)} \frac{\sin(l(t-s))}{l} \cos(\omega s)ds		
+			$$
+			\item Suppose $(\frac{a}{m})^2 > \frac{4k}{m}$.  Then our formula becomes 
+			$$
+			x(t) =  e^{\frac{-a}{2m}t}(x_0 ( \frac{a}{\rho} \sinh(lt) + \cosh(lt)) + \frac{v_0}{l} \sinh(lt)) + \int_0^t e^{\frac{-a}{2m}(t-s)} \frac{\sinh(l(t-s))}{l} \cos(\omega s)ds							
 			$$
 		\end{itemize}
+		\item[a']
+		\begin{itemize}
+			\item Suppose $(\frac{a}{m})^2 = \frac{4k}{m}$.  Then our solution $x(t)$ becomes\\ 
+			$
+			\frac{2 m e^{-\frac{a t}{2 m}} \left(-2 m e^{\frac{a t}{2 m}} \left(\left(a^2-4 m^2 \omega ^2\right) \cos (t \omega )+4 a m \omega  \sin (t
+   \omega )\right)+a^2 (a t+2 m)+4 m^2 \omega ^2 (a t-2 m)\right)}{\left(a^2+4 m^2 \omega ^2\right)^2}	
+			$
+			\item Suppose $(\frac{a}{m})^2 < \frac{4k}{m}$.  Then our solution $x(t)$ becomes\\ 
+			$
+			\frac{2 m \left(2 m e^{-\frac{a t}{2 m}} \left(a \left(a^2+4 m^2 \omega ^2+\rho ^2\right) \sin \left(\frac{\rho  t}{2 m}\right)+\rho  \left(a^2-4
+   m^2 \omega ^2+\rho ^2\right) \cos \left(\frac{\rho  t}{2 m}\right)\right)-2 m \rho  \left(\cos (t \omega ) \left(a^2-4 m^2 \omega ^2+\rho
+   ^2\right)+4 a m \omega  \sin (t \omega )\right)\right)}{\rho  \left(a^2+(\rho -2 m \omega )^2\right) \left(a^2+(2 m \omega +\rho )^2\right)}		
+			$
+			
+			\item Suppose $(\frac{a}{m})^2 > \frac{4k}{m}$.  Then our solution $x(t)$ becomes\\ 
+			$
+\frac{4 m^2 e^{-\frac{a t}{2 m}} \left(a \left(a^2+4 m^2 \omega ^2-\rho ^2\right) \sinh \left(\frac{\rho  t}{2 m}\right)+\rho  \left(a^2-4 m^2
+   \omega ^2-\rho ^2\right) \cosh \left(\frac{\rho  t}{2 m}\right)+\rho  e^{\frac{a t}{2 m}} \left(\cos (t \omega ) \left(-a^2+4 m^2 \omega
+   ^2+\rho ^2\right)-4 a m \omega  \sin (t \omega )\right)\right)}{\rho  (-a-2 i m \omega +\rho ) (a-2 i m \omega +\rho ) (-a+2 i m \omega +\rho
+   ) (a+2 i m \omega +\rho )}			
+			$
+		\end{itemize}
+		\item[b] Solution when $m=1,a=1,k=\frac{5}{4},\omega=1$\\
+		\includegraphics[scale=0.3]{7b292hw6.png}
+		\item[c] Solution when $m=1,a=1,k=\frac{1}{4},\omega=1$\\
+		\includegraphics[scale=0.3]{7c292hw6.png}
+		\item[d] $m=1,a=1,k=\frac{1}{8},\omega=1$\\
+		\includegraphics[scale=0.3]{7d292hw6.png}
 	\end{enumerate}
 \end{enumerate}
 \end{document}

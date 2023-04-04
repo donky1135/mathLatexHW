@@ -1,0 +1,38 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{PSS5}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	PSS5 \\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Let $\beta, \gamma$ be ordered bases of $V$ where $V$ is a finite dimensional vector space over $F$.  Let $L$ be a linear operator on $V$.  We want to show that $det([L]_\beta^\beta - x \mathbb{I}_V) = det([L]_\gamma^\gamma - x \mathbb{I}_V)$.  Let $\Delta$ be the standard basis.  Then $det([L]_\beta^\beta - x \mathbb{I}_V) = det([\mathbb{I}_V]^\beta_\Delta [L]_\Delta^\Delta[\mathbb{I}_V]^\Delta_\beta - x [\mathbb{I}_V]^\beta_\Delta [\mathbb{I}_V]_\Delta^\Delta[\mathbb{I}_V]^\Delta_\beta) = det([\mathbb{I}_V]^\beta_\Delta ([L]_\Delta^\Delta - x [\mathbb{I}_V]_\Delta^\Delta) [\mathbb{I}_V]^\Delta_\beta) = det([\mathbb{I}_V]^\beta_\Delta)det([L]_\Delta^\Delta - x [\mathbb{I}_V]_\Delta^\Delta) det([\mathbb{I}_V]^\Delta_\beta)$  
+\end{document}
