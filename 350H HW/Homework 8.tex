@@ -1,0 +1,115 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\author{Alex Valentino}
+\title{Homework 8}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 8\\
+	350H	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let the rows $A \in M_{n \times n}(F)$ be given by $a_1,a_2,\ldots,a_n$, and let $B$ be the matrix where the rows are $a_n,a_{n-1},\ldots,a_1$.  Calculate $\det(B)$ in terms of $\det(A)$.  \\
+	Suppose $k \in \N$ if $k < j$, then the matrix $n \times n$ $C$ having $k$ row operations applied to the matrix $A$ will have the determinate $\det(C) = (-1)^k \det(A)$.  The base case is covered by part a of the corollary to theorem 4.6.  For the induction step, let $C$ be the matrix given by $k$ row swap operations on $A$, and $C'$ is the intermediary matrix after the first $k-1$ row operations.  Therefore $\det(C') = (-1)^{k-1} \det(A)$.  Since $C'$ is lacking a row operation to all compared to $C$ then $\det(C) = -\det(C')$.  Therefore $\det(C) = -\det(C') = (-1)^k \det(A)$.  Therefore to compute $\det(B)$ in terms of $\det(A)$ we need to know how many row swaps are between $A$ and $B$.  If $n$ is even then only $n/2$ row swaps are required as we can get two interchanged rows $i,n-i+1$ for simply swapping $i$.  If $n$ is odd then $(n-1)/2$ swaps are required as the middle row is invariant under row reversal.  The number of row swaps no matter the parity of $n$ are equal to $\lfloor \frac{n}{2} \rfloor$.  Therefore $\det(B) = (-1)^{\lfloor \frac{n}{2} \rfloor} \det(A)$
+	\newpage
+	\item Let $M \in M_{n \times n} (F)$ be nilpotent where $M^k = 0_{n \times n}$.  We must show that $\det(M) = 0$.  Since $M^k = 0_{n \times n}$, then taking the determinant we get that $0 = \det(0_{n \times n}) = \det(M^k) = \det(M \cdots M) = \det(M) \cdots \det(M) = (\det(M))^k$.  Therefore taking the $k$th root of both sides yields $0 = \det(M)$.  \\
+	\newpage
+	\item Suppose $\{u_1,\ldots,u_n\} \subset F^n$ is a set of $n$ distinct vectors, and let the matrix $U\in M_{n \times n}(F)$ be the matrix whose $j$th column is $u_j$.  Then $\{u_1,\ldots,u_n\}$ is a basis if and only if $det(U) \neq 0$.  
+	\begin{itemize}
+	\item $(\Rightarrow)$ Since the columns of $U$ are linearly independent and $U$ is an $n \times n$ matrix, then $U$ is invertible.  Since $U$ is invertible then by the corollary to theorem 4.7 $\det(U) \neq 0$.  
+	\item $(\Leftarrow)$ Suppose for contrapositive that $\{u_1,\ldots,u_n\}$ is linearly dependent.  Then $rank(U) < n$ as the range of $U$ is simply the span of the columns.  Therefore by corollary to theorem 4.6 $det(U)=0$.
+	
+\end{itemize}	  
+	\newpage
+	\item Suppose $A = 
+	\begin{bmatrix} 0 & 0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & 0 & 0 & \ldots & 0 & a_1 \\
+				   0 & -1 & 0 & \ldots & 0 & a_2 \\
+				   \vdots & \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & 0 & \ldots & -1 & a_{n-1}
+    \end{bmatrix}$.  Compute $\det(A+t\mathbb{I}_n )$. \\
+    Proof: Suppose $k \in \N$, if $k < n$, then $B$ taking the form of $A$ above, then $\det(B + t \mathbb{I}_{k}) = t^k + \sum_{i=0}^{k-1} a_i t^i$.  \\
+    Base case:  Suppose $A = \begin{bmatrix}0 & a_0\\-1 & a_1 \end{bmatrix}$.  Then $\det (A+t\mathbb{I}_2) = \det   \left(  \begin{bmatrix}t & a_0\\-1 & t+ a_1 \end{bmatrix} \right) = t(t+a_1) + a_0 = t^2 + a_1 t + a_0$.  
+    Note: If we apply our induction hypothesis to the $k$ case then we get that $\det \left( \begin{bmatrix} t & 0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & 0 & \ldots & 0 & a_1 \\
+				   0 & -1 & t & \ldots & 0 & a_2 \\
+				   \vdots & \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & 0 & \ldots & -1 & t+ a_{k-1}
+    \end{bmatrix} \right) = t^{k} + \sum_{i=0}^{k-1} a_i t^i$.  However if we evaluate the determinate itself we get\\ $t*\det \left( \begin{bmatrix} 
+				    t & 0 & \ldots & 0 & a_1 \\
+				    -1 & t & \ldots & 0 & a_2 \\
+				   \vdots & \vdots & & \vdots & \vdots\\
+				    0 & 0 & \ldots & -1 & t+ a_{k-1}
+    \end{bmatrix} \right) + \det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_2 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{k-1}
+    \end{bmatrix} \right) $.  Since the term multiplied by $t$ can be evaluated by the induction hypothesis, then we have the equation $t(t^{k-1} + \sum_{i=0}^{k-2} a_{i+1} t^i) + \det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_2 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{k-1}
+    \end{bmatrix} \right) = t^{k} + \sum_{i=0}^{k-1} a_{i} t^i$.  Therefore $\det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_2 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{k-1}
+    \end{bmatrix} \right) = a_0$.  \\
+    Induction step: Let $A=
+	\begin{bmatrix} 0 & 0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & 0 & 0 & \ldots & 0 & a_1 \\
+				   0 & -1 & 0 & \ldots & 0 & a_2 \\
+				   \vdots & \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & 0 & \ldots & -1 & a_{n-1}
+    \end{bmatrix}$.  Using the definition of determinant we have that\\ $\det(A+t\mathbb{I}_n) = t*\det \left( \begin{bmatrix} 
+				    t & 0 & \ldots & 0 & a_1 \\
+				    -1 & t & \ldots & 0 & a_2 \\
+				   \vdots & \vdots & & \vdots & \vdots\\
+				    0 & 0 & \ldots & -1 & t+ a_{n-1}
+    \end{bmatrix} \right) + \det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_2 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{n-1}
+    \end{bmatrix} \right).$\\
+    Applying the induction hypothesis we have that\\ $\det(A+t\mathbb{I}_n) = t*(t^{n-1} + \sum_{i=0}^{n-2} a_{i+1} t^i) + \det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_2 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{n-1}
+    \end{bmatrix} \right)$.  Since the only non-zero entry in the first column of the remaining matrix is at index $(2,1)$ and has a value of $-1$ means that the determinate can be evaluated giving us the equation\\
+    $\det(A+t\mathbb{I}_n) = t*(t^{n-1} + \sum_{i=0}^{n-2} a_{i+1} t^i) + \det \left( \begin{bmatrix}  0 & 0 & \ldots & 0 & a_0 \\ 
+				   -1 & t & \ldots & 0 & a_3 \\
+				  \vdots & \vdots & & \vdots & \vdots\\
+				   0 & 0 & \ldots & -1 & t+ a_{n-1}
+    \end{bmatrix} \right)$.  Applying the note about the induction hypothesis we have that the determinant of that matrix is $0$.  Therefore $\det(A+t\mathbb{I}_n) = t*(t^{n-1} + \sum_{i=0}^{n-2} a_{i+1} t^i) + a_0 = t^n + \sum_{i=0}^{n-1} a_i t^i$.  
+    
+	\newpage
+\end{enumerate}
+\end{document}
