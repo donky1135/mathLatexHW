@@ -1,0 +1,130 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Homework 9}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 9\\
+	292	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item We must solve the equation $u''(x) - \frac{2}{x^2} u = \frac{3}{x^3}, u(1) = u(2) = 0.$  
+		\begin{enumerate}
+			\item Since there is no $u'$ term, then $P(x) = 0, p(x) = e^{\int_x^a 0 ds} = 1$, thus the equation is already in the form $\mathcal{L} u(x) = \frac{3}{x^3}$ where $\mathcal{L} u(x) = u''(x) - \frac{2}{x^2} u$.  
+			\item First we must find solutions to $\mathcal{L} u = 0$.  If we suppose $u = x^\alpha$, then we find that $x^2, \frac{1}{x}$ are solutions.  If we attempt to solve with the constraint $u(1) = u(2) = 0$, then we get the constant solution.  Therefore the solution will be uniquely solved by $u(x) = \int_a^b G(x,y) f(y) dy$. By the super position principle, we can generate $u_1, u_2$ such that $u_1 (1) = u_2 (2) = 0$, satisfying the constraints on the simplified Green's function formula.  They are the following:
+			$$
+			u_1(x) = x^2 - \frac{1}{x},u_2(x) = x^2 -\frac{8}{x}.
+			$$   
+			Now we can generate the Green's function:
+			$$
+				G(x,y) = \frac{1}{27} \begin{cases}
+					(y^2 - \frac{1}{y})(x^2-\frac{8}{x}) & y \geq x\\
+		(x^2 - \frac{1}{x})(y^2-\frac{8}{y}) & y < x			
+				\end{cases}
+			$$
+			Therefore we may now compute the final solution $u(x)$:
+			\begin{align*}
+			u(x) &= \int_1^2 G(x,y) f(y) dy \\
+			&= \frac{1}{7} \left(\left(x^2-\frac{1}{x}\right)\int_1^x \left(y^2 - \frac{8}{y}\right)\frac{1}{y^3}dy +  \left(x^2-\frac{8}{x} \right) \int_x^2 \left(y^2 - \frac{1}{y} \right)\frac{1}{y^3}dy\right)  \\
+			&= \frac{\left(x^3-1\right) \log (2)-7 \log (x)}{7 x}.
+			\end{align*}
+		\end{enumerate}
+		\item We must solve the equation $ u''(x) -  (\frac{x+2}{x})u'(x) + \frac{2}{x} u(x) = x^2 e^x, u(1) = u(2) = 0.$
+		\begin{enumerate}
+			\item Since $P(x) = -(1 + \frac{2}{x})$ then $p(x) = e^3 x^{-2} e^{-x} $.  Therefore our equation in the Sturm–Liouville form is:
+			$$
+			( x^{-2} e^{3-x} u)' + \frac{2e^{3-x}}{x^3}u = e^3
+			$$
+			\item We first must solve $\mathcal{L} u = 0$.  If we suppose that there is a solution of the form $e^{\alpha x}$ we find that we get the polynomial $(\alpha - 2)(\alpha - 1) = 0$.  After testing we find that $e^x$ is a valid solution.  
+			To find an additional linearly independent solution to $\mathcal{L} u = 0,$ we can apply the variation of constants formula where $ v(x) = \int \frac{x^2 e^x}{e^2x} dx =  \int x^2 e^{-x} dx = -e^{-x}(x^2 + 2x + 2)$, giving us the solution $-x^2 -2x -2$.  If we attempt to solve with the constraints $u(1) = u(2) = 0$ we find that we get the constant solution.  Therefore we have a unique solution.  We can however generate $u_1, u_2$ such that $u_1(1) = u_2 (2) = 0$ to generate a Green's function.  They are the following:
+			$$
+			u_1(x) = 5e^x - e (x^2 + 2x + 2),  u_2(x) = 10e^x - e^2(x^2 + 2x + 2).
+			$$
+						Now we can generate the Green's function:
+		$$
+G(x,y) = \frac{1}{10e^4-5e^5} \begin{cases}
+				(5e^y - e (y^2 + 2y + 2))(10e^x - e^2(x^2 + 2x + 2)) & y \geq x\\
+				(5e^x - e (x^2 + 2x + 2))(10e^y - e^2(y^2 + 2y + 2)) & y < x\\
+	\end {cases}		
+		$$
+		Therefore we may now compute the final solution $u(x)$:
+			\begin{align*}
+			u(x) &= \int_1^2 G(x,y) f(y) dy\\
+			&= \frac{1}{10 e - 5e^2} \bigg(  (5e^x - e (x^2 + 2x + 2)) \int_1^x (10e^y - e^2(y^2 + 2y + 2)) dy \\
+			&+ (10e^x - e^2(x^2 + 2x + 2)) \int_x^2 (5e^y - e (y^2 + 2y + 2)) dy \bigg)\\
+			&=  \frac{5 e^x \left(-2 x^3+e \left(x^3-8\right)+2\right)+7 e^2 (x
+   (x+2)+2)}{15 (e-2)}
+			\end{align*}
+		\end{enumerate}
+		\item We must solve the equation $u''(x) -\frac{6}{x^2}u = x^2, u(1) = u(2) =0 $.
+		\begin{enumerate}
+			\item Since there is no $u'$ term then $P(x) = 0$.  Therefore $p(x) = 1$.  Thus our equation is already in Sturm-Liouville form, yielding $\mathcal{L} u = x^2$.  
+			\item We must first compute solutions to $\mathcal{L} u = 0$.  If we guess the solution to take the form $x^\alpha$ we get the polynomial $(\alpha - 3)(\alpha + 2) = 0$.  After testing we find that $x^3$ and $\frac{1}{x^2}$ are both valid solutions.  If we attempt to solve with the constraints $u(1) = u(2) = 0$ we find that only the constant solution satisifes the equation.  Therefore the solution will be uniquely solved by $u(x) = \int_a^b G(x,y) f(y) dy$. By the super position principle, we can generate $u_1, u_2$ such that $u_1 (1) = u_2 (2) = 0$, satisfying the constraints on the simplified Green's function formula.  They are the following:
+			$$
+			u_1(x) = x^3 - \frac{1}{x^2}, u_2 = x^3 - \frac{32}{x^2}.
+			$$
+			Now we can generate the Green's function:
+			$$
+				G(x,y) = \frac{1}{155} \begin{cases}
+					(y^3 - \frac{1}{y^2})(x^3-\frac{32}{x}) & y \geq x\\
+		(x^3 - \frac{1}{x^2})(y^3-\frac{32}{y^2}) & y < x			
+				\end{cases}
+			$$
+			Therefore we may now compute the final solution $u(x)$:
+			\begin{align*}
+			u(x) &= \int_1^2 G(x,y) f(y) dy \\
+			&= \frac{1}{155}\bigg((x^3-\frac{32}{x^2}) \int_x^2 (y^3 - \frac{1}{y^2})y^2 dy + (x^3 - \frac{1}{x^2})\int_1^x (y^3 - \frac{32}{y^2})y^2 dy \bigg)\\
+			&= \frac{32 - 63 x^5 + 31 x^6}{186 x^2}
+			\end{align*}
+		\end{enumerate}
+		\item We must solve the equation 
+		$$
+		u(x) = \begin{cases}
+			u'' - u' - 6u = e^x\\
+			u'(0) = 0\\
+			u'(1) = 0
+			\end{cases}
+		$$
+		In order to apply the variation of constants formula, we need two linearly independent solutions of $u'' - u' - 6 u = 0$.  If we guess a form of $e^{\alpha x}$ then we find that $e^{3x}$ and $e^{-2x}$ are valid choices of $\alpha$, and let them be respectively denoted $u_1$ and $u_2$.  Therefore we may compute $u_p$.  \\
+		$$
+		u_p (x) = \frac{-1}{5}\int_0^x e^{3s-2x}-e^{3x-2s} ds = \frac{1}{30}(2e^{-2x} -5e^x + 3e^{3x}).
+		$$
+		Therefore $u(x) = a_1 e^{3x} + a_2 e^{-2x} + \frac{1}{30}(2e^{-2x} -5e^x + 3e^{3x})$.  Note that the $e^{3x}$ and $e^{-2x}$ terms of $u_p$ can be rolled into the constants $a_1,a_2$.  Therefore $u(x) = c_1 e^{3x} + c_2 e^{-2x} - \frac{e^x}{6}$  We now must solve for $c_1,c_2$.  Applying the initial conditions we get the system:\\
+		\begin{align*}
+			3c_1 - 2 c_2 &= \frac{1}{6}\\
+			3e^3 c_1 - 2 e^{-2} c_2 &= \frac{e}{6}
+		\end{align*}
+		Solving yields $c_1 = \displaystyle \frac{1+e+e^2}{18 \left(1+e+e^2+e^3+e^4\right)}, c_2 = -\frac{e^3 (1+e)}{12 \left(1+e+e^2+e^3+e^4\right)}$.\\
+		Therefore 
+		$$
+		u(x) = \frac{1+e+e^2}{18 \left(1+e+e^2+e^3+e^4\right)} e^{3x} 	-\frac{e^3 (1+e)}{12 \left(1+e+e^2+e^3+e^4\right)} e^{-2x} -\frac{e^x}{6}	
+		$$
+	\end{enumerate}
+\end{document}
