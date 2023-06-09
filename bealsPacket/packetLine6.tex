@@ -1,0 +1,85 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 6\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item[2.2.1]
+		\begin{enumerate}
+			\item Let $\epsilon > 0$ be arbitrary.  Choose $N \in \N$ with $N > \sqrt{\frac{\frac{1}{\epsilon} -1 }{6}}$.  To verify that our choice of $N$ is appropriate, let $n \in \N$ satisfy $n > N$.  Therefore 
+			\begin{align*}
+				n &> \sqrt{\frac{\frac{1}{\epsilon} -1 }{6}}\\
+				n^2 &>  \frac{\frac{1}{\epsilon} -1 }{6}\\
+				6n^2 + 1 &>  \frac{1}{\epsilon}\\
+				\frac{1}{6n^2 + 1} &< \epsilon.
+			\end{align*}
+			Since $n^2 > 0$ for all $n \in \N$ then we have just proved $|\frac{1}{6n^2 + 1} | < \epsilon$.
+		\end{enumerate}
+		\item[2.2.7]
+		\begin{enumerate}
+		\item 		 The convergence to infinity definition is thus: For all $\epsilon > 0$ there exists $B ]in \N$ such that $n > N$ implies $|x_n| > \epsilon$.\\	
+		Let $\epsilon > 0$.  Choose $N \in \N$ such that $N > \epsilon^2$.  To verify that our choice of $N$ is correct, let $n \in \N$ satisfy $n > N$.  Therefore $n > \epsilon^2 \Rightarrow \sqrt{n} > \epsilon$.  Since $\sqrt{n} > 0$ for all $n \in \N$ then we have shown that $\lim_{n \to \infty} |\sqrt{n}| = \infty$
+		\item The sequence $(1,0,2,0,3,0,4,\ldots)$ does not converge to infinity as choosing $\epsilon = 0.5$ does not satisfy the condition.  As for all $n \in \N, x_{2n} = 0$ thus no matter how large $N$ is choosen to be $x_{2n} < 0.5$.  
+\end{enumerate}
+		\item[2.2.8]
+		\begin{enumerate}
+			\item The sequence $(-1)^n$ is frequently in the set $\{1\}$ as given an arbitrary $N \in \N$ if $N$ is even then the choice $n = N$ yields $(-1)^{2N} = 1$ and if $N$ is odd where $N = 2l - 1$ then $n = N + 1$ yields 
+			$(-1)^n = (-1)^{2l + 2} = ((-1)^2)^{l+1} = 1^{l+1} = 1$.  \\
+			We claim that the sequence is not eventually in the set $\{1\}$ Supposes $N \in \N$.  If $N$ is odd then there exists $l\in \Z_{\leq 0}$ such that $N = 2l+1$.  Since $N \leq N$ then $(-1)^N = (-1)^{2l + 1} = -1 \not \in \{1\}$. If $N$ is even then we take $N + 1 > N$, therefore $(-1)^{N + 1} = (-1)^{2l + 1} = -1 \not \in \{1\}$.  Since every choice of $N$ results in the sequence not being $1$ after a certain point then it is not eventually in $\{1\}$.
+			\item Eventually is a stronger definition then frequently.  As shown above we can have sequences frequently dance in and out of sets, but they are not guaranteed to stay inside after a certain point.  We claim that eventually implies frequently and that the converse is not true:
+			\begin{itemize}
+				\item Suppose $(a_n)$ is eventually in the set $A$.  Therefore
+				 there exists $N_e \in \N$ such that for all $n \geq N_e, a_n \in 
+				 A$.  We must show
+				 that $(a_n)$ is frequently in $A$.  Suppose $N \in \N$.  We must
+				 show there exists $n \geq N$ such that $a_n \in A$.  We claim
+				 that all $n \geq N_e$ satisfy the definition.    If $N \leq N_e$
+				 then the definition is satisfied by $n = N_e$.  If $N > N_e$ then any natural number $k$ such that $k > N$ would suffice as $k > N > N_e$, therefore 
+				 $a_k \in A$.  Therefore $(a_n)$ is frequently in $A$.  
+				 \item Frequently does not imply eventually as part (a) of this problem serves as a counterexample.  
+			\end{itemize}
+			\item The sequence $(a_n)$ converges to the real number $r$ if for all 
+			$\epsilon > 0$ $(a_n)$ is eventually in $V_{\epsilon}(r)$.  
+			We do not use the frequently definition here as we need the sequence 
+			to stay inside of $V_{\epsilon}(r)$ for all members of $a_n$ for 
+			$n > N$ has been shown to not be satisfied by the frequently defintion.
+			\item $(x_n)$ is not necessarily eventually in the set $(1.9,2.1)$.  If $(x_n)$ has an infinite number of terms that are not in the set $(1.9,2.1)$, even if they are exceedingly rare, then for every $N \in \N$ there will always exists $n \geq N$ for which $x_n \not \in (1.9,2.1)$.  \\
+			We claim that $(x_n)$ is frequently in the set $(1.9,2.1)$.  Let $A \subseteq \N$ be the set containing all the indicies where $x_n = 2$.  Note that 
+			since there is an infinite number of terms where $x_n = 2$ then $A$ is
+			a countable subset of $\N$.  Suppose $N \in \N$.  If $N \in A$ then 
+			$N \leq N$, $x_N = 2 \in (1.9,2.1)$.  If $N \not \in A$ then since $A$ is infinite there exists $a \in A$ such that $N < a$. By definition of being a 
+			member of $A$ then $x_a = 2\in (1.9,2.1)$.  Therefore $(x_n)$ is frequently in $(1.9,2.1)$.     
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

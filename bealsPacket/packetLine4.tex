@@ -1,0 +1,76 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 4\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1.5.4] Let $S$ be the set of all infinite binary strings.  Suppose for contradiction there exists a bijection $f: \N \to S$.  Let the binary string $b$ be defined by $b_n = \begin{cases} f(n)_n + 1 & f(n)_n = 0\\
+	f(n)_n - 1 & f(n)_n = 1  \end{cases}$ where $f(n)_n$ is the $n$th bit in the binary string given by $f(n)$.  We claim that for all $n \in \N$ $f(n) \neq b$.  For $n=1$ we have that $f(1)_1 \neq b_1$, thus $f(1) \neq b$.  By the principle of mathematical induction for all $k \in \N$ if $k < n$ then $b_k \neq f(k)_k$.  Looking at $f(n)_n$, the bit at postition $n$ is exact the inverted bit at $b_n$.  Therefore $f(n) \neq b$.  Therefore by induction, for all $m \in \N, f(m) \neq b$.  This is a contradiction as $f$ is a bijection from $f : \N \to S$.  Therefore $f$ is uncountable.  
+	\item[1.5.5] 
+	\begin{enumerate}
+		\item Let $A = \{a,b,c\}$.  
+	Then $\Po(A) = \{\emptyset, \{a\},\{b\},\{c\},\{a,b\},\{b,c\},\{a,c\},\{a,b,c\}\}$
+		\item We must show that if $A$ is a set and $|A| = n$ then $|\Po(A)| = 2^n$.  We will show this by induction.  Assume WLOG that $A = \{1,2,\ldots, n\}$.
+		 For $n = 1$ we have $A = \{1\}$, therefore 
+		$\Po (A) = \{\emptyset,\{1\}\}$.  There are two elements in $\Po(A)$,
+		thus $|\Po(A)| = 2 = 2^1$.
+		By PMI for all $k \in \N$ if $k < n$ then for a set $B$ of size $k$ we have that $|\Po (B)| = 2^k$.  Let $A' = A\backslash \{n\}$.  
+		Since $|A'| = n - 1 < n$ then by the induction hypothesis $|\Po(A')| = 2^{n-1}$.  
+		We claim that $|\Po(A)\backslash \Po(A')| = 2^{n-1}$.  Note that by definition if a subset $S \subseteq A$ is not in $\Po(A')$ implies that $n \in S$. 
+		 If we consider the set $S \backslash \{n\}$ since $S$ is already a subset of $A$ then $S \backslash \{n\} \subseteq A'$.  Since all the sets in $\Po(A)\backslash \Po(A')$ are simply modified copies of sets from $\Po(A')$ and $|\Po(A')| = 2^{n-1}$ then $|\Po(A)\backslash \Po(A')| = 2^{n-1}$.  Therefore 
+		 $$
+		 |\Po (A)| = |\Po(A') \cup \Po(A)\backslash \Po(A') | = |\Po(A')| + |\Po(A)\backslash \Po(A')| = 2^{n-1} + 2^{n-1} = 2^n.
+		 $$
+\end{enumerate}		
+	\item[1.5.6]
+	\begin{enumerate}
+		\item 
+		\begin{itemize}
+			\item Let $f: A \to \Po (A)$ be given by:
+			$$
+				f(a) = \{a\}, f(b) = \{b\}, f(c) = \{c\}.
+			$$
+			\item Let $h: A \to \Po (A)$ be given by:
+			$$
+			h(a) = \{a,b\}, h(b) = \{b,c\}, h(c) = \{a,c\}.
+			$$
+		\end{itemize}
+		\item Let $B = \{1,2,3,4\}$.  Let $g: B \to \Po(B)$ be given by:
+		$$
+		g(1) = \{1\}, g(2) = \{2\}, g(3) = \{3\}, g(4) = \{4\}.
+		$$
+		\item It is impossible to have an onto mapping for the previous two parts because for any arbitrary set $A$ with size $n$, any arbitrary function between the two is mapping from $n$ elements to $2^n$ elements.  By definition a function must have a single output for every input, therefore $f$ has at most $n$ unique outputs.  Since $n < 2^n$, then there will always be elements that can't be mapped by $f$ without violating it's definition as a function.  
+	\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 2\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1.3.2]
+	\begin{enumerate}
+		\item A real number $s$ is a greatest lower bound for a set $A \subseteq \R$ if
+		\begin{enumerate}
+			\item $s$ is a lower bound for $A$
+			\item if for every lower bound $b$, $b \leq s$
+		\end{enumerate}
+		\item Lemma 1.3.7 for infimums:\\
+		Suppose $s \in \R, A \subseteq \R$ where $s$ is a lower bound for $A$, then $inf(A) = s$ if and only if for all $\epsilon > 0$ there exists $a \in A$ such that $a < s + \epsilon$. 
+		\begin{enumerate}
+			\item ($\Rightarrow$) Suppose $s = inf(A), \epsilon > 0$.  Then the number $s + \epsilon$ is not a lower bound as that would contradict being less than or equal to $s$.  Since it is not a lower bound on $A$, then there is a smaller element $a$ of $A$.  Therefore $a < s + \epsilon$
+			\item $(\Leftarrow)$  Suppose for all $\epsilon > 0$ there exists $a \in A$ such that $a < \epsilon + s$.  We must show that $s = inf(A)$.  Since $s$ is already a lower bound, we simply need to show that any lower bound is less than or equal to $s$.  Suppose $b$ is a lower bound on $A$.  Since we have already shown that for any number greater than $s$, it can't be a lower bound, then conversely for $b$, since $b$ is a lower bound then $b \leq s$.     
+		\end{enumerate}
+	\end{enumerate}
+	\item[1.3.3] Suppose $A,B \subseteq \R$, $sup (A) < sup(B)$.  We must show that there exists $b \in B$ such that $b$ is an upper bound of $A$. By theorem 1.3.7 for all $\epsilon > 0$ there exists $b \in B$ such that $sup (b) - \epsilon < b$.  Since $sup (A) < sup(B)$ then $0 <  sup(B)-sup (A)$.  Therefore let $\epsilon = sup(B)-sup (A)$.  Therefore there exists $b \in B$ such that $ sup(A) < b$.  By definition of supremum $b$ is an upper bound on $A$.  
+	\item[1.3.9]
+	\begin{enumerate}
+		\item A finite, non-empty set always contains its supremum \\
+		True
+		\item If $a < L$ for every element $a$ in $A$ then $sup(A) < L$.\\
+		False, if $L = sup(A)$ and $A$ does not contain it's supremum then we satisfy the preposition, however $sup(A) < sup(A)$ is clearly false.  
+		\item If $A$ and $B$ are sets with the property that $a < b$ for every $a \in A$ and $b \in B$, then it follows that $sup(A) < inf(B)$.  \\
+		False, if $A = [0,1), B = (1,2]$ then it is true for all $a \in A, b \in B$ that $a < b$.  However $sup(A) = 1, inf (B) = 1$ as by theorem 1.3.7 subtracting any $\epsilon > 0,$ there exists $a \in A$ such that  $1 - \epsilon < a$ and similarly for the result proved in exercise 1.3.2.  Therefore $sup(A) = inf(A)$.  
+		\item True
+		\item True, proved in the previous exercise above.  
+	\end{enumerate}
+\end{enumerate}
+\end{document}
