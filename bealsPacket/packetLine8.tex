@@ -37,5 +37,35 @@
 	\begin{enumerate}
 		\item[2.4.1]
 		\item[2.4.6]
+		\begin{enumerate}
+			\item Suppose $(a_n)$ is a bounded sequence.  Prove that the sequence $y_n = \sup\{a_k: k \geq n\}$ converges.\\
+			Proof:  We claim that $(y_n)$ is a decreasing and bounded sequence.  
+			\begin{itemize}
+				\item We claim that $(y_n)$ is decreasing.  Suppose $n \in \N$.  We must show that $y_n \geq y_{n+1}$.  We have two cases, $y_n = a_n, y_n \neq a_n$.
+				\begin{itemize}
+					\item Suppose $a_n = y_n$.  Therefore for all other elements in the sequence after $a_n$, $a_n \geq a_k$ where $k > n$.  Therefore $a_n$ is an upper bound on $\{a_k : k \geq n + 1\}$.  Since $y_{n+1}$ is the supremum of the set mentioned before, and we have established that $a_n$ is an upper bound, then by definition $y_n = a_n \geq y_{n+1}$.  
+					\item Suppose $a_n \neq y_n$.  Since $a_n$ is already not a suprememum of the set $\{a_k : k \geq n\}$ then computing the supremum of the set excluding $a_n, \{a_k : k \geq n + 1\}$ should not change the supremum value.  Therefore $y_n = y_{n+1}, y_n \geq y_{n+1}$.
+				\end{itemize}
+				Therefore $(y_n)$ is a decreasing sequence. 
+				\item We claim that $(y_n)$ is bounded.  Since $(y_n)$ is decreasing we simply need to show that there is a quantity larger than $y_1$.  Since $y_1 = \sup \{a_k : k \geq 1\}$ then $y_1$ is the supremum for $(a_n)$.  
+				Since $(a_n)$ is bounded, suppose for some quantity $M \in \R$,	then by definition of supremum $y_1 \leq M$.  Therefore $(y_n)$ is bounded				  
+			\end{itemize}
+			Therefore by the monotone convergences theorem $(y_n)$ converges.
+			\item Let $z_n = \inf \{ a_k : k \geq n\}$.  Then $\lim z_n = \liminf a_n$.  This should converge since $(z_n)$ can easily be proved 
+			to be increasing and bounded.
+			\item 
+			\begin{itemize}
+				\item Prove that $\liminf a_n \leq \limsup a_n$\\
+				Proof:  Suppose $n \in \N$. For an arbitrary element $e \in \{a_k : k \geq n\}$, $e \leq y_n, e \geq z_n$ by the respective definitions of supremum and infimum.  Therefore for all $n \in \N, z_n \leq y_n$.  Since we know that $\liminf a_n, \limsup a_n$ exists, then by the algebraic order theorem $\liminf a_n \leq \limsup a_n$.
+				\item An example of a strict inequality between $\liminf a_n$ and $\limsup a_n$ is the sequence $a_n = \frac{1}{n} + (-1)^{n+1}$.  
+				This is because $\liminf a_n = \lim \frac{1}{n} - 1 = -1 < 1 = \lim \frac{1}{n} + 1 = \limsup a_n$
+			\end{itemize}
+			\item We must prove that $\liminf a_n = \limsup a_n$ if and only if $\lim a_n$ exists
+			\begin{itemize}
+				\item[$\Rightarrow$]
+				\item[$\Leftarrow$] Suppose $\lim a_n$ exists and suppose for contradiction that $\liminf a_n \neq \limsup a_n$.  
+				Since $\liminf a_n \leq \limsup a_n$ then $\liminf a_n < \limsup a_n$.  Therefore $0 < \limsup a_n - \liminf a_n$.  Let $l$ be the limit point of $(a_n)$.  
+			\end{itemize}
+		\end{enumerate}
 	\end{enumerate}
 \end{document}

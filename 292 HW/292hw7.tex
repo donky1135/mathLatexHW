@@ -61,6 +61,80 @@
 		These terms correspond exactly with the solution of $e^{2t} -1$ as 
 		$$ -1 + e^{2t} = -1 + \sum_{k=0}^\infty \frac{t^{2k}}{k!} = \sum_{k=1}^\infty \frac{t^{2k}}{k!} = t^2 + \frac{1}{2}t^4 + \frac{1}{6} t^6 + \frac{1}{24} t^8 + \cdots $$\\
 		which shows the first four terms of the series we've found manually via Picard iteration.
-		\item[5.2]
+		\item[5.2] Credit to CT Lim for telling me about the series expansion trick.\\
+		Note that after performing the substitution $s=t e^q$, the first three terms of our flow transformation's power series in $q$ are: $$\begin{bmatrix}
+		1 & -q t \\
+ -\frac{q}{t} & q+1 \\
+\end{bmatrix},
+\begin{bmatrix}
+		 \frac{q^2}{2}+1 & -q^2 t-q t \\
+ -\frac{q}{t} & q^2+q+1 \\
+\end{bmatrix},
+\begin{bmatrix}
+ \frac{q^2}{2}+1 & -\frac{2 q^3 t}{3}-q^2 t-q t \\
+ -\frac{q^3}{6 t}-\frac{q}{t} & \frac{2 q^3}{3}+q^2+q+1 \\
+\end{bmatrix}.
+ $$
+ Also note that the first 3 terms in the power series expansions of $e^q$ and $e^{-q}$ around 0 are:
+ $
+ \frac{q^3}{6}+\frac{q^2}{2}+q+1
+ $
+		and
+ $
+ -\frac{q^3}{6}+\frac{q^2}{2}-q+1
+ $ respectively.  
+		\begin{enumerate}
+			\item[1] $\textbf{X}_1 = \Psi(\textbf{X}_0) = \begin{bmatrix}  1 & t-e^q t \\
+ \frac{e^{-q}}{t}-\frac{1}{t} & q+1 \\\end{bmatrix} \textbf{x}_0$.  Note that taking the first term of the power series of $\textbf{X}_1$ we get
+ $\begin{bmatrix}
+  1 & t-(1+q) t \\
+ \frac{1-q}{t}-\frac{1}{t} & q+1 \\
+ \end{bmatrix}\textbf{x}_0 = \begin{bmatrix}
+		1 & -q t \\
+ -\frac{q}{t} & q+1 \\
+\end{bmatrix}\textbf{x}_0$, exactly the first term in the power series of $[\Phi_{t,s}]$.
+		\item[2] $\textbf{X}_2 = \Psi(\textbf{X}_1) = \begin{bmatrix}
+		 q+e^{-q} & -2 e^q t+q t+2 t \\
+ \frac{e^{-q} q}{t}+\frac{2
+   e^{-q}}{t}-\frac{2}{t} &
+   \frac{q^2}{2}+e^q \\
+\end{bmatrix}\textbf{x}_0$.   Note that taking up to the second term of the power series of $\textbf{X}_2$ we get
+$$
+	\begin{bmatrix}
+	 q+\frac{q^2}{2}-q+1 & -2 ( \frac{q^2}{2}+q+1) t+q t+2 t \\
+ \frac{q-q^2}{t}+\frac{2
+   (\frac{q^2}{2}-q+1)}{t}-\frac{2}{t} &
+   \frac{q^2}{2}+\frac{q^2}{2}+ q+1 \\
+	\end{bmatrix} \textbf{x}_0
+	=	\begin{bmatrix}
+		 \frac{q^2}{2}+1 & -q^2 t-q t \\
+ -\frac{q}{t} & q^2+q+1 \\
+\end{bmatrix}\textbf{x}_0,
+$$ exactly the second term in the power series of $[\Phi_{t,s}]$.
+		\item[3] $\textbf{X}_3 = \Psi(\textbf{X}_2) = \begin{bmatrix}
+		 e^{-q} q+2 q+3 e^{-q}-2 & \frac{t q^2}{2}-e^q t q+t
+   q-e^q t+t \\
+ \frac{e^{-q} q^2}{2 t}+\frac{e^{-q}
+   q}{t}-\frac{q}{t}+\frac{e^{-q}}{t}-\frac{1}{t} &
+   \frac{q^3}{6}-\frac{q^2}{2}-2 q+3 e^q-2 \\
+\end{bmatrix}\textbf{x}_0 $. Note that taking up to the third term of the power series of $\textbf{X}_3$ we get
+$$
+	\begin{bmatrix}
+		 q-q^2+\frac{q^3}{2} +2 q+3(-\frac{q^3}{6}+\frac{q^2}{2}-q+1)-2 & \frac{t q^2}{2}-(q+q^2+\frac{q^3}{2})t+t
+   q-( \frac{q^3}{6}+\frac{q^2}{2}+q+1
+) t+t \\
+ \frac{q^2 - q^3}{2 t}+\frac{q-q^2+\frac{q^3}{2}}{t}-\frac{q}{t}+\frac{ -\frac{q^3}{6}+\frac{q^2}{2}-q+1
+}{t}-\frac{1}{t} &
+   \frac{q^3}{6}-\frac{q^2}{2}-2 q+3( \frac{q^3}{6}+\frac{q^2}{2}+q+1
+)-2 \\
+\end{bmatrix}\textbf{x}_0
+$$
+$$= \begin{bmatrix}
+ \frac{q^2}{2}+1 & -\frac{2 q^3 t}{3}-q^2 t-q t \\
+ -\frac{q^3}{6 t}-\frac{q}{t} & \frac{2 q^3}{3}+q^2+q+1 \\
+\end{bmatrix}\textbf{x}_0,
+$$
+exactly the second term in the power series of $[\Phi_{t,s}]$.
+		\end{enumerate}
 	\end{enumerate}
 \end{document}
