@@ -1,0 +1,54 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 9\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2.5.6]
+		Note that $\sup S$ exists as $(a_n)$ is bounded above by $M$. 
+		Therefore let $\sup S = s$ We claim for arbitrary $\epsilon > 0$ there are
+		an infinite number of elements from the 
+		sequence $(a_n)$ contained within $V_\epsilon (s)$.  
+		By definition of suprememum, for arbitrary $\epsilon > 0, s-\epsilon \in S$.  Therefore by definition there are an infinite number of elements of $(a_n)$
+		above $s-\epsilon$.  Similiarly, by definition of supremum $s + \epsilon \not \in S$.  Therefore there are only finitely many elements of $(a_n)$ above $s+ \epsilon$.  Since $(a_n)$ is infinite then there must be infinitely many terms less than $s+ \epsilon$.  Since there are infinitely many terms greater than $s-\epsilon$ and above $s+ \epsilon$ there are only finitely many terms then there
+		must be an infinite number of terms between $s-\epsilon$ and $s+\epsilon$.  
+		Therefore $V_\epsilon (s)$ has an infinite number of terms from $(a_n)$.  
+		We will now construct by induction a subsequence of $(a_n)$ which converges to $s$, where each $a_{n_k}$ sits within $V_{2^{-k}}(s)$.  For $k=1$, since $0 < 1$, we have an infinite 
+		number of terms in $V_1 (s)$.  Choose $n_1 \in \N$ satisfying $a_{n_1} \in V_1 (s)$.  By the principle of mathematical induction for all $j \in \N$ if $j < k$ then there exists $n_j \in \N$ satisfying $n_j > n_{j-1} > \cdots > n_1$ and 
+		$a_{n_j} \in V_{2^{-j}}(s)$.  By the induction hypothesis $a_{n_{k-1}} \in V_{2^{1-k}}(s)$.  As proved above there is an infinite number of terms in $V_{2^{-k}}(s)$, therefore we can go out far enough and select a $n_k \in \N$ such that 
+		$n_k > n_{k-1}, a_{n_k} \in V_{2^{-k}}(s)$.  Now, to prove convergence, 
+		suppose $\epsilon > 0$.  Since $(2^{-n})$ goes to 0 then we can find sufficient $k \in \N$ such that $2^{-k} < \epsilon$.  Since $(2^{-n})$ is a decreasing sequence then for any $m > n, V_{2^{-n}}(s) \supseteq V_{2^{-m}}(s)$.  Therefore for all $l \geq k, a_{n_l} \in V_{2^{-k}}(s)$.  Therefore $(a_{n_k})$ converges to $s$.  
+		
+\end{enumerate}
+\end{document}

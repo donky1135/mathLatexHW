@@ -18,7 +18,6 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Po}{\mathcal{P}}
 
 \author{Alex Valentino}
@@ -28,12 +27,26 @@
 \renewcommand{\footrulewidth}{0pt}
 \fancyhf{}
 \rhead{
-	Line \\
+	Line 10\\
 	Beals Summer Packet	
 }
 \lhead{
 	Alex Valentino\\
 }
 \begin{document}
-
+\begin{enumerate}
+	\item[2.6.4] Assume $(a_n),(b_n)$ are Cauchy.  We must show that the series
+	formed by $c_n = |a_n - b_n|$ is Cauchy.  Let $\epsilon > 0$.  Since $(a_n),(b_n)$ are Cauchy then there exists $N_1, N_2 \in \N$ such that for all 
+	$n_1,m_1 \geq N_1, |a_{n_1} - a_{m_1}| < \frac{\epsilon}{2}$ and for all 
+	$n_2,m_2 \geq N_2, |b_{n_2} - b_{m_2}| < \frac{\epsilon}{2}$.  
+	Let $N = \max(N_1, N_2)$.  Therefore, for all $m,n \geq N$,
+	\begin{align*}
+		|c_n - c_m| &= ||a_n - b_n| - |a_m - b_m||\text{ definition of $c_n$}\\
+		&\leq |a_n - b_n - a_m + b_n|\text{reverse triangle inequality}\\
+		&= |a_n - a_m + b_m - b_n|\\
+		&\leq |a_n - a_m| + |b_n - b_m| \text{trianlge inequality}\\
+		&< \frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+		&= \epsilon.
+	\end{align*}
+\end{enumerate}
 \end{document}

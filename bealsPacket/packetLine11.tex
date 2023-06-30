@@ -1,0 +1,62 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 11\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2.7.13]
+	\begin{enumerate}
+		\item 
+		\begin{align*}
+		| \sum_{j = m+1}^n x_n y_n | &= |s_{n}y_{n+1} - s_{m}y_{m+1} + \sum_{j=m+1}^n s_j(y_j - y_{j+1})| &\text{Exercise 2.7.12}\\
+		&\leq M|y_{n+1} - y_{m+1} + \sum_{j=m+1}^n (y_j - y_{j+1})| &\text{Upper bound on $(s_n)$}\\
+		&\leq M|y_{n+1} + y_{m+1} + \sum_{j=m+1}^n (y_j - y_{j+1})| \\
+		&= M|y_{n+1} + y_{m+1} + y_{m+1} - y_{n+1}| &\text{Expanding the telescoping series}\\
+		&= 2 M |y_{m+1}|
+		\end{align*}
+		\item Dirichlet's Test proof:\\
+		We will show that the series $t_m = \sum_{j = 1}^m x_j y_j$ converges by 
+		the Cauchy Criterion for Series.  Let $\epsilon > 0$. Since $(y_n)$
+		converges to $0$ then there exists $N \in \N$ such that for all $n \geq N$
+		$|y_n| < \frac{\epsilon}{2M}$.  Therefore for all $n > m \geq N$\\
+		$$
+			|t_n - t_m| = |\sum_{j = m+1}^n x_j y_j| \leq 2M|y_{m+1}| \leq 2M|y_N|
+			< 2M\frac{\epsilon}{2M} = \epsilon.
+		$$  
+		Therefore by the Cauchy Criterion for Series, $(t_m)$ converges.  
+		\item The Alternating Series Test is simply the cases where $x_n = (-1)^{n+1}$, as it is a sequence bounded above and below by 1.  The requirement on
+		$y_n$ is the exact same as in the Alternating Series Test
+	\end{enumerate}
+\end{enumerate}
+\end{document}

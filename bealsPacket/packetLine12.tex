@@ -1,0 +1,76 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 12\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item[3.2.10]
+			\begin{itemize}
+				\item[i] A countable set contained in $[0,1]$ with no limit points\\
+				This can't occur, as if we enumarate a countable set, then we have
+				a sequence, and since it's contained within $[0,1]$ then we have
+				a bounded sequence.  Therefore by the Bolzano-Weierstrauss theorem
+				we have a convergent subsequence, i.e. a limit point of the set.  
+				Thus this description can't occur
+				\item[ii]  A countable set contained in $[0,1]$ with no isolated points\\
+				This can occur!  Take $A = [0,1] \cap \Q$.  We know by the density of $\Q$ in $\R$ that we have a sequence of rational numbers to every
+				real number.  Since a rational number is a real number, then for every element in the set $A$ we can generate a sequence with a sufficent $\epsilon$ contained within $[0,1]$ for which an arbitrary rational number satisfies the definition of a limit point.  And the countablility of the rationals
+				is a given.  
+				\item[iii]
+				% Let $A$ be this uncountable set of isolated points.  
+				%Then there exists a bijection between $\R$ and $A$.  
+				
+				The issue arises with the fact that for each $x \in A$, there is an associated $\epsilon_x > 0$ in which $V_{\epsilon_x} (x) \cap A = \{x\}$. If we have some minimum $\epsilon_x > 0$ then we have a most a collection of neighborhoods which cover the entire real line.  Arguing from geometry, it's clear that only a countable number of these uncountable "tiles" need to overlay the 1d bathroom floor that is the real line.  Therefore, alike in the example showing all of the points of $\{\frac{1}{n}: n \in \N\}$ are isolated, we must find a formula for $\epsilon_x$ based on $x$.  The issue arises with the fact that $x$ is an uncountable variable, where we have an uncountable set of elements from $x$ with progressively smaller $\epsilon_x$'s. Once again, arguing from geometry, one can see how one can set up our $\epsilon_x$'s in order to turn one of our allegedly isolated points into a limit point.  
+				
+				%If we let $f$ be the bijection from $\R$ to $A$ then we have the issue of 
+				
+				%$f^{-1}(V_{\epsilon_x}(x)) = f^{-1}(x)$.  Note the uncountable neighborhood just mapped there to a single real number.  This violates the 1-1 nature of the bijection.  
+				
+				%  Therefore we have a minimum distance required for each point in $A$ to maintain the fact that they're isolated.  If we 
+				
+				
+				%For previous examples we've seen how to define $\epsilon$ to show that
+				%each point in the sequence is isolated, however those have been countable.  The issue arises with choosing some set of points in $\R$ which converges to a number.  
+				
+				
+				\iffalse A set with an uncountable number of isolated points.\\
+				 This can't occur, as for every isolated point $x$ in our supposed set $A$, we have an associated $\epsilon_x$ for which $V_{\epsilon_x}(x)$ contains only $x$ and no other points in $A$.  Therefore thinking geometrically, there is a 
+				 "minimum spacing" between the points.  This has only been seen so 
+				 far with countable sets.  
+				 \fi 
+			\end{itemize}
+	\end{enumerate}
+\end{document}

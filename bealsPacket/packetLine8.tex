@@ -62,9 +62,28 @@
 			\end{itemize}
 			\item We must prove that $\liminf a_n = \limsup a_n$ if and only if $\lim a_n$ exists
 			\begin{itemize}
-				\item[$\Rightarrow$]
+				\item[$\Rightarrow$] Suppose $\liminf a_n = \limsup a_n$.  We must show that $\lim a_n$ exists.  Note that by definition of infimum and supremum for all $k \in \N, z_k \leq a_k, a_k \leq y_k$.  Therefore for all $k \in \N, z_k \leq a_k \leq y_k$.  Since $\lim z_n = \lim y_n$, then by the squeeze theorem $\lim a_n = \liminf a_n = \limsup a_n$.
 				\item[$\Leftarrow$] Suppose $\lim a_n$ exists and suppose for contradiction that $\liminf a_n \neq \limsup a_n$.  
-				Since $\liminf a_n \leq \limsup a_n$ then $\liminf a_n < \limsup a_n$.  Therefore $0 < \limsup a_n - \liminf a_n$.  Let $l$ be the limit point of $(a_n)$.  
+				Since $\liminf a_n \leq \limsup a_n$ then $\liminf a_n < \limsup a_n$.  Therefore $0 < \liminf a_n - \limsup a_n$.  Let $l$ be the limit point of $(a_n)$.  Note that since the inequality between $\liminf a_n$ and $\limsup a_n$ is
+				strict then $l$ can at most converge to either $\liminf a_n$ or 
+				$\limsup a_n$, therefore we assume WLOG $l < \limsup a_n$.
+				Since $(a_n)$ converges to $l$ and $0 < \limsup a_n - l$ then 
+				by the definition of convergence there exists $N\in \N$ such that 
+				for all $n \geq N, |a_n - l| < \limsup a_n - l$.  Furthermore by 
+				the definition of convergence there exists $M \in \N$ such that 
+				for all $m \geq N + M$, $|a_m - l| < (\limsup a_n - l)/2$.  Since
+				there are only finitely many points in the sequence which are
+				closer to $\limsup a_n$ than $l$ for the sequence starting at $N$ 
+				then we can upper bound this sequence by taking 
+				$M = \max(\{a_N, a_{N+1}, \cdots, a_{N+M-1}, \frac{\limsup a_n + l}{2}\})$.  
+				Note that 
+				\begin{align*}
+					l &< \limsup a_n\\
+					l + \limsup a_n &< 2 * \limsup a_n\\
+					\frac{l + \limsup a_n}{2} &< \limsup a_n
+				\end{align*}
+				therefore $M < \limsup a_n$.
+				Since $|a_n - l| < \limsup a_n -l$ for all $n \geq N$, then $a_n < \limsup a_n$.  By the definition of supremum, $y_N \leq M$.  Therefore $y_N < \limsup a_n$.  This is a contradiction as $(y_n)$ is a decreasing sequence, and it would be expected that $y_N \geq \limsup a_n$.  Therefore $\liminf a_n = \limsup a_n$.  
 			\end{itemize}
 		\end{enumerate}
 	\end{enumerate}
