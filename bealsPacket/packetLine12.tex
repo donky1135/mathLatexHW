@@ -49,11 +49,18 @@
 				This can occur!  Take $A = [0,1] \cap \Q$.  We know by the density of $\Q$ in $\R$ that we have a sequence of rational numbers to every
 				real number.  Since a rational number is a real number, then for every element in the set $A$ we can generate a sequence with a sufficent $\epsilon$ contained within $[0,1]$ for which an arbitrary rational number satisfies the definition of a limit point.  And the countablility of the rationals
 				is a given.  
-				\item[iii]
+				\item[iii] A set with an]] uncountable number of isolated points\\
 				% Let $A$ be this uncountable set of isolated points.  
 				%Then there exists a bijection between $\R$ and $A$.  
 				
-				The issue arises with the fact that for each $x \in A$, there is an associated $\epsilon_x > 0$ in which $V_{\epsilon_x} (x) \cap A = \{x\}$. If we have some minimum $\epsilon_x > 0$ then we have a most a collection of neighborhoods which cover the entire real line.  Arguing from geometry, it's clear that only a countable number of these uncountable "tiles" need to overlay the 1d bathroom floor that is the real line.  Therefore, alike in the example showing all of the points of $\{\frac{1}{n}: n \in \N\}$ are isolated, we must find a formula for $\epsilon_x$ based on $x$.  The issue arises with the fact that $x$ is an uncountable variable, where we have an uncountable set of elements from $x$ with progressively smaller $\epsilon_x$'s. Once again, arguing from geometry, one can see how one can set up our $\epsilon_x$'s in order to turn one of our allegedly isolated points into a limit point.  
+				The issue arises with the fact that for each $x \in A$, there is an associated $\epsilon_x > 0$ in which $V_{\epsilon_x} (x) \cap A = \{x\}$.  Note that since we have a unique $\epsilon_x$ enclosing $x$ within $(x-\epsilon_x,x+\epsilon_x)$ then we know by the density of $\Q$ in $\R$ there
+				must exists a rational number $r \in V_{\epsilon_x}(x)$. 
+				Therefore we can uniquely pair each $x\in A$ with $r\in \Q$ 
+				since $V_{\epsilon_x}(x)$ uniquely contains $r$ and $x$.  
+				Since we have found a 1-1 mapping from $A$ to $\Q$ then clearly $A$ must be countable.  
+				
+				
+				%If we have some minimum $\epsilon_x > 0$ then we have a most a collection of neighborhoods which cover the entire real line.  Arguing from geometry, it's clear that only a countable number of these uncountable "tiles" need to overlay the 1d bathroom floor that is the real line.  Therefore, alike in the example showing all of the points of $\{\frac{1}{n}: n \in \N\}$ are isolated, we must find a formula for $\epsilon_x$ based on $x$.  The issue arises with the fact that $x$ is an uncountable variable, where we have an uncountable set of elements from $x$ with progressively smaller $\epsilon_x$'s. Once again, arguing from geometry, one can see how one can set up our $\epsilon_x$'s in order to turn one of our allegedly isolated points into a limit point.  
 				
 				%If we let $f$ be the bijection from $\R$ to $A$ then we have the issue of 
 				
