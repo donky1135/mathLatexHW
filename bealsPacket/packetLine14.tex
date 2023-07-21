@@ -1,0 +1,53 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 14\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+		\item[3.4.7]
+		\begin{enumerate}
+			\item Find a disconnected set whose closure is connected:\\
+			$(1,2)\cup(2,3)$ is a disconnected set as proven by exercise 3.4.5.  
+			Clearly $[1,2]\cup [2,3]$ are not disconnected as they form the interval $[1,3]$, which by theorem 3.4.7 is in fact connected.
+			\item If $A$ is connected, is $\overline{A}$ connected?  If $A$ is perfect is $\overline{A}$ perfect too?\\
+			\begin{itemize}
+				\item As shown by theorem 3.4.7, all connected sets correspond with intervals.  Therefore the only interval which will gain points would be an open interval, say $A = (a,b)$.  Since $\overline{A} = [a,b]$ is still an interval, then $\overline{A}$ is connected
+				\item If $A$ is perfect, then by definition it is closed.   Therefore $\overline{A}$ doesn't gain any new points, as all limit points of $A$ 
+				are already self contained.  Therefore $\overline{A}$ is still
+				perfect.  
+			\end{itemize}
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

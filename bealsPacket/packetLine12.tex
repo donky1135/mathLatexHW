@@ -38,7 +38,48 @@
 \begin{document}
 	\begin{enumerate}
 		\item[3.2.10]
-			\begin{itemize}
+			\begin{enumerate}
+				\item Prove for a collection of sets $\{E_\lambda : \lambda \in \Lambda\}$ that 
+				$$
+				\displaystyle (\cup_{\lambda \in \Lambda} E_\lambda )^c = \cap_{\lambda \in \Lambda} E_\lambda^c \text{ and } (\cap_{\lambda \in \Lambda} E_\lambda )^c = \cup_{\lambda \in \Lambda} E_\lambda^c
+				$$\\
+			Proof:  Suppose $x \in (\cup_{\lambda \in \Lambda} E_\lambda )^c$.
+			We must show that $x \in \cap_{\lambda \in \Lambda} E_\lambda^c$. By
+			definition of set compliment, $x \not \in \cup_{\lambda \in \Lambda} E_\lambda $.  Since $x$ does not belong to the union of $E_\lambda$ for every 
+			$\lambda \in \Lambda$, then $x \not \in E_\lambda$ for each $\lambda \in \Lambda$.
+			Therefore by definition of set compliment, $x \in E_\lambda^c$ for
+			every $\lambda \in \Lambda$.  Therefore by definition of set intersection, $x \in \cap_{\lambda \in \Lambda} E_\lambda^c$.  \\
+			Next, suppose $x \in \cap_{\lambda \in \Lambda} E_{\lambda}^c$.
+			We must show that $x \in (\cup_{\lambda \in \Lambda} E_\lambda )^c$.
+			By definition of set intersection, $x \in E_{\lambda}^c$ for every
+			$\lambda \in \Lambda$.  Therefore by definition of set compliment,
+			$x \not \in E_{\lambda}$, for every $\lambda$.  Since $x$ does not belong to any of $E_\lambda$'s individually, then $x$ does not belong to the union.
+			Therefore $x \not \in \cup_{\lambda \in \Lambda} E_{\lambda}$.
+			Therefore by the definition of set compliment, 
+			$x  \in (\cup_{\lambda \in \Lambda} E_{\lambda})^c$.\\
+			Since we have established that $(\cup_{\lambda \in \Lambda} E_\lambda )^c = \cap_{\lambda \in \Lambda} E_\lambda^c$, by defining $G_{\lambda} = E_{\lambda}^c$ for every $\lambda \in \Lambda$, then we have that $(\cup_{\lambda \in \Lambda} G_\lambda )^c = \cap_{\lambda \in \Lambda} G_\lambda^c$.  If we take the compliment of the left hand side then we have that
+			$$
+				\cup_{\lambda \in \Lambda} E_\lambda^c  =
+				((\cup_{\lambda \in \Lambda} G_\lambda )^c)^c =
+				(\cap_{\lambda \in \Lambda} G_\lambda^c)^c =
+				(\cap_{\lambda \in \Lambda} (E_\lambda^c)^c)^c =
+				(\cap_{\lambda \in \Lambda} E_\lambda)^c.
+			$$
+			Therefore $(\cap_{\lambda \in \Lambda} E_\lambda )^c = \cup_{\lambda \in \Lambda} E_\lambda^c$
+			\item
+			\begin{enumerate}
+				\item The union of a finite number of closed sets is closed\\
+				Let $\{E_1,\cdots,E_n\}$ be a finite set of closed sets.  
+				If we consider that $E_i^c$ is open for all $i \in [n]$, and take their intersection then we know by theorem 3.2.3 that $\cap_{i=1}^n E_i^c$ is open.  Therefore if we take the compliment and and apply DeMorgan's law then we 
+				have that $(\cap_{i=1}^n E_i^c)^c = ((\cup_{i=1}^n E_i)^c)^c = \cup_{i = 1}^n E_i$ is closed by theorem 3.2.13.
+				\item The intersection of an arbitrary number of closed sets is closed.  Let $\{E_\lambda : \lambda \in \Lambda\}$ be a collection of closed sets.
+				Noting that $E_\lambda^c$ is open for all $\lambda \in \Lambda$
+				then we know by theorem 3.2.3 that $\cup_{\lambda \in \Lambda} E_{\lambda}^c$ is open.  Therefore by taking the compliment and applying DeMorgan's law we have that $(\cup_{\lambda \in \Lambda} E_{\lambda}^c)^c = 
+				((\cap_{\lambda \in \Lambda} E_{\lambda})^c)^c = \cap_{\lambda \in \Lambda} E_{\lambda}$ is closed by theorem 3.2.13.    
+			\end{enumerate}
+			\end{enumerate}
+				
+				\iffalse				
 				\item[i] A countable set contained in $[0,1]$ with no limit points\\
 				This can't occur, as if we enumarate a countable set, then we have
 				a sequence, and since it's contained within $[0,1]$ then we have
@@ -78,6 +119,6 @@
 				 "minimum spacing" between the points.  This has only been seen so 
 				 far with countable sets.  
 				 \fi 
-			\end{itemize}
+				 \fi
 	\end{enumerate}
 \end{document}
