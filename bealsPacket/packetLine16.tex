@@ -1,0 +1,73 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 16\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	\begin{enumerate}
+	\item[4.2.5] Let $f$ and $g$ be functions defined on the domain $A \subseteq \R$, and assume $\lim_{x \to c} f(x) = L, \lim_{x \to c} g(x) = M$ for some limit point $c$ of $A$.
+	\begin{enumerate}
+		\item Show that $\lim_{x \to c} [f(x) + g(x)] = L + M$, assuming theorem 4.2.3 and the algebraic limit theorem for sequences.\\
+		Since both $f$ and $g$ converge at $c$, then by theorem 4.2.3 for any sequence which converges to $c$, $x_n$, $\lim f(x_n) \to L, \lim g(x_n) \to M$.  Therefore by the algebraic limit theorem for sequences, $f(x_n) + g(x_n) \to L + M$.  Therefore using the converse of theorem 4.2.3, this implies that 
+		$\lim_{x \to c} [f(x) + g(x)] = L + M$
+		\item  Show that $\lim_{x \to c} [f(x) + g(x)] = L + M$, without assuming theorem 4.2.3.\\
+		Let $\epsilon > 0$.  Since $f$ converges at $c$ then there exists $\delta_1 > 0$ such that $|x-c| < \delta_1$ implies $|f(x) - L| < \frac{\epsilon}{2}$.  Similarly since $g$ converges at $c$ there exists $\delta_2 > 0$ such that 
+		$|x-c| < \delta_2$ implies $|g(x) - M| < \frac{\epsilon}{2}$.  Therefore, 
+		if we let $\delta = \min \{\delta_1, \delta_2\}$ then $|x - c| < \delta$ implies
+		\begin{align*}
+			|f(x) + g(x) - (L + M)| &= |(f(x) - L) + (g(x) - M)|\\
+			&\leq |f(x) - L| + |g(x) - M| & \text{ triangle inequality}\\
+			&= \frac{\epsilon}{2} + \frac{\epsilon}{2}  & \text{ convergence definitions}\\
+			&= \epsilon
+		\end{align*}
+		\item Show that $\lim_{x \to c} f(x)g(x) = LM$, assuming theorem 4.2.3 and the algebraic limit theorem for sequences.\\
+		Since both $f$ and $g$ converge at $c$, then by theorem 4.2.3 for any sequence which converges to $c$, $x_n$, $\lim f(x_n) \to L, \lim g(x_n) \to M$.  Therefore by the algebraic limit theorem for sequences, $f(x_n)g(x_n) \to LM$.  Therefore using the converse of theorem 4.2.3, this implies that 
+		$\lim_{x \to c} f(x)g(x) = LM$
+		\item Show that $\lim_{x \to c} f(x)g(x) = LM$, without assuming theorem 4.2.3.\\
+		Let $\epsilon > 0$.  Since $f$ converges at $c$ then there exists $\delta_1 > 0$ such that $|x-c| < \delta_1$ implies $|f(x) - L| < \frac{\epsilon}{2|M|}$.  Note that by manipulating $|f(x) - L| < \frac{\epsilon}{2|M|}$ and applying the reverse triangle inequality we find that $|f(x)| < \frac{\epsilon}{2|M|} + |L|$.  Let $B = \frac{\epsilon}{2|M|} + |L|$   Similarly since $g$ converges at $c$ then there exists $\delta_2 > 0$ such that 
+		$|x-c| < \delta_2$ implies $|g(x) - M| < \frac{\epsilon}{2|B|}$.
+		Therefore, 
+		if we let $\delta = \min \{\delta_1, \delta_2\}$ then $|x - c| < \delta$ implies\\
+		\begin{align*}
+			|f(x)g(x) - LM|&= |f(x)g(x) -Mf(x) + Mf(x) - LM|\\
+			&= |f(x)(g(x) - M) + M(f(x) - L)|\\
+			&\leq |f(x)(g(x) - M)| + |M(f(x) - L)| & \text{ triangle inequality}\\
+			&= |f(x)||g(x) - M| + |M||f(x) - L| & \text{ definition of absolute value}\\
+			&< |B||g(x) - M| + |M||f(x) - L|\\
+			&< |B| \frac{\epsilon}{2|B|} + |M| \frac{\epsilon}{2|M|}\\
+			&= \epsilon
+		\end{align*}
+	\end{enumerate}
+	\end{enumerate}
+\end{document}
