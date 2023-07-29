@@ -1,0 +1,55 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line \\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[4.4.11] Suppose $g$ is defined on all of $\R$. Show that $g$ is continuous if and only if $g^{-1}(O)$ is open whenever $O \subseteq \R$ is an
+open set.
+	\begin{itemize}
+		\item[$\Rightarrow$] Suppose $g$ is continuous, $O$ is an open set.  If $g^{-1}(O)$ is empty then it vacuously open, so assume $g^{-1}(O)$ is non-empty.  Let $x \in g^{-1}(O)$.  Therefore $f(x) \in O$.  Thus by the definition of an open set
+		there exists $\epsilon > 0$ such that $V_\epsilon(f(x)) \subseteq O$.  Since $g$ is continuous then there exists 
+		$\delta > 0$ such that for all $y \in V_\delta (x)$ implies $f(y) \in V_\epsilon(f(x))$.  Since every $f(y)$ is contained within $O$, then $ V_\delta (x) \subset g^{-1}(O)$.  Therefore $g^{-1}(O)$ is open.  
+		\item[$\Leftarrow$] Assume if $O \subseteq \R$ and $O$ is open implies $g^{-1}(O)$ is open.  We must show that
+		$g$ is continuous.  Let $c \in g(O), \epsilon > 0$.  Since $V_\epsilon(c)$ is open then by our initial assumption
+		$g^{-1}(V_\epsilon(c))$ is open as well.  Since $c$ is defined to be in the image $g(O)$ then there exists 
+		$x \in \R$ such that $c = f(x)$.  Since $g^{-1}(V_\epsilon(c))$ is open then there exists $\delta > 0$ such 
+		that $V_\delta(x) \subseteq g^{-1}(V_\epsilon(c))$.  Since $V_\delta(x)$ is a subset of $g^{-1}(V_\epsilon(c))$
+		then by the definition of $g^{-1}(V_\epsilon(c))$, $y \in V_\delta(x)$ implies $f(y) \in V_\epsilon(c)$.
+		Therefore $g$ is continuous.  
+	\end{itemize}
+
+\end{enumerate}
+\end{document}

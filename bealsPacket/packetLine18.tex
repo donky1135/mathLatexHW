@@ -36,6 +36,18 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item[4.3.6]
+	\item[4.3.6] 
+	\begin{enumerate}
+		\item Suppose $c \in \Q$.  Thus $h(c) = 1$.  Consider $y_n = \frac{1}{\pi^n} + c$.  By the fact that $\pi$ is transcendental, each $y_n$ is irrational, and the sequence converges to $c$.  
+		Therefore, since each $y_n$ is irrational we have that $h(y_n) \to 0$.  \\
+		Suppose $i \not \in \Q$.  Therefore $h(i) = 0$.  If we consider the 
+		sequence $(a_n)$ given by the truncated decimal expansion of $i$,
+		clearly each $a_n$ is rational.  Therefore $h(a_n) \to 1$.\\
+		Therefore $h(x)$ is a nowhere continuous function.
+		\item Suppose $c \in \Q$.  Consider the sequence once more of 
+		$y_n = \frac{1}{\pi^n} + c$.  Since each $y_n$ is irrational, then $t(y_n) \to 0$. This goes against $h(c) = \frac{1}{n}$. Therefore $t(x)$ is not continuous at every rational number.
+		\item Consider $i \in \R \backslash \Q$, and let $\epsilon > 0$.  If we consider the set 
+		$T = \{x \in \R: t(x) \geq \epsilon\}$, we note that since each $t(x)$ is positive, then $T$ is a set of rational numbers.  If we apply the archamedian principle to $\epsilon$, we find that $m \in \N, \epsilon > \frac{1}{m}$.  Therefore, for all $x \in T$, $V_{\frac{1}{2m}}(x) \cap T = \{x\}$, otherwise if two numbers from $T$ were in the neighborhood then one would be guarenteed to have a larger denominator than $m$, which would contradict being a member of $T$.  Therefore if we choose $\delta < \frac{1}{2m}$ then $x \in T$ implies that $x \not \in V_{\delta}(i)$.  Therefore if $x \in V_{\delta}(i)$, then $t(x) \in V_\epsilon (t(i))$.  Therefore $t(x)$ converges for every irrational number. 
+	\end{enumerate}
 \end{enumerate}
 \end{document}
