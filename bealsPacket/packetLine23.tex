@@ -1,0 +1,75 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 23\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[5.2.8]
+	\begin{enumerate}
+		\item If a derivative function is not constant, then the derivative must take on
+some irrational values.\\
+	True.  Suppose $f: A \to \R$, $f'(x)$ exists, $f'(x) \neq c$.  Since $A$ by 	 	definition is an interval for $f'$ to be well defined then if $A$ is a closed
+	interval $[a,b]$ then by the darboux theorem $f'$ attains all values between
+	$f'(a)$ and $f'(b)$.  Since $f'(a)$ and $f'(b)$ are real numbers then by the 
+	density of the irrationals in $\R$ there exists $i$ such that (WLOG) 
+	$f'(a) < i < f'(b)$.  Therefore $f'$ always attains an irrational.  
+	If the interval is open, then we can find the midpoint, $m = \frac{a+b}{2}$,
+	take the open ball around $m$, $V_\epsilon(m)$ guaranteed by it's entry in an open set, then take take the set $[m -\epsilon/2,m +\epsilon/2]$, which we know
+	contain the end points as $m -\epsilon < m -\epsilon/2$ and $m + \epsilon/2 > m + \epsilon/2$, thus constructing a closed interval on which $f'$ is defined.
+	\item If $f'$ exists on an open interval, and there is some point $c$ where $f'(c) > 0$, then there exists a $\delta$-neighborhood $V_\delta (c)$ around $c$ in which $f'(x) > 0$ for all
+$x \in V_\delta (c)$).\\
+False, consider the function \[f(x) = \begin{cases}
+	x+x^2 \sin(e^{1/|x|}) & \text{ if $ x\neq 0$ }\\
+	0 & \text{ if $ x = 0$ }
+	\end{cases}	
+	\] at 0.  If we evaluate the derivative manually we find 
+	$\lim_{x \to 0} 1 + x \sin(e^{1/|x|})$, which similar to evaluating $1 + x\sin(1/x)$
+	converges to 1 by the squeeze theorem.  However with the actual evaluation of 
+	$f'(x) = 1 + 2x\sin(e^{1/|x|}) - e^{1/|x|}\cos(e^{1/|x|})$ clearly the  $e^{1/|x|}\cos(e^{1/|x|})$ 	term will fluctuate wildly when approaching 0, contradicting that an open neighborhood around $0$ will be purely positive.  
+	\iffalse 
+	True.  Suppose for contradiction that for all $\delta > 0$ there exists
+	$x \in V_\delta(c)$ such that $f'(x) \leq 0$.  Therefore we may construct
+	a sequence $(x_n) \to c$ where $f'(x_n) \leq 0$.  Thus by the algebraic
+	limit theorem for functional limits since $f(x_n) \leq 0$ then $f'(c) \leq 0$.
+	This is a contradiction as $f'(c) > 0$.  
+	\fi
+	\item True.  Suppose for contradiction that $f'(0) \neq L$.  Then there exists
+	$\epsilon > 0$ such that $|f'(0) - L| > \epsilon$.   
+	\item The question above without the requirement of the limit existing\\
+	False, take $f(x) = \frac{x^2 - x}{x}$.  Clearly $\lim_{x\to 0} \frac{x^2 - x}{x} = \lim_{x\to 0} \frac{x(x-1)}{x} = -1$, however directly evaluating $f(0)$ is undefined.  
+	  
+	\end{enumerate}
+\end{enumerate}
+\end{document}

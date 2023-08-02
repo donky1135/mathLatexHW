@@ -1,0 +1,55 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 22\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[4.5.6] 
+	Let $f: [a,b] \to \R$ be continuous, $f(a) < 0 < f(b)$.  We must show there
+	exists $c \in [a,b]$ such that $f(c) = 0$.  Let $I_0 = [a,b]$, consider the
+	midpoint $z_1 = \frac{a+b}{2}$.  If $f(z_1) > 0$, then set 
+	$b_1 = z_1, a_1 = a, I_1 = [a_1, b_1]$, and if $f(z_1) \leq 0$ then set 
+	$a_1 = z_1, b_1 = b$.  This lends itself to a general formula for $I_n$, 
+	where for $I_{n-1}$ with $z_{n-1} = \frac{a_{n-1} + b_{n-1}}{2}$, then
+	if $f(z_{n-1}) > 0$, $I_n = [a_{n-1}, z_{n-1}]$, otherwise 
+	$I_n = [z_{n-1}, b_{n-1}]$.  Since we have $I_0 \supseteq I_1 \supseteq \cdots$, then there exists $x \in \bigcap_{n=0}^\infty I_n$. We claim that $(a_n)$
+	converges to $x$.  Since each interval is half the length of the previous, then for an arbitrary $\epsilon > 0$, there exists $n \in \N$ such that for all 
+	$n \geq N$, $|a_n - x| \leq 2^{-n}(b-a) < \epsilon$.  
+	A similar argument exists for $b_n \to x$.  Since $f$ is continuous then 
+	$\lim f(a_n) = \lim f(b_n) = f(x)$.  We know by the algebraic limit theorem
+	that since $f(a_n) \leq 0$ that $f(x) \leq 0$, and similarly $f(b_n) > 0$ 
+	implies that $f(x) \geq 0$.  Therefore $f(x) = 0$.  
+\end{enumerate}
+\end{document}
