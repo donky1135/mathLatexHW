@@ -65,8 +65,13 @@ False, consider the function \[f(x) = \begin{cases}
 	limit theorem for functional limits since $f(x_n) \leq 0$ then $f'(c) \leq 0$.
 	This is a contradiction as $f'(c) > 0$.  
 	\fi
-	\item True.  Suppose for contradiction that $f'(0) \neq L$.  Then there exists
-	$\epsilon > 0$ such that $|f'(0) - L| > \epsilon$.   
+	\item If $f$ is differentiable on an interval containing zero and if $\lim_{x \to 0}f'(x) =
+L$, then it must be that $L = f'(0)$\\
+	 True.  Suppose for contradiction that $f'(0) \neq L$.  Then there exists $\epsilon_0 > 0$ such that 
+	$|f'(0) - L| > \epsilon_0$.   Since $f'$ converges to $L$, then there exists $\delta_0 > 0$ such that $x \in V_{\delta_0}(0)$ implies $|f(x) - L| < \epsilon_0/2$.  Since $f$ is differentiable on $[-\delta_0/2,0]$, then by darboux's theorem $f'$ attains all values between $f'(-\delta_0/2)$ and $f'(0)$.  This is a contradiction as for every x value in 
+	$(-\delta_0/2,0)$, $|f'(x) - L| < |f'(0) - L|/2$, however all values between $f'(-\delta_0/2)$ and $f'(0)$ must be attained.  
+	
+	
 	\item The question above without the requirement of the limit existing\\
 	False, take $f(x) = \frac{x^2 - x}{x}$.  Clearly $\lim_{x\to 0} \frac{x^2 - x}{x} = \lim_{x\to 0} \frac{x(x-1)}{x} = -1$, however directly evaluating $f(0)$ is undefined.  
 	  

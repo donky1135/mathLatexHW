@@ -28,7 +28,7 @@
 \renewcommand{\footrulewidth}{0pt}
 \fancyhf{}
 \rhead{
-	Line \\
+	Line 24\\
 	Beals Summer Packet	
 }
 \lhead{
@@ -36,12 +36,10 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item[4.3.11]
-	\begin{enumerate}
-		\item For $A=\Z$, the floor function, $[x]$
-		\item For $A=(0,1)$, the function $f(x) = \begin{cases} \infty & \text{if } x \in (0,1) \\ 0 & \text{ otherwise } \end{cases}$
-		\item For $A=[0,1]$, the function $f(x) = \begin{cases} \infty & \text{if } x \in [0,1] \\ 0 & \text{ otherwise } \end{cases}$
-		\item For $A = \{\frac{1}{n} : n \in \N\}$, the function $f(x) = \begin{cases} [\frac{1}{x}] & \text{if } x \in (0,1)\\ 0 & \text{if } x \not \in (0,1)\end{cases}$.  
-	\end{enumerate}
+	\item[5.3.8] Assume $g: (a,b) \to \R$ is differentiable at a point $c$.  If $g'(c) \neq 0$ then there exists 
+	a $\delta$-neighborhood $V_\delta(c) \subseteq (a,b)$ such that for every $x \in V_\delta(c)\backslash \{c\}$, 
+	$g(x) \neq g(c)$.\\
+	Proof: Assume $g'(c) \neq 0$.  Suppose for contradiction that for every $\delta$-neighborhood $V_\delta(c) \subseteq (a,b)$ 
+	there exists $x \in V_\delta(c)\backslash \{c\}$, $g(x) = g(c)$.  If we consider $V_{\frac{1}{n}}(c)\backslash \{c\}$ then for each $n$ we have an $x_n \in V_{\frac{1}{n}}(c)$ such that $g(x_n) = g(c)$.  Therefore $\lim \frac{g(x_n)-g(c)}{x_n - c} = 0$, contradicting $g'(c) \neq 0$.  
 \end{enumerate}
 \end{document}

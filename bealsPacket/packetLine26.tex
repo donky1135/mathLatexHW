@@ -1,0 +1,80 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+
+\author{Alex Valentino}
+\title{Beals Packet}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Line 26\\
+	Beals Summer Packet	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6.2.11] Assume $(f_n)$ and $(g_n)$ are uniformly convergent sequences of
+functions on the set $A$.
+	\begin{enumerate}
+		\item Show that $(f_n+g_n)$ is a uniformly convergent sequence of functions\\
+		Proof: Let $\epsilon > 0$.  Since $f_n \to f$ then there exists $N_1 \in \N$ such that for all $n \geq N_1,|f(x)-f_n(x)| < \frac{\epsilon}{2}$.  Similarly for $g_n$, there exists $N_2 \in \N$ such that for all $n \geq N_2,|f(x)-f_n(x)| < \frac{\epsilon}{2}$.  Therefore if we take $N = \max\{N_1, N_2\}$, then consider $n \geq N$, we have 
+		\begin{align*}
+			|(f(x) - g(x)) - (f_n(x) - g_n(x))| &= |(f(x) - f_n(x)) + (g(x) - g_n(x))|\\
+			&\leq |f(x) - f_n(x)| + |g(x) - g_n(x)| & \text{ triangle inequality}\\
+			&< \frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+			&= \epsilon.  
+		\end{align*}
+		\item Give an example to show that the product $(f_n g_n)$ may not converge uniformly.\\
+		Take $f_n = \frac{1}{x} +\frac{1}{n}, g_n = \frac{x^2+nx}{n}$.  Since $f_n \to \frac{1}{x}$ and $g_n \to x$ 
+		then $f_n g_n \to 1$.  Therefore if we compute their diference we find
+		\begin{align*}
+			|(\frac{1}{x} +\frac{1}{n})(\frac{x^2+nx}{n}) - 1| &= |\frac{x(x+n)(x+n)}{xn^2} - 1|\\
+			&= |\frac{x^2+2nx + n^2}{n^2}-1|\\
+			&= |\frac{x^2 + 2nx}{n^2}|\\
+			&= |\frac{x^2}{n^2} + \frac{2x}{n}|\\
+			&\leq |\frac{x^2}{n} + \frac{2x}{n}|\\
+			&= \frac{1}{n}(x^2+2x)		
+		\end{align*}
+		Therefore to have $N$ be sufficiently large we must have $\frac{x^2+2x}{\epsilon} < N$.  Since $N$ depends on 
+		both $x$ and $\epsilon$ then $f_n g_n$ is not uniformly continuous.    
+		\item Prove that if there exists an $M > 0$ such that $|f_n| \leq M$ and $|g_n| \leq M$
+for all $n \in \N$, then $(f_n g_n)$ does converge uniformly.  \\
+		Lemma: If $f_n \to f$ uniformly and $|f_n| \leq M$ for all $n\in \N$ then $|f| \leq M$.
+		Since $f_n \to f$, then for every element in the sequence $(k^{-1})$ there exists $N_k \in \N$ such that for all 
+		$n \geq N_k$, $|f(x) - f_n)| < \frac{1}{k}$.  Therefore by the triangle inequality and applying the bound we have
+		that $|f(x)| < M + \frac{1}{k}$.  Therefore by the algebraic order theorem $|f(x)|\leq M$\\
+		Proof: Let $\epsilon > 0$.  Since $f_n \to f$ then there exists $N_1 \in \N$ such that for all $n \geq N_1,|f(x)-f_n(x)| < \frac{\epsilon}{2M}$.  Similarly for $g_n$, there exists $N_2 \in \N$ such that for all $n \geq N_2,|f(x)-f_n(x)| < \frac{\epsilon}{2M}$.  Therefore if we take $N = \max\{N_1, N_2\}$, then consider $n \geq N$, we have
+		\begin{align*}
+			|f_n(x) g_n(x) - f(x)g(x)| &= |f_n(x) g_n(x) -f_n(x) g(x) + f_n(x) g(x) - f(x)g(x)|\\
+			&= |f_n(x)(g_n - g(x) + g(x)(f_n(x) - f(x))|\\
+			&\leq |f_n(x)||(g_n - g(x)| + |g(x)||(f_n(x) - f(x))| &\text{triangle inequality}\\
+			&\leq M|(g_n - g(x)| + M|(f_n(x) - f(x))| &\text{bound on $f$ and $g$}\\
+			&< M\frac{\epsilon}{2M} + M\frac{\epsilon}{2M}\\
+			&= \epsilon.  
+		\end{align*}		 
+	\end{enumerate}
+\end{enumerate}
+\end{document}
