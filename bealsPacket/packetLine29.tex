@@ -35,5 +35,18 @@
 	Alex Valentino\\
 }
 \begin{document}
-
+\begin{enumerate}
+    \item[6.5.9] If $\sum_{n=0}^\infty a_nx^n = \sum_{n=0}^\infty b_nx^n $
+    prove that $a_n = b_n$ for all $n \in \N$.\\
+    Proof.  Consider $0 = h(x) = \sum_{n=0}^\infty (a_n-b_n) x^n$.  Since both power series are continuous on the interval $(-R,R)$ then $h(x)$ is defined for 0.  Therefore $0 = h(0) = (a_0-b_0) + (a_1-b_1)0 + \cdots = a_0-b_0$.
+    Therefore $a_0 = b_0$.  Since each power series is differentiable, and the sum of differentiable functions is differentiable, then we have that
+    $0 = h'(0) = (a_1 - b_1) + 2(a_2-b_2)0 + \cdots$.  
+    Therefore by the principle of mathematical induction, for all $k \in \N$, 
+    if $k < n$, then $a_k = b_k$.  Consider the $n$th derivative of $h(x)$,
+    therefore $\frac{d^n}{dx^n}h(x) = \sum_{l=n}^\infty \frac{(l)!}{(l-n)!}(a_l-b_l)x^{l-n}$.  We know by theorem 6.5.7 that convergent power series are 
+    infinitely differentiable, since $h(x)$ is defined on $(-R,R)$ then 
+    $\frac{d^n}{dx^n}h(0)$ is defined.  Therefore 
+    $0 =\frac{d^n}{dx^n}h(0) = n!(a_n-b_n) + (n+1)!(a_n - b_n)0 + \cdots$.
+    Thus $0= a_n - b_n$, $a_n = b_n$.  Therefore the power series are equivalent.
+\end{enumerate}
 \end{document}
