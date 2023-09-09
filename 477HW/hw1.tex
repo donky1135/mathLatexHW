@@ -1,0 +1,137 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+
+
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 1\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Note: all sets of the form $\{1,\cdots, n\}$ will be denoted by $[n]$
+\begin{enumerate}
+	\item[1.1] \textit{We roll a fair die twice.  Describe the sample space $\Omega$ and probability measure $\mathbb{P}$.}\\
+	The sample space is described by $\Omega = [6]^2$, with a probability measure of $\mathbb{P}(\{(i,j)\}) = \frac{1}{36}$ for all $i,j \in \{1,\cdots, 6\}$.\\
+	\textit{What is the probability that the second roll is larger than the first}\\
+	If our first roll is a 1, then there are 5 numbers larger than 1 in the set 
+	$[6]$.  For a roll of 2 we would have 1 less than if we rolled 1, or 4.
+	For 3 to 6 it is a similar process.  Therefore we have the sum $5+4+\cdots+1+0 = 15$ different rolls which would satisfy the condition.  Therefore the set $A$ containing all the rolls satisfying the condition would have a probability $\mathbb{P} (A) = \frac{5}{18}\approx 41\%$
+	
+	\item[1.4] \textit{One of the 50 flags is put up at random 3 days of the week at a kindergarten}
+	\begin{enumerate}
+		\item \textit{What is the sample space and probability measure?}
+		\begin{itemize}
+			\item $\Omega = [50]^3$
+			\item $\Pro(\{(i,j,k)\}) = \frac{1}{50^3}, i,j,k \in [50]$
+		\end{itemize}
+		\item \textit{What is the probability that the class hangs Wisconsin’s flag on Monday,
+Michigan’s flag on Tuesday, and California’s flag on Wednesday?}\\
+		Since this is exactly one element in $\Omega$, then the probability of this event is $\frac{1}{50^3}$
+		\item \textit{What is the probability that Wisconsin’s flag will be hung at least two of
+the three days?}\\
+	There are 3 different ways in which the flag could occur exactly twice over the 3 days, and for the other day then there are 49 options which would fit the wisconsin flag on exactly 2 days.  Then there is exactly one element in sample space where the wisconsin flag occurs three days in a row.  Therefore there are 
+	$3*49 + 1 = 148$ valid flag combinations, thus the probability is 
+	$\frac{148}{50^3} \approx 0.1\%$
+	\end{enumerate}
+	\item[1.8] \textit{Suppose that a bag of scrabble tiles contains 5 Es, 4 As, 3 Ns and
+2 Bs. It is my turn and I draw 4 tiles from the bag without replacement. Assume
+that my draw is uniformly random. Let $C$ be the event that I got two Es, one A
+and one N.}
+	\begin{enumerate}
+		\item \textit{Compute $\Pro(C )$ by imagining that the tiles are drawn one by one as an
+ordered sample.}\\
+	$\displaystyle \frac{4!}{2} \frac{5}{14}\frac{4}{13}\frac{4}{12}\frac{3}{11} = \frac{120}{1001} \approx 1\% $
+		\item \textit{Compute $\Pro(C )$ by imagining that the tiles are drawn all at once as an
+unordered sample.}\\
+		$\displaystyle \frac{\binom{5}{2}\binom{4}{1}\binom{3}{1}}{\binom{14}{4}} = \frac{120}{1001}\approx 1\%$
+	\end{enumerate}
+	\item[1a]
+	\begin{align*}
+		\int_{-\infty}^\infty e^{cx-\frac{x^2}{2}}dx &= \int_{-\infty}^\infty e^{\frac{-1}{2}(x^2-2cx)}dx\\
+		&= \int_{-\infty}^\infty e^{\frac{-1}{2}(x^2-2cx+c^2)+\frac{c^2}{2}}dx\\
+		&= \int_{-\infty}^\infty e^{\frac{-1}{2}(x-c)^2+\frac{c^2}{2}}dx\\
+		&= e^\frac{c^2}{2}\int_{-\infty}^\infty e^{\frac{-1}{2}(x-c)^2}dx\\
+		&= e^\frac{c^2}{2}\int_{-\infty}^\infty e^{\frac{-1}{2}(x-c)^2}dx & \text{ let } y=x-c, dy = dx\\
+		&= e^\frac{c^2}{2}\int_{-\infty}^\infty e^{\frac{-y^2}{2}}dy & \text{applying the fact} \int_{-\infty}^\infty e^{-x^2/2}dx = \sqrt{2\pi}\\
+		&= e^\frac{c^2}{2}\sqrt{2\pi}
+	\end{align*}
+	\item[2a] 
+	$$
+	f(x,y) = \begin{cases}
+		xe^{x^2-y} & \text{ if } x \in (0,1), x^2 < y\\
+		0 & \text{ otherwise}	
+	\end{cases}
+	$$
+		\begin{align*}
+			\int_{-\infty}^\infty \int_{-\infty}^\infty f(x,y) dy dx &= \lim_{\gamma \to 0} \lim_{\delta \to 0} \int_\gamma^{1-\gamma}\int_{x^2+\delta}^\infty xe^{x^2-y} dy dx\\
+			 \gamma \text{ and } \delta & \text{ encode the non-inclusive nature of } f\\
+			 &= \lim_{\gamma \to 0} \lim_{\delta \to 0} \int_\gamma^{1-\gamma}xe^{x^2} \int_{x^2+\delta}^\infty e^{-y} dy dx\\
+			 &= \lim_{\gamma \to 0} \lim_{\delta \to 0} \int_\gamma^{1-\gamma}xe^{x^2} [-e^{-y}]_{x^2+\delta}^\infty dx\\
+			 &= \lim_{\gamma \to 0} \lim_{\delta \to 0} \int_\gamma^{1-\gamma}xe^{x^2} (0+e^{-x^2-\delta}) dx\\
+			 &= \lim_{\gamma \to 0} \lim_{\delta \to 0} e^{-\delta}  \int_\gamma^{1-\gamma}xdx\\
+			 &= \lim_{\gamma \to 0} \int_\gamma^{1-\gamma}xdx\\
+			 &= \lim_{\gamma \to 0} \frac{(1-\gamma)^2 - \gamma^2}{2}\\
+			 &= \frac{1}{2}
+		\end{align*}
+	\item[b]
+	Let \begin{align*}
+	A_1 &= \{1, 2, 4, 8, 16\}\\
+	A_2 &= \{2, 4, 6, 8, 10\}\\
+	A_3 &= \{2, 10\}
+	\end{align*}
+	Then
+	\begin{enumerate}
+		\item $A_1 \cup A_3 = \{1, 2, 4, 8, 10, 16\}$
+		\item $\bigcap_{i=1}^3 A_i = \{2\}$
+		\item $A_1 \backslash A_3 = \{1, 4, 8, 16\}$
+		\item $A_1 \backslash A_2 = \{1,16\}$
+		\item $A_3 \cap A_1^c = \{10\}$
+	\end{enumerate}
+	\item[6c]
+	\textit{In a lottery 5 different numbers are chosen from the first 90
+positive integers.}
+	\begin{enumerate}
+		\item \textit{How many possible outcomes are there?}\\
+		There are $\binom{90}{5} = 43949268$ possible unordered combinations.  
+		\item \textit{How many outcomes are there with the number 1 appearing among the
+five chosen numbers?}\\
+	   Once 1 is chosen, then we have all of the combinations of 89 elements with a length of 4 elements, thus there are $\binom{89}{4} = 2441626$ combinations containing 1.
+	   \item \textit{How many outcomes are there with two numbers below 50 and three
+numbers above 60?}
+		There are 49 numbers below 50, and two are being chosen, so there are $\binom{49}{2}$ in that set, and for the 3 above 60 up to 90 would be $\binom{29}{3}$.  Therefore there are $\binom{49}{2}\binom{29}{3} = 4297104$ valid combinations.  
+	   \item \textit{How many outcomes are there with the property that the last digits of all
+five numbers are different?}
+	     Since we're dealing with the first 90 numbers, then there are exactly 
+	     9 numbers with a given ones digit.   Therefore for a particular drawing of digits we have $\binom{9}{1}\binom{9}{1}\binom{9}{1}\binom{9}{1}\binom{9}{1} = 59049$.  However if we're to consider the number of ways in which distinct last digits could be chosen, we have a factor of $\binom{10}{5}$ to tack on, bringing our final total to 14880348.   
+	\end{enumerate}
+\end{enumerate}
+\end{document}
