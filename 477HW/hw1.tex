@@ -69,9 +69,11 @@ and one N.}
 	\begin{enumerate}
 		\item \textit{Compute $\Pro(C )$ by imagining that the tiles are drawn one by one as an
 ordered sample.}\\
-	$\displaystyle \frac{4!}{2} \frac{5}{14}\frac{4}{13}\frac{4}{12}\frac{3}{11} = \frac{120}{1001} \approx 1\% $
+	The initial factors are multiplying the probabilities of taking the two Es then an A and an N, then we multiple by the number of permutations of the drawing order and divide by 2 to avoid double counting the Es.  \\
+	$\displaystyle  \frac{5}{14}\frac{4}{13}\frac{4}{12}\frac{3}{11} \frac{4!}{2}= \frac{120}{1001} \approx 1\% $
 		\item \textit{Compute $\Pro(C )$ by imagining that the tiles are drawn all at once as an
 unordered sample.}\\
+		Here we multiply the number of valid ways to take Es then the N 
 		$\displaystyle \frac{\binom{5}{2}\binom{4}{1}\binom{3}{1}}{\binom{14}{4}} = \frac{120}{1001}\approx 1\%$
 	\end{enumerate}
 	\item[1a]
