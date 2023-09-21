@@ -1,0 +1,44 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 3\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2.2] \textit{A fair coin is flipped three times. What is the probability that
+the second flip is tails, given that there is at most one tails among the three
+flips?}\\
+	Let $A := \{$ the second flip is tails $\}$ and $B := \{$ there is at most one tails among the three flips $\}$.  We want to compute $\Pro(A | B)$.  Therefore by the multiplication rule $\Pro(A | B) = \frac{\Pro(AB)}{\Pro(B)}$.  Note that $\Pro(B) = \frac{1}{2}$, as there are four three digit binary sequences with at max a single 1.  For $\Pro(AB)$, the probability would be $\frac{1}{8}$ as $A \subset B$, and $\Pro(A) = \frac{1}{8}$.  Therefore $\Pro(A|B) = \frac{1}{4}$.  
+\end{enumerate}
+\end{document}

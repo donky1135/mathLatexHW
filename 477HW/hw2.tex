@@ -1,0 +1,169 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 2\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1.10] \textit{We roll a fair die repeatedly until we see the number four appear
+and then we stop. The outcome of the experiment is the number of rolls.}
+\begin{enumerate}
+	\item \textit{Following Example 1.16 describe a sample space $\Omega$ and a probability
+measure $\Pro$ to model this situation.}\\
+	The sample space would be the set of all natural numbers and infinity, 
+	$\Omega = \N \cup \{\infty\}$.  The probability measure for the natural numbers is given by $\Pro(\{k\}) = (\frac{5}{6})^{k-1}\frac{1}{6}$.
+	\item \textit{Calculate the probability that the number four never appears.}\\
+	The event which represents the never rolling a four is $\{\infty\}$.
+	Therefore we can compute the probability by considering the complement of the set, which would be $\Pro (\N)$.  Therefore:
+	\begin{align*}
+		\Pro(\{\infty\}) &= 1 - \Pro(\N)\\
+		&= 1 - \sum_{i=1}^n \frac{1}{6}(\frac{5}{6})^{k-1}\\
+		&= 1 - \frac{1}{6} \sum_{i=1}^n (\frac{5}{6})^{k-1}\\
+		&= 1 - \frac{1}{5} \sum_{i=1}^n (\frac{5}{6})^k\\
+		&= 1 - \frac{1}{5} \frac{\frac{5}{6}}{1-\frac{5}{6}}\\
+		&= 1 - \frac{1}{5} \frac{\frac{5}{6}}{\frac{1}{6}}\\
+		&= 1 - \frac{5}{5}\\
+		&= 1-1\\
+		&= 0.
+\end{align*}	 
+	 Thus the probability of a four never being rolled is 0.
+\end{enumerate}
+	\item[1.12] \textit{We roll a fair die repeatedly until we see the number four appear
+and then we stop.}
+	\begin{enumerate}
+		\item \textit{What is the probability that we need at most 3 rolls?}\\
+		The probability that three rolls are needed can be decomposed into the need for 1 roll, 2 rolls, and 3 rolls.  Thus the probability is given by 
+		$$
+		\Pro(\{1,2,3\}) = \Pro(\{1\}) + \Pro(\{2\}) + \Pro(\{3\})
+		= \frac{1}{6}(1 + \frac{5}{6} + (\frac{5}{6})^2)
+		= \frac{1}{6}\frac{1-(\frac{5}{6})^3}{1-\frac{5}{6}}
+		= \frac{455}{1296}
+		$$
+		\item \textit{What is the probability that we needed an even number of die rolls?}\\
+		The probability that an even number of rolls is needed is equivalent to 
+		asking what is the sum of the individual probabilities of even numbers.
+		Therefore we can formulate our problem by a modification of the sum above.
+		$$
+		\Pro (2\N) = \Pro(\{2\}) + \Pro(\{4\}) + \cdots  = \sum_{k=1}^\infty \frac{1}{6} (\frac{5}{6})^{2k-1}
+		$$
+		This sum evaluates to $\frac{1}{5}\sum_{k=1}^\infty (\frac{25}{36})^k = \frac{5}{11}$
+	\end{enumerate}
+	\item[1.14] \textit{Assume that $\Pro(A) = 0.4$ and $\Pro(B) = 0.7$. Making no further
+assumptions on $A$ and $B$, show that $\Pro(AB)$ satisfies $0.1 \leq \Pro(AB) \leq 0.4$}
+	\begin{itemize}
+		\item We will show that $\Pro(AB) \geq 0.1$.  By the formula for the probability of event intersection is given by $\Pro(AB) = \Pro(A) + \Pro(B) - \Pro(A \cup B)$.  Since the respective probabilities of $A$ and $B$ sum to something greater than 1, then the largest their union could be is 1, therefore:
+		\begin{align*}
+			\Pro(AB) &= \Pro(A) + \Pro(B) - \Pro(A \cup B)\\
+				&= 0.7 + 0.4 - 1\\
+				&= 0.1
+		\end{align*}
+		Since $\Pro(A \cup B)$ attains a maximum of 1, then $\Pro(AB)$ attains a minimum of $0.1$.  
+		\item We will show that $\Pro(AB) \leq 0.4$.  By a similar logic, the smallest the union could be is if $A \subset B$, thus $\Pro(A \cup B) = 0.7$.
+		Therefore $\Pro(AB) = \Pro(A) + \Pro(B) - \Pro(A \cup B) = 1.1 -0.7 = 0.4$.  Since $\Pro(A \cup B)$ is minimized by $0.7$, $\Pro(AB)$ is maximized by $0.4$.  
+\end{itemize}
+	\item[1.16] \textit{We flip a fair coin five times. For every heads you pay me
+\$1 and for every tails I pay you \$1. Let $X$ denote my net winnings at the
+end of five flips. Find the possible values and the probability mass function
+of X .}	 
+	\begin{itemize}
+		\item The potential values $X$ can attain are $X \in \{-5, -3, -1, 1, 3, 5\}$
+		\item $\Omega$ is simply the space of binary sequences of length 5, and the respective values of $X$ simply indicate with the sign the number of either 0s or 1s, and the number represents how many of either number you have in the sequence.  Therefore to count the number of games for a given winnings amount we simply compute $\binom{5}{|k|}$. 
+		Therefore the probability mass function is 
+		$\Pro(\{X = k\}) = \frac{1}{32} \binom{5}{|k|}$
+	\end{itemize}
+	\item[1.28] \textit{We have an urn with m green balls and n yellow balls. Two balls
+are drawn at random. What is the probability that the two balls have the same
+color?}
+	\begin{enumerate}
+		\item \textit{Assume that the balls are sampled without replacement.}\\
+		The probability that both balls have the same color can be decomposed into whether two yellows occur in a row or whether two greens occur in a row.
+		Therefore the probability is:
+		$$
+			\frac{n}{n+m}\frac{n-1}{n+m-1} + \frac{m}{n+m}\frac{m-1}{n+m-1}
+		$$
+		\item \textit{Assume that the balls are sampled with replacement.}
+		$$
+			\frac{n^2 + m^2}{(n+m)^2}
+		$$
+		\item \textit{When is the answer to part (b) larger than the answer to part (a)? Justify
+your answer. Can you give an intuitive explanation for what the
+calculation tells you?}
+	The answer to part b is always larger than the answer to part a.  
+	We can show this by show their difference is always positive.
+	$$
+	\frac{m^2+n^2}{(m+n)^2}-\frac{(m-1) m+(n-1) n}{(m+n-1) (m+n)}$$
+	$$
+	\frac{1}{n+m}\left(\frac{(m^2 + n^2)(m+n-1) - (m+n)((m-1) m+(n-1) n)}{(n+m)(n+m-1)}\right)$$
+	$$
+	\frac{1}{n+m}\left(\frac{(m+n)(m^2+n^2)-(m^2+n^2)-(m+n)(m^2+n^2)+(m+n)^2)}{(n+m)(n+m-1)} \right)
+	$$
+	$$
+		\frac{1}{n+m}\left(\frac{(m+n)(m^2+n^2)-(m^2+n^2)-(m+n)(m^2+n^2)+m^2+2mn+n^2}{(n+m)(n+m-1)}\right)
+	$$
+	$$
+	\frac{1}{n+m}\left( \frac{2mn}{(n+m)(n+m-1)}\right)
+	$$
+	Note that since $n,m \in \N$ then the smallest $n+m-1$ can be is 1 and 
+	$2mn$ is always positive.  Therefore the difference is always positive, and thus the chance to pull two balls of the same color with replacement is always larger than without.  This makes sense because when you take a ball out of circulation, that lessens the chance of drawing another ball of the same color as the one before.  Thus the double pull would be less likely.  
+	\end{enumerate}
+	\item[1.42] \textit{Suppose $\Pro(A) > 0.8$ and $\Pro(B) > 0.5$. Show that $\Pro(AB) > 0.3$.}
+	\begin{align*}
+		1 \geq \Pro(A\cup B) &= \Pro(A) + \Pro(B) - \Pro(AB)\\
+		1 &> 0.8 + 0.5 - \Pro(AB)\\
+		1 &> 1.3 - \Pro(AB)\\
+		-0.3 &> -\Pro(AB)\\
+		0.3 &< \Pro(AB)
+	\end{align*}\\
+	The possible values for $\Pro(A^c B)$ are greater than $0.2$, as 
+	\begin{align*}
+	0.5 &< \Pro(B)\\
+	0.5 &< \Pro(A^cB) + \Pro(AB)\\
+	0.5 &< \Pro(A^cB) + 0.3\\
+	 0.2&<\Pro(A^c B)
+	\end{align*}
+	\item[1.44]\textit{Two fair dice are rolled. Let X be the maximum of the two
+numbers and Y the minimum of the two numbers on the dice.}
+	\begin{enumerate}
+		\item \textit{Find the possible values of X and the possible values of Y }\\
+		Since it is possible to roll doubles, the $X,Y\in[6]$, they range over all values of the dice.  
+		\item \textit{Find the probabilities $\Pro(X\leq k)$ for all integers $k$. Find the probability mass function of X.}\\
+			If we consider the rolls with order for an  arbitrary $k$, then 
+			initially we have $k$ valid rolls for the first die throw to get it right, then we multiply by 6 to represent the next roll not mattering.  We add this to $6-k$, the number of initially invalid rolls multiplied by $k$.  Therefore there are $6k + (6-k)k = 12k - k^2$ valid rolls with order.  
+		Thus $\Pro(X \leq k) = \frac{12k-k^2}{36}$.  Therefore the 
+		pmf evaluates to $\Pro(X \leq k) = 	\frac{12k -k^2 -12(k-1) +(k-1)^2}{36} = \frac{12 -2k + 1}{36} = \frac{13 - 2k}{36}$.  
+		\item \textit{Find the probability mass function of Y.}\\
+		Note that there is a symmetry with the maximum and the minimum random variables in that out of the ordered pairs, there are 11 pairs for which $6$ is the max, exactly equivalent to the number of pairs in which 1 is a minimum.  Therefore the probability mass function for $Y$ is just given by $\Pro(Y=k) = \frac{13 - 2(6-k)}{36} = \frac{2k-1}{36}$.  
+	\end{enumerate}
+\end{enumerate}
+\end{document}
