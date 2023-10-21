@@ -1,0 +1,105 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 3\\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Each of the subproblems apply AM-GM once.  
+	\begin{enumerate}
+		\item 
+		\begin{align*}
+			\frac{a}{b}+\frac{b}{c}+\frac{c}{d}+\frac{d}{a} &= 4 \frac{1}{4} \left(\frac{a}{b}+\frac{b}{c}+\frac{c}{d}+\frac{d}{a}\right)\\
+			&\leq 4 \left(\frac{abcd}{abcd} \right)^{\frac{1}{4}}\\
+			&= 4.
+		\end{align*}
+		\item 
+		\begin{align*}
+			a^6 + b^9 + 64 &= 3 \frac{1}{3}(a^6 + b^9 + 64)\\
+			&\leq 3(a^6b^964)^\frac{1}{3}\\
+			&= 12a^2b^3
+		\end{align*}
+	\end{enumerate}
+	\item By applying Cauchy-Schwarz we get that $1 = (x_1 + \cdots + x_n)^2 \leq n\sum_{i} x_i^2$.
+	Therefore the norm of the vector is bounded below via $\frac{1}{n}, \frac{1}{n} \leq \sum_{i} x_i^2$.
+	Thus it is minimized via having a norm of $\frac{1}{n}$.  An example solution would be $x_i = \frac{1}{n}$ for all $i \in [n]$.  
+	\item 
+	\begin{enumerate}
+		\item Suppose $\epsilon	> 0$.  Then there exists $N \in \N$ such that 
+		$\frac{1}{\sqrt{\epsilon}} < N$ by the archimedean principle.  Therefore
+		if $n \geq N$ then 
+		$$
+		\left| \frac{n^2}{n^4 + n^2 + 1} \right| < \left|\frac{n^2}{n^4}\right| = \left|\frac{1}{n^2} \right| < \epsilon.  
+		$$  
+		\item Suppose $\epsilon	> 0$. Then there exists $N \in \N$ such that 
+		$\frac{1}{\epsilon} < N$.  Suppose $n \geq N$.  Then we have that
+		$$
+		\left| \frac{5n^2 + n}{3n^2 + 1} - \frac{5}{3}\right| = \left| \frac{3n - 5}{3(3n^2 + 1)} \right| < \left| \frac{1}{3n} \right| = \frac{1}{3}\left| \frac{1}{n} \right| < \frac{\epsilon}{3} < \epsilon.
+ 		$$
+	\end{enumerate}
+	\item Suppose $\epsilon >0$.   Then there exists $N \in \N$ such that for all $n \geq N$ that $|a - a_n| < \epsilon$.  Therefore by the reverse triangle 
+	inequality we have that $||a| - |a_n|| \leq |a-a_n| < \epsilon$.  Therefore 
+	$\lim |a_n| \to |a|$.  The converse is not true.  If we consider $a_n = (-1)^n(1-2^n)$, then clearly $\limsup a_n = 1, \liminf a_n = -1$.  This obviously doesn't converge.  However $|a_n| = 1 - 2^n$, which does converge to 1.  
+	\item Let $a_n = 2^n, b_n = -2^n$.  Clearly $a_n \to \infty, b_n \to -\infty$.
+	However $a_n + b_n = 2^n - 2^n = 0$, which does converge since it's constant.
+	\item We will show that $a_n$ is bounded below and decreasing.
+	\begin{itemize}
+		\item We will show that $a_n$ is bounded below by $\frac{1 + \sqrt{13}}{2}$.  Clearly $3 \geq \frac{1 + \sqrt{13}}{2}$.  By the principle of mathematical induction for all $k \in \N$ if $k < n$ then $a_k \geq \frac{1+\sqrt{13}}{2}$.
+		Therefore $a_{n} = \sqrt{3 + a_{n-1}} \geq \sqrt{3 + \frac{1+\sqrt{13}}{2}} = \sqrt{\frac{7+\sqrt{13}}{2}} = \frac{\sqrt{1+\sqrt{13}}}{2}$.  Thus $a_n$ is bounded below.  
+		\item We will show that $a_n$ is decreasing.  Clearly $3 \geq \sqrt{6}$.  
+		By the principle of mathematical induction, for all $k \in \N$ if $k < n$ then $a_{k+1} \leq a_k$.  Therefore $a_n = \sqrt{3 + a_{n-1}}$, by the induction 
+		hypothesis $\sqrt{3 + a_{n-1}} \leq \sqrt{3 + a_{n-2}} = a_{n-1}$.  
+		Thus $a_n \leq a_{n-1}$.  Therefore $(a_n)$ is decreasing.
+	\end{itemize}
+	Therefore by the monotone convergence theorem $(a_n)$ converges, and it converges to the lower bound given above.  The solution will satisfy 
+	$\alpha = \sqrt{3 + \alpha}, \alpha^2 - \alpha - 3 =0$.  This has a root of $\frac{1+ \sqrt{13}}{2}$.  Additionally $\left(\frac{1+\sqrt{13}}{2}\right)^2 = \frac{7+\sqrt{13}}{2} = 3 + \frac{1+\sqrt{13}}{2}$.  
+	\item We will show that $(a_n)$ is decreasing and bounded.
+	\begin{itemize}
+		\item We will show that $(a_n)$ is bounded.  Since $a_n \in (0,1)$ for all $n \in \N$, then we can say that for all $n \in \N$ $|a_n| \leq 1$.  
+		Thus $(a_n)$ is bounded.
+		\item We will show that $(a_n)$ is decreasing.  Consider the given inequality $\frac{1}{4} < a_n(1-a_{n+1})$.  We can treat the product of 
+		elements from the sequence as a geometric mean, and apply AM-GM:
+		$$
+		\sqrt{a_n^2 (1-a_{n+1})^2} \leq \frac{a_n^2 + (1-a_{n+1})^2}{2}.
+		$$ 
+		We know for $x \in (0,1)$ that $x^2 \leq x$.  Therefore 
+		we have from the previous inequality $\frac{1}{4} < \frac{a_n + 1 - a_{n+1}}{2}$ which yields $a_{n+1} < a_{n+1} + 1 < a_n$.  Therefore $(a_n)$ is decreasing.
+	\end{itemize}
+	Thus $(a_n)$ converges.  But to what?  Note that $\lim a_{n+1} = \lim a_n = \alpha$.  Thus by the order limit theorem $\alpha(1-\alpha) \geq \frac{1}{4}$.  This is equivalent to the inequality $(\alpha - \frac{1}{2})^2 \leq 0$.  Since $(\alpha - \frac{1}{2})^2 \geq 0$ then $(\alpha - \frac{1}{2})^2 = 0$.  Thus $\alpha = \frac{1}{2}$.  Therefore $\lim a_n = \frac{1}{2}$
+	\item 
+\end{enumerate}
+\end{document}

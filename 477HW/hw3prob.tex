@@ -40,5 +40,156 @@
 the second flip is tails, given that there is at most one tails among the three
 flips?}\\
 	Let $A := \{$ the second flip is tails $\}$ and $B := \{$ there is at most one tails among the three flips $\}$.  We want to compute $\Pro(A | B)$.  Therefore by the multiplication rule $\Pro(A | B) = \frac{\Pro(AB)}{\Pro(B)}$.  Note that $\Pro(B) = \frac{1}{2}$, as there are four three digit binary sequences with at max a single 1.  For $\Pro(AB)$, the probability would be $\frac{1}{8}$ as $A \subset B$, and $\Pro(A) = \frac{1}{8}$.  Therefore $\Pro(A|B) = \frac{1}{4}$.  
+	\item[2.8] \textit{We shuffle a deck of cards and deal three cards (without replacement). Find the probability that the first card is a queen, the second is a king
+and the third is an ace.}\\
+	Let the events described above be given by $A = \{$ first card is a queen $\}, B = \{$ second card is a king $\}, C=\{$ third card is an ace $\}.$  We want to compute $\Pro(ABC)$.  Therefore we must apply the multiplication rule a few times:
+	$$
+	\Pro(ABC) = \Pro(AB) \Pro(C\mid AB) = \Pro(A) \Pro(B \mid A) \Pro(C \mid AB)
+	$$
+	Note that $\Pro(A) =\frac{4}{52}, \Pro(B \mid A) = \frac{4}{51}, \Pro(C\mid AB) = \frac{4}{50}$.
+	Therefore $\Pro(ABC) = \frac{4^3}{50*51*52} \approx 0.05\%$
+	\item[2.10]  \textit{I have a bag with 3 fair dice. One is 4-sided, one is 6-sided, and
+one is 12-sided. I reach into the bag, pick one die at random and roll it. The
+outcome of the roll is 4. What is the probability that I pulled out the 6-sided die?}\\
+	Let $D_n$ where $n \in \{4,6,12\}$ denote the probability that a given die is drawn. The problem is asking to compute $\Pro(D_6 \mid 4)$.  We don't have any easy way to compute this quantity, however if we apply Bayes' rule then we get $\Pro(D_6 \mid 4) = \frac{\Pro(4 \mid D_6)\Pro(D_6)}{\Pro(4)}$.
+	Note that $\Pro(D_6) = \frac{1}{3}$ since there are 3 dice, 
+	$\Pro(4 \mid D_6) = \frac{1}{6}$ since there is an equal chance for a 4 to be rolled among the 6 faces, and $\Pro(4)$ can be computed using the decomposition rule as $\Pro(4) = \sum_{n \in \{4,6,12\}}\Pro(D_n)\Pro(4\mid D_n) = \frac{1}{4\cdot3} + \frac{1}{6\cdot3} + \frac{1}{12\cdot 3} = \frac{1}{6}$.  Therefore $\Pro(D_6 \mid 4) = \frac{\frac{1}{6}\frac{1}{3}}{\frac{1}{6}} = \frac{1}{3}$, which makes sense since every die can roll a four.
+	\item[2.12] \textit{We choose a number from the set $\{1, 2, 3, \cdots, 100\}$ uniformly at
+random and denote this number by $X$. For each of the following choices decide
+whether the two events in question are independent or not.}
+\begin{enumerate}
+	\item\textit{A = $\{$X is even$\}$, B = $\{$X is divisible by 5$\}$}\\
+	$\Pro(A) = \frac{50}{100} = \frac{1}{2}, \Pro(B) = \frac{20}{100} = \frac{1}{5}$.  Note that $AB$ is the set of all numbers divisible by both 2 and 5, which would be 10.  Therefore $Pro(AB) = \frac{10}{100} = \frac{1}{10}$.  Since $\frac{1}{2}\frac{1}{5} = \frac{1}{10}$, then the probability of the sets of independent.  
+	\item \textit{C = $\{$X has two digits$\}$, D = $\{$X is divisible by 3$\}$.}\\
+	Note that aside from the first 9 numbers and 100, every other element in the set has two digits.  Therefore $\Pro(C) = \frac{90}{100} = \frac{9}{10}$.
+	For $\Pro(D)$, there are $33$ numbers under 100, thus $\Pro(D) = \frac{33}{100}$.  Note that for $\Pro(CD)$ one has to take away three numbers, $\{3,6,9\}$, from $D$.  Therefore $\Pro(CD) = \frac{3}{10}$.
+	Note that this is not the same as $\frac{9}{10}\frac{33}{100}$.  Therefore $C,D$ do not have independent probabilities.  
+	\item \textit{E = $\{$X is a prime$\}$, F = $\{$X has a digit 5$\}$.}.
+	$\Pro(E) = \frac{25}{100} = \frac{1}{4}, \Pro(F) = \frac{19}{100}$.
+	Note that the prime numbers under 100 w/ a 5 are $\{5,53,59\}$.
+	Therefore $\Pro(EF) = \frac{3}{100}$.  Clearly these sets are not 
+	independent since $\Pro(E)\Pro(F) = \frac{19}{400}$.
+\end{enumerate}
+	\item[2.30] \textit{Assume that $\frac{1}{3}$ of all twins are identical twins. You learn that
+Miranda is expecting twins, but you have no other information.}
+	\begin{enumerate}
+		\item \textit{Find the probability that Miranda will have two girls.}\\
+		Let $GG$ denote the event that miranda has two girls, let $F$ be the event that Miranda has fraternal twins, and let $I$ be the event that Miranda has identical twins.  \\
+		Since $F$ and $I$ partition the sample space, we can compute $\Pro(GG)$ via the decomposition rule as follows:
+		$$
+		\Pro(GG) = \Pro(F) \Pro(GG\mid F) + \Pro(T) \Pro(GG\mid T)
+		= \frac{2}{3} \frac{1}{4} + \frac{1}{3} \frac{1}{2}
+		= \frac{1}{3}
+		$$
+		\item \textit{You learn that Miranda gave birth to two girls. What is the probability that
+the girls are identical twins?}\\
+	We can compute this quantity in the following way:
+	$$
+	\Pro(I \mid GG) = \frac{\Pro(GG I)}{\Pro(GG)} = \frac{\frac{1}{6}}{\frac{1}{3}} = \frac{1}{2}
+	$$
+	\end{enumerate}
+	\item[2.38] \textit{We choose one of the words in the following sentence uniformly
+at random and then choose one of the letters of that word, again uniformly at
+random:} 
+\begin{center}
+\textbf{SOME DOGS ARE BROWN}
+\end{center}
+	\begin{enumerate}
+		\item \textit{Find the probability that the chosen letter is R}\\
+		$\Pro(R) = \Pro(SOME)\Pro(R\mid SOME) + \Pro(DOGS)\Pro(R\mid DOGS) + \Pro(ARE)\Pro(R\mid ARE) + \Pro(BROWN)\Pro(R\mid BROWN) = \frac{1}{4} ( 0 + 0 + \frac{1}{3} + \frac{1}{5}) = \frac{2}{15}$
+		\item \textit{Let $X$ denote the length of the chosen word. Determine the probability
+mass function of $X$.}\\
+	$p_X(L) = \begin{cases} L = 3 & \frac{1}{4}\\ L = 4 & \frac{1}{2}\\ L = 5 &\frac{1}{4}\\ 0 & \text{ otherwise } \end{cases}$
+		\item \textit{For each possible value $k$ of $X$ determine the conditional probability
+$\Pro(X = k | X > 3)$.}\\
+	\begin{itemize}
+		\item $\Pro(X = 3 | X > 3) = \frac{\Pro((X=3)(X>3))}{\Pro(X>3)} = \frac{4*0}{3} = 0$
+		\item $\Pro(X = 4 | X > 3) = \frac{\Pro((X=4)(X>3))}{\Pro(X>3)} = \frac{4\frac{1}{4}}{3} = \frac{1}{3}$
+		\item $\Pro(X = 5 | X > 3) = \frac{\Pro((X=5)(X>3))}{\Pro(X>3)} = \frac{4\frac{1}{2}}{3} = \frac{2}{3}$
+	\end{itemize}
+	\item \textit{ Determine the conditional probability $\Pro(R \mid X > 3)$.}\\
+	\begin{align*}
+		Pro(R \mid X > 3) &= \sum_i \Pro(R WORDS(i) \mid X > 3)\\
+		&= \sum_i \frac{\Pro(WORDS(i) (X>3)) \Pro(R \mid WORDS(i) (X>3))}{\Pro(X>3)} \\
+		&= \sum_i \frac{\Pro(WORDS(i) | (X>3)) \Pro(X>3) \Pro(R \mid WORDS(i) (X>3))}{\Pro(X>3)}\\
+		&= \sum_i \Pro(WORDS(i) | X>3) \Pro(R \mid WORDS(i) X >3)\\
+		&= \frac{1}{3}0 + \frac{1}{3} *0 + 0 * 0 + \frac{1}{3}\frac{1}{5}
+	\end{align*} 
+	\item \textit{Given that the chosen letter is R, what is the probability that the chosen
+word was BROWN?}\\
+$\Pro(BROWN| R) = \frac{\Pro(RBROWN)}{\Pro(BROWN)} = \frac{\Pro(R \mid BROWN) \Pro(BROWN)}{\Pro(R)} = \frac{\frac{1}{4}\frac{1}{5}}{\frac{2}{15}} = \frac{3}{8}$
+	\end{enumerate}
+	\item[2.58] \textit{Suppose that a person’s birthday is a uniformly random choice
+from the 365 days of a year (leap years are ignored), and one person’s birthday
+is independent of the birthdays of other people. Alex, Betty and Conlin are
+comparing birthdays. Define these three events:}
+\begin{center}
+
+$A = \{\text{Alex and Betty have the same birthday}\}$
+$B = \{\text{Betty and Conlin have the same birthday}\}$
+$C = \{\text{Conlin and Alex have the same birthday}\}.$
+	\begin{enumerate}
+		\item \textit{Are events A, B and C pairwise independent?}\\
+		Yes, observe that
+		$$
+		\Pro(A) = \Pro(B) = \Pro(C) = \frac{1}{365} 		
+		$$
+		Since once one birthday is fixed the chance that the day is the same is $\frac{1}{365}$.  Additionally,
+		$$
+		\Pro(ABC) = \Pro(AB) = \Pro(BC) = \Pro(AC) = \frac{1}{365^2}
+		$$
+		are all equivalent, and are the successive probabilities once one pair is fixed, you choose again.
+		Therefore $$
+			\Pro(AB) = \frac{1}{365^2} = \Pro(A)\Pro(B)		
+		$$  
+		$$
+			\Pro(BC) = \frac{1}{365^2} = \Pro(B)\Pro(C)
+		$$
+		$$
+			\Pro(AC) = \frac{1}{365^2} = \Pro(A)\Pro(C)
+		$$
+		thus the probabilities are pairwise independent.  
+		\item \textit{Are events A, B and C independent?}\\
+		They are not independent, as 
+		$$
+		\frac{1}{365^3} = \Pro(ABC) \neq \Pro(A)\Pro(B)\Pro(C) = \frac{1}{365^2}
+		$$
+	\end{enumerate}
+\end{center}
+	\item[2.60] \textit{Assume that $A, B$ and $C$ are mutually independent events
+according to Definition 2.22. Verify the identities below, using the definition
+of independence, set operations and rules of probability}
+	\begin{enumerate}
+		\item $\Pro(AB^c) = \Pro(A)\Pro(B^c)$\\
+		\begin{align*}
+			\Pro(AB^c) &= \Pro(A) - \Pro(AB)\\
+				&= \Pro(A) - \Pro(A)\Pro(B)\\
+				&= \Pro(A)(1-\Pro(B))\\
+				&= \Pro(A)\Pro(B^c)\\
+		\end{align*}
+		\item $\Pro(A^c C^c) = \Pro(A^c)\Pro(C^c)$
+		\begin{align*}
+			\Pro(A^c C^c) &= \Pro(C^c) - \Pro(A C^c)\\
+			&= \Pro(C^c)(1-\Pro(A))\\
+			&= \Pro(C^c)\Pro(A^c)
+		\end{align*}
+		\item $\Pro(AB^cC) = \Pro(A)\Pro(B^c)\Pro(C)$\\
+		\begin{align*}
+			\Pro(AB^cC) &= \Pro(AC) - \Pro(ABC)\\
+				&= \Pro(A)\Pro(C) - \Pro(A)\Pro(B)\Pro(C)\\
+				&= \Pro(A)\Pro(C)(1-\Pro(B))\\
+				&= \Pro(A)(1-\Pro(B))\Pro(C)\\
+				&= \Pro(A)\Pro(B^c)\Pro(C)
+		\end{align*}
+		\item $\Pro(A^cB^cC^c) = \Pro(A^c)\Pro(B^c)\Pro(C^c)$\\
+		\begin{align*}
+			\Pro(A^cB^cC^c) &= \Pro(B^c) - \Pro(AB^cC)\\
+			&= \Pro(B^c) - \Pro(A)\Pro(B^c)\Pro(C)\\
+			&= \Pro(B^c)(1 - \Pro(A)\Pro(C))\\
+			&= \Pro(B^c)\Pro(A^cC^c)\\
+			&= \Pro(B^c)\Pro(A^c)\Pro(C^c)\\
+			&= \Pro(A^c)\Pro(B^c)\Pro(C^c)
+		\end{align*}
+	\end{enumerate}
 \end{enumerate}
 \end{document}

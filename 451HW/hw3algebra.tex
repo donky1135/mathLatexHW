@@ -1,0 +1,139 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{451 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 3\\
+	451	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1.2] \textit{What are the complex eigenvalues of the matrix A that represents a rotation of $R^3$ through
+the angle $\theta$ about a pole $u$?}\\
+		Note that if we consider the pole to be a unit vector, then one gets to that vector simply by two rotations.  Therefore the rotation matrix
+		$R_\theta(u)$ is equivalent to $P R_\theta(e_1) P^{-1}$.  Therefore
+		the characteristic polynomial $\det (R_\theta(u) - \lambda \mathbb{I}_3) = \det ( R_\theta(e_1) - \lambda \mathbb{I}_3)$.
+		Thus we have the characteristic polynomial 
+		$(1-\lambda)(\lambda^2-2\cos(\theta)\lambda + 1) = 
+		(1-\lambda)(\lambda - e^{i \theta})(\lambda - e^{-i \theta})$.
+		Thus the complex eigenvalues are $e^{i\theta}, e^{-i\theta}$
+	\item[2.3] \textit{Let $A$ be an $n \times n$ complex matrix.}
+	\begin{enumerate}
+		\item \textit{Consider the linear operator $T$ defined on the space $\C^{n \times n}$ of all complex $n \times n$ matrices
+by the rule $T(M) = AM - MA$. Prove that the rank of this operator is at most $n^2 - n$.}\\
+	If we assume $A$ is diagonalizable, where $A=P\Lambda_1 P^{-1}$ with the diagonal entries of $\Lambda_1$ being $\lambda_1,\cdots,\lambda_n$, then if we consider any other diagonalizable matrix $M = P\lambda_2 P^{-1}$ then 
+	we get that \begin{align*}
+	 T(M) &= P\Lambda_1 P^{-1}P\Lambda_2 P^{-1}-P\Lambda_2 P^{-1}P\Lambda_1 P^{-1}\\ 
+	 &= P\Lambda_1 \Lambda_2 P^{-1}-P\Lambda_2 \Lambda_1 P^{-1}\\ 
+	 &= P(\Lambda_1 \Lambda_2 - \Lambda_2 \Lambda_1 )P^{-1}\\ 
+	 &= P(\Lambda_1 \Lambda_2 - \Lambda_1 \Lambda_2 )P^{-1}\\ 
+	 &= P0P^{-1}\\ &= 0.
+\end{align*}	
+	Note that since $\Lambda_1, \Lambda_2$ are both diagonal, they commute, and since $\Lambda_2$ has $n$ entries then $nullity(T)\geq n$. Therefore
+	by the dimension formula $n^2 = rank(T) + nullity(T)\geq rank(T) + n, n^2 + n \geq rank(T)$
+	\iffalse
+	Note that evaluating $T$ on $A^k$ where $k \in \N_0$ yields
+	$T(A^k) = AA^k - A^kA = A^{k+1} - A^{k+1} = 0$.  Thus we 
+	know that the set $\{A^k : k \in \N_0\} $ is a subset of the kernel.  
+	Since the kernel is a subspace then a broader question is what dimension 
+	does $span(\{A^k : k \in \N_0\})$ have?  Note that by Cayley-Hamilton
+	we have, $A^n = -(a_{n-1}A^{n-1} + a_{n-2}A^{n-2} + \cdots + a_0 \mathbb{I}_n)$ where $a_0,\cdots,a_{n-1}$ are the coefficients of the characteristic polynomial.  Therefore $A^n \in span(\{\mathbb{I}_n,A,\cdots A^{n-1}\})$.  Furthermore one can proceed inductively and show that 
+	\fi
+	\item \textit{Determine the eigenvalues of $T$ in terms of the eigenvalues $\lambda_1,\ldots , \lambda_n$ of $A$.}\\
+	Consider $(E_{a,b})_{i,j} = \begin{cases} 1 & \text{ if } i = a, j=b\\
+	0 & \text{ otherwise }   \end{cases},$  If we note from before the 
+	eigenvectors of $A$ are $P$, and evaluate $T(PE_{i,j}P^{-1}$ we attain the following $$
+	T(PE_{i,j}P^{-1}) = P( \Lambda_1 E_{i,j} - E_{i,j}\Lambda_1) P^{-1}
+	= P(\lambda_i E_{i,j} - \lambda_j E_{i,j})P^{-1} = 
+	(\lambda_i - \lambda_j)P E_{i,j} P^{-1}.  
+	$$
+	We have now found every eigenmatrix and eigenvalue!  Namely, the 
+	set of eigenvectors of $T$ are $\{\lambda_i - \lambda_j: i,j \in \{1,\ldots,n\}\}$.
+	\end{enumerate}
+	\item[3.2]
+	\begin{enumerate}
+		\item \begin{align*}
+		\frac{d}{dt}(A(t)^3) &= \frac{dA}{dt}A^2 + A\frac{dA^2}{dt}\\
+			&= \frac{dA}{dt} A^2 + A\frac{dA}{dt}A + A^2\frac{dA}{dt}\\
+			&= \frac{dA}{dt} A^2 + A(\frac{dA}{dt}A + A\frac{dA}{dt})\\
+			&= \frac{dA}{dt} A^2 + A\frac{dA}{dt}A + A^2\frac{dA}{dt}
+ 		\end{align*}
+		\item 
+		\begin{align*}
+			0 &= \frac{dI_n}{dt} = \frac{AA^{-1}}{dt}\\
+			0 &= \frac{dA}{dt}A^{-1} + A\frac{dA^{-1}}{dt}\\
+			\frac{dA^{-1}}{dt} &= -A^{-1} \frac{dA}{dt} A^{-1}
+		\end{align*}
+		\item $$
+		\frac{A^{-1}B}{dt} = \frac{dA^{-1}}{dt}B + A^{-1} \frac{dB}{dt}
+		= -A^{-1} \frac{dA}{dt} A^{-1} + A^{-1} \frac{dB}{dt}
+		$$
+		
+	\end{enumerate}
+	\item[3.3] \textit{Solve the equation $\frac{dX}{
+dt} = AX$ for the following matrices $A$:}
+	\begin{enumerate}
+		\item Note that since $A = \begin{bmatrix}
+		2 & 1\\ 1 & 2
+		\end{bmatrix}
+		=
+		\frac{1}{2} \begin{bmatrix} 1 & 1\\-1 & 1 \end{bmatrix}\begin{bmatrix}1 & 0\\ 0 & 3 \end{bmatrix}\begin{bmatrix}1 & -1\\1 & 1 \end{bmatrix}		 $, then the solution is given by 
+		$X = e^{tA} = \frac{1}{2} \begin{bmatrix} 1 & 1\\-1 & 1 \end{bmatrix}\begin{bmatrix}e^t & 0\\ 0 & e^{3t} \end{bmatrix}\begin{bmatrix}1 & -1\\1 & 1 \end{bmatrix}	= \begin{bmatrix}
+		\frac{e^t}{2}+\frac{e^{3 t}}{2} & \frac{e^{3
+   t}}{2}-\frac{e^t}{2} \\
+ \frac{e^{3 t}}{2}-\frac{e^t}{2} & \frac{e^t}{2}+\frac{e^{3
+   t}}{2} \\
+		\end{bmatrix}$
+		\item Note that since $A = \begin{bmatrix}
+		1 & i\\ -i & 1
+		\end{bmatrix}		
+		=   \begin{bmatrix} i & i\\1 & -1\end{bmatrix}\begin{bmatrix}i & 0\\0&0\end{bmatrix}\begin{bmatrix}
+		-1 & -i\\ 1&1
+		\end{bmatrix}$ then the solution is given by 
+		$$
+		X = e^{tA} = \frac{-1}{2i}  \begin{bmatrix} i & i\\1 & -1\end{bmatrix}\begin{bmatrix} e^{it}& 0\\ 0 & e^t\end{bmatrix}\begin{bmatrix}
+		-1 & -i\\ 1&1
+		\end{bmatrix} = \begin{bmatrix}
+		 e^t \cos (i t) & e^t \sin (i t) \\
+ -e^t \sin (i t) & e^t \cos (i t) \\
+		\end{bmatrix}.
+		$$
+	\end{enumerate}
+	\item[3.6a] \textit{Let $s$ be the rotation of the plane with angle $\pi/2$ about the point $(1, 1)^t$. Write the
+formula for $s$ as a product $t_a \rho_\theta$}\\
+	The transformation described in the problem can be trivially written as
+	$t_{(1,1)}\rho_{\pi/2}t_{(-1,-1)}$, which shifts the point $(1,1)$ to the origin, has the rotation action, then restores the location of $(1,1)$. 
+	However we can reduce our number of isomorphism used on the plane by noting $\rho_{\pi/2} t_{(-1,-1)} = t_{(1,-1)}\rho_{\pi/2}$ 	from the transformation rules.  Therefore $t_{(1,1)}\rho_{\pi/2}t_{(-1,-1)} = 
+	t_{(1,1)} t_{(1,-1)} \rho_{\pi/2} = t_{(2,0)}\rho_{\pi/2}$.  
+\end{enumerate}
+\end{document}

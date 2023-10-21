@@ -1,0 +1,136 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 6\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[3.66] Let $X \sim \mathcal{N}(8,3), Z\sim \mathcal{N}(1,0)$.  Therefore 
+	\begin{align*}
+		\Pro(X> \alpha) &= 0.15\\
+		1 - \Pro(X \leq \alpha) &= 0.15\\
+		\Pro(X \leq \alpha) &= 0.85\\
+		\Pro(\sqrt{3}Z + 8 \leq \alpha) &= 0.85\\
+		\Pro(Z \leq \frac{\alpha - 8}{\sqrt{3}}) &= 0.85\\
+		\Phi(\frac{\alpha - 8}{\sqrt{3}}) &= 0.85\\
+		\frac{\alpha - 8}{\sqrt{3}} &= \Phi^{-1}(0.85)\\
+		\frac{\alpha - 8}{\sqrt{3}} &\approx 1.04\\
+		\alpha &\approx 9.8
+	\end{align*}
+	\item[3.67] Let $X \sim \mathcal{N}(\mu,\sigma^2), Z \sim \mathcal{N}(1,0)$
+		\begin{enumerate}
+			\item Since $x^3$ is odd and $\phi(x)$ is even then $x^3 \phi(x)$ is odd.  Thus the integral across all of $\R$ is 0.  
+			\iffalse \begin{align*}
+				\E[Z^3] &= \int_{-\infty}^\infty x^3 e^{\frac{x^2}{2}}dx\\
+				& \text{let } u=x^2, du = 2xdx\\
+				&= \frac{1}{2}\int_{\infty}^\infty u e^{-u/2}du\\
+				&= 0
+			\end{align*} \fi
+			\item \begin{align*}
+				\E[X^3] &= \E[(\sigma Z + \mu)^3]\\
+				&= \sigma^3 \E[Z^3] + 3\mu \sigma^2 \E[Z^2] + 3\mu^2 \sigma \E[Z] + \mu^3\E[1]\\
+				&= \sigma^3 * 0 + 3\mu \sigma^2 (1 + 0^2) + 3\mu^2 \sigma * 0 + \mu^3 * 1\\
+				&= \mu \sigma^2 + \mu^3
+			\end{align*}
+		\end{enumerate}
+	\item[3.68]
+	\begin{enumerate}
+		\item \begin{align*}
+			\int_{-\infty}^\infty x^4 e^{-x^2/2}dx &= -x^3e^{-x^2/2}]_{-\infty}^\infty + 3\int_{-\infty}^\infty x^2e^{-x^2/2}dx\\
+			&= 3(-xe^{-x^2/2}]_{-\infty}^\infty + \int_{-\infty}^\infty e^{-x^2/2}dx)\\
+			&= 3 \sqrt{2 \pi}
+		\end{align*}
+		Thus $\E[Z^4] = 3$.  
+		\item Same $X$ and $Z$ as stated in the previous problem
+		\begin{align*}
+			\E[X^4] &= \E[(\sigma Z + \mu)^4]\\
+			&= \sigma^4\E[Z^4] + 4\sigma^3 \mu \E[Z^3] + 6 \sigma^2 \mu^2 \E[Z^2] + \sigma \mu^3 \E[Z] + \mu^4\\
+			&= 3 \sigma^4 + 0 + 6 \sigma^2 \mu^2 1 + 0 + \mu^4\\
+			&= 3 \sigma^4+ 6 \sigma^2 \mu^2 + \mu^4
+		\end{align*}
+	\end{enumerate}
+	\item[4.4] Let $X_{90}$ be the total steps taken after 90 rolls.  Let $S_{90}$
+	be the number of rolls yielding 1 step forward.  Then our desired probability can be written as $\Pro(X_{90} \geq 160) = \Pro(S_{90} \leq 20)$.  Since each roll has probability $1/3$ of hitting a number which advances us one tile, then 
+	clearly $S_{90} \sim Bin(90,1/3)$.  Therefore if we normalize we find that our probability becomes $\Pro(\frac{S_{90} - 30}{\sqrt{20}} \leq - \sqrt{5})$.
+	Thus by the central limit theorem this can be approximated by $\Phi(-\sqrt{5}) = 1 - \Phi(\sqrt{5})$.
+	Thus the probability is approximately $0.013$.   
+	\item[4.18]  Since we can hit a point uniformly on the dart board, then 
+	the probability of hitting the center is simply dividing the areas yielding $p =  \frac{\pi 1^2}{\pi 5^2} = \frac{1}{25}$.  Therefore the variable $H_{2000}$ 
+	denoting the number of bullseyes is a binomial variable 
+	$H_{2000} \sim Bin(2000,\frac{1}{25})$ with $\E H_{2000} = 80, Var(H_{2000}) = 76.8$.  
+	
+	Therefore our desired probability is $$\Pro(H_{2000} \geq 100) = 1 - \Pro(H_{2000} < 100) = 1 - \Pro(\frac{H_{2000}-80}{\sqrt{76.8}} < \frac{20}{\sqrt{76.8}} ) \approx  1 - \Phi(2.282) \approx 0.0113$$
+	
+	\item[AE1] $\E [e^{cZ}] = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty e^{cx} e^{-\frac{x^2}{2}}dx = 
+	\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{cx-\frac{x^2}{2}}dx $.  
+	Thus by homework 1 problem 1a we have that the integral evaluates to $e^{-\frac{c^2}{2}}$
+	\item[AE2] The only $c$ which works is $c < \frac{1}{2}$, because if $c \geq \frac{1}{2}$ then
+	$c - \frac{1}{2} \geq 0$, and since for every $|x| > 1$ $e^{(c - \frac{1}{2})|x|} < e^{(c - \frac{1}{2})x^2}$, then for a sufficiently large $a$, 
+	$\int_{-a}^a e^{(c - \frac{1}{2})|x|}dx < \int_{-a}^a e^{(c - \frac{1}{2})x^2}dx$.
+	Since $\int_{-\infty}^\infty e^{(c - \frac{1}{2})|x|} dx = \infty$, then $\int_{-\infty}^\infty e^{(c-\frac{1}{2})x^2} = \infty$.   (Note if $c=\frac{1}{2}$ then we have the integral 
+	$\int_{-\infty}^\infty 1 dx$, which clearly diverges.)
+	\item[AE3]
+	\begin{enumerate}
+		\item Let $X = \sigma Z + \mu$ where $Z \sim \mathcal{N}(0,1)$
+		\begin{align*}
+			\Pro(Y \geq K) &= \Pro(e^X \geq K)\\
+			&= \Pro(X \geq \log(K))\\
+			&= \Pro(Z \geq \frac{\log(K)-\mu}{\sigma})\\
+			&= 1 - \Pro(Z \leq \frac{\log(K)-\mu}{\sigma})\\
+			&= 1 - \Phi(\frac{\log(K)-\mu}{\sigma})\\
+			&= \Phi(\frac{\mu - \log(K)}{\sigma})
+		\end{align*}
+		\item 
+		\begin{align*}
+		\E[\max (Y-K,0)] &= \E[(Y-K) \mathbb{I}_{X \geq \log(K)}]	\\
+		&= \E[Y\mathbb{I}_{X \geq \log(K)}] - \E[K\mathbb{I}_{X \geq \log(K)}]\\
+		&= \E[Y\mathbb{I}_{X \geq \log(K)}] - K\E[\mathbb{I}_{X \geq \log(K)}]\\	
+		&= \E[Y\mathbb{I}_{X \geq \log(K)}] - K\Phi(\frac{\mu - \log(K)}{\sigma})\\ & \text{ by the hint}\\
+		&= \frac{1}{\sqrt{2 \pi \sigma^2}} \int_{\log(K)}^\infty e^r e^{\frac{(r-\mu)^2}{2 \sigma^2}}dr - K\Phi(\frac{\mu - \log(K)}{\sigma})\\
+		&= \frac{e^\mu}{\sqrt{2 \pi}} \int_{\frac{\log(K) - \mu}{\sigma}}^\infty e^{\sigma l - \frac{l^2}{2}} dl - K\Phi(\frac{\mu - \log(K)}{\sigma})\\ & \text{Let } l = \frac{r-\mu}{\sigma}, dl = \frac{dr}{\sigma}\\
+		&= \frac{e^\mu}{\sqrt{2 \pi}} ( \sqrt{2\pi}e^{\frac{\sigma^2}{2}} - \int_{-\infty}^{\frac{\log(K) - \mu}{\sigma}} e^{\sigma l - \frac{l^2}{2}} dl) - K\Phi(\frac{\mu - \log(K)}{\sigma})\\ & \text{By 1a on hw 1}\\
+		&= \frac{e^\mu}{\sqrt{2 \pi}} ( \sqrt{2\pi}e^{\frac{\sigma^2}{2}} - \int_{-\infty}^{\frac{\log(K) - \mu}{\sigma}} e^{-\frac{(l-\sigma)^2}{2}+\frac{\sigma^2}{2}} dl) - K\Phi(\frac{\mu - \log(K)}{\sigma})\\
+		& \text{completing the square}\\
+		&= \frac{e^{\mu + \frac{\sigma^2}{2}}}{\sqrt{2 \pi}} ( \sqrt{2\pi} - \int_{-\infty}^{\frac{\log(K) - \mu}{\sigma}  - \sigma} e^{-\frac{u^2}{2}} du) 
+- K\Phi(\frac{\mu - \log(K)}{\sigma})\\
+	& \text{Let } u = l - \sigma, du = dl\\
+	&= e^{\mu + \frac{\sigma^2}{2}}(1-\Phi(\frac{\log(K) - \mu}{\sigma}  - \sigma))- K\Phi(\frac{\mu - \log(K)}{\sigma})\\
+	& \text{Definition of } \Phi\\
+	&= e^{\mu + \frac{\sigma^2}{2}}(\Phi(\frac{\mu -\log(K)}{\sigma}  + \sigma))- K\Phi(\frac{\mu - \log(K)}{\sigma})\\
+		\end{align*}
+	\end{enumerate}
+\end{enumerate}
+\end{document}

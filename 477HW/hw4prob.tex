@@ -1,0 +1,145 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2.28] \textit{We play a card game where we receive 13 cards at the beginning
+out of the deck of 52. We play 50 games one evening. For each of the following
+random variables identify the name and the parameters of the distribution.}
+	\begin{enumerate}
+		\item \textit{The number of aces I get in the first game.}\\
+		This is a hypergeometric distribution, as there are two types 
+		of items in the deck, 4 aces and 48 other cards, where from the total 52 cards you choose 13.  
+		\item \textit{The number of games in which I receive at least one ace during the
+evening.}\\
+	This would be a binomial distribution.  Each game is a "successive trial" which is capped at 50, we have some fixed probability of drawing an ace each time, which would be the negation of drawing a hand with no aces, which would be $1- \frac{\binom{48}{13}}{\binom{52}{13}}$.  
+		\item \textit{The number of games in which all my cards are from the same suit.}\\
+		This, too, is a binomial distribution in which each "trial" is testing the fixed probability of whether you draw a single suit or not, being $\frac{\binom{4}{1}}{\binom{52}{13}}$, over 50 games.  
+		\item \textit{The number of spades I receive in the 5th game.}
+		This is a hypergeometric distribution with the parameters being 52 total cards, drawing a subset of 13 cards, then having the particular type being 13 cards due to the spades being a suit.  
+	\end{enumerate}
+	\item[2.64] \textit{On a test there are 20 true-or-false questions. For each problem the student \begin{itemize}
+	\item knows the answer with probability $p$,
+	\item thinks he knows the answer, but is wrong with probability $q$,
+	\item is aware of the fact that he does not know the answer with probability $r$.
+\end{itemize} Assume that these alternatives happen independently for each question, and that $p + q + r = 1$. If the student does not know the answer he chooses true or false with equal probability. What is the probability that he will get the correct answer for at least 19 questions out of 20?}\\
+
+Let $C$ denote the event where the student answers the question correctly, $K$ denote the event the student knows the answer ($\Pro(K) = p$), $A$ denote the event where the student is aware he doesn't know the answer ($\Pro(A) = r$), $G$ where the student "knows" the answer and is incorrect ($\Pro(G) = q$), and $X$ the random variable of the number of correctly answered questions.
+
+	We want to compute $\Pro(C)$.  Note that since $A,K,G$ partition the sample space then $\Pro(C) = \Pro(CA) + \Pro(CK) + \Pro(CG)$.  Note that the probability of knowing the problem and guess correctly is $p$, the probability of just straight up guessing is $0.5$ and one can never get a correct answer yields $\Pro(C) = p + \frac{r}{2}$.  Furthermore to compute
+	$\Pro(C^c) = 1 - p - \frac{r}{2} = q + \frac{r}{2}$.  Therefore we 
+	can compute the probability of 
+	$$\Pro(X\geq 19) = \binom{20}{19}(p + \frac{r}{2})^{19}(q + \frac{r}{2}) + \binom{20}{20}(p + \frac{r}{2})^{20}.$$\\
+	Additionally for the follow up question the answer for when $p=0.8, q=r=0.1$ comes out to $\Pro(X\geq 19) \approx 17.6\%$
+	\item[2.67]\textit{Show that $\Pro(X=n+k\mid X>n) = \Pro(X=k)$}\\
+	\begin{align*}
+		\Pro(X=n+k\mid X>n) &= \frac{\Pro((X=n+k)(X>n))}{\Pro(X>n)} & \text { Bayes' Rule}\\
+		&= \frac{\Pro(X=n+k)}{\Pro(X>n)} & (X=n+k)\cup (X>n) = (X=n+k) \\
+		&= \frac{(1-p)^{n+k-1}p}{\sum_{i=n+1}^\infty (1-p)^{i-1}p} & \text{geometric distribution definition(s)}\\
+		&= \frac{(1-p)^{n+k-1}p}{p(1-p)^{n-1}\sum_{i=1}^\infty (1-p)^{i-1}}& \text{ reindexing}\\
+		&= \frac{(1-p)^{n+k-1}}{p(1-p)^{n}\sum_{i=0}^\infty (1-p)^{i}}& \text{ more reindexing}\\
+		&= \frac{(1-p)^{k-1}}{\frac{1}{p}} & \text{ geometric series sum}\\
+		&= (1-p)^{k-1}p\\
+		&= \Pro(X=k)
+	\end{align*}
+	\item[3.4]\textit{Let $X \sim Unif[4, 10]$.}
+	\begin{enumerate}
+		\item \textit{Calculate $\Pro(X>6)$}\\
+		$\frac{2}{3}$
+		\item \textit{Calculate $\Pro(|X - 7| > 1)$}\\
+		$\frac{2}{3}$
+		\item \textit{For $4 \leq t \leq 6$, calculate $\Pro(X<t \mid X <6)$}\\
+		By Bayes' Rule we have that $\Pro(X<t \mid X <6) = \frac{\Pro((X<t )( X <6))}{\Pro(X < 6)}$.  From our previous computations we know that
+		$\Pro(X < 6) = \frac{2}{3}$.  Additionally since $t \leq 6$ then  
+		$\Pro((X<t )( X <6)) = \Pro(X<t)$.  Since the cdf is given by 
+		$F_X(a) = \frac{1}{6}(a-4)$, then the final answer is given by $\frac{10-t}{4}$ where $t \in [4,6]$. 
+	\end{enumerate}
+	\item[3.6] \textit{Find the cumulative distribution function of the random variable
+$X$ from both Exercise 3.1 and 3.3.}
+	\begin{enumerate}
+		\item[3.1] The CDF is given by 
+		$$
+		F_X(x) = \begin{cases}
+			0 & x < 1\\
+			\frac{1}{7} & 1 \leq x < 2\\
+			\frac{3}{14} & 2 \leq x < 3\\
+			\frac{6}{14} & 3 \leq x < 4\\
+			\frac{10}{14} & 4 \leq x < 5\\
+			1 & 5\leq x
+		\end{cases}
+		$$
+		\item[3.3] The CDF is given by
+		$$
+		F_X(a)  = \begin{cases}
+		1-3e^{3x}& x \geq 0\\
+		0 & \text{otherwise}
+		\end{cases}
+		$$
+	\end{enumerate}
+	\item[3.20] \textit{Let $c > 0$ and $X \sim Unif[0, c]$. Show that the random variable
+$Y = c - X$ has the same cumulative distribution function as X and hence also
+the same density function.}
+	Note that $F_X(a) = \Pro(X\leq a) = \int_{0}^a \frac{dx}{c} = \frac{a}{c}$.
+	Therefore \begin{align*}
+	Pro(Y \leq b) &= \Pro(c-X\leq b)\\
+	 &= \Pro(c-b \leq X)\\ 
+	 &=	1- \int_{0}^{c-b} \frac{dx}{c}\\
+	 &= 1 - \frac{c-b}{c}\\
+	 &= \frac{b}{c}\\
+	 &= F_X(b)\\
+	 &= \Pro(X\leq b)
+	\end{align*}
+	\item[3.46] \textit{A stick of length 2 is broken at a uniformly chosen random
+location. We denote the length of the smaller piece by X .}\\
+	Let the length of the stick be denoted $l$, and let the stick start at the origin and end at point $l$.
+	\begin{enumerate}
+		\item \textit{Find the cumulative distribution function of X.}\\
+		Let the random variable $X$ be the length of the smaller stick.
+		For a given break point $a$ this would be given by $min(a,l-a)$.
+		Therefore let $X = min(Y,l-Y)$.  Since $Y \sim Unif[0,l]$ then we can break apart $\Pro(X \leq a)$ as $\Pro(Y \leq a) + \Pro(Y\geq l-a)$.
+		As shown above the formula for $F_Y(a) = \frac{a}{l}$.  Therefore 
+		$\Pro(X \leq a) = \frac{a}{l} + \frac{l-l+a}{l} = \frac{2a}{l}$.\\
+		 Thus 
+		 $$
+		 F_X(a) = \begin{cases} 0 & a < 0\\ \frac{2a}{l} & 0 \leq a < \frac{l}{2}\\
+		 1 & a \geq \frac{l}{2}\end{cases}
+		 $$
+		 \item \textit{Find the probability density function}\\
+		 $f_X(a) = \begin{cases}\frac{2}{l} & a \in [0,\frac{l}{2})\\
+		 0 & \text{otherwise} \end{cases}$
+	\end{enumerate}
+\end{enumerate}
+\end{document}

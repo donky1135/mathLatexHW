@@ -1,0 +1,151 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 2\\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+Lemma: Suppose $(p,q) \subset \R, |\alpha| < q - p$.  Then there exists $r \in \alpha \Z$ such that $r \in (p,q)$.\\  Suppose for contradiction that for all $r \in \Z, r\alpha \not \in (p,q)$.  Then there exists $n \in \N$ such that $n\alpha < p, q <(n+1)\alpha$.  Therefore $q-p < (n+1-n)\alpha = \alpha $.  This contradicts $\alpha < q-p$.  Therefore there exists $r \in \Z$ such that $r \alpha \in (p,q)$.  
+\begin{enumerate}
+	\item \textit{Show that the set of all dyadic rational numbers in $[0,1]$ is dense}\\
+	Suppose $r,s \in [0,1], r > s$.  Since $0 < r-s$, then by the Archimedean property there exists $l \in \N$ such that $\frac{1}{l} < r-s.$  Since $2^m$ is unbounded then there exists $n \in \N$ such that $l < 2^n$.  Therefore $2^{-n} < r - s$.  Thus by the lemma above there exists $k \in \N$ such that $s < \frac{k}{2^n} < r$.  Therefore the dyadics are dense on the unit interval.
+	\item \textit{Let $\alpha, Q \in \R, Q \geq 1$.  Show there exists $a,q \in \Z, q < Q, gcd(a,q) = 1, |\alpha - \frac{a}{q}| < \frac{1}{qQ}$}\\
+	Let $n$ be the smallest integer greater than $Q$.  Consider the partition of the interval $[0,1)$ by the set $E = \{[\frac{l}{n}, \frac{l+1}{n}) : l \in [n-1]\cup \{0\}\}$.  Additionally, note that each $\{0,\{\alpha\}, \{2\alpha\},\cdots, \{n\alpha\}\}$ can be assigned to one of the partitions.  Since all elements are capable of fitting into the $n$ partitions, and there are $n+1$ elements then by the Pigeonhole principle there exists $k_1, k_2 \in \N_0$ such that $|\{k_1\alpha\}-\{k_2\alpha\}| < \frac{1}{n}$.  Note that by the definition of $\{\}$, we can rewrite the expression inside of the absolute value signs as $|(k_1 - k_2)\alpha - ([k_1\alpha] - [k_2\alpha])| < \frac{1}{n}$.  Therefore if we set $q=(k_1-k_2)/gcd(k_1-k_2, [k_1\alpha] - [k_2\alpha]), a = [k_1\alpha] - [k_2\alpha]/gcd(k_1-k_2, [k_1\alpha] - [k_2\alpha])$ then we have the equations $|\alpha - \frac{a}{q}| < \frac{1}{nq} < \frac{1}{qQ}$.  Note that by construction $gcd(a,q) = 1$.  Therefore the theorem has been demonstrated. 
+	\item \textit{Show for every $n \in \N$ the closed form of the sum
+	$$
+	\displaystyle \sum_{k=1}^n \frac{1}{k(k+1)}
+	$$}\\
+	Note that $\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$.   
+	Therefore the sum expressed above can be rewritten as follows:
+	\begin{align*}
+		\sum_{k=1}^n \frac{1}{k(k+1)} &= \sum_{k=1}^n \frac{1}{k} - \sum_{k=1}^n \frac{1}{k+1}\\
+		&= \sum_{k=1}^n \frac{1}{k} - \sum_{j=2}^{n+1} \frac{1}{j}\\
+		&= 1 - \frac{1}{n+1} + \sum_{k=2}^n \frac{1}{k} - \sum_{j=2}^n \frac{1}{j}\\
+		&= 1 - \frac{1}{n+1}.
+	\end{align*}
+	Therefore since $\frac{1}{n} \to 0$ then the limit of $S_n$ exists and is given by $\lim S_n = 1$.
+	\item \textit{Assume that $\alpha \not \in \Q$ show that the sequence $\{\{n\alpha\}: n \in \N\}$} is dense in $[0,1]$. \\
+	Suppose $\alpha \in \R, (p,q) \subset [0,1]$.  Since $\alpha \not \in \Q$ then there exists an infinite number of rational approximations, $\frac{p_n}{q_n} \in \Q$ where $|\alpha - \frac{p_n}{q_n}| < \frac{1}{q_n^2}$ 
+	(consequence of problem 2).  Note that when $n \to \infty$ then $q_n \to \infty$, therefore $\frac{1}{q_n} \to 0$.  
+	Thus there exists $n \in \N$ where $\frac{1}{q_n} < q - p$.  Therefore
+	$|q_n\alpha - p_n| < \frac{1}{q_n}$.  Since $p_n$ is an integer we can consider $|\{q_n \alpha \}| < \frac{1}{q_n}$.  Therefore by the lemma by the lemma there exists $r \in \Z$ where $\pm\{rq_n\alpha\} \in (p,q)$.  Thus the integer multiples of the fractional portion of $\alpha$ is dense in $[0,1]$.
+	\item \textit{Let $(\mathbb{F}, <)$ be an ordered field. Show that the axiom of completeness implies the Archimedean
+property.}\\
+	Suppose $x \in \R$, and consider the set $S = \{n \in \N: n \leq x\}$. Note that if $x < 1$ then $x$ is trivially bounded above by a natural number.  Therefore we assume that $1 \leq x$.  Therefore the set $S$ is guarenteed to contain 1.   
+	Note that since $S$ is non-empty and bounded above, by the axiom of completeness $sup E$ exists.  Let this number be denoted 
+	$s = \sup E$.  By the definition of suprememum, $x < n+1$.  Since $n+1 \in \N$, then $\mathbb{F}$ satisfies the archimedean property.
+	\item \textit{Let $(\mathbb{F}, <)$ be an ordered field, which is Cauchy complete. Show that $\mathbb{F}$ satisfies the nested interval property}\\
+	Suppose that $\F$ satisfies the nested interval property and we have a 
+	sequence of nested intervals 
+	$[a_1,b_1] \supseteq [a_2,b_2] \supseteq \cdots$ where $\lim |a_n-b_n| = 0$.  
+	Suppose $\epsilon >0$, $(\epsilon_n)_{n \in \N} \to 0$. Note that since $\lim |a_n-b_n| = 0$ then there exists
+	$N_1 \in \N$ where $|a_{N_1} - b_{N_1}| < \epsilon_1$, let $x_1 \in [a_{N_1},b_{N_1}].$  Similarly for $\epsilon_2$, we can find a $N_2, x_2$ such that
+	$x_2 \in [a_{N_2},b_{N_2}], |a_{N_2}-b_{N_2}| < \epsilon_2$.  In general we can
+	construct a sequence $(x_n)_{n\in \N}$ such that $x_n \in [a_{N_n},b_{N_n}], |a_{N_n}-b_{N_n}| < \epsilon_n$.  Therefore for all $\epsilon > 0$ there exists $N\in\N$
+	such that $\epsilon_N < \epsilon/2$.  Thus for arbitrary $n > m  \geq N$ we have that
+	\begin{align*}
+	|x_n - x_m| &= |x_n - a_{N_N} + a_{N_N} - x_m| & \text{ add 0}\\
+	&\leq |x_n - a_{N_N}| + |a_{N_N} - x_m| & \text{ triangle inequality}\\
+	&\leq |b_{N_N} - a_{N_N}| + |a_{N_N} - b_{N_N}| & \text{the difference is bounded by the endpoints}\\
+	&< \epsilon_2 + \epsilon_2\\
+	&= \epsilon
+	\end{align*}
+	Since $(x_n)$ is Cauchy, then by Cauchy completeness $(x_n) \to x$.  By a similar proof above we can show that $(a_n) \to x$ and $(b_n) \to x$. Therefore clearly 
+	$x \in \cap_{i=1}^\infty [a_i,b_i].$  Thus by the sqeeze theorem for any 
+	$y \in \cap_{i=1}^\infty [a_i,b_i]$ since $a_i \leq y \leq b_i$ for all $i \in \N$ and $(a_n),(b_n) \to x$ then $y = x$.  Thus $\{x\} = \cap_{i=1}^\infty [a_i,b_i]$.  
+	
+	\iffalse
+	Note that the set of left endpoints $(a_n)_{n \in \N} $ is bounded as $(a_n) \subset [a_1,b_1]$ and monotonic as each endpoint is to the right of the previous endpoint.  Since all bounded monotonic sequences are cauchy, then by our assumption of cauchy completeness, 
+	$a_n \to a$.  We claim that $a \in \cup_{i=1}^\infty [a_i,b_i]$. 
+	Suppose for contradiction not, then we have two possible contradictions
+	\begin{itemize}
+		\item Suppose there exists $n' \in \N$ where $a < a_{n'}$.  Then
+		the subsequence defined by $c_k = a_{n'+k}$ can't converge to
+		$a_{n'}$ since for all $k \in \N$ $a_{n'} \leq c_k$, implying 
+		$a_{n'} - a \leq c_k - a$.  This contradicts the fact that 
+		every subsequence of a convergent sequence must converge to the same limit.
+		\item Suppose there exists $m \in \N$ where $b_{m} < a$.  Then 
+		$0<a-b_m$. 
+		Since $a_n \to a$ then there exists an $N \in \N$ where for all 
+		$l \geq N, |a-a_l| < a-b_m$.  Therefore $b_m < a_l$, contradicting that the right end points are left of the left endpoints
+ 	\end{itemize}	 
+	
+	Since both assumptions lead to contradictions, then $a \in \cup_{i=1} [a_i,b_i]$, thus the intersection is non-empty, giving us the nested interval property.  
+	\fi
+	
+	\item \textit{Using the Archimedean property on $\R$ show that for every $x, y \in \R$ such that $x < y$ there exists
+$a \in \Q$ satisfying $x < a < y$.}\\
+	Since $x < y$ then $0 < y - x$.  Therefore by the Archimedean property there exists $n \in \N$ such that $\frac{1}{n} < y -x$.  Therefore by the lemma there exists $m \in \Z$ such that $\frac{m}{n} \in (x,y)$.  
+	\item \textit{Show that if $a_1,\ldots,a_n > 0$ and $a_1\cdots a_n = 1$ then $a_1 + \cdots + a_n \geq n$}\\
+	We will prove this statement by induction.  Note that for the base case 
+	if $a_1 = 1$ then trivially $a_1 \geq 1$.  Therefore by the principle of 
+	mathematical induction for all $k \in \N$ if $k < n$ then the proposition holds.  
+	WLOG assume $a_1$ is the minimal element and $a_n$ is the maximal element.  
+	Then they satisfy the inequality $a_1 \leq 1 \leq a_n$.  Therefore $(1-a_1)(a_n-1)\geq 0$.  Therefore $a_1 + a_n - 1\geq a_1 a_n $.  Thus by the induction hypothesis 
+	$$
+	n - 1 \leq a_2 + \cdots + a_{n-1} + a_1 a_n \leq a_1 + \cdots + a_n - 1
+	$$
+	$$
+	n \leq a_1 + \cdots + a_n
+	$$
+	\item \textit{Using the previous problem show that for every positive numbers $x_1, x_2, \ldots , x_n$ we have
+	$$ (x_1\cdot x_2 \cdot \ldots \cdot x_n)^{\frac{1}{n}} \leq \frac{x_1 + x_2 + \ldots + x_n}{n}$$	}\\
+	If we consider the product $x_1\cdot x_2 \cdots x_n = p$, then if we 
+	set the sequence $a_k = \frac{x_k}{p^{\frac{1}{n}}}$, then $a_1\cdots a_n = 1$.  Therefore by the previous problem $a_1 + \cdots + a_n \geq n$.
+	Therefore $\frac{x_1 + \cdots + x_n}{p^{\frac{1}{n}}} \geq n$, giving us
+	$\frac{x_1 + \cdots + x_n}{n} \geq (x_1\cdots x_n)^{\frac{1}{n}}$.  
+	\item \textit{Let $x_1 = 2$ and $x_{n+1} = \frac{x_n}{2} + 
+\frac{1}{x_n}$ for all $n \in \N$. Show that $(x_n)_{n\in\N}$ converges and find its limit.}\\
+	 We will show $(x_n)$ converges via monotone convergence theorem\\
+	 \begin{itemize}
+	 	\item We will show that $(x_n)$ is bounded below by $\sqrt{2}$.  
+	 	Since $x_n = \frac{1}{2}(x_{n-1} + \frac{2}{x_{n-1}})$, then it is an arithmetic mean.  Therefore $x_n \geq \sqrt{\frac{2x_n}{x_n}} = \sqrt{2}$.  
+	 	\item We will show by induction that $(x_n)$ is monotonically decreasing.  
+	 	For $n=1$ we have that $x_1 = 2 > 1 + \frac{1}{2} = \frac{x_n}{2} + \frac{1}{x_n} = x_2$.  Therefore by the principle of mathematical induction the theorem holds for all cases up to $n$.  We want to show for $n+1$ that $x_{n+1} > x_n$.  Observe that
+	 	\begin{align*}
+	 		x_{n+1} &= \frac{1}{2}(x_{n} + \frac{2}{x_{n}})\\
+	 		&\leq \frac{1}{2}(x_{n} + \sqrt{2})\\
+	 		&\leq \frac{1}{2}(x_{n} + x_n)\\
+	 		&= x_n.
+	 	\end{align*}
+	 	Thus $x_n$ is monotonically decreasing.
+	 \end{itemize}
+	 Since $(x_n)$ is monotonically decreasing and bounded below then it converges.  
+	 We claim that $\sqrt{2}$ is it's limit.  Note that $\lim x_n = \lim x_{n+1} = \frac{x_n}{2} + \frac{1}{x_n}$.  Therefore the limit must satisfy it's own recurrence.
+	 Note that $x = \frac{x}{2} + \frac{1}{x}$ is solved by $x^2 = 2$.  Since $x_n$ is never negative then $x =\sqrt{2}$.  Thus $x_n \to \sqrt{2}$
+	  
+\end{enumerate}
+\end{document}
