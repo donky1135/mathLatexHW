@@ -100,6 +100,45 @@
 		we have from the previous inequality $\frac{1}{4} < \frac{a_n + 1 - a_{n+1}}{2}$ which yields $a_{n+1} < a_{n+1} + 1 < a_n$.  Therefore $(a_n)$ is decreasing.
 	\end{itemize}
 	Thus $(a_n)$ converges.  But to what?  Note that $\lim a_{n+1} = \lim a_n = \alpha$.  Thus by the order limit theorem $\alpha(1-\alpha) \geq \frac{1}{4}$.  This is equivalent to the inequality $(\alpha - \frac{1}{2})^2 \leq 0$.  Since $(\alpha - \frac{1}{2})^2 \geq 0$ then $(\alpha - \frac{1}{2})^2 = 0$.  Thus $\alpha = \frac{1}{2}$.  Therefore $\lim a_n = \frac{1}{2}$
-	\item 
+	\item Lemma: $x^3$ is an increasing function.  Suppose $x,y \in \R, x \leq y$.  Consider $y^3 - x^3$.  We want to show that $0 \leq y^3 - x^3$.  We can write $y^3 - x^3$ as $(y-x)(y^2 + xy + y^2)$.  Clearly $y - x \geq 0$.  We must show that $y^2 + xy + y^2$ is greater than 0.  It is trivially true if $x, y \geq 0$ or $x,y \leq 0$.  Therefore 
+	we must consider the case $x \leq 0 \leq y$.  Therefore $xy \leq 0$.  Thus $2xy \leq xy$.  Therefore 
+	$$
+		x^2 + xy + y^2 \geq x^2 + 2xy + y^2 = (x+y)^2 \geq 0	
+	$$
+	Therefore $0 \leq y^3 - x^3$, thus the cubic function on real numbers is increasing.  
+	\newline
+	We will show that the sequence converges by showing it is bounded and increasing:
+	\begin{itemize}
+		\item We will show that $(a_n)$ is increasing by induction.  Note that $a_1 = 0 \leq \frac{1}{2} = a_2$ for the base case.  Therefore by the principle of mathematical induction for all $k \in \N$ if $k \leq n$ then $a_{k-1}\leq a_k$.
+		Consider that $a_{n+1} = \frac{1}{3}(1 + a_n + a_{n-1}^3) \geq \frac{1}{3}(1 + a_{n-1} + a_{n-2}^3) = a_{n}$ as a 
+		consequence of the induction hypothesis and the fact that the cubic function is increasing.  
+		Thus $a_n \leq a_{n+1}$ 
+		\item We will show that for all $n \in \N, a_n \leq \frac{\sqrt{5}-1}{2}$ by induction.  Note that $0,\frac{1}{2} \leq \frac{\sqrt{5}-1}{2}$ thus 
+		the base case holds.  By PMI for all $k \in \N$ if $k \leq n$ then $a_k \leq \frac{\sqrt{5}-1}{2}$.  Note that 
+		$$ a_{n+1} = \frac{1}{3}(1+ a_n + a_{n-1}^3) \leq \frac{1}{3}(1 + \frac{\sqrt{5}-1}{2} + (\frac{\sqrt{5}-1}{2})^3) = \frac{1}{3}( \frac{12\sqrt{5}-12}{8}) = \frac{\sqrt{5}-1}{2}$$.  Thus $a_{n+1} \leq \frac{\sqrt{5}-1}{2}$.    
+	\end{itemize}
+	Thus $(a_n)$ converges by MCT.  Note that if $\alpha$ satisfies $\lim a_n = \alpha$ then $\alpha = \frac{1}{3}(1 + \alpha + \alpha^3)$.  Note that $\frac{\sqrt{5}-1}{2}$ is a solution of that equation.  Thus $\lim a_n = \frac{\sqrt{5}-1}{2}$.
+	\item
+	\begin{align*}
+		1 &= a + b + c + d\\
+		& \text{by the question definition}\\
+		 &= \sqrt{a+b}\frac{a}{\sqrt{a+b}} + \sqrt{b+c}\frac{b}{\sqrt{b+c}}\\ &+ \sqrt{c+d}\frac{c}{\sqrt{c+d}} + \sqrt{d+a}\frac{d}{\sqrt{d+a}}\\
+		&\leq \sqrt{\frac{a^2}{a+b} +\frac{b^2}{b+c} +\frac{c^2}{c+d} +\frac{d^2}{d+a}}\sqrt{2a+2b+2c+2b}\\
+		& \text{by Cauchy-Schwarz}\\
+		\frac{1}{\sqrt{2}} &\leq \sqrt{\frac{a^2}{a+b} +\frac{b^2}{b+c} +\frac{c^2}{c+d} +\frac{d^2}{d+a}}\\
+		\frac{1}{2} &\leq \frac{a^2}{a+b} +\frac{b^2}{b+c} +\frac{c^2}{c+d} +\frac{d^2}{d+a}
+	\end{align*}
+	thus the inequality holds.
+		
+	\item Note that 
+	\begin{align*}
+	\sum_{k=1}^n a_k b_k c_k &\leq \left(\sum_{k=1}^n a_k^3 \right)^{\frac{1}{3}}\left( \sum_{k=1}^n (b_k c_k)^{\frac{3}{2}} \right)^{\frac{2}{3}}\\
+	& \text{by H{\"o}lders inequality}\\
+	&= \left(\sum_{k=1}^n a_k^3 \right)^{\frac{1}{3}}\left( \sum_{k=1}^n b_k^{\frac{3}{2}} c_k^{\frac{3}{2}} \right)^{\frac{2}{3}}\\
+	&\leq \left(\sum_{k=1}^n a_k^3 \right)^{\frac{1}{3}} \left(\sqrt{ \sum_{k=1}^n b_k^3 } \sqrt{\sum_{k=1}^n c_k^3 }\right)^{\frac{2}{3}}\\
+	& \text{by Cauchy-Schwarz}\\
+	&= \left(\sum_{k=1}^n a_k^3 \right)^{\frac{1}{3}}\left(\sum_{k=1}^n b_k^3 \right)^{\frac{1}{3}}\left(\sum_{k=1}^n c_k^3 \right)^{\frac{1}{3}}
+	\end{align*}
+	thus the inequality holds.  
 \end{enumerate}
 \end{document}
