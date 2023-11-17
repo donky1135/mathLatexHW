@@ -1,0 +1,174 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Suppose $\epsilon	> 0$.  Then there exists $N_\epsilon \in \N$ such that $\frac{1}{3}\left(\frac{7}{3\epsilon} + 2\right) < N_\epsilon$.  Therefore for $n \geq N_\epsilon$
+		\begin{align*}
+		\left| \frac{2n+1}{3n-2} - \frac{2}{3}\right| &= \left| \frac{6n+3 - 6n + 4}{3(3n-2)} \right|\\
+		&= \frac{7}{3(3n-2)}\\
+		&< \epsilon
+		\end{align*}
+		\item Suppose $\epsilon	> 0$.  Then there exists $N_\epsilon \in \N$ such that $\frac{2}{\epsilon} < N_\epsilon$.  Therefore for $n \geq N_\epsilon$
+		\begin{align*}
+			\left| \frac{2n}{n^2+1} \right| &< \frac{2n}{n^2}\\
+			&= \frac{2}{n}\\
+			&< \epsilon
+		\end{align*}
+		\item Suppose $\epsilon	> 0$.  Then there exists $N_{\epsilon,1,1} \in \N$ such that  for all $n \geq N_{\epsilon,1,1}$, $\frac{n^1}{(1+1)^n} < \epsilon$ by the inequalities on slide 3 of the lecture 8 slides.  Thus
+		$|\frac{n}{2^n}| < \epsilon$.
+		\item Suppose $\epsilon	> 0$.  Then there exists $N_\epsilon \in \N$ such that $\frac{2}{N_\epsilon} < \epsilon$.  Therefore for $n \geq N_\epsilon$ 
+		\begin{align*}
+		\left| \frac{n^2 - 3n + 1}{2n^2 + n + 1} - \frac{1}{2} \right| &= \left| \frac{-7n+1}{2(2n^2 + n + 1)} \right|\\
+		&< \left|\frac{1-7n}{4n^2}\right|\\
+		&= \frac{7n-1}{4n^2}\\
+		&= \frac{7}{4n} - \frac{1}{n^2}\\
+		&< \frac{7}{4n} + \frac{1}{4n}\\
+		&=\frac{2}{n}\\
+		&< \epsilon.
+		\end{align*}
+		\item Suppose $\epsilon	> 0$.  Then there exists $N_{\epsilon,8,2010} \in \N$ such that  for all $n \geq N_{\epsilon,8,2010}$, $\frac{n^{2010}}{(1+8)^n} < 2\epsilon$ by the inequalities on slide 3 of the lecture 8 slides.  Thus 
+		\begin{align*}
+			\left| \frac{3^n}{\sqrt{9^n+ n^{2010}}} - 1\right| 
+			&= 	\left| \frac{3^n - \sqrt{9^n+ n^{2010}}}{\sqrt{9^n+ n^{2010}}} \right| \\  
+			&< \left| \frac{3^n - \sqrt{9^n+ n^{2010}}}{3^n} \right| \\
+			&= \left|1 - \sqrt{1 + \frac{n^{2010}}{9^n}}\right|\\
+			&= \sqrt{1 + \frac{n^{2010}}{9^n}} - 1\\
+			&\leq 1 + \frac{n^{2010}}{2\cdot9^n} - 1 \text{ bernoulli inequality}\\
+			&< \epsilon
+		\end{align*}
+	\end{enumerate}
+	\begin{enumerate}
+	\item 
+	\begin{align*}
+		\lim_{n \to \infty} \frac{5n^4 + n^2 -6}{3n^4 + 7} &= \lim_{n \to \infty} \frac{5 + \frac{1}{n^2} - \frac{6}{n^4}}{3 + \frac{7}{n^4}}\\
+		&= \frac{5 + 0 - 6\cdot 0 }{3 + 7 \cdot 0}\\
+		&= \frac{5}{3}
+	\end{align*}
+	\item Note that $0 < \frac{\sqrt[3]{n}}{1 + \sqrt{n}} < n^{\frac{-1}{6}}$.  Since $\lim_{n \to \infty} n^{\frac{-1}{6}} = 0$ (using the theorem on slide 3 of lecture slides 8) then by the squeeze theorem $\lim_{n \to \infty} \frac{\sqrt[3]{n}}{1 + \sqrt{n}} = 0$
+	\iffalse \begin{align*} 
+		\lim_{n \to \infty} \frac{\sqrt[3]{n}}{1 + \sqrt{n}} &= \lim_{n \to \infty} \frac{1}{n^{-\frac{1}{3}} + n^{\frac{1}{6}}}\\
+		&= 0 \text{ since } n^\frac{1}{6} \text{ goes to } \infty
+	\end{align*}
+	\fi 
+	\item Note that $\frac{2^7 n^{\frac{7}{2}}}{n^3(1+7\sqrt{n+2})} < \frac{(\sqrt{n+1} +\sqrt{n})^7}{n^3(1+ 7 \sqrt{n+2})} < \frac{(\sqrt{n+1} + \sqrt{n})^7}{7 n^\frac{7}{2}}$.  Thus we will show be squeeze theorem that
+	they both converge to $\frac{2^7}{7}$.  First, 
+	\begin{align*}
+		\lim_{n \to \infty} \frac{2^7 n^{\frac{7}{2}}}{n^3(1+7\sqrt{n+2})} &= \lim_{n \to \infty} \frac{2^7}{n^{-\frac{1}{2}} + 7\sqrt{1 + \frac{2}{n}}}\\
+		&= \frac{2^7}{7}.
+	\end{align*}
+	Second, 
+	\begin{align*}
+		\lim_{n \to \infty} \frac{(\sqrt{n+1} + \sqrt{n})^7}{7 n^\frac{7}{2}} &= \lim_{n \to \infty} \frac{1}{7}\left(\sqrt{1 + \frac{1}{n}} + 1\right)^7\\
+		&= \frac{2^7}{7}
+	\end{align*}
+	Thus by squeeze theorem $\lim_{n \to \infty} \frac{(\sqrt{n+1} +\sqrt{n})^7}{n^3(1+ 7 \sqrt{n+2})} = \frac{2^7}{7}$
+	\item 
+	\begin{align*}
+		\lim_{n \to \infty} \frac{\sqrt{3^n + 2^n}}{\sqrt{3^n + 1}} &=
+		\lim_{n \to \infty} \frac{\sqrt{1 + \left(\frac{2}{3}\right)}}{\sqrt{1 + 3^{-n}}}\\
+		&= \frac{\sqrt{1 + 0}}{\sqrt{1 + 0}}\\
+		&= 1
+	\end{align*}
+	\item 
+	\begin{align*}
+		\lim_{n \to \infty} \frac{7n + (\sqrt[3]{n}\sqrt[6]{n})\sqrt{9n+1}}{11n^3 + 7n + 3} &=\lim_{n \to \infty} \frac{7n + \sqrt{9n^6 + n^5}}{11n^3 + 7n + 3}\\
+		&=\lim_{n \to \infty} \frac{\frac{7}{n^2} + \sqrt{9 + \frac{1}{n}}}{11 + 7\frac{1}{n^2} + \frac{3}{n^3}}\\
+		&= \frac{3}{11}
+	\end{align*}
+	\end{enumerate}
+	\begin{enumerate}
+		\item
+		\begin{align*}
+			\lim_{n \to \infty} \frac{1-2+3-4+\cdots-2n}{\sqrt{n^2+2}} 
+			&= \lim_{n \to \infty} \frac{\sum_{i=1}^{2n} (-1)^{i+1}i}{\sqrt{n^2+2}}\\
+			&= \lim_{n \to \infty} \frac{\sum_{i=1}^{n} (2n-1)-2n}{\sqrt{n^2+2}}\\
+			&= \lim_{n \to \infty}\frac{-n}{\sqrt{n^2+2}}\\
+			&= \lim_{n \to \infty} \frac{-1}{1 + \frac{2}{n^2}}\\
+			&= \frac{-1}{\sqrt{1 + 0}}\\
+			&=-1
+		\end{align*}
+		\item 
+		\begin{align*}
+		\lim_{n \to \infty} \frac{3^0+3^1+3^2+\cdots+ 3^n}{3^n} &= \lim_{n \to \infty} \frac{\sum_{i=0}^n 3^i}{3^n}\\
+		&= \lim_{n \to \infty} \frac{1}{3^n} \frac{3^{n+1}-1}{2}\\
+		&= \lim_{n \to \infty} \frac{3}{2}-{3}^{-n}\\
+		&= \frac{3}{2}
+		\end{align*}
+		\item 
+		\begin{align*}
+			\lim_{n \to \infty} \frac{1 + 2 + \cdots + n}{n} &= \lim_{n \to \infty} \frac{n(n+1)}{2n^2}\\
+			&= \lim_{n \to \infty} \frac{n+1}{2n}\\
+			&= \lim_{n \to \infty} \frac{1}{2} + \frac{1}{2n}\\
+			&= \frac{1}{2}
+		\end{align*}
+		\item Note that $\frac{1}{n^2} + \frac{1}{n^2+1} + \cdots + \frac{1}{(n+1)^2} = \sum_{i=0}^{2n+1} \frac{1}{n^2+i}$ and $ \sum_{i=0}^{2n+1} \frac{1}{n^2+2n+1} \leq \sum_{i=0}^{2n+1} \frac{1}{n^2+i}\leq \sum_{i=0}^{2n+1} \frac{1}{n^2}$.  We will show that both of the limits go to 0:
+		\begin{align*}
+			\lim_{n \to \infty} \sum_{i=0}^{2n+1} \frac{1}{n^2+2n+1} &= \lim_{n \to \infty} \frac{2n+2}{n^2 + 2n + 1}\\
+			&= \lim_{n \to \infty} \frac{\frac{2}{n} + \frac{2}{n^2}}{1 + \frac{2}{n} + \frac{1}{n^2}}\\
+			&= \frac{0 + 0}{1 + 0 + 0}\\
+			&= 0
+		\end{align*}
+		\begin{align*}
+			\lim_{n \to \infty} \sum_{i=0}^{2n+1} \frac{1}{n^2} &= \lim_{n \to \infty} \frac{2n+2}{n^2}\\
+			&= \lim_{n \to \infty} \frac{2}{n} + \frac{2}{n^2}\\
+			&= 0 + 0\\
+			&= 0
+		\end{align*}
+		\item Note by part (d) on slide 3 of lecture slides 8 that for $\alpha \in \R, x \in \N$ that $\lim_{n \to \infty} \frac{n^\alpha}{(1+x)^\alpha} = 0$.
+		Therefore since $2 \in \N$ and $100 \in \N$ then $\lim_{n \to \infty}\frac{n^{100}}{(1+2)^n}  = 0$.  Thus $\lim_{n \to \infty} \frac{n^{100}}{3^n} = 0$.
+	\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item Note that for all $a,b \in \R$, $(a-b)^2 \geq 0$, thus $a^2 + b^2 \geq 2ab$.  Thus $(a+b)^2 = a^2 + 2ab + b^2 \leq 2a^2 + 2b^2$.
+		\item Note that $\frac{1}{2}(\frac{1}{a} + \frac{1}{b}) \geq \frac{2}{a + b}$.  Therefore $\frac{1}{a} + \frac{1}{b} \geq \frac{4}{a + b}$.
+		\item Note that by AM-GM, we have that $\left(\frac{a+b}{2}\right)\geq \sqrt{ab},\left(\frac{b+c}{2}\right)\geq \sqrt{bc},\left(\frac{c+a}{2}\right)\geq \sqrt{ca}$.  Therefore if we consider their product we have the inequality 
+		$\frac{1}{8} (a+b)(b+c)(c+a) \geq \sqrt{ab} \sqrt{bc} \sqrt{ca} = abc$.
+		Thus $(a+b)(b+c)(c+a) \geq 8abc$.
+		\item Note that $\frac{1}{3}\left(\frac{a+b}{c} + \frac{b+c}{a} + \frac{c+a}{b}\right) \geq \sqrt[3]{\frac{(a+b)(b+c)(c+a)}{abc}}$ by AM-GM.
+		Furthermore by the previous problem we know that $(a+b)(b+c)(c+a) \geq 8abc$.	Thus $\frac{1}{3}\left(\frac{a+b}{c} + \frac{b+c}{a} + \frac{c+a}{b}\right) \geq 2$.  Thus  $\frac{a+b}{c} + \frac{b+c}{a} + \frac{c+a}{b} \geq 6$.
+		\item We know by AM-GM that $\sqrt[3]{abc} \leq \frac{1}{3}(a+b+c),\sqrt[3]{bcd} \leq \frac{1}{3}(b+c+d),\sqrt[3]{cda} \leq \frac{1}{3}(c+d+a),\sqrt[3]{dab} \leq \frac{1}{3}(d+a+b)$.  Thus their sum yields 
+		$$
+		\sqrt[3]{abc}+\sqrt[3]{bcd}+\sqrt[3]{cda} + \sqrt[3]{dab} \leq a + b + c+d
+		.$$
+	\end{enumerate}
+\end{enumerate}
+\end{document}

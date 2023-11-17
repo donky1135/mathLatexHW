@@ -1,0 +1,76 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 5\\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let $(W,\leq)$ be a linearly order set.  
+	\begin{itemize}
+		\item  $\Rightarrow$ Suppose $W$ is well ordered.  We want to show that there does not 
+		exists a descending chain.  Suppose for contradiction that there is a sequence $(w_n)_{n \in \N}$ where $w_n > w_{n+1}$.  Since $W$ is well order than 
+		$\min (w_n)$ exists.  Since $(w_n)$ has a minimum then there exists 
+		$n' \in \N$ such that for all $n \in \N, w_{n'} \leq w_n$.  Note that 
+		$w_{n'+1} < w_{n'}$ by the definition of $(w_n)$.  Therefore $w_{n'+1} < w_{n'}$ and $w_{n'+1} \geq w_{n'}$.  This is a contradiction.  Therefore a descending chain does not exists.  
+		\item $\Leftarrow$ Suppose $W$ is not well ordered.  We want to show that there exists 
+		a descending chain.  Since $W$ is not well ordered then there exists a set
+		$S$ where $S \neq \emptyset, S \subseteq W$ where $\min S$ does not exists.  Since $S$ is nonempty then there exists $x_1 \in S$.  Note that $\min \{x_1\}$ exists, therefore there exists $x_2 \in S$ such that $x_2 < x_1$.  Therefore by induction $\{x_1,\cdots,x_n\} \subset S$, since $\min \{x_1,\cdots,x_n\}$ exists.  Therefore there exists $x_{n+1} \in S$ such that $x_{n+1} < x_n$.  Therefore by induction we have constructed a descending chain.  
+	\end{itemize}
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item
+	\begin{enumerate}
+		\item We claim that $card((\{0,1\}^\N)^\N) = card(\{0,1\}^{\N\times \N})$.
+		Note that $(\{0,1\}^\N)^\N$ is the set of of sequences of infinite binary sequences.  Therefore for a given $f \in (\{0,1\}^\N)^\N$ we have that $f(n) = (b_{nk})_{ k\in \N}$ for all $n \in \N$.  If we define $g:(\{0,1\}^\N)^\N) \to \{0,1\}^{\N\times \N}$ by $g(f) = (b_{nk})_{(n,k) \in \N^2}$, then this is clearly a bijection.  Thus $card((\{0,1\}^\N)^\N) = card(\{0,1\}^{\N\times \N})$.
+		Therefore: $$card(\R^\N) = card((\{0,1\}^\N)^\N) = card(\{0,1\}^{\N\times \N}) = card(\{0,1\}^{\N}) = card(\R)$$.    
+		\item Let $S$ be some countable set, and let $X = \{S^n : n \in \N\}$.  We want to show that $X$ is countable.  
+		Note that $S$ is countable, and therefore $S^n$ is countable by slide 22 of lecture 14.  Since $S^n$ and $\N$ is countable, then $\bigcup_{n \in \N}^\infty S^n$ is countable.  Since $\bigcup_{n=1}^\infty S^n = X$, then we're done.  
+		\item Note that a polynomial is uniquely determined by it's coefficients.
+		Therefore the set of polynomials over $\Z$ has the same cardinality as all of the finite integer sequences  Thus $card(\Z[x]) = card(\{\Z^n: n \in \N\}).$  
+		Since $\{\Z^n: n \in \N\}$ is countable then $\Z[x]$ is countable
+		\item Note that since $\Z[x]$ is countable and for $p \in \Z[x]$ the set
+		$r(p) = \{p(x) = 0 : x \in \C \}$ is finite, then $\bigcup_{p \in \Z[x]} r(p)$ is countable.  Note that this is exactly the set of algebraic numbers.  Additionally  \\ 
+		\item 
+	\end{enumerate}
+\end{enumerate}
+\end{document}

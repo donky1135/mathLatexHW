@@ -1,0 +1,83 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{451 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 6\\
+	451	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[7.3] Since we want to find the number of elements of order 5, and since the largest power of 5 that divides 10 is 5 then we can apply the third sylow theorem.  Let $s$ be the number of $5$-Sylow groups.  Then by the third $p$-sylow theorem $s \mid 2$ and $s \equiv 1 \mod 5$.  Therefore
+	only 1 satisfies the equation.  Since $5$ is prime then our group is cyclic.  Thus every element aside from the identity is of order 5.  Thus our 
+	group has 4 elements of order 5. 
+	\item[7.5]
+	\begin{enumerate}
+		\item
+		\item 
+		\item 
+		\item 
+	\end{enumerate}
+	\item[7.6] We claim that $<(1234567),(124)(356)> = G$ is a non-abelian subgroup of order 21.  Note that our generators are of orders 7 and 3 respectively.  Additionally, in our non-abelian group by the third p-sylow theorem $<(1234567)>$ must be normal and $<(124)(356)>$ is not.  This is demonstrated by the fact that $(124)(356)(1234567)(142)(365) = (1357246) = (1234567)^2$, which was shown in artin to be the requirement on being in the 
+	non-abelian isomorphism class of groups of order 21.  
+	\item[7.7] We know by orbit stabilizer that for the action of conjugation by elements of $H$ on a given $s \in S$ satisfies $|H| = |C_H(s)||N_H(s)|$, where $C_H(s)$ is the conjugacy class of $s$ by elements of $H$ and 
+	$N_H(s)$ is the normalizer of $s$ by elements in $h$.  Recognizing 
+	that $|H| = p$ by construction gives us that either $|C_H(s)| = 1$ or $|C_H(s)| = 1$.  What does this say?  Either $s$ is fixed by $H$ or $s$ 
+	after being conjugated by all elements of $H$ forms a cycle since $H$ 
+	is isomorphic to $C_p$ then we can conjugate by successive powers of the generator of $H$ until we return to the original element $s$.    
+	\item[7.8] 
+	\begin{itemize}
+		\item The order of $GL_n(F_p)$ is $\prod_{i=0}^{n-1}(p^n - p^i)$.  This is obtained by considering the rows of a given matrix with $F_p$ entries.  Note that the first row can be any element in $F_p^n$ except the 0 vector.  Thus the first row has $p^n-1$ possibilities.  Going a row down
+		one can note that every element in $F_p^n$ satisfies except the 0 vector and the multiples of the first row.  Thus there are $p^n-p$ options 
+		for the second.  For the $i$th row one has to consider that 
+		any linear combination of the first $i-1$ rows.  Since there are 
+		$i-1$ rows being multiplied by any element in $F_p$, then the $i$th row has $p^n-p^{i-1}$.  Thus since there are $n$ rows, $|GL_n(F_p)| = \prod_{i=1}^{n}(p^n - p^{i-1}) = \prod_{i=0}^{n-1}(p^n - p^i)$    
+		\item Note that $\prod_{i=0}^{n-1}(p^n - p^i) = p^{\frac{n(n-1)}{2}}\prod_{i=0}^{n-1}(p^{n-i}-1)$.  Thus the $p$-sylow subgroups of $GL_n(F_p)$ are
+		of order $p^{\frac{n(n-1)}{2}}$.  We claim that the subgroup of unitriangular matrices (the set of upper triangular matrices with 1s in the diagonal) is a $p$-sylow subgroup.  Note that the determinate of all unitriangular matrices is 1, so it is within $GL_n(F_p)$.  Additionally there are $\frac{n(n-1)}{2}$ entries with $p$ possible values per, so the subgroup has order $p^{\frac{n(n-1)}{2}}$.  Thus we have found a p-sylow subgroup.
+		\item Since we want to find the number of $p$-sylow subgroups, and
+		we know the subgroup of unitriangular matrices is a member, we need
+		to find the number of conjugates.  Let $U$ be the set of unitriangular matrices.  We know by orbit stabilizer that $|GL_n(F_p)| = |N(U)||C(U)|$.  We know from problem 7.6.2 that the normalizer of unitriangular matrices is the group of upper triangular matrices.  
+		Since upper triangular matrices have $\frac{n(n-1)}{2}$ entries above the diagonal that can take on $p$ values and $n$ entries along on the diagonal which can take on $p-1$ values (we exclude 0 to ensure the matrices remain inveritble).   Thus $|N(U)| = (p-1)^n p^{\frac{n(n-1)}{2}}$.  
+		Therefore $|C(U)| = \frac{1}{(p-1)^n} \prod_{i=0}^{n-1}p^i - 1$
+	\end{itemize}
+	\item[7.9]
+	\begin{enumerate}
+		\item By the third $p$-sylow theorem, if we consider $s_p$ as the
+		number of $p$-sylow groups, then $11 \mid s_3, s_3 \equiv 1 \mod{3}$ 
+		and $3 \mid s_{11}, s_{11} \equiv 1 \mod{11}$ is only solved by $s_3 = s_{11} = 1$.  Thus they must be normal.  Since they are of prime order 
+		then they are isomorphic to $\Z_3$ and $\Z_{11}$ respectively.
+		Thus by the chinese remainder theorem $\Z_3 \times \Z_{11} \simeq \Z_{33}$.  Thus all groups of order $33$ are isomorphic to $\Z_{33}$.
+		\item 
+	\end{enumerate}
+\end{enumerate}
+\end{document}
