@@ -56,6 +56,14 @@
 	\item 
 	\item 
 	\item 
+	\begin{itemize}
+		\item We will show that $\Phi: \Po(\N) \to \R$ given by $\Phi(A) = \sum_{n \in A} \frac{2}{3^n}$ is an injection.
+		Suppose $A,B \in \Po(\N), A\neq B$.  Since $A \neq B$ then the symmetric difference $A \Delta B$ is nonempty.  
+		Since $A \Delta B \subseteq \N$, then $A \Delta B$ has a minimal element.  Let this element be denoted $m$, and 
+		WLOG assume $m \in A$.  If we consider $\Phi(A) - \Phi(B) = \sum_{n \in A} \frac{2}{3^n}-\sum_{n \in B} \frac{2}{3^n} = \sum_{n \in A\backslash [m-1]} \frac{2}{3^n} - \sum_{n \in B\backslash [m-1]} \frac{2}{3^n}$ since $A$ and $B$
+		must share every element less than $m$, otherwise contradicting $m$ is the smallest element in $A \Delta B$.
+		Note that we can bound the difference below by considering $\sum_{n \in A \backslash [m-1]} \frac{2}{3^n} \geq \frac{2}{3^m}, -\sum_{n \in B \backslash [m-1]}\frac{2}{3^n}\geq -\sum_{n \in \N \backslash [m-1]}\frac{2}{3^n}$
+	\end{itemize}
 	\item 
 	\item 
 	\item
@@ -69,8 +77,10 @@
 		Therefore the set of polynomials over $\Z$ has the same cardinality as all of the finite integer sequences  Thus $card(\Z[x]) = card(\{\Z^n: n \in \N\}).$  
 		Since $\{\Z^n: n \in \N\}$ is countable then $\Z[x]$ is countable
 		\item Note that since $\Z[x]$ is countable and for $p \in \Z[x]$ the set
-		$r(p) = \{p(x) = 0 : x \in \C \}$ is finite, then $\bigcup_{p \in \Z[x]} r(p)$ is countable.  Note that this is exactly the set of algebraic numbers.  Additionally  \\ 
-		\item 
+		$r(p) = \{p(x) = 0 : x \in \R \}$ is finite, then $\bigcup_{p \in \Z[x]} r(p)$ is countable.  Note that this is exactly the set of algebraic numbers.  Additionally, since we've found a countable subset of the real numbers, then 
+		there are an uncountable number of numbers not in our set.  Thus real algebraic numbers exists \\ 
+		\item Suppose for contradiction that there is a finite number of prime numbers.  Let the set of primes be denoted
+		$\{p_1,\cdots,p_n\}$.  Consider the number $l = 1 + \prod_{i=1}^n p^i$.  Note that for each prime $p_i, l \equiv 1 \mod{p_i}$.  Thus $l$ is divisible by none of the prime numbers.  Since $l$ can't be divide by primes, it can't be divide by the product of any of the primes.  Thus $l$ is only divisible by 1 and itself.  Thus $l$ is prime.  This contradicts the fact that  $\{p_1,\cdots,p_n\}$ is the set of all primes.  Thus there is an infinite number of primes.
 	\end{enumerate}
 \end{enumerate}
 \end{document}
