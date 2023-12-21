@@ -1,0 +1,107 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{451 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 8\\
+	451	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6.7]
+	\begin{itemize}
+		\item We want to show that $(2) \cap (x) = (2x)$.  Suppose $a \in (2) \cap (x)$.  Then there exists $b,c \in \Z[x]$ such that $bx = a, 2c = a$.  From the second equivalence of a we know that $2 \mid a$.  Therefore $2 \mid cx$.  By 
+		Euclid's lemma we have that $2 \mid c$ or $2 \mid x$.  Since $2 \nmid x$
+		then $2 \mid c$.  Thus there exists $d \in \Z[x]$ such that $a = 2xd$.  
+		Thus $a \in (2x)$.  The other direction is trivial.  Thus $(2) \cap (x) = (2x)$.  
+		\item Consider the map $\phi : \Z[x] \to F_2 [x] \times \Z$ given by 
+		$\varphi(f) = (f \mod{2}, f(0))$.  Note that $\ker \varphi$ is all of the 
+		polynomials which are both divisible by 2 and have x as a factor.  This 
+		is exactly $(2) \cap (x) = (2x)$, the ideal mentioned above.  Since the 
+		projection from $\Z[x] \to \Z[x]/(2x)$ is surjective, then by the first 
+		isomorphism theorem for rings we have that $\Z[x]/(2x) \cong im \varphi$.
+		Additionally $im \varphi$ satisfies the requirements put forward in the 
+		question since trivially if $f(0) = n$ then $\overline{f}(0) \equiv n \mod{2}$, since $n \equiv \overline{n} = \overline{f}(n)$.  
+	\end{itemize}
+	\item[7.1] Let $D$ be a finite integral domain.  Suppose for contradiction 
+	that $D$ is not a field.  Then there exists $a \in D$ where $a$ is not a unit,
+	$a \neq 0$.
+	Then $aD \subset D$, otherwise there would exists $d \in D$ where $ad = 1$, 
+	contradicting the fact that $a$ is not a unit.  Since $D$ is finite and $aD$
+	is not injective then there exists $b,c \in D$ where $b \neq c, ab = ac$.
+	Therefore $a(b-c) = 0$.  Since $D$ is a domain and  $a \neq 0$ then $b-c =0$.
+	This contradicts the fact that $b \neq c$, therefore $D$ is a field.
+	\item[7.2] Let $R$ be a domain.  We will show that $R[x]$ is a domain.  
+	Suppose for contradiction that $R[x]$ is not a domain.  Then there exists
+	$p,q \in R[x], p(x)q(x) = 0$.  Since $p,q\in R[x]$ then $p(x) = \sum_{i=0}^n p_i x^i, q(x) = \sum_{i=0}^m q_i x^i$.  Therefore $p_n q_m x^{n+m} = 0$.  This implies that $p_n q_m = 0$.  Since $p,q$ are of degree $n,m$ respectively then 
+	their leading coefficients must be non-zero.  This contradicts the fact that 
+	$R$ is a domain.  
+	\item[8.1] We will work by cases:
+	\begin{itemize}
+		\item $(1) = \Z[x]$, and $n \neq 1, (n) \subset (n,x) \subset \Z[x]$, 
+		since $(n,x)$ does no contain 1, and entirely contains $(n)$.
+		\item Consider $p(x) \in \Z[x]$.  There must exists $r \in \Z$ where 
+		$p(r) \neq -1,0,1$.  Then for any $q(x) \in (p(x),p(r))$, then $p(r)/q(x)$.
+		Thus $1 \not \in (p(x),p(r))$.
+	\end{itemize}
+	Thus no principle ideal of $\Z[x]$ is maximal.  (credit to brian bi)
+	
+	
+	\item[8.4] We know that the maximal ideals of $\R[x]$ are the irreducible 
+	elements of $\R[x]$.  Additionally we have the fact that the only irreducible 
+	polynomials in $\R[x]$ are of degree 1 or 2.  Therefore we have trivially 
+	that there is a bijective correspondence between the polynomials of degree one
+	and the real line.  We must look to the quadratic polynomials.   The degree 2
+	polynomials which are irreducible over $\R$ factor over $\C$.  Since they 
+	factor over $\C,$ then they have a complex root.  Consider $p(x) \in \R[x], 
+	deg(p) = 2, \alpha \in \C, p(\alpha) = 0$.  Since $p \in \R[x]$, then it is 
+	invariant under complex conjugation, giving us that $\bar{p(x)} = p(\bar{x})$.  Thus 
+	$\bar{\alpha}$ is the second root of $p(x)$, and $p(x) = (x-\alpha)(x-\bar{\alpha})$.  Therefore we can uniquely associate each degree two polynomial to 
+	a point in the upper half plane, since it is entirely defined by that single root and it's conjugate.  
+	\item[9.1] Consider the ideal $I = (y^2 + x^3 - 17)$ and the quotient ring 
+	$R = \C[x,y]/I$.  
+	\begin{itemize}
+		\item The ideal $(x-1,y-4)$ is maximal since by the theorem 11.9.1 in the textbook, $(x-1,y-4)$ corresponds with the point $(1,4)$, which satisfies $1 + 16 - 17 = 0$, thus the ideal is maximal in $R$
+		\item $(x+1,y+4)$ is not maximal since $-1 + 16 - 17 \neq 0$,  thus 
+		the ideal does not correspond to a point on the curve $y^2 = 17 - x^3$
+		\item The ideal $(x^3 - 17,y^2)$ is not maximal since the zeros of $x^3 - 17$ in $\C$ are $\{\sqrt[3]{17}\omega^n: n \in \N \}$ where $\omega$ is the third 
+		root of unity.  Thus it is not maximal since it has a correspondence with 
+		3 points instead of 1.  
+	\end{itemize}
+	\item[9.5] Suppose $V$ is the variety for a set of polynomials $\{f_1,\cdots,f_r\}$, and that $I = (f_1,\cdots,f_r)$.  Suppose $x \in V$.  Then 
+	for every $p(x) \in I$, it is a linear combination of polynomials which are all 
+	zero at $x$.  Thus $p(x) = 0$.  Suppose $x \in \C^n$ has the property that
+	for all $p \in I, p(x) = 0$.  Then it is true for the generators that $f_i(x) = 0$ for all $i \in [r]$.  Thus $x \in V$.  Therefore $V$ and $I$ depend on just each 
+	other.   
+\end{enumerate}
+\end{document}

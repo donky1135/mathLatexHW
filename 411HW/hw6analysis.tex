@@ -1,0 +1,218 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 6\\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+	Lemma: Suppose $f: (a,b) \to \R$ is differentiable.  Then $f$ is lipschitz 
+	if and only if $f'(x) < \infty$ for all $x \in (a,b)$
+	\begin{itemize}
+		\item Suppose $f$ is lipschitz, differentiable.  Since $f$ is lipschitz, 
+		then there exists $c \in \R$ such that $|f(x) - f(y)| \leq L|x-y|$ 
+		for all $x,y \in (a,b)$.  Then if we consider $x\neq y$ then we have 
+		a bound on the quotient function for $f$: 
+		$$
+		\left| \frac{f(x) - f(y)}{x-y} \right| \leq L
+		$$
+		Therefore for a point $p \in (a,b)$ we can choose $x = p+h, y = p$, and 
+		take the limit as $h \to 0$.  
+		$$
+		\lim_{h \to 0} \left| \frac{f(p+h) - f(p)}{h} \right| \leq L.
+		$$
+		Note that for every $h$, the quotient function satisfies the inequality,
+		thus in the limit by the limit order theorem we have 
+		that $|f'(p)| \leq L$.  Thus $f'$ is bounded on $(a,b)$.
+		\item Suppose $f'$ is bounded.  
+		Then for all $x \in (a,b), |f'(x)| \leq M$.  We will show that $f$ is 
+		Lipschitz.  Suppose $l,r \in (a,b)$.  Then we know by the mean value 
+		theorem that there exists $q \in (l,r)$ such that $\frac{f(r) - f(l)}{l -r} = f'(q)$.  Thus $\left|\frac{f(r) - f(l)}{r -l} \right| = |f'(q)| \leq M$.
+		Thus $|f(r) - f(l) | \leq M|l-r|$, giving us that $f$ has lipschitz 
+		constant $M$.  
+		
+	\end{itemize}
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item 
+		\begin{align*}
+			\sum_{n=0}^\infty \frac{1}{(3n-2)(3n+1)} &= \frac{1}{3}\left(\sum_{n=0}^\infty \frac{1}{3n-2} -\sum_{n=0}^\infty \frac{1}{3n+1}\right)\\
+			&= \lim_{s \to \infty }\frac{1}{3}\left(\sum_{n=0}^s \frac{1}{3n-2} -\sum_{n=0}^s \frac{1}{3n+1}  \right)\\
+			&= \lim_{s \to \infty } \frac{1}{3}\left(\sum_{n=1}^s \frac{1}{3n-2} -\sum_{n=0}^{s-1} \frac{1}{3n+1} -\frac{1}{2} - \frac{1}{3s+1} \right)\\
+			&= \lim_{s \to \infty } \frac{1}{3}\left(\sum_{m=0}^{s-1} \frac{1}{3m+1} -\sum_{n=0}^{s-1} \frac{1}{3n+1} -\frac{1}{2} - \frac{1}{3s+1} \right)\\
+			&= \lim_{s \to \infty } \frac{-1}{3}\left( \frac{1}{2} + \frac{1}{3s+1}\right)\\
+			&= \frac{-1}{6}
+		\end{align*}
+		Thus $\sum_{n=1}^\infty \frac{1}{(3n-2)(3n+1)} = \sum_{n=0}^\infty \frac{1}{(3n-2)(3n+1)} - \left( \frac{-1}{2} \right) = \frac{1}{2} - \frac{1}{6}
+		= \frac{1}{3}$
+		\item 
+		\begin{align*}
+			\sum_{n=1}^\infty \frac{2n+1}{n^2(n+1)^2} &= 
+			\sum_{n=1}^\infty \frac{1}{n^2} - \frac{1}{(n+1)^2}\\
+			&= \lim_{s \to \infty} \sum_{n=1}^s\frac{1}{n^2} - \frac{1}{(n+1)^2}\\
+			&= \lim_{s \to \infty} \sum_{n=1}^s\frac{1}{n^2} -\sum_{n=1}^s\frac{1}{(n+1)^2}\\
+			&= \lim_{s \to \infty} 1 + \sum_{n=2}^s\frac{1}{n^2} - \frac{1}{(s+1)^2}- \sum_{n=1}^{s-1}\frac{1}{(n+1)^2}\\
+			&=\lim_{s \to \infty} 1 - \frac{1}{(s+1)^2} + \sum_{n=2}^s\frac{1}{n^2}- \sum_{m=2}^{s}\frac{1}{(m)^2}\\
+			&= \lim_{s \to \infty} 1 - \frac{1}{(s+1)^2}\\
+			&= 1
+ 		\end{align*}
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Clearly $\lim \frac{\sqrt{n}}{2\sqrt{n} - 1} = \frac{1}{2}$.  
+		Thus the series does not converge
+		\item Note that for $n \geq 3, n^3 - 5n + 1 \leq n^3$.  
+		Thus $\frac{n^2}{n^3-5n+1}\geq \frac{1}{n}$.  Since $\sum_{n=0}^\infty \frac{1}{n}$ diverges then the sum diverges.
+		\item Note that $\sqrt{n^2 + 1} - n = \frac{n^2 + 1 - n^2}{\sqrt{n^2 + 1} + n} = \frac{1}{\sqrt{n^2 + 1} + n}$.  Additionally $(\sqrt{2}+1)n = \sqrt{n^2 + n^2} + n \geq \sqrt{n^2+1}+n$.
+		Therefore $\frac{1}{(\sqrt{2}+1)n} \leq \frac{1}{\sqrt{n^2 + 1} + n}$.
+		Thus the sum diverges since $\sum \frac{1}{(\sqrt{2}+1)n}$ diverges.
+		\item Note that by the ratio test $\lim \frac{2022 \cdot 2022^n}{(n+1)!} \frac{n!}{2022^n} = \lim \frac{2022}{n+1} = 0$, which being less than 1 ensures
+		that the sum will converge.  
+		\item Note that $\sqrt{n} + n \leq n + n$.  Thus 
+		$\frac{1}{2n} \leq \frac{1}{\sqrt{n} + n}$.  Since $\frac{1}{2}\sum \frac{1}{n}$ is the harmonic series then it diverges.  Thus the sum diverges.  
+		\item We know by the cauchy condensation test that $\sum \frac{1}{n\sqrt{n}}$
+		converges if $\sum 2^n \frac{1}{2^n 2^{n/2}}$ converges.  After 
+		algebraic manipulation we have the sum $\sum \frac{1}{\sqrt{2}^n}$.  Since
+		$\sqrt{2} > 1$ then $\frac{1}{\sqrt{2}} < 1$.  Thus that geometric series 
+		converges.  Thus $\frac{1}{n \sqrt{n}}$ converges.  
+		\item Note that $\sqrt{n^6 + n} - n^3 = \frac{n}{\sqrt{n^6 + n} + n^3} = 
+		\frac{1}{\sqrt{n^4 + \frac{1}{n}} + n^2}$.  Note that since 
+		$n^2 \leq \sqrt{n^4 + \frac{1}{n}} + n^2$ then $\frac{1}{\sqrt{n^4 + \frac{1}{n}} + n^2} \leq \frac{1}{n^2}$.  Thus since $\sum \frac{1}{n^2}$ converges
+		then our desired sum converges. 
+		\item By the root test we have that $\lim \frac{2}{3}(\sqrt[n]{n})^2$.  
+		Note that we proved in the slides that $\lim \sqrt[n]{n} = 1$.  Thus 
+		the ratio test has that the sum converges.  
+		\item Note that for $x \not \in \Z$ we have for all $n \in \N, x + n \neq 0$.  Thus the function $\frac{1}{x+n}$ is well defined for all $n \in \N$.  
+		Note that since $\lim \frac{1}{x+n} = 0$ then we have by the alternating 
+		series test that our desired sum converges
+		\item By root test we have the limit $\lim \frac{(n!)^{\frac{2}{n}}}{2^n}$.  Note that since we have a ratio of positive numbers that our limit is bounded 
+		below by 0.  Additionally since $\sqrt[n]{n!}\leq n$, then our limit is 
+		bounded above by $\lim \frac{n^2}{2^n}$.  However by the leacture slides 
+		we know that $\lim \frac{n^2}{2^n} = 0$ since exponentials are faster than
+		any polynomial.  Thus our limit is equal to 0.  Thus our series converges 
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Note that since $[1,2]$ and $[4,7]$ are both closed, and the finite
+		union of closed sets is closed implies $[1,2] \cup [4,7]$ is closed.
+		$cl(A) = [1,2] \cup [4,7], int(A) = (1,2) \cup (4,7)$
+		\item Note that $A = [0,1) \cup (4,5)$ is neither closed nor open since 
+		$A$ contains a limit approaching 4 without having 4 and for any $r > 0$,
+		$B(0,r) \not \subseteq [0,1)$.\\
+		$cl(A) = [0,1] \cup [4,7], int(A) = (0,1) \cup (4,7)$.  
+		\item $A = \Q$ is neither closed nor open since 
+		the set $\{q^2 < 2: q \in \Q\} \subset \Q$, 
+		however $\sqrt{2} \not \in \Q$.
+		Additionally for any $q \in \Q, r > 0$ 
+		we know that $B(q,r) \not \subset \Q$ since the set of irrationals is 
+		dense in $\R$.  Furthermore, $int(\Q)  = \emptyset, cl(\Q) =\R$
+		\item $A = \Q \cap [0,1]$ is nether closed nor open.  Note that $A$ 
+		is not closed since\\ $\{q \in \Q : 0< q, q^2 < \frac{1}{2}\} \subset A$,
+		however $\frac{1}{\sqrt{2}} \not \in \Q \cap [0,1]$.  Additionally, 
+		for every $r > 0, B(0,r) \not \subset A$, thus $A$ is not open.  
+		$cl(A) = [0,1], int(A) = \emptyset$
+		\item Let $A = [0,3]\backslash \{\frac{2n+1}{3n} : n \in \N\}$.  
+		$A$ is not open since for all $r > 0, B(3,r) \not \subseteq A$.  $A$ is 
+		not closed since we can find a sequence which converges to 1, however 
+		$1 \not \in A$.  Thus $A$ does not contain one of it's limit points.  
+		$cl(A) = [0,3], int(A) = (0,3)\backslash \{\frac{2n+1}{3n} : n \in \N\}$.
+	\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item  $B = [1,2)$ is not compact because it is not closed
+		\item $B = \{\frac{n+1}{n} : n \in \N\}$ is not compact because it is not
+		closed because it does not contain it's limit point. 
+		\item $B = \{\frac{n+1}{n} : n \in \N\} \cup \{1\}$ is compact since it is 
+		bounded by $M = 2$, and it contains the one limit point $1$.
+		\item $B = \{\sqrt{n+1} - \sqrt{n} : n \in \N\} \cup $ is compact since 
+		the set is bounded by $M = \sqrt{2}$ and $\lim \frac{1}{\sqrt{n+1} + \sqrt{n}} = 0$ thus $B$ is closed since it contains it's limit points.  
+		\item $B = \bigcup_{n \in \N} [2n,2n+1]$ is not compact since for any 
+		possible bound $M$, there exists $N \in \N$ such that $M < 2N$, and thus 
+		not contain the interval $[2N,2N+1]$.  
+	\end{enumerate}
+	\item 
+	\begin{enumerate}
+		\item $\partial([1,2) \cup (3,5]) = \{1,2,3,5\}$
+		\item $\partial \Z = \Z$
+		\item $\partial (\{1\}\cup (2,3)) = \{1,2,3\}$
+		\item $\partial \Q = cl(\Q) \backslash int(\Q) = \R \backslash \emptyset = \R$
+		\item Let $C$ be the cantor set.  We know that the triadic numbers are dense in the unit interval.  Therefore for an arbitrary open interval in $[0,1]$
+		we can place an infinite number of triatic numbers within it.  By the 
+		construction of the cantor set between any two triadyic number eventually
+		an interval is removed.  Thus for an arbitrary point $\alpha \in C,$
+		there does not exists $\epsilon > 0$ such that $B(\alpha,\epsilon) \subset C$.  Thus $int(C) = \emptyset$.  Since $C$ is closed then $cl(C) = C$.  Thus $\partial C = C$.  
+	\end{enumerate}
+	\item \begin{enumerate}
+		\item $[1,2]\cup [3,4]$ is compact since it is closed (finite union of closed sets is closed) and bounded (take $M = 4$), however 2.5 is not in the set.
+		\item $(1,2)$ is connected by definition, and is not closed since it is 
+		open and not $\R$ or $\emptyset$.
+		\item $[1,2]$ is connected, and $\partial [1,2] = \{1,2\}$.    
+		\item $[1,1]$ is compact since it is trivially closed and bounded, and 
+		since no open interval exists in the singleton set then $[1,1]$ is nowhere dense.  
+		\item $\Z$ is nowhere dense since it's closure is $\Z$ and $\Z$ lacks any 
+		open intervals contained within.  Similarly $\Z$ is not compact because
+		$\Z$ is unbounded.  
+	\end{enumerate}	  
+	\item 
+	\begin{enumerate}
+		\item $E = \bigcup_{n \in \N} [3n+1,3n+2]$.  Note that the first two 
+		intervals of the set are $[4,5]$ and $[7,8]$, and since the the left 
+		endpoints of each successive union'd interval is increasing then there are 
+		no intervals to be added between two "adjacent" intervals.  Thus 6 is 
+		between $5$ and $7$, yet $6 \not \in E$.  $E$ is not connected.  
+		\item $E = \{1\} \cup [2,4]$.  Note that $1.5 \not \in E,$ yet $1 < 1.5 < 2$.  Thus $E$ is not connected.
+	\end{enumerate}
+	\item We know from class that $\sqrt{x},\sqrt[3]{x}$ are continuous. 
+	Additionally both $\sqrt{x},\sqrt[3]{x}$ are positive on $(0,1)$, thus 
+	their sum is never zero on $(0,1)$.  Therefore the fraction $f(x)  =\frac{1}{\sqrt[3]{x} + \sqrt{x}}$ is continuous.  Suppose for contradiction that $f$ is 
+	uniformly continuous on $(0,1)$.  If we fix an $\epsilon > 0$, then there 
+	exists $\delta > 0$ such that for all $x,y \in (0,1)$ if $|x-y| < \delta$
+	then $|f(x) - f(y)| < \epsilon$.  Note that if we take $\delta$ and $0<x < \delta$, then we satisfy $|x-\delta| < \delta$.  Thus $|f(x) - f(\delta)|<\epsilon$.  Note that if we take $\lim_{x \to 0} f(x) = \infty$.  Since 
+	$f(\delta)$ is finite then $|f(x)|$ exceeds $\epsilon$ at some point, otherwise
+	contradicting the unbounded nature of $f$ at 0.  Therefore $f$ is not 
+	uniformly continuous.  
+	\item Suppose $f$ is lipschitz on $(a,b)$ with lipschitz constant $L$,
+	$\epsilon > 0$, $x,y \in (a,b)$,\\ If $|x-y| < \frac{\epsilon}{L}$, we have
+	that 
+	$$
+	|f(x) - f(y)| \leq L|x-y| < L \frac{\epsilon}{L} = \epsilon.
+	$$
+	Thus $f$ is uniformly continuous.  
+	\item We know that $f(x) = \frac{1}{x}$ is differentiable on $(0,1)$, however, 
+	if we consider that $f'(x) = \frac{-1}{x^2}$, then $\lim_{x\to 0} f'(x) = - \infty$.  We know by the lemma that if $f$ has an unbounded derivative then it is 
+	not lipschitz.  
+\end{enumerate}
+\end{document}

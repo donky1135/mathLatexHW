@@ -43,10 +43,17 @@
 	group has 4 elements of order 5. 
 	\item[7.5]
 	\begin{enumerate}
-		\item
-		\item 
-		\item 
-		\item 
+		\item Since $D_{10}$ has order 20, we must find a subgroup of order 4.  
+		$\{1,\theta^5, r, r\theta^5 \}$ is a subgroup of order 4
+		\item Note that we have shown before that the homomorphism from $S_4 \to S_3$ has a kernel of order 4, and additionally every element has even parity.  
+		Additionally each element of that kernel has order 2, therefore T contains
+		an isomorphic copy of the Klein 4 group.
+		\item Since $O$ has order 24, we seek a subgroup of order 8. 
+		Note that if one fixes a pair of faces, one has a 90 degree rotation and a 
+		flip.  Note that that is isomorphic to $D_4$, the set of symmetries of the 
+		square.  Since $|D_4| = 8$, we are done
+		\item Note that $I \cong A_5$, and we know that $|A_5| 3 \cdot 4 \cdot 5$
+		therefore we need to find a subgroup of order 4. Since we found the klein 4 group 	inside of $A_4$ then we can find copies in $A_5$.  
 	\end{enumerate}
 	\item[7.6] We claim that $<(1234567),(124)(356)> = G$ is a non-abelian subgroup of order 21.  Note that our generators are of orders 7 and 3 respectively.  Additionally, in our non-abelian group by the third p-sylow theorem $<(1234567)>$ must be normal and $<(124)(356)>$ is not.  This is demonstrated by the fact that $(124)(356)(1234567)(142)(365) = (1357246) = (1234567)^2$, which was shown in artin to be the requirement on being in the 
 	non-abelian isomorphism class of groups of order 21.  
@@ -77,7 +84,80 @@
 		and $3 \mid s_{11}, s_{11} \equiv 1 \mod{11}$ is only solved by $s_3 = s_{11} = 1$.  Thus they must be normal.  Since they are of prime order 
 		then they are isomorphic to $\Z_3$ and $\Z_{11}$ respectively.
 		Thus by the chinese remainder theorem $\Z_3 \times \Z_{11} \simeq \Z_{33}$.  Thus all groups of order $33$ are isomorphic to $\Z_{33}$.
-		\item 
+		\item Note that by the third sylow theorem we know that the 3-sylow 
+		subgroup is normal and there are either 1, 3, or 9 2-sylow subgroups (
+		represented by the number $s_2$). 
+		Note that there are two subgroups of order 9, 
+		$\Z_9$ and $\Z_3 \times \Z_3$.  Therefore we must work by cases
+		\begin{itemize}
+			\item Suppose $s_2 = 1$.  If we have $\Z_9$ then by the normality of 
+			the sylow 2-subgroup we have that $\Z_2 \times \Z_9$.  If we have 
+			$\Z_3 \times Z_3$ then we have the group $\Z_3 \times \Z_3 \times \Z_2$.  
+			\item Suppose that $s_2 = 3$.  If our sylow subgroup is $\Z_9$
+			then we have a problem.  We know that if we have $x \in \Z_9$ and 
+			our element of order 2, $y$ that $x^iy = yx^{-i}$.  This ensures that 
+			$\{y,x^3y,x^6y\}$ are the only elements which have order 2.  
+			Therefore $xy$ should have order 6, since it's not in $\Z_9$, and 
+			doesn't have order 2 since it's not in the set of elements which have
+			order 2, and can't be 18 since our group doesn't have a single 
+			generator.  Thus $(xy)^2$ has order 3.  However the only elements 
+			of order 3 are $x^3, x^6$.  Thus $(xy)^3 = x^4y$ or $(xy)^3 = x^7y$.
+			However $(xy)^3$ must have order 2, which contradicts the fact that
+			it multiplies to something which is not in the set of three elements 
+			of order 2.  Thus we must consider our 3-sylow subgroup to be 
+			$\Z_3 \times \Z_3$.  
+			Note that since we have found all other possible matrices which
+			satisfy $B^2 = I$, the only other possible matrix with a diagonal
+			containing 1 and 2.   Note that if we consider the second entry 
+			in $\Z_3 \times \Z_3$ and multiplication by the matrix, we have a 
+			group of order 6 which is not commutative, yielding us $S_3$, and 
+			then the first coordinate is unchanged and of order 3, thus our group
+			is isomorphic to $S_3 \times \Z_3$. 
+			\item Suppose that $s_2 = 9$.  If we have $\Z_9$ as our 3-sylow subgroup then for our element $y$ of order 2, we know that for $x \in \Z_9$
+			we have that $yxy^{-1} = x^i$ since $\Z_9$ is normal.  Thus since 
+			$y$ is of order 2 and $xy \not \in \Z_9$ then $1 = (xy)^2 = xyxy$
+			implies $yxy = x^{-1}$.  Thus we have found $D_9$.  If we have 
+			our sylow subgroup as $\Z_3 \times \Z_3$, then we must consider 
+			the homomorphism from $\Z_2 \to Aut(\Z_3 \times \Z_3)$.  Since we 
+			need to have 9 order 2 subgroups which satisfies the relation 
+			$yxy = x^{-1}$.  Since every element is it's own inverse in $\Z_3 \times \Z_3$, and the trivial automorphism implies commutativity ($\Z_3 \times \Z_3 \times \Z_2)$ then we must have the matrix $2I$, where $I$ is the identity.  This
+			corresponds to the general dihedral group for $\Z_3 \times \Z_3$ 
+		\end{itemize}
+		\item For all groups of order 20, the group of order 5 is normal via 
+		the sylow theorem, or $\Z_5$, whose generator is $x$, and there are 2 groups of order 4, $\Z_4$ 
+		and $V_4$.  We will consider where the elements of $\Z_5$ are taken 
+		via conjugation by elements in our 2-sylow subgroup.
+		\begin{itemize}
+			\item Consider our group of order 4 to be $\Z_4$.  Let $y$ be a 
+			generator of $\Z_4$
+			\begin{itemize}
+				\item If $yxy^{-1} = x$, then $\Z_4$ and $\Z_5$ commute, giving
+				us $\Z_4 \times \Z_5$
+				\item If $yxy^{-1} = x^3$, then $y^3xy^{-3} = x^2$, thus WLOG
+				assume $yxy^{-1} = x^2$.  Since this homomorphism is well 
+				defined, we have found another group of order 20
+				\item Suppose $yxy^{-1} = x^4$.  Then $y^2 x y^{-2} = x$, thus 
+				$x,y^2$ form a subgroup of order 10.  Note that since it has 
+				index 2, then it is normal.  Let $z$ be a generator of the 
+				subgroup.  Then $z^5 = y^2$.  Note that the only possible 
+				way to conjugate $z$ with $y$ is $yzy^{-1} = x^{-1}$, since conjugating by $y$ twice would just be z, thus the power of $z$ which gets mapped
+				from conjugation must square to 1, this is only satisfied by -1. 						Note 
+				that this completely describes the multiplication table for our
+				group.  
+			\end{itemize}
+			\item Consider our group of order 4 to be $V_4$ with generators $y,z$
+			\begin{itemize}
+				\item If both generators commute with x, then we have $\Z_2 \times \Z_10$
+				\item If only (WLOG) $yxy^{-1} = x$, then $x,y$ generates a 
+				subgroup of order 10, which is normal.  Let $x'$ be a generator
+				of this subgroup.  Since $x,z$ don't commute, then $x',z$ don't 
+				commute.  Thus $zx'z^{-1} = x'^{-1}$, for the same reason that 
+				when our group of order 4 is $\Z_4$ for the automorphism $x \mapsto x^4$.  Thus we have exactly described $D_{10}$
+				\item if neither $y$ nor $z$ commute with $x$ then set $y=yz$, 
+				then repeat steps to get back $D_{10}$
+			\end{itemize}
+		\end{itemize}
+		\item TODO order 30		 
 	\end{enumerate}
 \end{enumerate}
 \end{document}

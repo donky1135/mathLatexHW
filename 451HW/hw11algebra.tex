@@ -1,0 +1,97 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{451 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 11\\
+	451	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[4.3] To show that $f(x) = x^4 + 6x^3 + 9x + 3$ generates a maximal ideal we 
+	need to show that it is irreducible.  Note that for the prime $p=3$, 
+	$f(x) \equiv x^4 \mod{3}, \text{ and } 9 \nmid 3$.  Therefore $f$ is irreducible by 
+	Eisenstein's criterion.  Thus $(f)$ is a maximal ideal over $\Q[x]$.  
+	\item[4.6] $x^5 + 5x + 5$ is irreducible over $\Q$ since it satisfies Eisenstein's criterion for $p=5$. For $\Z/2$, $x^5 + 5x + 5 = (x^2 + x + 1)(x^3 + x^2 + 1)$
+	\item[4.7] $f(x) = x^3 + x + 1$
+	\begin{itemize}
+		\item $p=2$ $x^3 + x + 1 = x^3 + x + 1$ since for $0$ and $1$ the polynomial is 1
+		\item $p=3$ $f(x) = (x-1)(x^2 + x - 1)$ since $f(1) \equiv 0 \mod{3}$
+		\item $p=5$ $f(x) = x^3 + x + 1$ since for $x = 0,1,2,3,4, f(x) \neq 0$.
+	\end{itemize}
+	\item[5.1]
+	\begin{enumerate}
+		\item $1-3i = (1-i)(2-i)$ 
+		\item $10 = (1-i)(1+i)(2-i)(2+i)$
+		\item $6+9i = 3(2+3i)$, note that $(2+3i)(2-3i) = 13$, which is a prime
+		\item $7+i = (2+i)^2(1-i)$
+	\end{enumerate}
+	\item[5.3] Note that $(2+i)^2 = 3+4i$ and $(2+i)(3+2i) = 4+7i$.  Since $3+2i$
+	was computed above to be prime then the smallest element which generates both
+	is $(2+i)$.
+	\item[5.5] Let $\pi$ be a gauss prime.  
+	\begin{itemize}
+		\item Suppose $\pi$ and $\overline{\pi}$ are associates.  Then there are four possible units by which $\pi$ and $\overline{\pi}$ are associates.
+		\begin{itemize}
+			\item If $\overline{\pi} = \pi$ then $\pi$ is invariant under 
+			complex conjugation.  Therefore $\pi$ is an integer.  Since $\pi$
+			is a gauss prime which is an integer then $\pi$ must be an integer 
+			over the primes.  
+			\item If $\overline{\pi} = -\pi$ then $\pi$ must be purely imaginary
+			since $-(a+bi) = a-bi$ implies $a = -a$, which is only true when $a=0$.
+			Since we have a purely imaginary Gauss prime and we know that it's 
+			norm must correspond to the square of a prime (otherwise implying that the square root of a prime is defined in the integers) implies that $\pi$
+			is an associate of an integer prime.  
+			\item If $\overline{\pi} = i \pi$ then $\pi = a+bi$ must satisfy 
+			the relation $a=-b$.  The only Gauss prime satisfying this requirement 
+			is $1-i$, which is one of the factors which ramifies $2$.   
+			\item If $\overline{\pi} = -i \pi$ then we have the conjugate of the 
+			prime found above, $1+i$, which is the other factor of $2$ in $\Z[i]$.
+		\end{itemize}
+		Thus by cases we have shown that either $\pi$ divides 2 or $\pi$ is an 
+		associate of an integer prime.  
+		\item 
+		\begin{itemize}
+			\item Suppose $\pi \overline{\pi} = 2$.  Then $\pi = 1-i$.  
+			Since $i\pi = i - i^2 = 1+i = \overline{\pi}$, then $\pi$ and 
+			$\overline{\pi}$ are associates.  
+			\item Suppose $\pi$ is an associate of a prime integer, $p \in \Z$.  
+			then if $\pi = \pm p$, the trivially $\overline{\pi} = \pm p$, thus 
+			$\pi = \overline{\pi}$, making them associates with $1$.  
+			If $\pi = \pm i p$, then $\overline{\pi} = \mp i p$.  Therefore $\pi$
+			and $\overline{\pi}$ are associates by $-1$.  Thus no matter by which 				unit $\pi$ is an associate of $p$, $\pi$ and $\overline{\pi}$ are 
+			associates.  
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+\end{document}

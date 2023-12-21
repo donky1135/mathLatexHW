@@ -1,0 +1,106 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{451 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 10\\
+	451	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1.5] Lemma: if $\gcd(a,b) = 1$ then $\gcd(ab,a+b) = 1$.  Note that if 
+	any number divides $ab$ then it divides either $a$ or $b$, otherwise contradicting that $\gcd(a,b) = 1$ if it is larger.  Suppose $d \mid a, d \nmid b$.
+	Then since $d \nmid b$ then $d \nmid a + b$.  The alternate case is identical.
+	Therefore $\gcd(ab,a+b)$.\\
+	Since $\gcd(ab,a+b) = 1$, then by applying Euler's theorem there exists $n \in \N$ 	such that $(a+b)^n \equiv 1 \mod{ab}$($<a+b>$ forms a subgroup of $\Z/ab$, 
+	therefore it will cycles back to 1).  Thus noting that $(a+b)^n = \sum_{i=0}^n \binom{n}{i}a^i b^{n-i} \equiv a^n + b^n \mod{ab}$ since all cross terms are of the 
+	form $ka^r b^q$ where both $r,q \geq 1$.  Thus all of the cross terms 
+	\item[2.2] $\gcd(x^5 + 2x^3+x^2 + x + 1, x^6 + x^4 + x^3 + x^2 + x + 1) = x^2 + 1$  
+	\item[2.10]  Note that the set of all units is all power series with non-zero 
+	constant term.  Consider $f(x) = \sum_{i=0}^\infty a_i x^i$ with first non-zero 
+	term being $a_n$.   Therefore since $\sum_{i=0}^\infty a_{i+n} x^i$ is a unit 
+	then we have that $f(x) = x^n\sum_{i=0}^\infty a_{i+n} x^i$.  Since both the 
+	unit and the power of $x$ is uniquely determined by the sequence, then the 
+	factorization is unique.  Additionally since this takes exactly one step then 
+	factoring terminates.  Thus the ring of power series is a UFD.  
+	\item[3.1]
+	\begin{enumerate}
+		\item Let $\phi: \Z[x] \to \R$ be the homomorphism given by $\phi(x) = 1 + \sqrt{2}$.  Therefore the kernel contains 
+		\begin{align*}
+			x &= 1 + \sqrt{2}\\
+			x-1 &= \sqrt{2}\\
+			(x-1)^2 &= 2\\
+			(x-1)^2 - 2 &= 0\\
+			x^2 -2x + 1 - 2 &= 0\\
+			x^2 -2x -1 &= 0\\
+		\end{align*}
+		Since this polynomial found has an irrational root by construction, and 
+		since it has another root which also must be irrational then our
+		polynomial is irreducible.  Therefore our kernel is principle.  
+		\item Let $\phi: \Z[x] \to \R$ be the homomorphism given by $\phi(x) = \frac{1}{2} + \sqrt{2}$.  Therefore the kernel contains 
+		\begin{align*}
+			x &= \frac{1}{2} + \sqrt{2}\\
+			2x-1 &= 2\sqrt{2}\\
+			(2x-1)^2 &= 8\\
+			(2x-1)^2 - 8 &= 0\\
+			4x^2 -4x -7 &= 0\\
+		\end{align*}
+		Since this polynomial found has an irrational root by construction, and 
+		since it has another root which also must be irrational then our
+		polynomial is irreducible.  Therefore our kernel is principle.  
+	\end{enumerate}
+	\item[3.2] Let $f, g \in \Z[x]$
+	\begin{itemize}
+		\item $\Rightarrow$ Suppose the $\gcd_{\Q[x]}(f(x), g(x)) = 1$.  Then
+		there exists $a(x), b(x) \in \Q[x]$ such that $a(x)f(x) + b(x) g(x) = 1$.
+		Since $a(x), b(x) \in \Q[x]$ then they take the form $a(x) = \sum_{i = 0}^n \frac{a_i}{a'_i}x^i, b(x) = \sum_{i = 0}^m \frac{b_i}{b'_i}x^i$.  If we multiply 
+		$a(x)f(x) + b(x) g(x) = 1$ by $a'_1\cdots a'_n b'_1 \cdots b'_m$ then we 
+		guarantee $a(x), b(x)$ to now be integer polynomials.  Thus we have found 
+		a combination in $\Z[x]$ of $f,g$ which is an integer.  Thus $a'_1\cdots a'_n b'_1 \cdots b'_m \in (f(x),g(x))$.  
+		combination  
+		\item $\Leftarrow$ Suppose that there are $a(x), b(x) \in \Z[x]$ such that 
+		$a(x)f(x) + b(x)g(x) = n, n \in \Z$.  Note that $a(x)/n, b(x)/n \in \Q[x]$
+		therefore we have found polynomials satisfying the requirements for $f,g$
+		to be coprime over $\Q[x]$  
+	\end{itemize}
+	\item[4.1]
+	\begin{enumerate}
+		\item 		
+		\begin{itemize}
+			\item $x^9 - 1 = (x-1)^9$ over $\mathbb{F}_3[x]$
+			\item $x^9 - x = x(x+1)(x+2)(x^2+1)(x^2 + x + 2)(x^2 + 2x + 2)$ over $\mathbb{F}_3[x]$
+		\end{itemize}
+		\item $x^{16} - x = x(x+1)(x^2+x+1)(x^4+x+1)(x^4 + x^3 + 1)(x^4 + x^3 + x^2 + x + 1)$ over $\mathbb{F}_2[x]$
+	\end{enumerate}
+\end{enumerate}
+\end{document}

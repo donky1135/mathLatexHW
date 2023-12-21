@@ -1,0 +1,102 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{477 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 10\\
+	477	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[10.2]
+	$$\begin{array}{c|ccc}
+	\frac{y}{x} & 0 & 1 & 2\\
+		0 & \frac{1}{4} & \frac{1}{4} & \frac{1}{8}\\
+		1 & \frac{1}{8}& \frac{1}{8}& \frac{1}{8}
+	\end{array}$$
+	\item[10.6]
+	\begin{enumerate}
+		\item $f_{X|Y}(x|y) = \frac{3}{8} \frac{x+y}{y^2}$
+		\item \begin{itemize}
+			\item $\Pro(X < \frac{1}{2} | Y = 1) = \int_0^\frac{1}{2} \frac{2}{3}(x+1)dx = \frac{5}{12}$
+			\item $\Pro(X < \frac{3}{2} | Y = 1) = \Pro(X < 1 | Y = 1) = \int_0^1 \frac{2}{3}(x+1)dx = 1$
+		\end{itemize}
+		\item \begin{align*}
+			\E[X^2 | Y=y] &= \frac{2}{3}\int_0^y x^2 \frac{x+y}{y^2}dx\\
+			&= \frac{7}{18}y^2
+		\end{align*}
+		$\int_{-\infty}^\infty \E[X^2 | Y=y] f_Y(y) = 
+		= \int_0^2 \frac{7}{18} \frac{3}{8}y^4 dy 
+		= \frac{14}{15}$\\
+		$f_X(x) = \int_x^2 \frac{x+y}{4} dy = 
+		\frac{-1}{4}(\frac{3x^2}{2} -2x - 2)$\\
+		$\E[X^2] = \int_0^2 \frac{-x^2}{4}(\frac{3x^2}{2} -2x - 2)dx = \frac{14}{15}$
+	\end{enumerate}
+	\item[10.10] 
+	\begin{enumerate}
+		\item 
+		\begin{itemize}
+			\item $f_{X |N}(k|n) = \binom{n}{k}p^k (1-p)^{n-k}$
+			\item $\E[X | N = n] = np$
+			\item $\E[X|N] = Np$
+		\end{itemize}
+		\item $\E[X] = \E[\E[X|N]] = \E[pN] = p\lambda$
+		\item Note that $\E[XN] = \E[\E[XN|N]] = \E[N \E[X|N]] = \E[pN^2] = p(Var(N) + \E[N]^2) = p(\lambda + \lambda^2)$, therefore \\
+		$Cov(X,N) = \E[XN] - \E[X]\E[N] = p(\lambda + \lambda^2) - p\lambda \cdot \lambda = p \lambda$.  Thus $X,N$ are positively correlated since $\lambda, p >0$.
+	\end{enumerate}
+	\item[10.38]
+	\begin{enumerate}
+		\item $f(x,y) = f_Y(y) f_{X|Y}(x|y) = e^{-y}ye^{-xy} = ye^{-(x+1)y}$ if 
+		$x,y > 0$, otherwise $f(x,y)  =0$.
+		\item $f_{Y|X}(y|x) = 
+		\frac{ye^{-(x+1)y}}{\int_0^\infty ye^{-(x+1)y dy}} = 
+		\frac{ye^{-(x+1)y}}{\frac{1}{(x+1)^2}} =
+		(x+1)^2 ye^{-(x+1)y}$.  I have never seen a distribution of this 
+		exact type.  Something exponential?
+	\end{enumerate}
+	\item[10.40]
+	\begin{enumerate}
+		\item  \begin{align*}
+			\Pro(Y > 2| X = x) &= 1 - \Pro(Y \leq 2 | X = x)\\
+			&= 1 - \int_0^2 x dy \text{ if } x < \frac{1}{2} \text{ otherwise it has probability } 0\\
+			&= 1 - 2x
+		\end{align*}
+		\item Note that \begin{align*}
+			\E[Y|X=x] &= \int_0^{1/x} yxdy\\
+			&= x \frac{y^2}{2}]^{1/x}_0\\
+			&= \frac{1}{2x}
+		\end{align*}
+		Thus $\E[Y|X] =\frac{1}{2X}$.  Furthermore, we know that $\E[Y] = \E[\E[Y|X]]$.  Therefore $\E[Y] = \E[\E[Y|X]] = \E[1/2X] = \int_0^\infty \frac{1}{2x}xe^{-x}dx
+		= \frac{1}{2}[-e^{-x}]_0^\infty = \frac{1}{2}$
+	\end{enumerate}
+\end{enumerate}
+\end{document}
