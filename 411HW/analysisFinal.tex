@@ -1,0 +1,188 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{411 Final}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Final \\
+	411	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Note that if $A$ is finite then trivially $\sum_{n \in A} \frac{1}{n}$ converges since it's the finite addition
+	of rational numbers.  Thus assume $A$ is infinite.  Since this is a sum over positive terms, then if $A \subseteq B$
+	we have that $\sum_{n \in A} \frac{1}{n} \leq \sum_{n \in B\backslash A} \frac{1}{n} + \sum_{n \in A} \frac{1}{n}=\sum_{n \in B} \frac{1}{n}$.  Therefore we consider the largest $A$, the set of all natural numbers without 0 in their 
+	decimal expansion.  Let $S_k$ be the sums over all numbers in $A$ with $k$ digits, and let $N_k$ be the subset of 
+	$\N$ with all of the $k$ length numbers.  Note that $|N_k| = 9^k$, since for each decimal in the expansion we have 9 choices for 	possible digits.  Additionally, each number $a \in N_k$ is bounded below by $10^{k-1}$, since 
+	$10^{k-1} \leq 111\cdots111 \text{ } k \text{ times} \leq a$, thus the reciprocals satisfy $\frac{1}{a} \leq \frac{1}{10^{k-1}}$.
+	Therefore $S_k \leq |N_k|/10^_k-1} = 9^k/10^{k-1}$.  Thus $\sum_{n \in A} \leq \sum_{k=1}^\infty \frac{9^k}{10^{k-1}} = 90$.  Thus
+	every sum as described above is bounded and increasing, thus it converges. 
+	\item Suppose $W$ is an open subset of $X$, our complete metric space $(X,d)$, and $\{U_n : n \in \N\}$ is our countable set
+	of open, dense subsets.  Note for $U_1$, we can find $x_1 \in U_1 \cap W$, where for $0 < r_1 < 1$, $\overline{B}(x_1, r_1) \subseteq W$, where $\overline{B}(x_1, r_1)$ is closed.  Additionally, for $U_2$, we can find $x_2 \in B(x_1, r_1) \cap U_2$, where for $0 < r_2 < \frac{1}{2}$, 
+	we have that $\overline{B}(x_2, r_2) \subseteq B(x_1,r_1)$.  For $U_n$, we can find $x_n \in B(x_{n-1}, r_{x-1})\cap U_n$, where
+	for $0 < r_n < \frac{1}{n}, \overline{B}(x_n, r_n) \subseteq B(x_{n-1}, r_{n-1})$.  Therefore for $\epsilon > 0$, there exists 
+	$N \in \N$ where $\frac{1}{N} < \epsilon$, therefore by construction for all $2N \leq m < n, d(x_n,x_m) < \frac{1}{N}$ since by construction $x_n, x_m \in B(x_m, r_m)$, where $r_m < \frac{1}{2N}$, thus ensuring that all points within 
+	are at most a distance of $\frac{1}{N}$ from each other.  Thus the sequence constructed is Cauchy.  Additionally 
+	since the selection of each point is within a closed ball, then we can apply nested compact set property to get that
+	$x \in \cap_{n \in \N} U_n$
+	   Therefore 
+	it converges in $\cap_{n \in \N} U_n$, thus $W \cap \cap_{n \in \N} U_n$ contains a point.  
+	\item Suppose for contradiction that $X$ is of the first catagory.  Let $(E_n)_{n \in \N}$ be a countable set of 
+	nowhere dense sets in our complete metric space $X$ such that $\cup_{n \in \N} E_n = X$.  Note that by definition 
+	$int(cl(E_n)) = \emptyset$. Note that by taking the closure of the nowhere dense sets in our union we get that 
+	$X = \cup_{n \in \N} cl(E_n)$ Therefore let us consider  $(\cup_{n \in \N} cl(E_n))^c = \cap_{n \in \N} cl(E_n)^c$.
+	Note by the Baire Category theorem, since each $E_n^c$ is an open, dense set then it's intersection is dense. 
+	However, this implies that $\emptyset = (\cup_{n \in \N} cl(E_n))^c $ is dense.  This is a contradiction.  
+	
+	\item Suppose $\{F_n: n \in \N \}$ is a countable set of nowhere dense sets.  Then $(\cup_{n \in \N} cl(F_n))^c = 
+	\cap_{n \in \N} cl(F_n)^c$ is by construction an intersection of open dense sets.  Therefore it's intersection is dense 
+	in $X$.  Suppose for contradiction that $\cup_{n \in \N} cl(F_n)$ contains an open interval, $B(x,r) \subset \cup_{n \in \N} cl(F_n)$, since the complement of $\cup_{n \in \N} cl(F_n)$ is dense, then $B(x,r) \cap (\cup_{n \in \N} cl(F_n))^c$ should be 
+	non-empty, however since $B(x,r)$ is contained entirely outside of $(\cup_{n \in \N} cl(F_n))^c$, then $B(x,r) \cap \cup_{n \in \N} F_n = \emptyset$.  This is a contradiction, thus $\cup_{n \in \N} F_n$ does not contain an open interval,
+	$int(\cup_{n \in \N} cl(F_n)) = \emptyset$, which implies $int(\cup_{n \in \N} F_n) = \emptyset$.
+	\item Let $E$ be a closed subset of a metric space $(X,d)$
+	\begin{itemize}
+		\item $\Rightarrow$ Suppose $E$ is nowhere dense, $x \in E, \epsilon > 0$.  Then $E^c$ is dense, thus there 
+		exists $y \in E^c$ such that $y \in B(x,\epsilon)$.  Therefore $d(x,y) \leq \epsilon$.
+		\item $\Leftarrow$ We claim that $E^c$ is dense.  Note that since $E^c$ is dense in $E^c$, consider a point in 
+		$E$, $x$.  Then we know that for arbitrary $\epsilon > 0$ there exists $y \in E^c$ such that $d(x,y) \leq \epsilon$.  Thus for all open sets in $X$ we can place elements from $E^c$.  If not, then there would exists an interval
+		contained with $E$, which would ensure that $E^c$ would not be dense in that interval, contradicting the fact 
+		that $E^c \cap E = \emptyset$.  
+		
+		\iffalse Suppose for contradiction that there exists $B(a,r) \subset E$.
+		Note that there exists $y \in E^c$ where $d(a,y) < \frac{r}{2}$.  That implies $y \in B(a,r)\subset E$, which
+		contradicts $y \in E^c$.  \fi 
+	\end{itemize}
+	\item 
+	Lemma: The set $E_k = \{f \in C([0,1]): \exists x_0 \in [0,1], \forall x \in [0,1], |f(x) - f(x_0)| \leq n|x - x_0|\}$ 
+	is nowhere dense.  Suppose $f \in E_k$.  We will show that $f$ is approximated by piecewise linear functions $g_n(x)$
+	with $|g'(x)| > 2k$ for all $x \in [0,1]$, where $g'(x)$ is defined.  To show our claim, we note that since $f$ is 
+	continuous on a compact interval then $f$ is uniformly continuous.  Therefore if we fix an $\epsilon > 0$ there 
+	exists $\delta > 0$ such that for all $x,y \in [0,1]$ if $|x-y| < \delta$ then $|f(x) - f(y)| < \frac{\epsilon}{2}$.
+	Let $\delta' = \min(\{\frac{\epsilon}{4k}, \delta\})$.  Then consider a partition $0 = x_0\leq x_1 \leq \cdots \leq x_n = 1$ where $x_j -x_{j-1} < \delta'$.  We construct $g_n(x)$ by assigning $g_n(x)$ on $[x_{j-1},x_j]$ to be the line 
+	in between $g(x_{j-1})$ and $g(x_j)$.  Note that if a slope is encountered which is less than $2n$, a point can be 
+	inserted such that the graph rises with rate $2n$ and descends with rate $-2n$ to hit the point.  Note that this 
+	addition still satisfies both the slope and partition requirements.  Therefore for all $x,y \in [x_{j-1},x_j]$, our
+	function satisfies 
+	$$|g_n(x) - g_n(y)| < \max \{\epsilon/2, 2k|x-y|\} \leq \min\{\epsilon/2, 2k \delta '\} \leq \epsilon/2.$$  
+	Therefore it remains to show that $\sup_{x \in [0,1]} |f(x) - g_n(x)| < \epsilon$.  Note that for all $x \in [0,1]$,
+	there exists a partition such that $x \in [x_{j-1},x_j]$, thus letting us apply the inequalities 
+	$$
+	|f(x) - g_n(x)| \leq |f(x) - f(x_j) + f(x_j) - g_n(x_j) + g_n(x_j) - g_n(x)|$$ $$\leq 	|f(x) - f(x_j)| + |f(x_j) - g_n(x_j)| + 
+	|g_n(x_j) - g_n(x)| \leq \frac{\epsilon}{2} + 0 + \epsilon/2 = \epsilon
+	$$
+	Therefore our piecewise linear function converges in the uniform metric.  
+	Note that $|g_n(x) - g_n(x_0)| \geq 2k|x-x_0| > 2k|x-x_0|$ by construction.  Therefore $g_n \not \in E_k$.  
+	Thus by the result proved above $E_k$ is nowhere dense.  \\
+	
+	
+	
+	
+	
+	Let $\mathcal{C}$ denote the set of all nowhere differentiable functions.  We will show that $\mathcal{C}^c$ is
+	of the first category.  Suppose $f \in \mathcal{C}^c$.  Then there exists $x_0 \in [0,1]$ such that $f'(x_0)$ exists.
+	If we consider the quotient function $\phi(x) = \frac{f(x) - f(x_0)}{x-x_0}$ on $x \in [0,1]\backslash \{x_0\}$ and
+	$\phi(x_0) = f'(x_0)$ then we claim that $\phi(x)$ is continous.  On $x \in [0,1]\backslash \{x_0\}$ then $\phi(x)$
+	is continuous since it is the quotient of continuous functions with a denominator which does not equal 0.  At $x_0$,
+	we have that $\lim_{x \to x_0} \phi(x) = f'(x_0) = \phi(x_0)$ by definition, thus $\phi(x)$ is continuous.  Therefore $\phi(x)$
+	is uniformly continuous on $[0,1]$.  Therefore it is bounded.  Thus there exists $M \in \N$ such that $f \in E_M$.
+	Therefore $\mathcal{C}^c \subseteq \cup_{n \in \N} E_n$.  Furthermore, 
+	$\mathcal{C}^c = \cup_{n \in \N} \mathcal{C}^c \cap E_n$.  Since $E_n$ is nowhere dense, then trivially a subset, 
+	$\mathcal{C}^c \cap E_n$ is nowhere dense.  Therefore by the corollary of the Baire Category theorem $\mathcal{C}^c$
+	is of the first category.  Thus $\mathcal{C}$ is of the second category.  Therefore there exists nowhere 
+	differentiable continuous functions on the unit interval.  
+	
+	\item Let $I(n) = \int_0^\pi \sin^n x dx.$  Then 
+	\begin{align*}
+		I(n) &= \int_0^\pi \sin^n x dx\\
+		&= \sin^{n-1}(x) \cos(x)|^0_\pi + (n-1)\int_0^\pi sin^{n-2}(x)\cos^2(x)dx\\
+		&= (n-1) \int_0^\pi sin^{n-2}(x)(1-\sin^2(x))dx\\
+		&= (n-1)I(n-2)-(n-1)I(n)\\
+		nI(n) &= (n-1)I(n-2)\\
+		I(n) &= \frac{n-1}{n} I(n-2)
+	\end{align*}
+	Note that since $0 \leq \sin(x) \leq 1$ on $[0,\pi]$, then $\sin^n (x) \leq sin^{n-1} (x)$, and since the integral
+	is being taken over where $\sin(x)$ is non-negative, then $I(n) \leq I(n-1)$, thus we have a decreasing sequence.  
+	Therefore, noting that $I(0) = \frac{\pi}{2}, I(1) = 1, I(0)/I(1) \geq 1$, we can apply the recurrence relation to solve the limit:
+	$$
+	1 \leq \lim_{n \to \infty} \frac{I(2n)}{I(2n+1)} \leq \lim_{n \to \infty} \frac{I(2n-1)}{I(2n+1)} = \lim_{n \to \infty} \frac{n}{n-1} \frac{I(2n-1)}{I(2n-1)} =  \lim_{n \to \infty} \frac{n}{n-1} = 1
+	$$
+	Thus the limit converges to 1.  
+	Note that by induction we have that $I(2n) = \frac{\pi}{2} \prod_{i=1}^n \frac{2i-1}{2i}, I(2n+1) =  \prod_{i=1}^n \frac{2i}{2i+1}$, therefore 
+	\begin{align*}
+		\lim_{n \to \infty} I(2n) &= \lim_{n \to \infty} I(2n+1)\\
+		\lim_{n \to \infty} \frac{\pi}{2} \prod_{i=1}^n \frac{2i-1}{2i} &= \prod_{i=1}^n \frac{2i}{2i+1}\\
+		\frac{\pi}{2} &= \lim_{n \to \infty} \prod_{i=1}^n \frac{2i}{2i+1} \frac{2i}{2i-1}
+	\end{align*}
+	Thus proving the wallis product.\\
+	To get the wallis product in a form without explicit products, observe that 
+	\begin{align*}
+		\frac{\pi}{2} &= \lim_{n \to \infty} \prod_{i=1}^n \frac{2i}{2i+1} \frac{2i}{2i-1}\\
+		&= \lim_{n \to \infty} 2^{2n}n^2 \prod_{i=1}^n \frac{1}{(2i+1)(2i-1)}\\
+		&= \lim_{n \to \infty} 2^{2n}n^2 \frac{(2^n n!)^2 (2n+1)}{((2n+1)!)^2}\\
+		&= \lim_{n \to \infty} \left(\frac{2^{2n}n!^2}{(2n)!}\right)^2 \left(\frac{1}{2n}\right)\left(\frac{2n}{2n+1}\right)\\
+		\pi &= \lim_{n \to \infty} \left(\frac{2^{2n}n!^2}{(2n)!\sqrt{n}}\right)^2
+	\end{align*}
+	Therefore substituting in our definition for the factorial, $n! = Cn^{n + 1/2}e^{-n}e^{r_n}$ where $1/(12n + 1) < r_n < 1/(12n)$, we get 
+	\begin{align*}
+		\pi &= \lim_{n \to \infty} \left(\frac{2^{2n}C^2 n^{2n + 1}e^{-2n}e^{2r_n}}{C(2n)^{2n+1/2}e^{-(2n)}e^{r_{2n}}\sqrt{n}}\right)^2\\
+		&= \lim_{n \to \infty}  \left( \frac{Ce^{2r_n - r_{2n}}}{\sqrt{2}}\right)^2\\
+		\sqrt{2\pi} = C
+	\end{align*}
+	\item Note that 
+	\begin{align*}
+	A(n) &= \int_0^{\frac{\pi}{2}}\cos^{2n}(x) dx = \sin(x)\cos^{2n-1}(x)|_{0}^\frac{\pi}{2} + (2n-1)\int_0^{\frac{\pi}{2}}\cos^{2n-2}(x)\sin^2(x) dx\\
+	&= (2n-1)\int_0^{\frac{\pi}{2}}\cos^{2n-2}(x)(1-\cos^2(x)) dx\\
+	&= (2n-1)(A(n-1) - A(n))\\
+	A(n) &= \frac{2n-1}{2n}A(n-1)
+	\end{align*}
+	additionally 
+	\begin{align*}
+			A(n) &= x \cos^{2n}(x)|_{0}^{\frac{\pi}{2}} + 2n \int_0^{\frac{\pi}{2}} x \cos^{2n-1}(x) \sin(x)dx\\
+			&= n \left( x^2 \cos^{2n-1}(x) \sin(x) |_0^{\frac{\pi}{2}} + \int_0^{\frac{\pi}{2}}  x^2 ((2n-1)\cos^{2n-2}(x) \sin^2(x) - \cos^{2n}(x))\right)	\\
+			&= n\int_0^{\frac{\pi}{2}}  x^2 ((2n-1)\cos^{2n-2}(x) (1-\cos^2(x)) - \cos^{2n}(x))	\\
+			&= n(2n-1)B(n-1) - 2n^2 B(n)
+	\end{align*}
+	Therefore by algebraic manipulations we get $\frac{1}{n^2} = 2\left( \frac{B(n-1)}{A(n-1)} - \frac{B(n)}{A(n)} \right)$.
+	Thus by taking the sum 
+	\begin{align*}
+		\frac{1}{2}\sum_{i=1}^\infty i^2 &= \sum_{i=1}^\infty \left( \frac{B(i-1)}{A(i-1)} - \frac{B(i)}{A(i)} \right)\\
+		&= \sum_{i=1}^\infty \frac{B(i-1)}{A(i-1)} - \sum_{i=1}^\infty \frac{B(i)}{A(i)}\\
+		&= \frac{B(0)}{A(0)} + \sum_{i=1}^\infty \frac{B(i)}{A(i)} - \sum_{i=1}^\infty \frac{B(i)}{A(i)}\\
+		&= \frac{B(0)}{A(0)}
+	\end{align*}
+	Note that $B(0) = \frac{\pi^3}{3\cdot 8}, A(0) = \frac{\pi}{2}$, therefore half of our sum is equal to 
+	$\frac{B(0)}{A(0)} = \frac{\pi^2}{12}$, therefore $\sum_{i = 1}^\infty i^2 = \frac{\pi^2}{6}$.
+	
+	Note that $\lim_{i \to \infty} \frac{B(i)}{A(i)} = 0$ since $\frac{1}{n^2} + \frac{2B(n)}{A(n)} = \frac{2B(n-1)}{A(n_1)}$, therefore the sequence $\frac{B(i)}{A(i)}$ is decreasing and positive since $x^2$ and $\cos^{2n}(x)$ is positive on $[0,\pi/2]$.  
+\end{enumerate}
+\end{document}
