@@ -1,0 +1,14 @@
+#first example of cryptography is the caeser shift code, where you associate each letter to a shifted letter in the alphabet
+#CC(P,k) takes a message given as a list of characters, P (in lower case)
+#and an integer k from 0 to 26, and it outputs the encrypted message.  
+#for example CC([d,o,r,o,n],2) = [f, q, t, q, p] 
+
+	CC := proc(P,k1) local A,T,i1: 
+A := [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]:
+for i1 from 1 to nops(A) do 
+T[A[i1]] := A[((i1+k1-1) mod 26)+1]:
+od:
+[seq(T[P[i1]],i1=1..nops(P))]:
+end:
+
+SC := proc(P,pi) local 
