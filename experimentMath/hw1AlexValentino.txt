@@ -1,0 +1,77 @@
+
+4
+
+                                      4
+
+
+
+
+
+                                  -0.083333
+
+
+
+
+
+
+
+
+                                    x - 3
+
+
+
+
+
+
+                                      35
+
+
+
+
+
+                                     128
+
+
+
+
+                                          7
+                                   (1 + x) 
+
+
+
+
+
+
+
+                               /    5        \ 
+                              { x = -, y = -2 }
+                               \    2        / 
+
+
+
+                                     true
+
+                                     true
+
+                                     true
+
+                                     true
+
+                                    false
+
+
+
+                               (6700417) (641)
+
+
+
+"CCg := proc(P,A,k) local T,i1: for i1 from 1 to nops(A) do T[A[i1]]:=A[(i1+k-1
+mod (nops(A)))+1]:od:bool = true:i1=1:for i1 from 1 to nops(P)do if (not (P[i1]
+in A)) then bool =false end if: if bool then [seq(T[P[i1]],i1=1..nops(P))] else
+print `FAIL` end if: end:"
+Error, unterminated procedure
+"CCg := proc(P,A,k) local T,i1: for i1 from 1 to nops(A) do T[A[i1]]:=A[(i1+k-1
+mod (nops(A)))+1]:od:bool = true:i1=1:for i1 from 1 to nops(P)do if (not (P[i1]
+in A)) then bool =false end if: if bool then [seq(T[P[i1]],i1=1..nops(P))] else
+print `FAIL` end if: end:"
+

@@ -41,8 +41,28 @@
 \begin{enumerate}
 	\item[6]
 	Let $\epsilon > 0$ be given.  We will show that $\sum_{n=1}^\infty (-1)^n \frac{x^2 + n}{n^2}$ converges uniformly on
-	the interval $(a,b)$.   
-	\item[8]
+	the interval $(a,b)$.  Let $B = \max\{|a|,|b|\}$   Note that the series $\sum_{n=1}^\infty \frac{B^2}{n^2} = \frac{\pi^2}{6}$ and $\sum_{n=1}^\infty (-1)^n \frac{1}{n} = -\log(2)$.  Since both of these separate series converges 
+	then they both satisfy the Cauchy criterion for series.  Therefore there exists $N_1 \in \N$ such that for all 
+	$k \geq m \geq N_1, \sum_{n=m}^k \frac{B^2}{n^2}  < \frac{\epsilon}{2}$ and there exists $N_2 \in \N$ 
+	such that $q \geq p \geq N_2, \lvert \sum_{n = p}^q (-1)^n \frac{1}{n} \rvert < \frac{\epsilon}{2}$.  Therefore if
+	we take $N = \max \{N_1, N_2\}$ then for all $r \geq s \geq N$, 
+	$$
+	\lvert \sum_{n = s}^r (-1)^n \frac{x^2 + n}{n^2} \rvert \leq \sum_{n = s}^r \frac{B^2}{n^2} + |\sum_{n = s}^r (-1)^n \frac{1}{n}| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+	$$  
+	Since the series satisfies the Cauchy criterion, then it is uniformly convergent.  \\
+	The function does not converge absolutely since 
+	$$
+	\sum_{n=1}^\infty \frac{x^2 + n}{n^2} = \sum_{n=1}^\infty \frac{x^2}{n^2} + \frac{1}{n} > \sum_{n=1}^\infty \frac{1}{n} = \infty.
+	$$
+	\item[8] Note that for each function in the sum we have that $|c_n I(x - x_n)| \leq |c_n|$.  Therefore by the 
+	Weierstrass M-test the series $\sum_{n=1}^\infty c_n I(x-x_n)$ converges uniformly.  To show the continuity of 
+	the series when $x \neq x_n$ we must consider two cases.  If $x$ is not a limit point of the sequence $\{x_n\}$ then 
+	there must exists $\delta > 0$ such that $V(x,\delta) \cap \{x_n\} = \emptyset$.  Therefore if we consider 
+	the subsequence $\{x_{n_k}\}$ that is to the left of $x$ then the value function within $V(x,\delta)$ is simply the 
+	constant function with value $\sum_{n_k} c_{n_k}$, thus making it continuous.  If $x$ is a limit point of $\{x_n\}$ then for all of the partial sums $\sum_{n=1}^m I(x-x_n) c_n$ is constant for some $\delta > 0$ around $x$.  Therefore 
+	since it is true for the partial sums and since the series converges uniformly then we can apply the limit 
+	interchange theorem and get that $$
+	
 	\item[11]
 	\item[16]
 	\item[18]
