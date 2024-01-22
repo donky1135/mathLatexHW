@@ -1,0 +1,47 @@
+#C2.txt, Jan. 22, 2024
+Help := proc(): print(`NextPrime1(n), MakeRSAkey(D1), ME1s(a,e,n), ME1s(a,e,n)`): end: 
+
+#NextPrime1(n): inputs a positive integer n and outputs the first prime >= n
+
+NextPrime1 := proc(n) local i: 
+
+for i from n while not isprime(i) do od:
+i:
+end:
+
+#RSA: The key (n,e): a -> a^e mod n 
+
+#n must be a product of two (large) primes 
+#MakeRSAkey(D1): inputs D1 which is the number of digits in the key and outputs an RSA key
+#[n,e] where n is the product of two primes with D1 digits 
+MakeRSAkey := proc(D1) local n,p,q: 
+p := NextPrime1(rand(10^(D1-1)..10^D1-1)()): 
+q := NextPrime1(p+1):
+n := p*q:
+end:
+
+#ME1s(a,e,n): a^e mod n, the stupid way
+
+ME1s := proc(a,e,n) local i,s:
+s:= 1:
+for i from 1 to e do 
+	s := s*a mod n:
+od:
+end:
+
+#ME1(a,e,n): a^e mod n, the non-stupid way (squaring in logarithmic time)
+
+ME1 := proc(a,e,n) local i,s:
+if e = 1 then 
+	RETURN(a mod n):
+fi:
+if e mod 2 = 0 then 
+	RETURN(ME1(a^2 mod n,e/2,n) mod n)
+else 
+	RETURN(a*ME1(a^2 mod n,(e-1)/2,n) mod n)
+fi:
+end:
+
+#femat's little theorem 
+#a^p == a (mod p)
+#a^(p-1) == 1 (mod p)
