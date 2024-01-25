@@ -45,3 +45,7 @@ end:
 #femat's little theorem 
 #a^p == a (mod p)
 #a^(p-1) == 1 (mod p)
+
+#euler extension: 
+#a^phi(n) = 1 mod n
+#where phi(n) = # of integers relatively prime to n less than n 

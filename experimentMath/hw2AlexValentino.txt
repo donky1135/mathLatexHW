@@ -1,0 +1,17 @@
+MyIfactor := proc(n) local i, L, nVal: 
+if isprime(n) or n = 1 then 
+	RETURN([n])
+else 
+	L := []:
+	nVal := n:
+	for i from 2 to nVal while nVal > 1 do 
+		if nVal mod i = 0 then 
+			#print(i):
+			nVal := (nVal/i):
+			L := [op(L), i]:
+			i := 1
+		fi:
+	od:
+	RETURN(L) 
+fi:
+end:
