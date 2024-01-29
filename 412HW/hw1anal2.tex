@@ -57,14 +57,53 @@
 	\item[8] Note that for each function in the sum we have that $|c_n I(x - x_n)| \leq |c_n|$.  Therefore by the 
 	Weierstrass M-test the series $\sum_{n=1}^\infty c_n I(x-x_n)$ converges uniformly.  To show the continuity of 
 	the series when $x \neq x_n$ we must consider two cases.  If $x$ is not a limit point of the sequence $\{x_n\}$ then 
-	there must exists $\delta > 0$ such that $V(x,\delta) \cap \{x_n\} = \emptyset$.  Therefore if we consider 
+	there must exists $\delta > 0$ such that $V(x,\delta) \cap \{x_n\} = \emptyset$.	Therefore if we consider 
 	the subsequence $\{x_{n_k}\}$ that is to the left of $x$ then the value function within $V(x,\delta)$ is simply the 
-	constant function with value $\sum_{n_k} c_{n_k}$, thus making it continuous.  If $x$ is a limit point of $\{x_n\}$ then for all of the partial sums $\sum_{n=1}^m I(x-x_n) c_n$ is constant for some $\delta > 0$ around $x$.  Therefore 
-	since it is true for the partial sums and since the series converges uniformly then we can apply the limit 
-	interchange theorem and get that $$
+	constant function with value $\sum_{n_k} c_{n_k}$, thus making it continuous. 
+	\\ If $x$ is a limit point of $\{x_n\}$ then for all of the partial sums $\sum_{n=1}^m I(x-x_n) c_n$ is constant for some $\delta > 0$ around $x$.  Therefore 
+	since it is true for the partial sums and since the series converges uniformly
+	then we can apply the limit interchange theorem and get that 
+	$\lim_{t \to x} \lim_{m \to \infty} \sum_{n=0}^m c_n I(t - x_n)$ exists.
+	Note that the value is exactly the sum of all the $c_n$ to the left of $x$,
+	which is exactly $\sum_{n=0}^\infty c_n I(x - x_n)$.  Thus on all points such 
+	that $x \neq x_n$ the function is continuous.  
 	
-	\item[11]
-	\item[16]
-	\item[18]
+	\item[11] Let $M$ be the bound on all of the partial sums such that $|\sum_{n=1}^k f_n(x)| = |F_k(x)| \leq M$ for all $x \in E$ and let $\epsilon$ be
+	given.  Since $g_n \to 0$ uniformly then choose $N \in \N$ such that $|g_m(x)| < 2M \epsilon$ for all $m \geq N, x \in E$.  Therefore, for all $N \leq p \leq q$, 
+	we have that 
+	\begin{align*}
+		\lvert \sum_{n = p}^q f_n(x) g_n(x) \rvert &= 
+		\lvert \sum_{n=p}^{q-1} F_n(x) (g_n(x) - g_{n+1}(x)) + F_q(x) g_q (x) - F_{p-1}(x) g_p(x)  \rvert\\ & \text{ abel summation}\\
+		&\leq M|\sum_{n=p}^{q-1} (g_n(x) - g_{n+1}(x)) + g_q(x) + g_p(x)|\\ 
+		&\text{ uniform bound on } F_n(x)\\ 
+		&= 2Mg_p(x)\\
+		&< \epsilon
+	\end{align*}
+	\item[16] Let $K$ be a compact set, $\{f_n\}$ be a set of equicontinuous 
+	functions which converge pointwise on $K$.  We want to show that the functions
+	converge uniformly.  Let $\epsilon$ be given.  Since $\{f_n\}$ is 
+	equicontinuous then there exists $\delta > 0$ such that for all $x,y \in K$,
+	$|x-y| < \delta$ implies $|f_n(x) - f_n(y)| < \epsilon/3$ for all $n \in \N$.  
+	Since $K$ is compact then there exists a finite set of points 
+	$\{x_1,\cdots, x_r\} \subset K$ such that 
+	$K \subseteq \cup_{i=1}^r V(x_i,\delta)$.  Therefore for an arbitrary $x\in K$,
+	there exists $x_p$ such that $x \in V(x_p,\delta)$.  Since $\{f_n\}$ converges
+	pointwise for every point in $K$ then there exists $N \in \N$ such that for 
+	all $n \geq m \geq N, |f_n(x_p) - f_m(x_p)| < \epsilon/3$.  Now if take the 
+	same indicies and test whether $\{f_n\}$ converges at $x$ we get that
+	\begin{align*}
+		|f_n(x) - f_m(x)| &= |f_n(x) -f_n(x_p) + f_n(x_p) - f_m(x_p) + f_n(x_p) - f_m(x)|\\
+		&\leq |f_n(x) -f_n(x_p)| + |f_n(x_p) - f_m(x_p)| + |f_m(x_p) - f_m(x)|\\
+		&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}\\
+		&= \epsilon
+	\end{align*}
+	\item[18] Let $\{f_n\}$ be a set of Riemann integrable functions on $[a,b]$ 
+	which are uniformly bounded by $M > 0$, and let $F_n$ denote $F_n(x) \int_a^x f(t) dt$.  We want to show that $\{F_n\}$ has a uniformly convergent subsequence.
+	We claim that $\{F_n(x)\}$ is equicontinuous.  Note that if $x,y \in [a,b]$
+	and $|x-y| < \frac{\epsilon}{M}$ then for all 
+	$n \in \N,|F_n(x) - F_n(y)| \leq M \frac{\epsilon}{M} = \epsilon $ 
+	(by theorem 6.12, Rudin).  Therefore since $\{F_n\}$ is equicontinuous and 
+	uniformly bounded by $M(b-a)$ then we can apply theorem 7.25 of Rudin which 
+	gives us a uniformly convergent subsequence of $\{F_n\}$.  
 \end{enumerate}
 \end{document}
