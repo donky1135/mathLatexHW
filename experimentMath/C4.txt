@@ -1,0 +1,31 @@
+Help := proc() print(`Fqn(q,n), HD(u,v), RV(q,n), RC(q,n,d,K)， SPB(q,n,t)`): end:
+
+HD := proc(u,v) local i,c:
+	c:= 0:
+	for i from 1 to nops(u) do if u[i] <> v[i] then c := c + 1: fi: od:
+	c:
+end:
+
+#RV(q,n): a random word of length n in the alphabet {0,...,q-1}
+RV := proc(q,n) local i: [seq(rand(0..(q-1))(), i=1..n)]:
+end:
+#RC(q,n,d,K): input q,n,d and K and keeps picking K random vectors 
+#whenever the new vector is not distance d-1 from the previous one we accept it 
+
+RC := proc(q,n,d,K) local C,i,v,c: 
+	C:={RV(q,n)}:
+	for i from 1 to (K-1) do:
+		v := RV(q,n):
+		if min(seq(HD(v,c), c in C)) >= d then 
+			C:= C union {v}
+		fi:
+	od:
+	C:
+end: 
+
+#the most efficent codes for (q,n,d) goes to sphere packing theory
+#d=2*t+1
+#"Hamming Sphere" with center v and radius d
+# (1 + (q-1)*binomial(n,1) + (q-1)^2 * binomial(n,2) + ... )*M = q^n, thus the tightest bound is
+# M = q^n/(sum((q-1)^i binomial(n,i)))
+# ^ the sphere packing bound ^

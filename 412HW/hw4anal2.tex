@@ -1,0 +1,166 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[8.12(rudin)]
+	\begin{enumerate}
+		\item Note that for $f(x) = 1$ on $x \in [-\delta,\delta]$ and is $2\pi$ periodic
+		that $c_n = \frac{1}{2 \pi}\int_{-\delta}^\delta e^{-inx}dx = \frac{\sin(n\delta)}{n\pi} $.  Trivially $c_0 = \frac{1}{2 \pi} \int_{-\delta}^\delta 1 dx = \frac{\delta}{\pi}$.
+		
+		\item Therefore, since at $x=0, f(x) = 1$, then we have that $1 = \sum_{n = - \infty}^\infty
+		c_n = \frac{\delta}{\pi} + \sum_{i=1}^\infty \frac{\sin(n\delta)}{n\pi} +
+		\sum_{i=1}^\infty  \frac{\sin(-n\delta)}{-n\pi} = \frac{\delta}{\pi} + 
+		\sum_{i=1}^\infty \frac{2\sin(n\delta)}{n\pi}$.  Therefore 
+		$\frac{\pi - \delta}{2} = \sum_{i=1}^\infty \frac{\sin(n\delta)}{n\pi}$
+		\item Note by parsaval's theorem that since $f$ is Riemann integrable then it 
+		satisfies $\frac{1}{2 \pi}\int_{-\pi}^\pi f(x)^2 = \sum_{n=-\infty}^\infty |c_n|^2$.
+		Since $f$ is a constant then we have $\frac{\delta}{\pi} = 
+		\sum_{n=-\infty}^\infty |c_n|^2$.  Doing some rearranging we arrive at 
+		$\frac{\delta}{\pi} = \frac{\delta^2}{\pi^2} + 
+		2\sum_{n=1}^\infty \frac{\sin^2(\delta n)}{n^2 \pi^2}$.  Therefore
+		$$
+		\frac{\delta}{2\pi}\left(1 - \frac{\delta}{\pi} \right) = \sum_{n=1}^\infty \frac{\sin^2(\delta n)}{n^2 \pi^2}
+		$$
+		$$
+		\frac{\pi - \delta}{2} = \sum_{n=1}^\infty \frac{\sin^2(\delta n)}{n^2 \delta}
+		$$
+	\end{enumerate}
+	\item[4.7] Verifying the orthogonality of $S = \{e^{i\frac{n\pi x}{l}}: n \in \Z\}$:
+	\begin{itemize}
+		\item Suppose $n \neq m$.  Then 
+		\begin{align*}
+			\langle e^{i\frac{n\pi x}{l}},e^{i\frac{m\pi x}{l}} \rangle &= 
+			\int_{-l}^l e^{i\frac{n\pi x}{l}}e^{-i\frac{m\pi x}{l}} dx\\
+			&= \int_{-l}^l e^{i\frac{(n-m)\pi x}{l}} dx\\
+			&= \frac{l}{i(n-m)\pi} e^{i\frac{(n-m)\pi x}{l}}]_{-l}^l \\
+			&= \frac{l}{i(n-m)\pi} \left(e^{i\frac{(n-m)\pi l}{l}} - e^{-i\frac{(n-m)\pi l}{l}} \right)\\
+			&= \frac{l}{i(n-m)\pi} (\cos((n-m)\pi) + \sin((n-m)\pi) - \cos((n-m)\pi) +\sin((n-m)\pi) )\\
+			&= \frac{l}{i(n-m)\pi} 2 \sin((n-m)\pi)\\
+			&= \frac{l}{i(n-m)\pi} \cdot 0\\
+			&= 0
+		\end{align*}
+		\item If $n =m $ then 
+		\begin{align*}
+			\lVert e^{i\frac{n\pi x}{l}} \rVert &= 
+			\sqrt{\int_{-l}^l e^{i\frac{n\pi x}{l}} e^{-i\frac{n\pi x}{l}} dx}\\
+			&= \sqrt{\int_{-l}^l e^{i\frac{(n-n)\pi x}{l}} dx}\\
+			&= \sqrt{\int_{-l}^l e^0 dx}\\
+			&= \sqrt{2l}
+		\end{align*}
+	\end{itemize}
+	Therefore $S$ is an orthogonal set.  Now for the second claim:
+	\begin{align*}
+		\int_{-l}^l |\sum_{n=-N}^N c_n e^{i\frac{n\pi x}{l}}|^2 dx &=
+		\int_{-l}^l \left(\sum_{n=-N}^N c_n e^{i\frac{n\pi x}{l}}\right)\overline{\left(\sum_{n=-N}^N c_n e^{i\frac{n\pi x}{l}}\right)} dx\\ &=
+		\int_{-l}^l \sum_{n=-N}^N \sum_{m=-N}^N c_n \overline{c_m} e^{i\frac{(n-m)\pi x}{l}} dx\\
+		&= \sum_{n=-N}^N \int_{-l}^l \sum_{m=-N}^N c_n \overline{c_m} e^{i\frac{(n-m)\pi x}{l}} dx\\
+		&= \sum_{n=-N}^N |c_n|^2 2l \text{ by the orthogonality of } S
+	\end{align*}
+	\item[4.15] Let $a_n = \frac{1}{l} \int_{-l}^l g(x) \cos(\frac{n \pi  x}{l}) dx,
+	b_n = \frac{1}{l} \int_{-l}^l g(x) \sin(\frac{n \pi x}{l}) dx, 
+	c_n = \frac{1}{2l} \int_{-l}^l g(x) e^{-i\frac{n \pi x}{l}}dx  $.  
+	Note that 
+	\begin{align*}
+		c_n &= \frac{1}{2l} \int_{-l}^l g(x) e^{-i\frac{n \pi x}{l}}dx \\
+		&= \frac{1}{2l} \int_{-l}^l g(x) \cos(\frac{n \pi  x}{l}) dx - i \frac{1}{2l}
+		\int_{-l}^l g(x)	\sin(\frac{n \pi x}{l}) dx\\
+		&= \frac{1}{2}(a_n - i b_n)\\
+		c_{-n} &= \frac{1}{2}(a_n + i b_n).
+	\end{align*}
+	Therefore  \begin{align*}
+		c_n e^{i\frac{n \pi x}{l}} + c_{-n} e^{-i\frac{n \pi x}{l}} &=\frac{1}{2}(a_n - i b_n)e^{i\frac{n \pi x}{l}} + \frac{1}{2}(a_n + i b_n)e^{-i\frac{n \pi x}{l}}\\
+		&= a_n \frac{e^{i\frac{n \pi x}{l}} + e^{-i\frac{n \pi x}{l}}}{2} + 
+		b_n \frac{e^{i\frac{n \pi x}{l}} - e^{-i\frac{n \pi x}{l}}}{2i}\\
+		&= a_n \cos(\frac{n \pi  x}{l}) + b_n \sin(\frac{n \pi x}{l}).
+	\end{align*}
+	Thus for all $n \in \{-N,\cdots,N\}\backslash \{1\}$, 
+	$\sum_{n} c_n e^{i\frac{n\pi x}{l}} = \sum_{n=1}^n \left(a_n \cos(\frac{n \pi  x}{l}) + b_n \sin(\frac{n \pi x}{l}) \right)$.  Note for the constant term we have trivially that,
+	$a_0 = \int_{-l}^l g(x) \cos(0) dx = \int_{-l}^l g(x) e^0 dx = c_0$,  Therefore 
+	$\sum_{-N}^N c_n e^{i\frac{n \pi x}{l}}= a_0 + \sum_{n=1}^N \left(a_n \cos(\frac{n \pi  x}{l}) + b_n \sin(\frac{n \pi x}{l}) \right)$.  
+	Furthermore, observe that $c_n e^{i\frac{n \pi x}{l}} = 
+	e^{i\frac{n \pi x}{l}}\frac{1}{2l} \int_{-l}^l g(t) e^{-i\frac{n \pi t}{l}}dt = 
+	\frac{1}{2l}\int_{-l}^l g(t) e^{-i\frac{n \pi (x-t)}{l}}dt$.  Note that this is the 
+	$n$-th term of $D_N(x-t)$ if it was split into indvidual integrals, therefore 
+	$\sum_{-N}^N c_n e^{i\frac{n \pi x}{l}} = \int_{-l}^l g(t)D_N(x-t)dt$.  Additionally, 
+	\begin{align*}
+		D_N(t) &= \sum_{n = -N}^N e^{-i\frac{n\pi t}{l}}\\
+		&= 1 + \sum_{n=1}^N e^{-i\frac{n\pi t}{l}} + \sum_{n=1}^N e^{i\frac{n\pi t}{l}}\\
+		&= 1 + \sum_{n=1}^N \left( \cos \left(\frac{n\pi t}{l}\right) -\sin \left(\frac{n\pi t}{l}\right) +\cos \left(\frac{n\pi t}{l}\right) + \sin \left(\frac{n\pi t}{l}\right)\right)\\
+		&= 1 + 2 \sum_{n=1}^N \cos \left(\frac{n\pi t}{l}\right)
+	\end{align*}
+	Finally, we are ready to show that computing a fourier series is equivalent to convolution 
+	by the dirchelet kernel:
+	\begin{align*}
+		\sin \left( \frac{\pi t}{2l}\right) \left( 1 + 2 \sum_{n=1}^N \cos \left(\frac{n\pi t}{l}\right)\right) &= \sin\left(\frac{\pi t}{2l}\right) +   \sum_{n=1}^N  \sin\left(\frac{(n+ \frac{1}{2})\pi t}{l}\right) - 
+		\sin\left(\frac{(n - \frac{1}{2})\pi t}{l}\right)\\
+		&= \sin\left(\frac{\pi t}{2l}\right) + \sum_{n=1}^N  \sin\left(\frac{(n+ \frac{1}{2})\pi t}{l}\right) - \sum_{j=0}^{N-1}  \sin\left(\frac{(j+ \frac{1}{2})\pi t}{l}\right)\\
+		&= \sin\left(\frac{\pi t}{2l}\right) - \sin\left(\frac{\pi t}{2l}\right) + 
+		\sin\left(\frac{(N+ \frac{1}{2})\pi t}{l}\right) + \sum_{n=1}^{N-1}  \sin\left(\frac{(n+ \frac{1}{2})\pi t}{l}\right) - \sum_{j=1}^{N-1}  \sin\left(\frac{(j+ \frac{1}{2})\pi t}{l}\right)\\
+		&= \sin\left(\frac{(N+ \frac{1}{2})\pi t}{l}\right)
+	\end{align*}
+	Therefore $1 + 2 \sum_{n=1}^N \cos \left(\frac{n\pi t}{l}\right) = 
+	\frac{\sin\left(\frac{\left(N+ \frac{1}{2}\right)\pi t}{l}\right)}{\sin \left( \frac{\pi t}{2l}\right)}$
+	\item[4.18] We must first normalize what we're projecting by.  This means we must compute
+	$\int_0^\pi \sin(nx)dx$.  This integral when evaluated yields 
+	$\frac{\pi}{2} - \frac{\sin(2\pi n)}{4n}$.  Since $\sin(2 \pi n) = 0$ for all $n \in \N$,
+	then we are normalizing by $\frac{2}{\pi}$
+	\begin{itemize}
+		\item For $f(x) = 1$ we must compute the integral $\int_0^\pi \sin(nx)dx$, since 
+		we're on $[0,\pi]$.  Note that 
+		$$
+			a_n = \frac{2}{\pi}\int_0^\pi \sin(nx)dx = \frac{2}{\pi}\frac{1}{n} \int_0^{n \pi} \sin(u) du = 
+			\frac{2}{\pi}\frac{1}{n}(1-\cos(n \pi))		
+		$$  
+		Note that if $n$ is even then $a_n = \frac{1-1}{n} = 0$.  If $n$ is odd then 
+		$a_n = \frac{4}{n\pi}$.  Therefore 
+		$1 \approx \sum_{n=0}^\infty \frac{4}{\pi(2n+1)}\sin((2n+1)x)$ on $[0,\pi]$.
+		\item For $g(x) = \cos(x)$ we must compute the integral $\int_0^\pi \cos(x) \sin(nx)dx$.
+		Note that 
+		$$
+		\frac{2}{\pi}\int_0^\pi \cos(x) \sin(nx)dx = 
+		\frac{1}{\pi} \int_0^\pi \sin((n+1)x)- \sin((1-n)x)dx = 
+		\frac{1}{\pi}\left( \frac{1}{n+1} - \frac{1}{1-n} \right)
+		$$
+		If $n$ is odd then we have $a_n = 0$, and if $n$ is even ($n=2m$) we have that 
+		$a_n = \frac{4m}{\pi(4m^2 - 1)}$.  Therefore 
+		$\cos(x) \approx \sum_{n=1}^\infty \frac{8n^2}{\pi(4n^2 -1)} \sin(2nx)$
+	\end{itemize}
+\end{enumerate}
+\end{document}

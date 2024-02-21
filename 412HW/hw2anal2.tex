@@ -1,0 +1,123 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 2\\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6.7]
+	\begin{enumerate}
+		\item We want to show for $f \in R[0,1]$ that 
+		$\int_0^1 f(x) dx = \lim_{c \to 0} \int_c^1 f(x)dx$.  
+		Note that $\int_0^1 f(x) dx - \lim_{c \to 0} \int_c^1 f(x)dx = 
+		\int_0^c f(x) dx$.  Note that since as a function 
+		$F(x) = \int_0^x f(y) dy$ is continuous and that 
+		$\lim_{c \to 0} \int_0^c f(x) dx =
+		\lim_{c \to 0} F(c) = F(\lim_{c \to 0} c) = F(0) = 0$
+		then equality holds.
+		\item Consider the function $f(x)$ being defined piecewise on 
+		$x \in [\frac{1}{n+1},\frac{1}{n}]$ such that $f(x) = (-1)^{n+1}(n+1)$.
+		Note that since the function is simply a countable collection of constant 
+		functions that $f$ is in fact Riemann integrable.   
+		Therefore if one takes the limit $\lim_{c \to 0} \int_c^1 f(x)dx = 
+		\sum_{i=1}^\infty \frac{(-1)^{n+1}}{n} = \log(2)$.  However, if one 
+		considers $\int_0^1 |f(x)|dx$, all of the constant functions are made 
+		positive, and one is left with $\sum_{n=1}^\infty \frac{1}{n} \leq \int_0^1 |f(x)|dx$.  Therefore the integral with the function $|f(x)|$ does 
+		not exists.  
+	\end{enumerate}
+	\item[6.17] Suppose $P = \{x_0,\cdots,x_n\}$ is a partition of $[a,b]$, 
+	and choose $t_i \in [x_{i-1},x_{i}]$ such that $g(t_i)\Delta x_i = G(x_i) - G(x_{i-1})$.  Therefore one can apply the abel summation formula to the 
+	approximation to the integral $\int_a^b g(x) \alpha(x) dx, \sum_{i=1}^n g(t_i)\alpha(x_i)\Delta x_i$ as follows:
+	
+	\begin{align*}
+	\sum_{i=1}^n \alpha(x_i)g(t_i)\Delta x_i &= \sum_{i=1}^n \alpha(x_i) (G(x_i)-G(x_{i-1})\\
+	&= \sum_{i=1}^n \alpha(x_i)G(x_i) - \sum_{i=1}^n \alpha(x_i)G(x_{i-1})\\
+	&= G(b)\alpha(b) + \sum_{i=1}^{n-1} \alpha(x_i)G(x_i)- \sum_{i=1}^n \alpha(x_i)G(x_{i-1})\\
+	&= G(b)\alpha(b) - G(a)\alpha(a) + \sum_{i=1}^{n} \alpha(x_{i-1})G(x_{i-1})\sum_{i=1}^n \alpha(x_i)G(x_{i-1})\\
+	&= G(b)\alpha(b) - G(a)\alpha(a) + \sum_{i=1}^{n} G(x_i) (\alpha(x_{i-1}) - \alpha(x_{i}))\\
+	&= G(b)\alpha(b) - G(a)\alpha(a) - \sum_{i=1}^{n} G(x_i) \Delta \alpha_i
+	\end{align*}
+	Note that in the limit the final sum on the right converges to $\int_a^b G(x) d\alpha(x)$.  Additionally the original sum on the left converges to $\int_a^b g(x) \alpha(x) dx$.  Thus $\int_a^b g(x) \alpha(x) dx = G(b)\alpha(b) - G(a)\alpha(a) -\int_a^b G(x) d\alpha(x)$
+	\item[7.12] Let $h_n(x) = f(x) - f_n(x)$.  Note that since $f_n \leq g$ then 
+	$\int_0^\infty f_n(x) dx \leq \int_0^\infty g(x) dx < \infty$, and additionally
+	the above inequality would imply that $\int_0^\infty f(x)dx \leq \int_0^\infty g(x) dx$.    Therefore if we consider taking the integral and splitting it up 
+	we get $\lim_{n \to \infty} \int_0^\infty h_n(x) dx = 
+	\lim_{n \to \infty} \int_0^t h_n(x) dx + \int_t^T h_n(x) dx + \int_T^\infty h_n(x) dx$.  First, independent of $n$ if we take the limit as $t \to 0$ for 
+	$\int_0^t h_n(x) dx$ then as shown in exercise 6.7 (a) we can arbitrarily 
+	choose a $t$ such that $\int_0^t h_n(x) dx < \epsilon/3$.  Additionally for 
+	$\int_T^\infty h_n(x) dx$ since $\int_0^\infty f_n(x) dx = A_n$ and $\int_0^\infty f(x) dx = A$ then for each respective integral we can choose a $T$ 
+	large enough such that $|A - A_n - \int_0^T h_n(x) | < \epsilon/3$ since they 
+	converge.  Now, we know since $f_n \to f$ uniformly there exists $N\in \N$ 
+	such that for all $n \geq N$, $|f_n(x) - f(x)| < \frac{\epsilon}{3(T-t)}$ so that 
+	$\int_t^T h_n(x) dx \leq \int_t^T \frac{\epsilon}{3(T-t)} dx = \epsilon/3$.
+	Therefore $\lim_{n \to \infty} \int_0^\infty h_n(x) dx = \epsilon$.  
+	Therefore $\lim_{n \to \infty} \int_0^\infty f_n(x) = \int_0^\infty f(x) dx$.
+	\item[7.20] Note that by the Stone-Weierstrass theorem there exists a sequence
+	of polynomials such that $\lim_{n \to \infty} P_n(x) = f(x)$ uniformly on $[a,b]$.  Note that since
+	the constituent parts of $P(n)$ are just mononomials, then 
+	$\int_0^1 P_n(x) f(x) = 0$.  Therefore by theorem 7.16 in rudin, 
+	$0 = \lim_{n \to \infty} \int_0^1 P_n(x) f(x) dx = \int_0^1 f^2(x)$.
+	Note that since $\int_0^1 f^2(x) = 0$ then $\bar{\int_0^1} |f(x)|^2 = 0$.
+	This implies that the largest value on every interval of $f$ is 0.  
+	Additionally since $f^2(x)$ is bounded below by zero implies that $f$ is 0 
+	at every point.  Thus $f$ is 0 on $[0,1]$.  
+	\item[1.1.6] 
+	\begin{itemize}
+		\item $\bar{\int_{-1}^1} H(x)dH(x)$.  Note for $y,x > 0$ that 
+		$H(x)-H(y) = 1-1=0$ and for $x,y < 0$ 
+		additionally $H(x) - H(y) = 0 - 0 = 0$.  Therefore we only have to 
+		consider the partitions which either straddles the origin or contains
+		the origin. So if $x_i < 0 < x_{i+1}$ then $sup_{[x_i,x_{i+1}]} H(x) (H(x_{i+1}-H(x_i)) = 1 * 1 = 1$.  If we have $[x_i,x_{i+1}], x_{i+1} = 0$ then 
+		we have the same scenario of $sup_{[x_i,x_{i+1}]} H(x) (H(x_{i+1})-H(x_i)) = 1 * 1 = 1$.  Thus $\bar{\int_{-1}^1} H(x)dH(x) = 1$.
+		\item $\underline{\int_{-1}^1} H(x)dH(x)$.  Note by a similar construction
+		above we have the scenario where the smallest value of the straddled 
+		interval is 0 and the smallest value of the interval on the origin is 0.
+		Thus $\underline{\int_{-1}^1} H(x)dH(x) = 0$.
+		\item $\bar{\int_{-1}^1} G(x)dH(x)$.  Note that now if we choose to 
+		straddle the origin it matters in the case of the sum.  If $x_i < 0 < x_{i+1}$ then the maximum value $G$ attains on $[x_i,x_{i+1}]$ is 1, as opposed to 
+		having $x_{i-1}< x_i = 0 < x_{i+1}$, where on $x \in [x_{i-1},x_i], G(x)=0$.  However since the upper sum chooses the smallest value here, then
+		$\bar{\int_{-1}^1} G(x)dH(x) = 0$.
+		\item   $\underline{\int_{-1}^1} G(x)dH(x)$.  Trivially for the lower 
+		sum, the only situation listed above in which the Stieltjets integral
+		could be 1 is when taking the sup on the interval straddling the origin.
+		Therefore taking the inf will result in 0.  Thus all lower sums are 0, 
+		and the sup of the lower sums is 0.  Therefore $\underline{\int_{-1}^1} G(x)dH(x) = 0$
+	\end{itemize}
+	Since both the upper and lower sums agree for $\int_{-1}^1 G(x)dH(x)$ then 
+	$G(x) \in R(dH)$.  
+\end{enumerate}
+\end{document}
