@@ -1,0 +1,99 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{452 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 5\\
+	452	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[16.4.1(b)] Note that 
+	$$x^2 - 2x - 1 = (x-(1+ \sqrt{2}))(x-(1- \sqrt{2})), 
+	x^2 - 2x - 1 = (x-(1+ 2\sqrt{2}))(x-(1- 2\sqrt{2})),$$
+	thus the roots are contained within $\Q(\sqrt{2})$, and since 
+	$\Q(\sqrt{2})$ is a galois extension for $f$ implies that 
+	$[\Q(\sqrt{2}): \Q] = |Gal(\Q(\sqrt{2})/ \Q)|$.   	
+	\item[16.6.1] For the equation $x^3 + x + 1$, $\Delta_f = -31$.  
+	Since $deg(\alpha) = 3$, this implies that $[\Q(\alpha) : \Q] = 3$,
+	which means that the order of the galois group $G(\Q(\alpha)/\Q)$ is either 1 
+	or 3.  Since $\sqrt{-31}$ needs an extension of degree 2, then 
+	it is not contained in  $\Q(\alpha)$.  However, for the splitting 
+	field $K$, the square root of the discriminate is guaranteed to 
+	be within as $\sqrt{\Delta_f} = (\alpha_1 - \alpha_2)(\alpha_2 - \alpha_3)(\alpha_1 - \alpha_3)$, which is just the product and 
+	difference of the roots.  Therefore  
+	$\sqrt{-31} = \sqrt{\Delta_f} \in K$.  
+	\item[16.6.2] Note that we have the inherited automorphisms 
+	from $\Q(\sqrt{2}),\Q(\sqrt{3}),\Q(\sqrt{5})$ of 
+	$\sqrt{p} \mapsto -\sqrt{p}$ where $p = 2,3,5$.  Furthermore, 
+	we have $8 = [\Q(\sqrt{2},\sqrt{3},\sqrt{5}):\Q]$ as 
+	we have $3$ items being adjoined to $\Q$, and there is $2^3 = 8$
+	distinct elements which can be created by multiplying them together,
+	represented by $\sqrt{2}^{b_0} \sqrt{3}^{b_1} \sqrt{5}^{b_2}$, 
+	where $b_i = 0,1, i=0,1,2$.  Furthermore, we can generate other 
+	automorphisms by chaining the swapping of signs of different roots.
+	Furthermore, the swapping of signs is commutative.  Finally 
+	our 3 inherited automorphisms each generate a subgroup of order 2.
+	Therefore the only possible galois group is $(\Z/2\Z)^3$, or
+	the field on 8 elements.  	 
+	\item[16.7.2]
+	\begin{enumerate}
+		\item[b] $[F:L] = 9$ cannot occur since 
+		$[K : L][L : F] = [K:F] = |G(K/f)| = 24$, and $9 \nmid 24$.
+		\item[c] Note that $C_2 \times C_{12} \cong C_2 \times C_3 
+		\times C_4$ by the chinese remainder theorem.  
+		Since the following is a direct product, 
+		this implies that $C_4$ is normal.  Therefore there is exactly
+		one copy of $C_4$, implying there is one intermediate field 
+		which has galois group $C_4$.  
+	\end{enumerate}
+	\item[16.7.4] Subfields of  $\Q(\sqrt{2},\sqrt{3},\sqrt{5})$:
+	\begin{enumerate}
+		\item $\Q	$
+		\item $\Q(\sqrt{2})$
+		\item $\Q(\sqrt{3})$
+		\item $\Q(\sqrt{5})$
+		\item $\Q(\sqrt{6})$
+		\item $\Q(\sqrt{10})$
+		\item $\Q(\sqrt{15})$
+		\item $\Q(\sqrt{30})$
+		\item $\Q(\sqrt{2},\sqrt{3})$
+		\item $\Q(\sqrt{2},\sqrt{5})$
+		\item $\Q(\sqrt{3},\sqrt{5})$
+		\item $\Q(\sqrt{5},\sqrt{6})$
+		\item $\Q(\sqrt{10},\sqrt{3})$
+		\item $\Q(\sqrt{15},\sqrt{2})$
+		\item $\Q(\sqrt{2},\sqrt{3},\sqrt{5})$
+	\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework \\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2.3]
+	\begin{enumerate}
+		\item 
+		$$S \circ T = 
+		(2x+2y, 2x, 2x+y)$$
+		\item 
+		$$M_T = \begin{bmatrix}
+		1 & 0\\ 0 & 1\\ 1 & 1
+		\end{bmatrix}$$
+		$$
+		M_S = \begin{bmatrix}
+			1 & 1 & 1\\
+			1 & - 1 & 1\\
+			1 & 0 & 1
+\end{bmatrix}				
+		$$
+		$$
+		M_{S \circ T} = 	
+		\begin{bmatrix}
+		2 & 2\\ 2 & 0\\ 2 & 1
+\end{bmatrix}			
+		$$
+	\end{enumerate}
+	\item[2.4]
+	\begin{enumerate}
+		\item Note that $D(c) = 0$, implying that the first row 
+		of the matrix is all zeros.  For $\sin(ix), i = 1\ldots k$, 
+		$D(\sin(ix)) = i\cos(ix)$, this would imply that 
+		${D_{2i,2i+1}} = i$ and the rest of the entries in the row 
+		of $2i+1$ would be zero.  For $\cos(ix), D(\cos(ix)) = -i\sin(ix)$, therefore $D_{2i+1,2i} = -i$.  Furthermore, 
+		$D^2(\cos(it)) = -i^2 \cos(it), D^2(\sin(it)) = -i^2 \sin(it)$,
+		thus for $i \in [k], D^2_{i,i} = -i^2$ and otherwise 
+		$D^2_{j,l} = 0$.  	
+		\item Note that $D$ over $\{\cos(t),\sin(t),\ldots,\cos(kt),
+		\sin(kt)\}$ is 
+		guaranteed to have linearly independent columns since for 
+		columns with an index of $2i+1$ are of the form 
+		$[0,\cdots,i,\cdots,0]$ in the $2i$ position, and 
+		columns with an index of $2i$ are of the form 
+		$[0,\cdots,-i,\cdots,0]$ in the $2i+1$ position.  Note this 
+		ensures that the rows of $D$ have exactly 1 non-zero element,
+		and as shown by the columns, there cannot be repeats.  
+		Therefore $D$ is invertible.  
+	\end{enumerate}
+	\item[2.10]
+	\begin{enumerate}
+		\item Let $a = a_1,\cdots,a_n \in \R$ be given.  We want to find 
+		the operator norm of $S(x) = a \cdot x, x \in \R^n$ with 
+		respect to the $l^1$ norm.  Note that 
+		$\lvert \sum_{i=1}^n a_i x_i \rvert \leq 
+		\sum_{i=1}^n |a_i| |x_i|$ for all $x \in \R^n$.  
+		Thus we claim that the operator norm $\|S \|_1 = 
+		\max\{|a_1|,\ldots,|a_n| \}$.  Let $a_k = \max\{|a_1|,\ldots,|a_n| \}$, and let $l^1(x) = 1$, therefore 
+		$$
+		\lvert \sum_{i=1}^n a_i x_i \rvert 
+		\leq \sum_{i=1}^n |a_i||x_i| 
+		\leq \sum_{i=1}^n |a_k||x_i|
+		= |a_k| \sum_{i=1}^n |x_i| = |a_k|.
+		$$
+		Note that $S$ exactly attains this value when one chooses a vector of the form 
+		$(0,\cdots,0,\pm 1,0,\cdots,0)$, the nonzero term is in position     $k$, where the sign of the non-zero term is the 
+		opposite of $a_k$, then 
+		$|a_k| = a \cdot x \leq  \sum_{i=1}^n |a_i||x_i| = |a_k|$.  
+		\item Note that for the $l^\infty$ norm we have a 
+		very simular situtation as before.  Since the only 
+		$x \in \R^n$ which satisfy $l^\infty(x) = 1$ are of the form 
+		$(0,\cdots,0,1,0,\cdots,0)$, then we have a finite number 
+		of $x$ of the form $e_k$, so trivially $a\cdot e_k = a_k$, 
+		thus $S$ is maximized via finding $\max \{a_1,\cdots,a_n\}$.  
+		\item For the $l^p$ norm with 
+		$x \in \R^n, l^p(x) = 1$, we will have found the operator 
+		norm if we can find $x$ such that 
+		$\sum_{i=1}^n |a_i x_i| \leq \left(\sum_{i=1}^n |a_i|^{\frac{p}{p-1}} \right)^{\frac{p-1}{p}} \left(\sum_{i=1}^n |x_i|^p \right)^\frac{1}{p} = \left(\sum_{i=1}^n |a_i|^{\frac{p}{p-1}} \right)^{\frac{p-1}{p}} $ becomes an equality.  
+		Note that if we let 
+		$x_i = \frac{|a_i|^{\frac{1}{p-1}}}
+		{\left(\sum_{k=1}^n |a_i|^{\frac{p}{p-1}}\right)^{\frac{1}{p}}}$,
+		then 
+		$$
+		\sum_{i=1}^n |x_i|^p = \frac{1}{\left(\sum_{k=1}^n |a_i|^{\frac{p}{p-1}}\right)}\sum_{i=1}^n |a_i|^{\frac{p}{p-1}} = 1
+		$$
+		and furthermore we have that 
+		\begin{align*}
+			&= \sum_{i=1}^n |a_i x_i| \\
+			&= \sum_{i=1}^n \frac{|a_i|^\frac{p - 1 + 1}{p-1}}{\left(\sum_{k=1}^n |a_i|^{\frac{p}{p-1}}\right)^{\frac{1}{p}}}\\
+			&= \frac{1}{\left(\sum_{k=1}^n a_i^{\frac{p}{p-1}}\right)^{\frac{1}{p}}} \left(\sum_{i=1}^n |a_i|^{\frac{p}{p-1}}\right)^{\frac{p}{p}}\\
+			&= \left(\sum_{i=1}^n |a_i|^{\frac{p}{p-1}} \right)^{\frac{p-1}{p}}. 
+		\end{align*}
+		Thus in general if we choose our $x_i$ such that the sign 
+		is always the same as $a_i$, then we can always ensure that 
+		$a_i x_i = |a_i x_i|$.  Thus we have found the operator 
+		norm for the $l^p$ norm.  
+	\end{enumerate}
+	\item[3.11]
+	Let $R_\theta = \begin{bmatrix}
+		\cos(\theta) & - \sin(\theta)\\
+		\sin(\theta) & \cos(\theta)
+\end{bmatrix}, A = \begin{bmatrix}
+a & b\\ c & d
+\end{bmatrix}	 $.  Then 
+	\begin{align*}
+	&= 0\\
+		&= R_\theta A - A R_\theta \\
+		&= \begin{bmatrix}
+		\cos(\theta) & - \sin(\theta)\\
+		\sin(\theta) & \cos(\theta)
+\end{bmatrix} \begin{bmatrix}
+a & b\\ c & d
+\end{bmatrix} - \begin{bmatrix}
+a & b\\ c & d
+\end{bmatrix} \begin{bmatrix}
+		\cos(\theta) & - \sin(\theta)\\
+		\sin(\theta) & \cos(\theta)
+\end{bmatrix} \\
+	&= \begin{bmatrix}
+	a \cos(\theta) - c \sin(\theta) & b \cos(\theta) - d \sin(\theta)\\
+	a \sin(\theta) + c \cos(\theta) & b \sin(\theta) + d \cos(\theta)
+	\end{bmatrix} - 
+	 \begin{bmatrix}
+	a \cos(\theta) + b \sin(\theta) & -a \sin(\theta) + b \cos(\theta)\\
+	c \cos(\theta) + d \sin(\theta) & -c \sin(\theta) + d \cos(\theta)
+	\end{bmatrix} \\
+	&= 
+	\begin{bmatrix}
+		-(c+b)\sin(\theta) & (a-d)\sin(\theta)\\
+		(a-d)\sin(\theta) & -(b+c)\sin(\theta)
+	\end{bmatrix},
+	\end{align*}
+	implying that $-c = b, a = d$.  Therefore 
+	$A = \begin{bmatrix}
+	a & -c\\ c & a
+	\end{bmatrix}$.  If we consider the column vector of $(a,c)$, then 
+	we can take it it polar form.  Therefore there exists $r \geq 0$ 
+	and $\varphi \in [0,2 \pi)$ such that $(a,c) = (r \cos(\varphi),
+	r \sin(\varphi))$.  Therefore 
+	$A = \begin{bmatrix}
+		r\cos(\varphi) & - r\sin(\varphi)\\
+		r\sin(\varphi) & r\cos(\varphi)
+\end{bmatrix}$
+\end{enumerate}
+\end{document}
