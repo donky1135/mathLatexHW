@@ -1,0 +1,22 @@
+#Please do not post homework 
+#Alex Valentino, 1/28/2024, Assignment 3
+Help := proc(): print(`gcdfunc`):
+end:
+
+EstimateProbGCD := proc(N,K) local sumS, a, b, i:
+	sumS := 0:
+	for i from 1 to K do
+		a:= rand(1..N)():
+		b:= rand(1..N)():
+		if(gcd(a,b) = 1) then sumS := sumS + 1 fi:
+	od:
+	evalf(sumS/K)
+end:
+
+#if you look in my included .mw file you can see my attempts to figure out why my estimate what the probabilities are, 
+#however I consulted the internet and just found that it was 6/pi^2.  I can explain why but I am undeserving of the money
+#if we consider the fact that the event that a number n is divisible by two primes is indepedent, then their negations are as well
+#two numbers have a probability of having their gcd being divisble by p_i as 1/p_i^2.  Thus their gcd not being divisible by 
+#p_i has a probability of 1 - 1/p_i^2.  Thus by their independence we can write the probability of two numbers have a gcd of 1 as 
+#prod(1-1/p_i^2), p_i prime.  Note that this is exactly the inverse of the riemann zeta function evaluated at 2.  thus the probability
+# of two numbers being coprime is 6/pi^2

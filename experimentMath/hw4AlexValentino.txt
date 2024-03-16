@@ -1,0 +1,185 @@
+Help:=proc(): print(`Nei(q,c), SP(q,c,t), GRC(q,n,d), GRCgs(q,n,d) , MinD(C), CV(S,n)`):
+print(`BDtoC(BD,n)`):
+end:
+
+#Old code
+#Jan. 29, 2024 C4.txt
+Help4:=proc(): print(`Fqn(q,n), HD(u,v), RV(q,n) , RC(q,n,d,K), SPB(q,n,t), BDfano(), BDex212() `):end:
+
+
+#Alphabet {0,1,...q-1}, Fqn(q,n): {0,1,...,q-1}^n
+Fqn:=proc(q,n) local S,a,v:
+option remember:
+if n=0 then
+ RETURN({[]}):
+fi:
+
+S:=Fqn(q,n-1):
+
+{seq(seq([op(v),a],a=0..q-1), v in S)}:
+
+end:
+
+#Def. (n,M,d) q-ary code is a subset of Fqn(q,n) with M elements with
+#minimal Hamming Distance d between any two members
+#It can detect up to d-1 errors
+#
+#If d=2*t+1 correct t errors.
+#
+#
+#HD(u,v): The Hamming distance between two words (of the same length)
+HD:=proc(u,v) local i,co:
+co:=0:
+for i from 1 to nops(u) do
+  if u[i]<>v[i] then
+      co:=co+1:
+  fi:
+od:
+co:
+end:
+
+#SPB(q,n,d): The best you can hope for (as far as the size of C) for q-ary (n,2*t+1) code
+SPB:=proc(q,n,t) local i:
+trunc(q^n/add(binomial(n,i)*(q-1)^i,i=0..t)):
+end:
+
+
+#RV(q,n): A random word of length n in {0,1,..,q-1}
+RV:=proc(q,n) local ra,i:
+ra:=rand(0..q-1):
+[seq( ra(), i=1..n)]:
+end:
+
+#RC(q,n,d,K): inputs q,n,d, and K and keeps picking K+1 (thanks to Nuray) random vectors
+#whenver the new vector is not distance <=d-1 from all the previous one 
+RC:=proc(q,n,d,K) local C,v,i,c:
+C:={RV(q,n)}:
+for i from 1 to K do
+ v:=RV(q,n):
+  if min(seq(HD(v,c), c in C))>=d then
+   C:=C union {v}:
+  fi:
+od:
+C:
+end:
+
+BDfano:=proc():
+{{1,2,4},{2,3,5},{3,4,6},{4,5,7},{5,6,1},{6,7,2},{7,1,3}}:
+end:
+
+
+
+
+BDex212:=proc():
+{{1,3,4,5,9},
+{2,4,5,6,10},
+{3,5,6,7,11},
+{1,4,6,7,8},
+{2,5,7,8,9},
+{3,6,8,9,10},
+{4,7,9,10,11},
+{1,5,8,10,11},
+{1,2,6,9,11},
+{1,2,3,7,10},
+{2,3,4,8,11}
+}
+end:
+
+#end of old code
+
+#Nei(q,c): all the neighbors of the vector c in Fqn(q,n)
+Nei:=proc(q,c) local n,i,a: 
+n:=nops(c):
+{seq(seq([op(1..i-1,c),a,op(i+1..n,c)], a=0..q-1) , i=1..n)}:
+end:
+
+#SP(q,c,t): the set of all vectors in Fqn(q,n) whose distance is <=t from c
+SP:=proc(q,c,t) local S,s,i:
+S:={c}:
+for i from 1 to t do
+ S:=S union {seq(op(Nei(q,s)),s in S)}:
+od:
+S:
+end:
+
+GRC:=proc(q,n,d) local S,A,v:
+A:=Fqn(q,n):
+S:={}:
+while A<>{} do:
+ v:=A[1]:
+ S:=S union {v}:
+ A:=A minus SP(q,v,d-1):
+od:
+S:
+end:
+
+
+#GRCgs(q,n,d): George Spahn's version
+GRCgs:=proc(q,n,d) local S,A,v:
+print(`Warning: use at your own risk`):
+A:=Fqn(q,n):
+S:={}:
+while A<>{} do:
+ v:=A[rand(1..nops(A))()]:
+ S:=S union {v}:
+ A:=A minus SP(q,v,d-1):
+od:
+S:
+end:
+
+#MinD(C): The minimal (Hamming) distance of the code C
+MinD:=proc(C) local i,j:
+min( seq(seq(HD(C[i],C[j]),j=i+1..nops(C)), i=1..nops(C))):
+ end:
+
+#CV(S,n): the characteristic vector of the subset S of {1,...,n}
+CV:=proc(S,n) local v,i:
+v:=[]:
+for i from 1 to n do
+ if member(i,S) then
+  v:=[op(v),1]:
+ else
+  v:=[op(v),0]:
+ fi:
+od:
+v:
+end:
+
+BDtoC:=proc(BD,n) local s, C:
+C:={seq(CV(s,n),s in BD)}:
+C:=C union subs({0=1,1=0},C):
+C union {[0$n],[1$n]}:
+end:
+
+
+
+
+Af := [[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1],
+[0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0],
+[0 ,0 ,0 ,0 ,0 ,1 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0],
+[0 ,0 ,0 ,0 ,1 ,1 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,1 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,1 ,1 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,1 ,1 ,1 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,1 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,1 ,1 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,1 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,1 ,1 ,1 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0],
+[0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0]];
+
+prob1 = [seq(op(Af[i]), i = 1 .. 23)];
+
+#prob 2
+
+#prob 3, the number of messages in a hamming code are 2^(2^r-1)/(2^r-1)
