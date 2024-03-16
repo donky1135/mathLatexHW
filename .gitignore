@@ -1,3 +1,5 @@
+/deepLearning/data
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -12,7 +14,7 @@
 *.cb2
 .*.lb
 *.tar.gz
-*ubyte
+
 
 ## Intermediate documents:
 *.dvi
