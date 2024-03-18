@@ -1,6 +1,16 @@
 deepLearning/data
 deepLearning/**/data
 
+/deepLearning/data
+/deepLearning/**/data
+
+./deepLearning/data
+./deepLearning/**/data
+
+
+./deepLearning/data/*
+./deepLearning/**/data/*
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
