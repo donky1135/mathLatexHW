@@ -1,5 +1,5 @@
-/deepLearning/data
-*/data
+deepLearning/data
+deepLearning/**/data
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
