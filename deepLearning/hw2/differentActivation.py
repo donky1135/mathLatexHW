@@ -17,8 +17,8 @@ print('Using device:', device)
 trainset = datasets.MNIST(root='./data', train=True, download=True, transform=transforms.ToTensor())
 testset = datasets.MNIST(root='./data', train=False, download=True, transform=transforms.ToTensor())
 
-test_x = torch.Tensor( testset.data ) / 256.0 - 0.5
-test_x = test_x.to(device)
+test_x = torch.Tensor( testset.data, device=device ) / 256.0 - 0.5
+
 test_y = torch.Tensor( testset.targets ).long()
 test_y = test_y.to(device)
 train_x = torch.Tensor( trainset.data ) / 256.0 - 0.5
