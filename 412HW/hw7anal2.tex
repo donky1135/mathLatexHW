@@ -48,32 +48,81 @@
 	terms, thus the jacobian is continuous everywhere.  Therefore 
 	the inverse function theorem holds for $S$ everywhere but the 
 	origin.  Additionally, solving $(u,v) = S(x,y)$ for undetermined 
-	$(x,y)$ generally, one finds that $x = \sqrt{\frac{\sqrt{u^2 + v^2} + u}{2}}, y = \sqrt{\frac{\sqrt{u^2 + v^2} - u}{2}}$.  Note that if 
-	we consider the inverse near $(0,0)$ that the approximation still 
-	holds since $\sqrt{u^2 + v^2} - u \geq u - u = 0$, thus the function
-	is always defined since it never goes negative under the square root.
+	$(x,y)$ generally, one finds that $x = \pm \sqrt{\frac{\pm\sqrt{u^2 + v^2} + u}{2}}, y = \pm\sqrt{\frac{\pm\sqrt{u^2 + v^2} - u}{2}}$.  Since we're effectively  
+	doing complex exponentiation then swapping the sign should result in 
+	the same value, therefore if we consider approximations close to the origin, 
+	say within a ball $B((0,0),\delta)$ for $\delta > 0$, then the points 
+	$a = (\delta/2,\delta/2)$ and $b = (-\delta/2,-\delta/2)$ are in $B((0,0),\delta)$.
+	Observe that $u(a) = u(b) = 0$ and $v(a) = v(b) = \frac{\delta^2}{2}$.  
+	Thus we fail to have a well defined inverse.  
 	\item[5.5.4] Let $(u,v) = f(x,y) = (e^x \cos(y), e^x \sin(y))$.
 	Then $Df(x,y) = e^x \begin{bmatrix}  \cos(y) & - \sin(y)\\ 
 	\sin(y) & \cos(y)
 	\end{bmatrix}$.  Note that the determinate $|Df(x,y)| = e^x(\cos^2(y) + \sin^2(y)) = e^x > 0$, therefore the Jacobian is always
 	invertible. Furthermore, each term of the Jacobian is the product of 
 	continuous functions, thus making it continuous.  Therefore 
-	the inverse function theorem holds everywhere.  Note that 
-	generally the inverse is defined as $(\frac{1}{2}\log ({u^2 + v^2}), 
-	\arctan(\frac{u}{v}))$.  Note that issues don't arise the the 
+	the inverse function theorem holds everywhere.  Note that  the inverse is defined as $(\frac{1}{2}\log ({u^2 + v^2}), 
+	\arctan(\frac{u}{v}))$.  Note that issues don't arise for the 
 	inverse of the $x$ coordinate, only the $y$, as 
-	$- \frac{\pi}{2} < \arctan(\frac{u}{v}) < \frac{\pi}{2}$.  Therefore 
-	the inverse is well defined within $U = B((0,0),\frac{\pi}{2})$.  For 
-	the point $(1,0)$ the same condition on $y$ holds, however the disk 
-	will be centered at $(1,0)$, thus $V = B((1,0),\frac{\pi}{2})$.  
-	If we want to pick a larger open set then $U$ or $V$, one could 
-	take $\R \times (-\frac{\pi}{2},\frac{\pi}{2})$.  Since $\log$ is 
+	$- \frac{\pi}{2} < \arctan(\frac{u}{v}) < \frac{\pi}{2}$.  \\
+	In order to find the largest disc $U$ around the origin in which $f$ has 
+	an inverse, we only must consider the restrictions on $y$, as $e^x$ is always 
+	invertible.  Since we have $\cos(y)$ and $\sin(y)$, we claim that the largest 
+	ball around $(0,0)$ can be $B((0,0),\pi)$.  Note if we have for a small $\delta$
+	the point $(x,\pi+ \delta)$, then we have $u,v$ such that 
+	$(u,v) = e^x(-\cos(\delta),-\sin(\delta))$, which is equivalent to 
+	$e^x(\cos(\delta - \pi),\sin(\delta - \pi))$, corresponding to the point 
+	$(x,\delta - \pi) \in B((0,0),\pi)$, for a small enough choice of $x$.  Thus 
+	we have found the largest $U$.\\
+	To find the disk $V$ For 
+	the point $(1,0)$, we have the $\arctan$ restriction which would make one think 
+	that  $V = B((1,0),\frac{\pi}{2})$, however the point $(u,v) = (0,0)$ 
+	yields $x = \frac{1}{2}\log(0) = -\infty$, thus the largest disk we can 
+	have is $V = B((1,0),1)$.  
+	If we want to pick a larger open set for $U$, one could 
+	take $\R \times (-\pi,\pi)$.  Since $\log$ is 
 	onto for all real numbers uniquely, then the inverse defined for $x$ works
 	everywhere.  Note that the given set is open since for arbitrary 
 	$(a,b) \in \R \times (-\frac{\pi}{2},\frac{\pi}{2})$, for any 
 	chosen $r$ such that $(b-r,b+r) \subseteq (-\frac{\pi}{2},\frac{\pi}{2})$ then any points $(c,d) \in B((a,b),r)$ have that $|d-b| \leq \sqrt{(c-a)^2 + (d-b)^2} < r$, thus $d \in (b-r,b+r)$, and trivially 
 	$c \in \R$, thus our given set is open.  
-	\item[5.5.6]
+	For a larger $V$, note that the image of $f$ under $U$ would be 
+	$\R^2 \backslash \{(x,0): y \leq 0\}$, as the origin can't be mapped since 
+	$e^x > 0$, and the point $(-1,0) = e^0(\cos(\pi),\sin(\pi))$ can't be 
+	reached since $(x,\pi) \not \in U$.  
+	\item[5.5.6] We want to find $\frac{\partial}{\partial y_j} g_k (y_1,\cdots,y_m) = \frac{\partial}{\partial y_j}  f_k(\Phi(y_1,\cdots,y_m))$, where $k=m+1\ldots n$, $\Phi$ is the inverse of 
+	$(x_1,\cdots,x_m) \mapsto (f_1(x_1,\cdots,x_m),\ldots,f_m(x_1,\cdots,x_m))$ around $(y_{10},\cdots,y_{m0})$ which satisfies the inverse 
+	function theorem.  Let $\vec{y} = (y_1,\cdots,y_m)$  Observe by the general chain rule that 
+	$Dg_k(\vec{y}) = D f_k(\Phi(\vec{y})) = 
+	[D f_k]_{\Phi(\vec{y})} [D \Phi]_{\vec{y}}$.  Observe that 
+	$[D f_k]_{\Phi(\vec{y})} = \left(\frac{\partial f_k(\Phi(\vec{y}))}{\partial x_1 },\cdots,\frac{\partial f_k(\Phi(\vec{y}))}{\partial x_m } \right)$ and since the partials of $f$ are continuous then by the 
+	inverse function theorem we have that 
+	$[D \Phi]_{\vec{y}} = [D (f_1,\cdots,f_m)]^{-1}_{\Phi(\vec{y})}$.  
+	Therefore $\frac{\partial}{\partial y_j} g_k (y_1,\cdots,y_m) = D f_k(\Phi(\vec{y}))\hat{e}_j = \left(\frac{\partial f_k(\Phi(\vec{y}))}{\partial x_1 },\cdots,\frac{\partial f_k(\Phi(\vec{y}))}{\partial x_m } \right) \begin{bmatrix}
+	\frac{\partial f_1(\Phi(\vec{y}))}{\partial x_1} & \cdots & \frac{\partial f_1(\Phi(\vec{y}))}{\partial x_m}\\
+	\vdots & \ldots & \vdots\\
+	\frac{\partial f_m(\Phi(\vec{y}))}{\partial x_1} & \cdots & \frac{\partial f_m(\Phi(\vec{y}))}{\partial x_m}
+\end{bmatrix}^{-1} \hat{e}_j	 $
 	\item[5.5.7]
+	\begin{itemize}
+		\item Inversion with respect to the $x$ variable at $t=\pi$:
+		$x'(\pi) = \cos(\pi) = -1$, thus the inversion formula can be applied.  
+		Since $\arcsin$ only has a domain of $[-\pi/2,\pi/2]$, we must consider 
+		the inversion at $x = \sin(t+\pi) = - \sin(t)$, thus $y = - x\sqrt{1-x^2}$.
+		Since $y(0) = 0$ then $\frac{dy}{dx}y(0) = \frac{d}{dx}(- x\sqrt{1-x^2})|_{x=0} = -\sqrt{1-x^2}|_{x=0} + \frac{x^2}{\sqrt{1-x^2}}|_{x=0} = -1$.  
+		\item See if the inverse function theorem can be applied at $y$ for the 
+		following $x$ values:
+		\begin{itemize}
+			\item $t=0$: $y'(0) = \cos^2(0) - \sin^2(0) = 1$, thus it can be inverted, and 
+			$\frac{dx}{dy} = \frac{1}{1} = 1$
+			\item $t = \frac{\pi}{2}$: $y'(\frac{\pi}{2}) = \cos^2(\frac{\pi}{2}) - \sin^2(\frac{\pi}{2}) = -1$, thus it can be inverted and 
+			$\frac{dx}{dy} = \frac{0}{-1} = 0$
+			\item $t=\pi$: $y'(\pi) = \cos^2(\pi) - \sin^2(\pi) = 1$, thus it can 
+			be inverted and $\frac{dx}{dy} = \frac{-1}{1} = -1$
+		\end{itemize}
+		\item For $t = \frac{\pi}{2}$, $x'(\frac{\pi}{2}) = 
+		\cos(\frac{\pi}{2}) = 0$, thus the inverse function theorem 
+		can't be applied. 
+	\end{itemize}
 \end{enumerate}
 \end{document}

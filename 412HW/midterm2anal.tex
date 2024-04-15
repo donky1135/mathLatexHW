@@ -1,0 +1,149 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 midterm 2}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Midterm 2\\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[5]
+	\begin{enumerate}
+		\item Let $Df(x_0) = 0, [D^2 f(x_0)]$ be a positive 
+		definite matrix.  We want to show for a $\delta$ ball 
+		around $x_0$ that $f(x_0) \leq f(x)$.  Note that 
+		for a positive definite matrix, we can do a coordinate 
+		transform $P$ to have that $h^T P [D^2 f(x_0)] P^{-1} h = \lambda_1 h_1^2 + \cdots + \lambda_n h_n^2$, therefore we can 
+		find a minimum $\lambda_i$ such that $h^T P^{-1} [D^2 f(x_0)] P^ h \geq \lambda_i \lVert h \rVert^2$.  For the rest 
+		we will assume that the basis allows for a diagonal 
+		$[D^2 f(x_0)]$.  Let $\lambda_i > \epsilon >0$, then 
+		there exists a $\delta$ such that for all 
+		$h \in B(\delta,0), |f(x_0+h) - T_2(f;x_0)(h)| < \epsilon
+		\|h\|^2$.
+		Therefore $T_2(f;x_0)(h) - \epsilon \|h \|^2 < f(x_0+h)$.
+		This gets us that \begin{align*}
+			f(x_0 +h) - f(x_0) &>T_2(f;x_0)(h) - \epsilon \|h \|^2 - f(x_0)\\
+			&= f(x_0) - f(x_0) + h^T [D^2 f(x_0)] h- \epsilon \|h \|^2 \\
+			&= \lambda_1 h_1^2 + \cdots + \lambda_n h_n^2 - \epsilon(h_1^2 + \cdots + h_n^2)\\
+			&\geq \epsilon(h_1^2 + \cdots + h_n^2) - \epsilon(h_1^2 + \cdots + h_n^2)\\
+			&= 0
+\end{align*}		  
+		\item Observe that $D(g(y)) = D(f(T(y)) = Df (T(y)) DT(y)$.
+		In order to compute $D^2 g(y)$, we must compute the 
+		intermediate terms $D(Df (T(y)))$ and $D(DT(y))$.  
+		Observe that we have $D(Df (T(y)))$ by another 
+		application of the chain rule, $D(Df (T(y))) = 
+		D^2 f(T(y)) DT(y)$.  To compute $D(DT(y))$, we 
+		must consider it multiplied via $Df (T(y))$ to make 
+		any sense.  Therefore $Df (T(y)) DDT(y) = \sum_{i=1}^n
+		\frac{\partial f }{\partial y_i}(T(y)) D(\frac{\partial T(y)}{\partial y_i}))$.  
+		Therefore $D^2(g(y)) = D^2 f(T(y)) DT(y) + \sum_{i=1}^n
+		\frac{\partial f }{\partial y_i}(T(y)) D(\frac{\partial T(y)}{\partial y_i}))$.  If $D^2 f(x_0)$ is a positive definite 
+		matrix there isn't a guarentee that $D^2 g(y_0)$ is 
+		positive definite.  We observe in the formula that at 
+		points one would be computing $v^T D(\frac{\partial T(y)}{\partial y_i})) v$, which has no guarantees of being positive 
+		definite.  
+	\end{enumerate}
+	\item[6] Consider $f$, and it's ith component $f_i$.  
+	Consider $x = (x_1,\cdots,x_n), \bar{x} = (\bar{x}_1,\cdots \bar{x}_n) \in U$.  And let the vectors denoted $x_{\bar{i}}$
+	refer to vectors of the form $(x_1,\cdots, x_{i-1}, \bar{x}_i,\cdots, \bar{x}_n)$, where $x_{\bar{1}} = \bar{x}$, and $x_{\bar{n+1}}= x$.
+	Then 
+	\begin{align*}
+		f_i(x) - f_i(\bar{x}) &= \sum_{j=1}^n f_i(x_{\bar{i+1}}) - 
+		f_i(x_{\bar{i}}) \\
+		&= \sum_{j=1}^n \frac{\partial f_i}{\partial x_j} ( x_{\bar{j}} - (z_j + \bar{x}_{j})e_j) (x_j - \bar{x}_j)\\
+		&= \sum_{j=1}^n \frac{\partial f_i}{\partial x_j}(\bar{x})(x_j - \bar{x}_j) + \sum_{j=1}^n [\frac{\partial f_i}{\partial x_j} ( x_{\bar{j}} - (z_j + \bar{x}_{j})e_j)  - \frac{\partial f_i}{\partial x_j} (\bar{x})] (x_j - \bar{x}_j)\\  
+	\end{align*}
+	where $z_i \in (x_i,\bar{x}_i)$ or $(\bar{x}_i,x_i)$  
+	depending on size and 
+	$e_j$ is the standard $j$th basis vector.  If we take our vectors to be within 
+	$\bar{U}$, then our partial derivatives are uniformly continuous, and if $\| x - \bar{x}\| < \delta$ then there exists 
+	an $\epsilon$ such that $|\frac{\partial f_i}{\partial x_j}(x) - \frac{\partial f_i}{\partial x_j}(\bar{x})| < \epsilon$.  Therefore 
+	\begin{align*}
+	& \sum_{j=1}^n [\frac{\partial f_i}{\partial x_j} ( x_{\bar{j}} - (z_j + \bar{x}_{j})e_j)  - \frac{\partial f_i}{\partial x_j} (\bar{x})] (x_j - \bar{x}_j)\\
+	&\leq \epsilon \sum_{j=1}^n |(x_j - \bar{x}_j)| \leq \epsilon \sqrt{n} \|x - \bar{x} \|
+	\end{align*}
+	Therefore $|f_i(x) - f_i(\bar{x}) - \sum_{j=1}^n \frac{\partial f_i}{\partial x_j}(\bar{x})(x_j - \bar{x}_j)| < \sqrt{n}\epsilon \|x - \bar{x}\|$ has been shown for arbitrary $\epsilon$ for $x,\bar{x} \in U, \|x - \bar{x}\| < \delta$
+	\item[7] Note that 
+	$S_N(f;x) = \frac{a_0}{2} + \sum_{n=1}^N(a_n \cos(nx) + b_n \sin(nx)) = \frac{1}{2\pi}\int_{-\pi}^\pi f(t) D_N(x-t) dt
+	=\frac{1}{2\pi}\int_{-\pi}^\pi f(x-t) D_N(t) dt,
+	1 = \frac{1}{2\pi}\int_{-\pi}^\pi D_n(t)$,
+	$D_n(t)$ is even.  Therefore,
+	\begin{align*}
+		&= |S_N(f;x) - \frac{f(x+) + f(x-)}{2}|\\
+		&= |\frac{1}{2\pi}\int_{-\pi}^\pi f(x-t) D_N(t) dt- \frac{f(x+) + f(x-)}{2}|\\
+		&\text{By applying the definition of } S_N(f;x)\\
+		&= |\frac{1}{2\pi}\int_{0}^\pi (f(x-t) +f(x+t)) D_N(t) dt- \frac{f(x+) + f(x-)}{2}|\\
+		&\text{By the eveness of } D_N(t)\\
+		&= |\frac{1}{2\pi}\int_{0}^\pi (f(x-t) + f(x+t) - f(x+) - f(x-)) D_N(t) dt|\\
+		&\text{By } \frac{1}{2\pi}\int_{-\pi}^\pi D_N(t) = 1, \frac{1}{2\pi}\int_{0}^\pi D_N(t) = \frac{1}{2}\\
+		&\leq |\frac{1}{2\pi}\int_{0}^\pi (f(x-t)-f(x-))D_N(t)dt | + |\frac{1}{2\pi}\int_{0}^\pi (f(x+t) - f(x+))D_N(t)dt| \\
+	\end{align*}
+	Note that $\frac{f(x\pm t)-f(x\pm)}{\sin(\frac{t}{2})}$
+	are Riemann integrable on $(0,\pi)$, as when it isn't 
+	approaching 0 it's the quotient of two riemann integrable 
+	functions, and when at 0 we have that 
+	$\lim_{t \to 0} \lvert \frac{f(x\pm t)-f(x\pm)}{\sin(\frac{t}{2})} \rvert \leq \lim_{t \to 0} \lvert \frac{t}{\sin(\frac{t}{2})} \rvert = 2$, thus at the only possible discontinuity the 
+	quotient is bounded.
+	 Therefore, additionally, we can be extended 
+	to $(-\pi,\pi)$ by having them be zero on $(-\pi,0]$, 
+	maintaining their Riemann integrability.  Let these 
+	extended functions be noted as $f_-(t) = \begin{cases}
+	\frac{f(x- t)-f(x-)}{\sin(\frac{t}{2})} & x \in (0,\pi)\\
+	0 & x \in (-\pi,0]
+	\end{cases} , f_+(t) = \begin{cases}
+	\frac{f(x+ t)-f(x+)}{\sin(\frac{t}{2})} & x \in (0,\pi)\\
+	0 & x \in (-\pi,0]
+	\end{cases}$.  Therefore,
+	
+	\begin{align*}
+	|\int_{0}^\pi (f(x-t)-f(x-))D_N(t)dt | + |\int_{0}^\pi (f(x+t) - f(x+))D_N(t)dt| =\\ |\int_{-\pi}^\pi f_-(t) \sin((N+\frac{1}{2})t)dt|
+	+ |\int_{-\pi}^\pi f_+(t) \sin((N+\frac{1}{2})t)dt|
+	\end{align*}
+	
+	
+	
+	 thus  we have the inequality 
+	$$
+	|S_N(f;x) - \frac{f(x+) + f(x-)}{2}| \leq 	
+	|\int_{-\pi}^\pi f_-(t) \sin((N+\frac{1}{2})t)dt|
+	+ |\int_{-\pi}^\pi f_+(t) \sin((N+\frac{1}{2})t)dt|
+	$$
+	Since both of the integrals on the right hand side 
+	are of the form $\int_{-\pi}^\pi h(t)\sin(\lambda t)$, 
+	where $h$ is Riemann integrable, then the Riemann-Lebesgue Lemma
+	can be applied, thus $\lim_{N \to \infty}S_N(f;x) = \frac{f(x+) + f(x-)}{2}$
+\end{enumerate}
+\end{document}
