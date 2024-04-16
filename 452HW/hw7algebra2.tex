@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 \documentclass[12pt, letterpaper]{article}
 \date{\today}
 \usepackage[margin=1in]{geometry}
@@ -142,3 +143,149 @@
 	\end{enumerate}
 \end{enumerate}
 \end{document}
+=======
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{452 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 7\\
+	452	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[10.2] Let $\zeta = e^{\frac{2\pi i}{17}},
+	\sigma : \zeta \mapsto \zeta^3, K = \Q(\zeta)$,
+	and the intermediate fields $\Q \subset L_1 \subset L_2 \subset L_3 \subset K$ which correspond to the subgroups of $\Z \backslash 16 \Z$.
+	We want to construct the generators of $L_2$ explicitly.  
+	Note that $[L_2:\Q] = 4$, and $L_2 = K^{<\sigma^4>}$, therefore
+	we must find 4 elements which are invariant under $\sigma^4$.
+	We know from artin that $\sigma$ has the following cycle on 
+	the exponents of $\zeta$: 
+	$[1, 3, 9, 10, 13, 5, 15, 11, 16, 14, 8, 7, 4, 12, 2, 6, 1]$,
+	Thus counting off every 4th one from $3$ yields 
+	$[1,13,16,4]$.  Therefore the number 
+	$\alpha_1 = \zeta + \zeta^{13} + \zeta^{14} + \zeta^4$ is 
+	invariant under $\sigma^4$.  Furthermore we can construct 
+	$\alpha_2, \alpha_3, \alpha_4$ by $\sigma^{i-1}(\alpha_1) =
+	\alpha_i$ for $i=2,3,4$, which exactly correspond to the 
+	cosets of $[1,13,16,4]$, 
+	$\alpha_1: [1,13,16,4], \alpha_2: [3, 5, 14, 12], 
+	\alpha_3: [9, 15, 8, 2], \alpha_4: [10, 11, 7, 6]$.
+	Note that $\Q$ is the field which is fixed by $\sigma$,
+	therefore by theorem 16.5.2, since the orbit of $\alpha_1$ 
+	is $\{\alpha_1,\alpha_2,\alpha_3,\alpha_4\}$, thus 
+	the irreducible polynomial over $\Q$ for $\alpha_1$ is 
+	degree 4, and as established before $[L_2:\Q] = 4$.  
+	Additionally since $\Q(\alpha_1)$ contains a single root 
+	of the irreducible polynomial of $\alpha_1$ then it contains 
+	$\alpha_2,\alpha_3,\alpha_4$.  Thus $\Q(\alpha_1) = L_2$, 
+	making $\alpha_1$ the generator of $L_1$.  
+	\iffalse Note that
+	in the intermediate field $L_1$ we have the elements 
+	corresponding to $l_1: [1, 9, 13, 15, 16, 8, 4, 2]$ and 
+	$l_2: [3, 10, 5, 11, 14, 7, 12, 6]$, therefore we 
+	only need $\alpha_1, \alpha_2$ and we can obtain 
+	$\alpha_3 = l_1 - \alpha_1, \alpha_4 = l_2 - \alpha_2$.  
+	Thus the irreducible polynomial is $(x-\alpha_1)(x-\alpha_2)$.
+	\fi
+	\item[10.9b] Let $\zeta = e^{\frac{2\pi}{p}i}$.
+	Note that $(-1)^{\frac{p(p-1)}{2}}\prod_{k=0}^{p-1} f'(\zeta) = (-1)^{\frac{p(p-1)}{2}}\prod_{i=0}^{p-1} p \zeta^{k(p-1)} = (-1)^{\frac{p(p-1)}{2}}p^p \zeta^{\frac{p(p-1)^2}{2}} = (-1)^{\frac{p(p-1)}{2}}p^p 1^{\frac{(p-1)^2}{2}} = (-1)^{\frac{p(p-1)}{2}} p^p$.   Additionally we know that the discriminate is equivalent 
+	to $\prod_{i < j}^p (\zeta^i - \zeta^j)^2$, therefore trivially 
+	we can take the square root as $\prod_{i < j}^p (\zeta^i - \zeta^j)$.  Thus we know that $\Q(\zeta)$ contains $\sqrt{(-1)^{\frac{p(p-1)}{2}} p^p}$.  Furthermore since we 
+	assume $p$ is odd then there exists $p = 2n+1$, thus 
+	we have $p^n \sqrt{(-1)^{\frac{p(p-1)}{2}} p}$, and since 
+	$p^n \in \Q$ then our quadratic extension contains 
+	$ \sqrt{(-1)^{\frac{p(p-1)}{2}} p}$.  If $p\equiv 1 \mod{4}$
+	then $\frac{p-1}{2} \equiv 0 \mod 2$, thus 
+	$ \sqrt{(-1)^{\frac{p(p-1)}{2}} p} = \sqrt{p}$.  If 
+	$p\equiv 3 \mod{4}$ then $\frac{p-1}{2} \equiv 1 \mod 2$, 
+	thus $ \sqrt{(-1)^{\frac{p(p-1)}{2}} p} = \sqrt{-p}$.  
+	\item[11.1] Let $f(x)$ be a cubic in $F[x]$, and let 
+	$K$ be the splitting field of $f$.  Suppose 
+	that the discriminant of $f$ is not a square in $F$.  We 
+	want to show that we can't obtain the roots by adjoining 
+	a cube root.  Suppose for contradiction that we can.  
+	We know that the discriminate being square free implies that
+	$G(K/F) = S_3$.  Furthermore if our roots are contained 
+	within $K = \sqrt[3]{l}, l \in F$ then they are of the 
+	form $u_i = a_{i} + b_i\sqrt[3]{l} + c_i\sqrt[3]{l^2}$.  
+	The issue is that there is only 1 $F$-automorphisms of $K$, 
+	because if we send $\sqrt[3]{l} \mapsto \sqrt[3]{l^2}$ 
+	would imply that $\sqrt[3]{l^2} \mapsto l\sqrt[3]{l}$, which 
+	would contradict it being an automorphism unless $l^2 = l$, 
+	which only occurs if $l=1$, contradicting that one adjoined a 
+	cube root.  Since we only have a field with $1$ automorphism 
+	and we know that we must have $6$ automorphisms then we have a 
+	contradiction.  
+ 	
+	\item[12.4] 
+	\begin{enumerate}
+		\item[a] We want to show that the field of 
+		rational functions on $n$ variable, $F(u)$, is the galois 
+		extension of $F(s_1,\cdots,s_n)$ where $s_i$ is the $i$th 
+		symmetric function on $u_1,\cdots,u_n$, and that 
+		$G(F(u)/F(s_1,\cdots,s_n)) = S_n$.  Observe that 
+		$F(u)$ is a galois extension of $F(s_1,\cdots,s_n)$ 
+		since $$(x-u_1)\cdots(x - u_n) = x^n - s_1 x^{n-1}
+		+ s_2 x^{n-2} + \cdots + (-1)^{n \mod{2}} s_n,$$ and 
+		clearly this polynomial only factors if $u_1,\cdots,u_n$ 
+		are contained in the field.  Furthermore, our polynomial 
+		above is invariant under any possible permutation of the 
+		roots, thus the galois group must be $S_n$.  
+		\item[c] 
+		
+		Let $G$ finite group $G$ with $|G| = n$.  
+		Note that by Cayley's theorem that $G$ has an 
+		embedding in $S_n$ as a subgroup.  Therefore let $F(s_1,\cdots,s_n)$ 
+		be the base field.  We know by the main theorem of Galois 
+		theory that the fixed field $F(u)^G$ is a subfield of 
+		$F(u)$ and $G(F(u)/F(u)^G) = G$.  This demonstrates the 
+		desired result.    
+		
+		\iffalse Then, since $G$ has an 
+		embedding within $S_n$, we consider the function 
+		$f : G \to S_n$ which takes a given element $g \in G$
+		and returns the ordered set represent it's cycle notation, 
+		$f(g) = \{\alpha_1,\alpha_2,\cdots,\alpha_l\}$.  
+		Additionally let $\sigma_g$ represent the element $g$ as 
+		a permutation.  Now we will add the element 
+		$E = \sum_{g \in G} \sum_{\alpha \in f(g)} u_\alpha u_{\sigma_g(\alpha)}$ to $F(s_1,\cdots,s_n)$.  We claim that 
+		$G(F(u)/F(s_1,\cdots,s_n,E) = G$.  Observe that any 
+		operation determined by $g \in G, \sigma_g$ will not affect the elements $s_1,\cdots,s_n$ due to their invariance under any permutation of $n$ elements.  Furthermore $E$ is preserved $G$ is 
+		closed  
+		\fi
+	\end{enumerate}
+\end{enumerate}
+\end{document}
+>>>>>>> Stashed changes

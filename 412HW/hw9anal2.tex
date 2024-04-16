@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 \documentclass[12pt, letterpaper]{article}
 \date{\today}
 \usepackage[margin=1in]{geometry}
@@ -117,3 +118,124 @@
 	$g(\bold{x}) = 0$ almost everywhere.  
 \end{enumerate}
 \end{document}
+=======
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 9\\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6.2.1] Exercise 3.  Let $\epsilon > 0$.  Then 
+	there exists $k \in \N$ such that $\frac{1}{2^k} < 2 \epsilon$.  Let $\Po_y = \{s_0,\cdots s_{2^k}\}$ be the partition of evenly spaced intervals of length $\frac{1}{2^k}$ for the $y$ axis, 
+	where $I_{yi} = [s_{i-1},s_i]$.  Furthermore, for any 
+	$(x,y) \in [0,1]^2$, $0 \leq f(x,y) \leq \frac{1}{2}$.  Therefore for any $U \subseteq [0,1]^2$,
+	$osc(f,U) \leq \frac{1}{2}$.  Thus for an arbitrary 
+	$\Po_x$ of the $x$ axis with $2^k$ intervals denoted 
+	$I_{xi}$, 
+	$\sum_{i=1}^{2^k} osc(f,I_{xi}\times I_{yi}) \frac{1}{2^k}|I_{xi}| \leq \frac{1}{2^{k+1}} \sum_{i=1}^{2^k} |I_{xi}| = 
+	\frac{1}{2^{k+1}} < \frac{1}{2}2\epsilon = \epsilon$.  
+	Therefore the 2d thomae function $f(x,y)$ is Riemann integrable.
+	Since the irrationals are dense in $[0,1]^2$, 
+	then for an arbitrary $I_x \times I_y \subseteq [0,1]^2$,
+	$m(f,I_x \times I_y) = 0$, thus for an arbitrary partition
+	$\Po, L(f,\Po) = 0$.  Thus $\underline{\int}_{[0,1]^2}f = 0$, 
+	giving us that $\int_{[0,1]^2} f = 0$.  
+	\item[6.2.3] Exercise 1.  Given that $f,g$ are Riemann integrable then both of their sets of discontinuities are of 
+	measure 0.  Then the union of those sets is also of measure 0.
+	Since the discontinuities of $f\cdot g$ is at most the union 
+	of the previous sets, and that is measure zero implies the 
+	discontinuities of $f\cdot g$ is measure 0.  Thus $f \cdot g$
+	is Riemann integrable.  
+	\item[6.2.3] Exercise 2.  Note that for all $x$, $0 \leq 
+	\sum_{i=2}^\infty \frac{x^i}{}i!$, therefore $x + 1 \leq e^x$,
+	and finally $\log(x+1) \leq x$.  Therefore since $\sum_{k=1}^\infty r_k < \infty$, then $\sum_{k=1}^\infty \log(1+r_k) < \infty$.  This implies that $\prod_{k=1}^\infty (1+r_k) < \infty$.  
+	Therefore we get that $\prod_{k=1}^\infty (1-r_k) < \infty$.  
+	Note that by induction, if we remove ratio after 
+	ratio of the unit interval we get that $\mathcal{K}$ has 
+	length $\prod_{k=1}^\infty (1-r_k)$.  If we consider the fact 
+	that $r_k \to 0$ as $k \to \infty$ implies that $1-r_k$ will 
+	converge to 1.  If $\prod_{k=1}^\infty (1-r_k) = 0$ then 
+	that would imply past some $K \in \N$, for all $k \geq K, 
+	1 - r_k < r < 1$.  However this is impossible for the 
+	afformentioned limit argumentation.  Thus our given set 
+	isn't measure 0.  Therefore, an upper sum can attain 1 for 
+	intervals of lengths which will sum to the length determined 
+	earlier by the product $\prod_{k=1}^infty (1-r_k)$.  Additionally, the lower sums can trivially be made 
+	0, as any open set can eventually have a multiple of $\frac{r_k}{2^k}$ put inside of it (end points of the k-th order cantor set process).  Therefore the upper sums and the lower sums disagree, making
+	$\chi_\mathcal{K}$ not Riemann integrable.  Note that the character of 
+	$\mathcal{K}^c$ is also not Riemann integrable since it is
+	equivalent to $1 - \chi_\mathcal{K}$, which is not Riemann 
+	integrable.  
+	
+	\item[6.3.4]	 Note that the function defined as 
+	$f(x,y)$ in this problem is equivalent to $1-f(y,x)$ as defined 
+	in Exercise 3 of 6.2.1 (first problem in the homework), and in 
+	this exercise $f$ is shown to be Riemann integrable, therefore
+	$1-f(y,x)$ is Riemann integrable.  Therefore the definition of $f$ for this problem is Riemann integrable.  Now to consider 
+	$\bar{\int}_0^1 f(x,y) dy$, for any possible partition of 
+	$\Po$ for $[0,1]$ in $y$ and any $x$, $U(f,\Po) = 1$, as the 
+	irrationals are dense in $[0,1]$, therefore for any subinterval 
+	the max of $1$ can always be attained.  Therefore 
+	$\bar{\int}_0^1 f(x,y) dy = 1$.  For $\underline{\int}_0^1 f(x,y) dy$, if $x = \frac{p}{q}, \gcd(p,q) = 1$ then 
+	in every possible interval of $y$ for an arbitrary partition 
+	$\Po$, $f(x,y) = 1-\frac{1}{q}$, by the density of the rationals.  Thus $L(f,\Po) =1-\frac{1}{q} $.  If $x$ is irrational 
+	then $L(f,\Po) = 1$ since every $f(x,y) = 1$.  Thus 
+	$\underline{\int}_0^1 f(x,y) dy = \begin{cases}
+	1- \frac{1}{q} & x = \frac{p}{q}, \gcd(p,q) = 1\\
+	1 & \text{ otherwise}
+	\end{cases}$.  
+	Therefore based off of this analysis it appears that 
+	$\int_0^1 f(x,y) dy$ is Riemann integrable for irrational $x$.  
+	\item[6.3.9] Suppose for contradiction that 
+	$g(x)\neq 0$ almost everywhere. Note that $0 = \bar{\int}_{R_1} g(\bold{x}) \geq 
+	\underline{\int}_{R_1} g(\bold{x}) \geq \min_{\bold{x} \in R_1} g(x) |R_1| \geq 0$, therefore $0 = {\int}_{R_1} g(\bold{x})
+	 = \bar{\int}_{R_1} g(\bold{x}) = 
+	\underline{\int}_{R_1} g(\bold{x})$, making $g$ Riemann 
+	integrable on $R_1$.  Since $g$ 
+	is riemann integrable on $R_1$ then it is bounded, therefore 
+	there exists $m > 0$ such that $g(\bold{x}) \geq m$, as $g(\bold{x}) \geq 0, \neq 0$ by assumption.  Thus, by definition 
+	of Riemann integrability, there exists $\delta>0$ such 
+	that for any partition $\lambda(\Po) < \delta$ we have that 
+	$\left|\sum_{S_\alpha \in \Po} g(\bold{x}_\alpha) |S_\alpha| \right| < m|R_1|$.  Since $g(x) \neq 0$ almost everywhere in $R_1$, then 
+	for each $S_\alpha$ we can choose an $\bold{x}_\alpha$ such that 
+	$g(\bold{x}_\alpha) \neq 0$.  Therefore 
+	$m|R_1| \leq \left|\sum_{S_\alpha \in \Po} g(\bold{x}_\alpha) |S_\alpha| \right| < m|R_1| $.  This is a contradiction.  Therefore 
+	$g(\bold{x}) = 0$ almost everywhere.  
+\end{enumerate}
+\end{document}
+>>>>>>> Stashed changes
