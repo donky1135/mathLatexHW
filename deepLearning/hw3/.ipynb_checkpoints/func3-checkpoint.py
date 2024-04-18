@@ -58,23 +58,6 @@ def imshow(img):
     plt.imshow( img )
     plt.show()
 
-def seqGen():
-    ind = random.sample(range(10), 5)
-    randmu = 2*torch.rand((5)) - 1
-    T = random.randint(1, 99)
-    seq = []
-    for t in range(100):
-        sample = torch.randn((10))
-        if t >= T:
-            j = 0
-            for i in range(10):
-                if i in ind:
-                    sample[i] = sample[i] + randmu[j]
-                    j = j+1
-            seq.append(sample)
-        else:
-                seq.append(sample)
-
 def trainNetwork(model, device, train_x, train_y, test_x, test_y, loss_function, optimFunc, batch_size, learnRate):
     model = model.to(device)
     optimizer = optimFunc(model.parameters(), lr = learnRate )
