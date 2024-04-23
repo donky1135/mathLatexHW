@@ -1,0 +1,108 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{452 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 10\\
+	452	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[4.3]
+	\begin{enumerate}
+		\item[a] Let the Klein 4 group be defined as $V_4 = <a,b | a^2 = b^2 = (ab)^2 = e>$, then we have the character 
+		table:\\
+		\begin{tabular}{c|cccc}
+		& $\{e\}$& $\{a,a^2\}$ & $\{b,b^2\}$ & $\{ab,(ab)^2\}$\\
+		$\chi_1$ & 1 & 1 & 1 & 1\\
+		$\chi_2$ & 1 & 1 & -1 & -1\\
+		$\chi_3$ & 1 & -1 & 1 & -1\\
+		$\chi_4$ & 1 & -1 & -1 & 1\\		
+		\end{tabular}
+		\item[c] Let $D_4 = <r,s | r^4 = s^2 = e, srs = r^{-1}>$ and it's character table as follows:\\
+		\begin{tabular}{c|ccccc}
+		& $\{e\}$ & $\{r^2\}$ & $\{r,r^3\}$ & $\{s, r^2 s\}$ & $\{rs, r^3s\}$\\
+		$\chi_1$ & 1 & 1 & 1 & 1 & 1\\
+		$\chi_2$ & 1 &  1 & -1 & 1 & -1\\
+		$\chi_3$ & 1 &  1 & 1 & -1 & -1\\
+		$\chi_4$ & 1 &  1 & -1 & -1 & 1\\
+		$\chi_5$ & 2 &  -2 & 0 & 0 & 0\\		
+		\end{tabular}
+		
+	\end{enumerate}
+	\item[4.7] Let $G$ be a finite group with $|G| = nm, N \leq G, G' = G / N = \{r_1,\cdots,r_m\}$, with the canonical projection map $\pi : G \to G'$, 
+	and let $\rho': G' \to GL(V)$ be an irreducible representation of $G'$, and $\rho = \rho' \circ \pi$.  To directly 
+	show that $\rho$ is an irreducible representation of $G$, assume for contradiction that $W$ is a $G$-invariant
+	subspace.  Then for all $g \in G, v \in W, \rho_g(v) = v$.  However, consider for each $g$, there exists $r_i$ 
+	such that $\pi(g) = r_i$.  This now implies that $\rho_g(v) = \rho_{r_i}'(v) = v$.  This implies that 
+	$W$ is a $G'-invariant$ subspace, contradicting that $\rho'$ is irreducible.  Now by using theorem 10.4.6, 
+	if we consider $\chi'$ to be the character of $\rho'$ and $\chi$ to be the character of $\rho$, then 
+	\begin{align*}
+	<\chi,\chi> &= \frac{1}{nm} \sum_{g \in G} \overline{\chi(g)}\chi(g)\\
+	&= \frac{1}{nm} \sum_{g \in G} \overline{\chi'(\pi(g))}\chi'(\pi(g))\\
+	&= \frac{1}{nm} \sum_{i=1}^m n \overline{\chi'(r_i)}\chi'(r_i)\\
+	& \text{since } |gN| = n\\
+	&= \frac{1}{m}\sum_{i=1}^m \overline{\chi'(r_i)}\chi'(r_i)\\ 
+	&= <\chi',\chi'> \\
+	&= 1
+	\end{align*}
+	Since the inner product of $\chi$ with itself is 1, then it is necessarily irreducible.  
+	\item[5.5] Let $G$ be a finite group with $|G| = n$ and $k$ conjugacy classes.  Let $\chi_i, \chi_j$ by characters for irreducible representations of $\rho_i, \rho_j$ for 
+	$G$.  If we let $\chi = \chi_i \chi_j$, then for any $g,h \in G$ then $\chi(gh) = \chi_i(gh)\chi_j(gh) = 
+	\chi_i(g)\chi_i(h)\chi_j(g)\chi_j(h) = \chi_i(g)\chi_j(g)\chi_i(h)\chi_j(h) = \chi(g)\chi(h)$.  Since the 
+	set of characters is just the set of homomorphisms from $G \to C^{\times}$ then $\chi$ is a homomorphism as well. 
+	Additionally the above proof can be redone with $\frac{1}{\chi}$.  Thus the set of characters and their 
+	inverses is closed under 
+	multiplication, and since these are functions over complex numbers all other group axioms are satisfied.  Thus the 
+	dual group is a group.  If $G$ is abelian then by the structure theorem we have that 
+	$G \cong \Z_{d_1} \oplus \cdots \oplus \Z_{d_k} \oplus \Z^n$.  We know that the injective homomorphism from 
+	$\chi: \Z_{d_i} \to \C^{\times}$ is $\chi(g) = e^{\frac{2 \pi i g }{d_i}}$, and $\chi:\Z \to \C^{\times}$ is 
+	$\chi(n) = e^n$.  Since these also are trivially irreducible implies that by the structure theorem 
+	we have an injective map from $G$ to $\Z_{d_1} \oplus \cdots \oplus \Z_{d_k} \oplus \Z^n$ and for each 
+	respective component we have an irreducible representation implies that we have an injection from $G$ to a product 
+	over the characters specified above.  If $G$ is finite then since we have an injective map then the sets 
+	are isomorphic.  Additionally since these are all homomorphisms then $G$ is isomorphic to it's dual.
+	\item[5.7]
+	\begin{enumerate}
+		\item Since a given element $g \in G$ with the isomorphism from $G$ to $\Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$
+		implies that $g$ can map into $e^{\frac{2 \pi i v_1}{d_1}} + \cdots + e^{\frac{2 \pi i v_k}{d_k}}$.
+		Thus the homomorphism is a homomorphism between direct sums of cyclic groups.  Thus one can take 
+		$g$ to $\phi(g)$ with $G'$ to $\Z_{d_1'} \oplus \cdots \oplus \Z_{d_k'}$ and get 
+		$e^{\frac{2 \pi i v_1'}{d_1'}} + \cdots + e^{\frac{2 \pi i v_k'}{d_k'}}$
+		\item If dual $\phi$ is surjective then that implies that every possible combination over the module 
+		 $\Z_{d_1'} \oplus \cdots \oplus \Z_{d_k'}$ is reached.  Therefore every $g' \in G'$ has a unique 
+		 representation in $G$ under $\phi^{-1}$
+	\end{enumerate}
+	
+\end{enumerate}
+\end{document}
