@@ -29,3 +29,7 @@ for i from 1 to n do
 od:
 [G,pi]:
 end:
+#ZKP1(n,G,pu,Opt): Does ONE ROUND of the Blum protocol.  Inputs a graph n,G,
+#a Hamiltonian permutation pi, and Opt=1 or 1, Opt=1 you show all of hte n + nC2 boxes
+#Opt2, you show the contents of the n boxes corresponding to the mapping of your hamiltonian
+ZKP1 := proc(G,pi,Opt):
