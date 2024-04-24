@@ -85,11 +85,102 @@ $\int_0^1 \int_0^1\sqrt{\det(A^T A)} dx_3 dx_4 = \sqrt{\det(A^T A)}
 	&= \sqrt{\frac{1}{m^2} \sin^2(\frac{\pi}{2n})}\\
 	&= \frac{\sin(\frac{\pi}{2n})}{m}
 	\end{align*}
-	\item[6.7.2.3]
-	\item[6.7.3.3] Since $\sqrt{R^2 - x_1^2- x_2^2- x_3^2}$ is a 
+	\item[6.7.2.3] To compute the volume of the parallelpiped between 3 of the four verticies of 
+	$\{(1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)\}$ one 
+	must take 3 of the vectors and form a matrix, take
+	$A = \begin{bmatrix}
+	1 & 0 & 0 & 0\\
+	0 & 1 & 0 & 0\\
+	0 & 0 & 0 & 1
+\end{bmatrix}	 $, Observe that 
+$\sqrt{\det(A^T A)} = 1$.  Since one parallelpiped is 
+$\frac{1}{6}$th of the total area of the tetrahedron then 
+it's 6 times the area, thus the total area is 6.  
+	\item[6.7.3.3] 
+	\begin{enumerate}
+		\item Since $f(x_1,x_2,x_3) = \sqrt{R^2 - x_1^2- x_2^2- x_3^2}$ is a 
 	graph over $x_1,x_2,x_3$, we can find the surface area via 
-	computing 
-	\item[6.7.3.4]
-	\item[6.7.4.3]
+	computing $\sqrt{1 + |Df(x)|^2}$ and computing over 
+	$x_1^2 + x_2^ + x_3^2 \leq R^2$.  Note that 
+	$Df(x) = \left(\frac{-x_1}{\sqrt{R^2 - x_1^2- x_2^2- x_3^2}},
+	\frac{-x_2}{\sqrt{R^2 - x_1^2- x_2^2- x_3^2}},
+	\frac{-x_3}{\sqrt{R^2 - x_1^2- x_2^2- x_3^2}}\right)$, 
+	thus $Df(x)^T Df(x) = 
+	\frac{x_1^2 + x_2^2 + x_3^2}{R^2 - (x_1^2 + x_2^2 + x_3^2)}$.
+	Therefore to compute the general surface area we have to compute
+	\begin{align*}
+	2\int \int \int_{x_1^2 + x_2^ + x_3^2 \leq R^2} \sqrt{1+ |Df(x)|^2} &=  2\int \int \int_{x_1^2 + x_2^ + x_3^2 \leq R^2} 
+	\sqrt{\frac{R^2 - x_1^2- x_2^2- x_3^2 +x_1^2+
+	x_2^2 + x_3^2}{R^2 - x_1^2- x_2^2- x_3^2}}\\ 
+	&= 2\int \int \int_{x_1^2 + x_2^ + x_3^2 \leq R^2} 
+	\sqrt{\frac{R^2 }{R^2 - x_1^2- x_2^2- x_3^2}}\\ 
+	&= 2R \int_0^{2\pi}\int_0^\pi \int_0^R \frac{r^2 \sin(\theta)}{\sqrt{R^2 -r^2}} d\varphi d\theta d r\\
+	&= 8R^2 \pi \int_0^R \frac{r^2}{\sqrt{R^2 - r^2}}  d r\\
+	&= 2\pi^2 	R^3
+	\end{align*}
+		\item Using the sphereical coordinates we have 
+		that the surface  is parameterized by 
+		$S(\phi, \theta_1,\theta_2) = 
+		(R\sin(\theta_2) \sin(\theta_1) \cos(\phi),
+		R \sin(\theta_2) \sin(\theta_1) \sin(\phi),
+		R \sin(\theta_2) \cos(\theta_1),
+		R \cos(\theta_2)		
+		)$.  Observe that \\
+		$D_\phi S = (-R\sin(\theta_2) \sin(\theta_1) \sin(\phi),
+		R \sin(\theta_2) \sin(\theta_1) \cos(\phi),
+		0,
+		0
+		)$\\
+		$D_{\theta_1} S = 
+		(R\sin(\theta_2) \cos(\theta_1) \cos(\phi),
+		R \sin(\theta_2) \cos(\theta_1) \sin(\phi),
+		-R \sin(\theta_2) \sin(\theta_1),
+		0
+		)$\\
+		$D_{\theta_2} S = (R\cos(\theta_2) \sin(\theta_1) \cos(\phi),
+		R \cos(\theta_2) \sin(\theta_1) \sin(\phi),
+		R \cos(\theta_2) \cos(\theta_1),
+		-R \sin(\theta_2)		
+		)$
+		$\|D_{\phi}\|^2 = R^2 \sin^2(\theta_2)\sin^2(\theta_1)$\\
+		$\|D_{\theta_1}\|^2 = R^2\sin^2(\theta_2)$\\
+		$\|D_{\theta_2}\|^2 = R^2$.\\
+		Since the angles have orthogonal tangents then the 
+		dot product between any two non-same terms will be zero.
+		Thus $\sqrt{(\det((\nabla S)^T \nabla S))} = 
+		R^3 \sin^2(\theta_2)\sin(\theta_1)$.  Observe that 
+		$\int_0^\pi \int_0^\pi \int_0^{2\pi} R^3 \sin^2(\theta_2)\sin(\theta_1) d \phi d \theta_1 d \theta_2 = R^3 2 \pi^2$
+	\end{enumerate}
+	
+	\item[6.7.3.4] 
+	\begin{itemize}
+		\item Let our parameterization 
+		be denoted $S_r(z,\theta) = (r(z)\cos(\theta),
+		r(z)\sin(\theta),z)$.  
+		Observe that 
+		$D_z S_r = (r'(z)\cos(\theta), r'(z) \sin(\theta),1)$ and that $D_\theta S_r = 
+		(-r(z)\sin(\theta), r(z) \cos(\theta), 0)$.
+		Therefore 
+		$\| D_z\|^2 = |r'(z)|^2 + 1, \| D_\theta\|^2 = 
+		r^2(z), D_z \cdot D_r = 0$.  Thus the 
+		integral of the surface becomes 
+		$\int_a^b \int_0^{2 \pi} \sqrt{r^2(z)(|r'(z)|^2 + 1)}d\theta dz = 2 \pi \int_a^b r(z) \sqrt{|r'(z)|^2 + 1}dz $.
+		Note that surface generated via $r(z) =cosh(1)$ 
+		is $4 \pi \cosh(1)$.  For $r(z) = cosh(z)$ we 
+		have the integral 
+		$2 \pi \int_{-1}^1 cosh(z)^2 dz = 2 \pi(1+cosh(1)sinh(1))$.  Note that $2 \pi(1+cosh(1)sinh(1)$
+		is less then $4 \pi \cosh(1)$, thus the radius 
+		of $cosh(z)$ is the smaller.  
+	\end{itemize}
+	\item[6.7.4.3] Since we're integrating with the condition 
+	that we're on $x^2 + y^2 = 1$ implies that 
+	$x = \cos(\theta), y = \sin(\theta)$ is a valid 
+	parameterization.  Furthermore, the condition on the 
+	planes gives us that $z = \pm1 - \cos(\theta) - \sin(\theta)$.
+	Therefore the integral can be translated into 
+	$\int_0^{2\pi} \int_{-1-\cos(\theta) - \sin(\theta)}^{1-\cos(\theta) - \sin(\theta)} z^2 dz d \theta = 
+	\frac{8}{3}\int_0^{2 \pi} d \theta = \frac{16\pi}{3}$ \\
+	
+	
 \end{enumerate}
 \end{document}
