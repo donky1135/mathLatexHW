@@ -77,31 +77,52 @@
 	&= 1
 	\end{align*}
 	Since the inner product of $\chi$ with itself is 1, then it is necessarily irreducible.  
-	\item[5.5] Let $G$ be a finite group with $|G| = n$ and $k$ conjugacy classes.  Let $\chi_i, \chi_j$ by characters for irreducible representations of $\rho_i, \rho_j$ for 
-	$G$.  If we let $\chi = \chi_i \chi_j$, then for any $g,h \in G$ then $\chi(gh) = \chi_i(gh)\chi_j(gh) = 
-	\chi_i(g)\chi_i(h)\chi_j(g)\chi_j(h) = \chi_i(g)\chi_j(g)\chi_i(h)\chi_j(h) = \chi(g)\chi(h)$.  Since the 
+	\item[5.5] Let $G$ be a group.  Let $\chi_1, \chi_2$ by characters for 
+	$G$.  If we let $\chi = \chi_1 \chi_2$, then for any $g,h \in G$ then $\chi(gh) = \chi_1(gh)\chi_2(gh) = 
+	\chi_1(g)\chi_2(h)\chi_1(g)\chi_2(h) = \chi_1(g)\chi_2(g)\chi_1(h)\chi_2(h) = \chi(g)\chi(h)$.  Since the 
 	set of characters is just the set of homomorphisms from $G \to C^{\times}$ then $\chi$ is a homomorphism as well. 
-	Additionally the above proof can be redone with $\frac{1}{\chi}$.  Thus the set of characters and their 
+	Additionally, for every $\chi \in \hat{G}, g \in G$, $\chi(g) \neq 0$, therefore 
+	$\frac{1}{\chi(g)}$ exists, giving us that, $\frac{1}{\chi(g)}\frac{1}{\chi(h)} = \frac{1}{\chi(g)\chi(h)} = \frac{1}{\chi(gh)}$, therefore
+	the inverse of a character is a character as well.  Thus the set of characters and their 
 	inverses is closed under 
-	multiplication, and since these are functions over complex numbers all other group axioms are satisfied.  Thus the 
-	dual group is a group.  If $G$ is abelian then by the structure theorem we have that 
-	$G \cong \Z_{d_1} \oplus \cdots \oplus \Z_{d_k} \oplus \Z^n$.  We know that the injective homomorphism from 
+	multiplication.  Finally, since the trivial representation exists and the characters are functions over complex numbers the $\hat{G}$ has an identity and associativity.  Thus the 
+	dual group is a group.\\
+	  If $G$ is abelian and finite then by the structure theorem we have that 
+	$G \cong \Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$ where $d_1,\cdots,d_k$ are prime powers.  
+	Note for cyclic groups, if $g$ generates $\Z_n$, then $1 = \chi(1) = \chi(g^n) = \chi(g)^n$, which implies 
+	that $\chi(g) = e^{\frac{2 \pi i k g }{n}}$ where $k$ is some number between $0$ and $n-1$.  Furthermore 
+	since the roots of unity for $n$ are cyclic implies that $\hat{Z_n}$ is isomorphic to $Z_n$.  Therefore 
+	$\Z_{d_1} \oplus \cdots \oplus \Z_{d_k} \cong \{e^{\frac{2 \pi i j}{d_1}}\}_{j=1}^{d_1} 
+	\oplus \cdots \oplus \{e^{\frac{2 \pi i j}{d_k}}\}_{j=1}^{d_k}$.  Furthermore since $d_1,\cdots,d_k$ are 
+	prime powers there's an isomorphism from $\{e^{\frac{2 \pi i j}{d_1}}\}_{j=1}^{d_1} 
+	\oplus \cdots \oplus \{e^{\frac{2 \pi i j}{d_k}}\}_{j=1}^{d_k}$ to 
+	$\{e^{\frac{2 \pi i j_1}{d_1} + \cdots + \frac{2 \pi i j_k}{d_k}}\}_{j_1,\cdots,j_k = 1}^{d_1,\cdots,d_k}$, as 
+	the sum of fractions with prime powers can uniquely be written that way, thus each element is uniquely mapped.  
+	Thus we have shown that $G$ is isomorphic to it's dual group.  
+	\iffalse Note that we can represent elements $(a_1,\cdots,a_k) \in \Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$ as the matrix with the 
+	diagonal $e^{\frac{2\pi i a_1}{d_1}}, \cdots, e^{\frac{2\pi i a_k}{d_k}}$, as the roots of unity in each of the 
+	diagonals is isomorphic to each individual elements in $(a_1,\cdots,a_k)$.  Therefore 
+	\fi
+	\iffalse We know that the injective homomorphism from 
 	$\chi: \Z_{d_i} \to \C^{\times}$ is $\chi(g) = e^{\frac{2 \pi i g }{d_i}}$, and $\chi:\Z \to \C^{\times}$ is 
 	$\chi(n) = e^n$.  Since these also are trivially irreducible implies that by the structure theorem 
 	we have an injective map from $G$ to $\Z_{d_1} \oplus \cdots \oplus \Z_{d_k} \oplus \Z^n$ and for each 
 	respective component we have an irreducible representation implies that we have an injection from $G$ to a product 
 	over the characters specified above.  If $G$ is finite then since we have an injective map then the sets 
 	are isomorphic.  Additionally since these are all homomorphisms then $G$ is isomorphic to it's dual.
+	\fi
 	\item[5.7]
 	\begin{enumerate}
-		\item Since a given element $g \in G$ with the isomorphism from $G$ to $\Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$
-		implies that $g$ can map into $e^{\frac{2 \pi i v_1}{d_1}} + \cdots + e^{\frac{2 \pi i v_k}{d_k}}$.
-		Thus the homomorphism is a homomorphism between direct sums of cyclic groups.  Thus one can take 
-		$g$ to $\phi(g)$ with $G'$ to $\Z_{d_1'} \oplus \cdots \oplus \Z_{d_k'}$ and get 
-		$e^{\frac{2 \pi i v_1'}{d_1'}} + \cdots + e^{\frac{2 \pi i v_k'}{d_k'}}$
-		\item If dual $\phi$ is surjective then that implies that every possible combination over the module 
-		 $\Z_{d_1'} \oplus \cdots \oplus \Z_{d_k'}$ is reached.  Therefore every $g' \in G'$ has a unique 
-		 representation in $G$ under $\phi^{-1}$
+		\item Note since $G, G'$ are finite abelian groups then their homomorphism is isomorphic to a linear transformation from $\Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$ to 
+		$\Z_{d_1'} \oplus \cdots \oplus \Z_{d_l'}$.  This can be given as a $l \times k$ matrix.  Therefore the 
+		induced homomorphism is simply the $d_i'$ component in  $\Z_{d_1'} \oplus \cdots \oplus \Z_{d_l'}$
+		after applying $\phi$ to $(a_1,\cdots, a_k) \in \Z_{d_1} \oplus \cdots \oplus \Z_{d_k}$.  
+		This is equivalent to $e^{\frac{2 \pi i \phi(a_1,\cdots, a_k)_1}{d_1'} + \cdots + \frac{2 \pi i \phi(a_1,\cdots, a_k)_l}{d_l'}}$.  
+		\item We know from linear algebra that the dual $\hat{\phi}$ corresponds to the transpose of the transpose
+		of the linear operation $\phi$.  Therefore if $\phi$ is injective implies that $\phi^T$ is surjective, 
+		and $\phi$ is surjective implies that $\phi^T$ is injective.  Since one can create an isomorphism 
+		from $\phi^T$ and $\hat{\phi}$ implies the desired result.  
+		
 	\end{enumerate}
 	
 \end{enumerate}
