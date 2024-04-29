@@ -38,7 +38,15 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item[10.4.3b]
+	\item[10.4.3b] 
+	\begin{tabular}{c|ccccc}
+	& $\{1\}$ & $\{-1\}$ & $\{i,-i\}$ & $\{j,-j\}$ & $\{k,-k\}$\\
+	$\chi_1$ & 1 & 1 & 1 & 1 & 1\\
+	$\chi_1$ & 1 & 1 & -1 & 1 & -1\\
+	$\chi_1$ & 1 & 1 & 1 & -1 & -1\\
+	$\chi_1$ & 1 & 1 & -1 & -1 & 1\\
+	$\chi_1$ & 2 & -2 & 0 & 0 & 0\\
+	\end{tabular}
 	\item[10.7.4] Let $G$ be a group, $\rho$ a representation, $C$ a conjugacy class, and 
 	$T = \sum_{g \in C}\rho_g$.  We want to show 
 	that $T$ is $G$-invariant.  Therefore 
@@ -87,13 +95,16 @@
 		nilpotent element with $n\in \N$ such that 
 		$a^n = 0$.  We want to show there exists 
 		$k \in \N$ such that $(1+a)^k = 1$.  
-		We claim that $k=n \cdot p$.  Observe that 
-		if $0 < l < pp$ then $\binom{p}{l} \mid p$ since 
+		Observe that 
+		if $0 < l < p$ then $\binom{p}{l} \mid p$ since 
 		both $l, p-l < p$, therefore $l!, (p-l)!$ do not 
 		contain the prime factor $p$.  Thus 
 		$\frac{p!}{l!(p-l)!} \mid p$.  Therefore 
 		$(1+a)^p = \sum_{l=0}^p \binom{p}{l} a^l = 1 + a^p
 		$
+		Furthermore by induction we have that $(1+a)^{p^l} = 1 + a^{p^l}$.  
+		Since there exists $m \in \N$ such that $n < p^m$, if we take $(1+a)^{p^m} = 1 + a^{p^m}$, then 
+		since $a^{p^m} = 0$ we have that $1+a$ is unipotent.  
 		
 	\end{enumerate}
 \end{enumerate}
