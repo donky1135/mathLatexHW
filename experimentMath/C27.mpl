@@ -18,6 +18,13 @@ RGC3 := proc(n) local C,i,j, ra, ra1, E:
     n, E, C:
 end:
 
-ZKP3 := proc(n.E,C,Opt) local B1,B2:
-
+ZKP3 := proc(n,E,C,Opt) local B1,B2,i,j,c,sig:
+    sig = randperm(3*n):
+    B1 := [seq([seq([c,i],c=1..3)], i=1..n)]:
+    B1 := [seq(B1[sig[i]], i=1..nops(B1))]:
+    for i from 1 to 3*n do 
+        for j from 1 to 3*n do
+        B1iC:= B1[i][1]:
+        B1iV := B1[i][2]:
+        
 end:
