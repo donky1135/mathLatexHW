@@ -111,7 +111,7 @@ end:
 
 groupOp := proc(p,n):
     OZn := OZ(n):
-    leeP3 := weightCheck(p,parCheck(p,[seq(i, i=1..n)], FqnP(p,n))):
+    leePn := weightCheck(p,parCheck(p,[seq(i, i=1..n)], FqnP(p,n))):
     codeCopies := {}:
     for perm in OZn do
         temp := {}:
@@ -123,16 +123,40 @@ groupOp := proc(p,n):
     codeCopies:
 end:
 
+groupOpGenMatrix := proc(p,n):
+    OZn := OZ(n):
+    leePnGen := genMatrix2(n):
+    codeCopies := {}:
+    for perm in OZn do
+        temp := {}:
+        for word in leePnGen do
+            temp := {convert(Multiply(Matrix(perm), Vector(word)), list) mod p} union temp:
+        od:
+        codeCopies := codeCopies union {temp}:
+    od:
+    codeCopies:
+end:
+
 #groupOp
 
+#for codes with n > 2
 genMatrix := proc(n):
     mat := []:
     for i from 1 to n do
         if i mod 2 = 0 then 
-            mat := [op(mat), [i, 0$(n - 2 - (i)/2), 1,1, 0$(-1+i/2)]]
+            mat := [op(mat), [0, 0$(n - 2 - (i)/2), 1,1, 0$(-1+i/2)] + [0$(i-1),1,0$(n-i)]]:
         else
-            mat := [op(mat), [i, 0$(n - i/2 - 1), 2, 0$((i-1)/2)]]:
+            mat := [op(mat), [0, 0$(n - i/2 - 1), 2, 0$((i-1)/2)] + [0$(i-1),1,0$(n-i)]]:
         fi:
     od:
+    mat:
+end:
+
+genMatrix2 := proc(n):
+    mat := []:
+    for i from 1 to (n-1) do
+        mat := [op(mat), [0$(i-1),1,0$(n-i-1), (-i*(n)&^(-1) mod (2*n+1))]]
+    od:
+    
     mat:
 end:
