@@ -1,0 +1,171 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{412 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Final\\
+	412	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Suppose $f$ is twice differentiable.  Then 
+	\begin{align*}
+		d(df) &= d \left(\sum_{i=1}^n \frac{\partial f}{\partial x_i}dx_i \right)\\
+		&= \sum_{i=1}^n \left( \sum_{j=1}^n 
+		\frac{\partial f}{\partial x_j \partial x_i} dx_j
+		\right) \wedge dx_i\\
+		&= \sum_{i=1}^n \sum_{j=1}^n\frac{\partial f}{\partial x_j \partial x_i} dx_j \wedge dx_i\\
+		&= \sum_{i < j}^n  \frac{\partial f}{\partial x_j \partial x_i} dx_j \wedge dx_i
+		+ \sum_{i < j}^n \frac{\partial f}{\partial x_i \partial x_j} dx_i \wedge dx_j\\
+		&= \sum_{i < j}^n  \frac{\partial f}{\partial x_j \partial x_i} dx_j \wedge dx_i
+		- \sum_{i < j}^n \frac{\partial f}{\partial x_j \partial x_i} dx_j \wedge dx_i\\
+		&= 0
+	\end{align*}
+	Now for the map $\gamma : [0,1] \to \R^n$ with 
+	$\gamma(0) = \gamma(1)$, we have by the fundamental 
+	theorem of calculus that 
+	$\int_\gamma df = \int_0^1 \left( \frac{\partial f (\gamma(t))}{\partial x_1},\cdots,\frac{\partial f (\gamma(t))}{\partial x_n} \right)\cdot \gamma'(t) = 
+	\int_0^1 (f(\gamma(t))'dt = f(\gamma(1)) - f(\gamma(0)) = f(\gamma(0)) - f(\gamma(0)) = 0$.  
+	\item Let $\omega = 
+	\frac{-y}{x^2 + y^2}dx + \frac{x}{x^2 + y^2}dy$
+	\begin{enumerate}
+		\item \begin{align*}
+			d\omega &= d\left(\frac{-y}{x^2 + y^2} \right) \wedge dx 
+			+ d\left(\frac{x}{x^2 + y^2} \right)\wedge dy\\
+			&= \left( \frac{2xy}{(x^2+y^2)^2}
+			dx + \frac{y^2 - x^2}{(x^2+y^2)^2}dy \right)\wedge dx + \left(\frac{y^2 - x^2}{(x^2 + y^2)^2}dx 
+		+ \frac{-2xy}{x^2 + y^2}dy  \right) \wedge dy\\
+		&= 0 + \frac{y^2 - x^2}{(x^2 + y^2)^2}dy \wedge dx + 
+		\frac{y^2 - x^2}{(x^2 + y^2)^2}dx \wedge dy + 0\\
+		&= \frac{y^2 - x^2}{(x^2 + y^2)^2}dx \wedge dy 
+		- \frac{y^2 - x^2}{(x^2 + y^2)^2} dx \wedge dy\\
+		&= 0
+		\end{align*}
+		\item Let $\gamma(t) = (\cos(2 \pi t), \sin(2 \pi t))$.  The integral $\int_\gamma \omega = 
+		2 \pi \int_0^{1} (-\sin(2 \pi t))( - \sin(2 \pi t)) 
+		+ \cos(2 \pi t) \cos(2 \pi t) dt = 
+		2 \pi \int_0^1 dt = 2 \pi $.  Note that the 
+		given integral evaluates to $2 \pi$ contradicts 
+		that there exists a differentiable $g$ such that 
+		$dg = \omega$ since we showed above that for any differentiable 
+		function $g$ we have that $\int_\gamma dg = 0$ 
+		where $\gamma$ is a closed differentiable loop.
+		Since our given $\gamma$ is a closed differentiable loop and  $0 \neq 2 \pi$,  then it is impossible to 
+		find such a $g$.  
+	\end{enumerate}
+	\item Let $x = r \cos (\theta), y = r \sin (\theta)$
+	\begin{enumerate}
+		\item 
+		\begin{align*}
+			dx \otimes dx + dy \otimes dy &= (\cos (\theta) dr + - r \sin (\theta) d \theta) \otimes (\cos (\theta) dr + - r \sin (\theta) d \theta)\\ &+ (\sin (\theta) dr + r \cos (\theta) d \theta) \otimes (\sin (\theta) dr + r \cos (\theta) d \theta)\\
+			&= \cos^2(\theta) dr \otimes dr - r \cos(\theta) \sin (\theta) dr \otimes d\theta - r \cos(\theta) \sin (\theta) d\theta \otimes dr\\
+			&+ r^2 \sin^2(\theta) d\theta \otimes d \theta + 
+			\sin^2(\theta)dr \otimes dr + r \cos(\theta) \sin (\theta) dr \otimes d\theta\\
+			& + r \cos(\theta) \sin (\theta) d\theta \otimes dr	+ r^2 \cos^2(\theta) d \theta \otimes d \theta\\
+			&= (\cos^2(\theta) + \sin^2(\theta))dr \otimes dr + r^2(\cos^2(\theta) + \sin^2(\theta))d\theta \otimes d\theta\\
+			&= dr \otimes dr + r^2 d\theta \otimes d\theta
+		\end{align*}
+		\item 
+		\begin{align*}
+		dx \wedge dy &= (\cos (\theta) dr + - r \sin (\theta) d \theta) \wedge (\sin (\theta) dr + r \cos (\theta) d \theta)\\
+		&= \cos(\theta)\sin(\theta)dr \wedge dr +
+		 r \cos^2(\theta)dr \wedge d\theta -\sin^2(\theta)
+		 d\theta \wedge dr - r^2 \cos(\theta)\sin(\theta) 
+		 d \theta \wedge d \theta\\
+		 &= r \cos^2(\theta)dr \wedge d\theta -r\sin^2(\theta)
+		 d\theta \wedge dr\\
+		 &= r \cos^2(\theta)dr \wedge d\theta +r\sin^2(\theta)
+		 dr \wedge d\theta\\
+		 &= r(\cos^2(\theta) + \sin^2(\theta))dr \wedge d\theta\\
+		 &= r dr \wedge d\theta
+		\end{align*}
+	\end{enumerate}
+	\item
+	\begin{enumerate}
+		\item Note that\\ $$dx = \sin (\phi) \cos(\theta)dr 
+		+ r\cos(\phi)\cos(\theta) d\phi - r \sin(\phi) \sin(\theta)d \theta,$$ \\
+		$$dy = \sin (\phi) \sin(\theta)dr 
+		+ r\cos(\phi)\sin(\theta) d\phi + r \sin(\phi) \cos(\theta)d \theta,$$ \\
+		$$dz = \cos(\phi)dr - r\sin(\phi)d\phi.$$  Therefore,
+		\begin{align*}
+		dx \wedge dy \wedge dz &= (\sin (\phi) \cos(\theta)dr 
+		+ r\cos(\phi)\cos(\theta) d\phi - r \sin(\phi) \sin(\theta)d \theta)\\ &\wedge (\sin (\phi) \sin(\theta)dr
+		+ r\cos(\phi)\sin(\theta) d\phi + r \sin(\phi) \cos(\theta)d \theta)\\ &\wedge(\cos(\phi)dr - r\sin(\phi)d\phi)\\
+		&= \sin (\phi) \cos(\theta) (r \sin(\phi) \cos(\theta)) (r \sin (\phi)) dr \wedge d \phi \wedge d \theta\\
+		&- r \cos(\phi)\cos(\theta)(-r\sin(\phi)\cos(\theta))
+		(\cos(\phi(dr) dr \wedge d \phi \wedge d \theta\\
+		&- r \sin(\phi)\sin(\theta)(-r \sin^2(\phi)\sin(\theta) - r \cos^2(\phi)\sin(\theta))dr \wedge d \phi \wedge d \theta\\
+		&= r^2\sin(\phi)(\cos^2(\theta)\sin^2(\phi) + 
+		\cos^2(\phi)\cos^2(\theta)\\ &+ \sin^2(\theta)(\cos^2(\phi) + \sin^2(\phi)))dr \wedge d \phi \wedge d \theta\\
+		&= r^2 \sin(\phi)(\cos^2(\theta) + \sin^2(\theta))
+		dr \wedge d \phi \wedge d \theta\\
+		&= r^2 \sin(\phi)\wedge d \phi \wedge d \theta
+		\end{align*}
+		\item 
+		\begin{itemize}
+			\item $\frac{\partial f}{\partial r} 
+			= \frac{\partial f}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial r} + \frac{\partial f}{\partial z} \frac{\partial z}{\partial r} = \frac{\partial f}{\partial x} \sin(\phi)\cos(\theta) + \frac{\partial f}{\partial y}  \sin(\phi)\sin(\theta) + \frac{\partial f}{\partial z} \cos(\phi)$
+			\item $\frac{\partial f}{\partial \phi} 
+			= \frac{\partial f}{\partial x} \frac{\partial x}{\partial \phi} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial \phi} + \frac{\partial f}{\partial z} \frac{\partial z}{\partial \phi} = \frac{\partial f}{\partial x} r\cos(\phi)\cos(\theta) + \frac{\partial f}{\partial y} r \cos(\phi)\sin(\theta) - \frac{\partial f}{\partial z} r\sin(\phi)$
+			\item $\frac{\partial f}{\partial \theta} 
+			= \frac{\partial f}{\partial x} \frac{\partial x}{\partial \theta} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial \theta} + \frac{\partial f}{\partial z} \frac{\partial z}{\partial \theta} = -\frac{\partial f}{\partial x}r\sin(\phi)\cos(\theta) + \frac{\partial f}{\partial y} r \sin(\phi)\cos(\theta)$
+		\end{itemize}
+	\end{enumerate}
+	\item 
+	\item Let 
+	$\omega = \frac{x dy \wedge dz + y dz \wedge dx + z dx \wedge dy}{(x^2 + y^2 + z^2)^{3/2}}$, and $C$ be 
+	the sphereically-parameterized sphere $x^2 + y^2 + z^2 = R^2$ with $(\phi, \theta) \in [0,\pi] \times [0,2 \pi]$.
+	Note that by example 6.1 in the stokes theorem notes 
+	that a two form exactly of the form above 
+	(where $P = x/(x^2 + y^2 + z^2)^{3/2}, Q = y/(x^2 + y^2 + z^2)^{3/2}, R = z/(x^2 + y^2 + z^2)^{3/2}$) with a parameterization 
+	from $\gamma : (u,v) \in \square \to \R^3$(which is $c$ in our case
+	can be computed via $\int_\square (P \circ \gamma, 
+	Q \circ \gamma,R \circ \gamma)\cdot (D_u \gamma \times
+	D_v \gamma)$.   Therefore, we first compute 
+	$D_\phi \times D_\theta = (R \cos(\phi) \cos(\theta), 
+	R \cos(\phi)\sin(\theta), -R\sin(\phi)) \times 
+	(R \sin(\phi)\cos(\theta), R  \sin(\phi)\cos(\theta),0)
+	= (R^2\sin^2(\phi)\cos(\theta), R^2\sin^2(\phi)\sin(\theta), R^2 \sin(\theta)\cos(\phi))$.  Furthermore, the other vector 
+	we're dotting is \\
+	$(P \circ \gamma, 
+	Q \circ \gamma,R \circ \gamma) = (R \sin(\phi)\cos(\theta), R\sin(\phi)\sin(\phi), R\cos(\phi))$
+	\begin{align*}
+		\int_c \omega &= \int_{0}^\pi \int_0^{2 \pi} 
+		(R \sin(\phi)\cos(\theta), R\sin(\phi)\sin(\phi), R\cos(\phi))\\ &\cdot (R^2\sin^2(\phi)\cos(\theta), R^2\sin^2(\phi)\sin(\theta), R^2 \sin(\theta)\cos(\phi))
+		d\theta d \phi\\
+		&= \int_0^\pi \int_0^{2 \pi} \sin(\phi) d \theta d \phi\\
+		&= 4\pi
+	\end{align*}
+\end{enumerate}
+\end{document}
