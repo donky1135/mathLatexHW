@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 import random
 import math
 import time
-import func3
 import gc
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -226,11 +225,11 @@ class logicBot():
 
         return cell
 
-    class NetworkBot(nn.Module):
-        def __init__(self):
-            super(NetworkBot, self).__init__()
-            self.embed = nn.Embedding(11,11)
-            self.layer1 = nn.Conv2d
+    # class NetworkBot(nn.Module):
+    #     def __init__(self):
+    #         super(NetworkBot, self).__init__()
+    #         self.embed = nn.Embedding(11,11)
+    #         self.layer1 = nn.Conv2d
 
 
 testbot = logicBot(5,5,3)
