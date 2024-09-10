@@ -1,0 +1,147 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{503 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 1\\
+	503	
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[2] Let $z,w \in \C$ with $z = z_1 + i z_2, w = w_1 + i w_2, z_1, z_2, w_1, w_2 \in \R$.  Additionally, let 
+	$\langle z,w \rangle = z_1 w_1 + z_2 w_2, (z,w) = z \bar{w}, Re(z,w) = Re(z \bar{w} ) $.  First I must demonstrate that 
+	$\frac{1}{2}[(z,w) + (w,z)] =  \langle z,w \rangle$:
+	\begin{align*}
+		\frac{1}{2}[(z,w) + (w,z)] &= \frac{1}{2} (z \bar{w} + \bar{z} w)\\
+		&= \frac{1}{2} [(z_1 + i z_2)(w_1 - i w_2) + (z_1 - i z_2)(w_1 + i w_2)]\\
+		&= \frac{1}{2} (z_1 w_1 - i z_1 w_2 + i z_2 w_1 + z_2 w_2 + z_1 w_1 + i z_1 w_2 - i z_2 w_1 + z_2 w_2)\\
+		&= \frac{1}{2} (2 z_1 w_1 + 2 z_2 w_2)\\
+		&= z_1 w_1 + z_2 w_2\\
+		&= \langle z,w \rangle.
+	\end{align*}
+	Next I must demonstrate that $Re(z,w) =\langle z,w \rangle $:
+	\begin{align*}
+		Re(z,w) &= Re(z\bar{w})\\
+		&= Re((z_1 + iz_2)(w_1 - i w_2))\\
+		&= Re(z_1 w_1 - i z_1 w_2 + i z_2 w_1 + z_2 w_2)\\
+		&= z_1 w_1 + z_2 w_2\\
+		&= \langle z,w \rangle.
+	\end{align*}
+	Thus $\langle z,w \rangle = \frac{1}{2}[(z,w) + (w,z)] = Re(z,w)$
+	\item[3]
+	\item[7]
+	\begin{enumerate}
+		\item Let $z,w \in \C$ such that $z = re^{i \theta}$, $\bar{z}w \neq 1$, $r = |z| < 1$, $|w| < 1$.  Then we have that 
+		\begin{align*}
+			1 &\leq \frac{1}{r^2}\\
+			r^2 + |w|^2 &\leq \frac{1}{r^2}(r^2 + |w|^2)\\
+			r^2 + |w|^2 &\leq  1 + r^2 |w|^2\\
+			r^2 - rw - r\bar{w} +  |w|^2 & \leq 1 +- rw - r\bar{w} +  r^2 |w|^2\\
+			r^2 - rw - r\bar{w} + (-w) (-\bar{w}) & \leq 1 +- rw - r \bar{w} +  (-r w)(-r \bar{w})\\
+			(r - w)(r- \bar{w}) & \leq (1 - rw)(1 - r \bar{w})						
+		\end{align*}
+		Note the inequality is strict if one assumes that $r^2 < 1$ which implies that $r < 1$.   Thus 
+		$$ \frac{r-w}{1-r\bar{w}} \frac{r- \bar{w}}{1 - r w} < 1 $$
+		\begin{align*}
+		\frac{r-w}{1-r\bar{w}} \frac{r- \bar{w}}{1 - r w} &< 1 \\
+		\|\frac{r-w}{1-r\bar{w}} \|^2 &< 1\\
+		\|\frac{r-w}{1-r\bar{w}} \| &< 1\\
+		\|\frac{r-w}{1-r\bar{w}} \| &< 1\\
+		\end{align*}
+		\item For a fixed $w \in \mathbb{D}$ let $F(z) = \frac{w - z}{1 - \bar{w}z}$ 
+		\begin{enumerate}
+			\item  We know that $F$ maps from $\mathbb{D} \to \mathbb{D}$ by the proof above.  $F$ being holomorphic is 
+			equivalent to $\frac{\partial F}{\partial \bar{z}} = 0$ since  $$\frac{\partial F}{\partial \bar{z}} =  \frac{0 \cdot (1 - \bar{w} z) - 0 \cdot (w-z)}{(1 - \bar{w} z)^2} = 0$$ then $F$ is holomorphic.
+			\item To show that $F$ swaps 0 and $w$:
+			\begin{itemize}
+				\item $F(0) = \frac{w- 0}{1 - 0\bar{w} } = \frac{w}{1} = w$.
+				\item $F(w) = \frac{w - w}{1 - \bar{w}w} = 0$.  Note that $|w | < 1$ thus $1-\bar{w}w \neq 0$.
+			\end{itemize}
+			\item Note by the proof in $a$ equality is attained when $r = 1$, which implies if $|z| = 1$ then 
+			$|F(z)|= 1$.
+			\item Note that 
+			\begin{align*}
+			F \circ F(z) &= \frac{w - \frac{w - z}{1 - \bar{w} z}}{1 - \bar{w} \frac{w - z}{1 - \bar{w} z}}\\
+			&= \frac{w - |w|^2 z - w + z}{1 - |w|^2}\\
+			&= \frac{z - |w|^2z}{1 - |w|^2}\\
+			&= z.
+			\end{align*}
+			which holds if $|z| \leq 1$ since $|w| < 1$ and $|\bar{w}^{-1}| > 1$,
+			thus ensuring the denominator is never 0.  
+			Furthermore this implies that $F$ is bijective since we have found an inverse.
+		\end{enumerate}
+	\end{enumerate}
+	\item[9]
+	\item[10] need to clarify if we can swap the order of the x and y partial derivatives
+	\item[13] Assume $f: \Omega \to \C$ is holomorphic and $\Omega$ is an open set.  Let $F:\R^2 \to \C$ where 
+	$f(x+iy) = F(x,y) = u(x,y) + i v(x,y)$.
+	\begin{enumerate}
+		\item If $Re(f)$ is constant then $u$ is constant.  Thus $\partial_x u = \partial_y u = 0$.  This implies by 
+		Cauchy-Riemann that $\partial_x v = \partial_y v = 0$.  This implies that $v$ is constant.  Thus $f$ is constant
+		\item If $Im(f)$ is constant then $v$ is constant.  Thus $\partial_x v = \partial_y v = 0$.  This implies by 
+		Cauchy-Riemann that $\partial_x u = \partial_y u = 0$.  This implies that $u$ is constant.  Thus $f$ is constant
+		\item If $|f|$ is constant than $u^2 + v^2$ is constant.  Thus $\partial_x(u^2 + v^2) = \partial_y(u^2 + v^2) = 0$ giving us the equations 
+		\begin{align*}
+		2 u \partial_x u + 2 v \partial_x v &= 0\\
+		2 u \partial_y u + 2 v \partial_y v &= 0
+		\end{align*}
+		Note that this can be expressed in the form 
+$$		
+		\begin{bmatrix}
+		\partial_x u & \partial_x v\\
+		\partial_y u & \partial_y v
+		\end{bmatrix}
+		\begin{bmatrix}
+		u\\ v
+		\end{bmatrix}
+		= 
+		\begin{bmatrix}
+		0\\0
+		\end{bmatrix}
+$$
+	Observe that the matrix being used is the transpose of the jacobian, and we have found an element in it's null space.
+	Thus $\det J_F = 0$.  Therefore $|f'(z)| = 0$.  Thus $f$ is constant.  
+	\end{enumerate}
+	\item[14]
+	\item[16]
+	\begin{enumerate}
+		\item
+		\item
+		\item
+	\end{enumerate}
+	\item[17]
+	\item[19]
+	\item[23]
+\end{enumerate}
+\end{document}
