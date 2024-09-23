@@ -59,7 +59,13 @@
 		&= \langle z,w \rangle.
 	\end{align*}
 	Thus $\langle z,w \rangle = \frac{1}{2}[(z,w) + (w,z)] = Re(z,w)$
-	\item[3]
+	\item[3] Let $\omega = s e^{i \phi}, s \geq 0, \phi \in [0,2\pi)$.  To solve $z^n = \omega$ where $z \in \C$ we must note that the polar form of $z = re^{i \theta}$, thus the 
+	equation is actually $r^n e^{i n\theta} = s e^{i \phi}$.  Note that by the polar form
+	of complex numbers $r\geq 0$.  Therefore $r = \sqrt[n]{|s|}$.  Now to divide out we're 
+	left with the equation $e^{i \phi} = e^{i n \theta}$.  Since $e^{i \theta} = 
+	e^{i \theta + 2 \pi i}$ then to solve this equation we have to solve that 
+	$\phi \mod n \theta \mod{2 \pi}$.  Note that if we add a multiple of $2\pi /n$ to 
+	$\theta$ then we have that $n (\theta + \frac{2 \pi }{n}) = n \theta + 2 \pi \equiv n\theta \equiv \phi \mod{2 \pi}$.  Note that $\theta + \frac{2 \pi }{n} \neq \theta \mod 2 \pi$.  Thus $\frac{\phi + 2 \pi a}{n}$ where $a \in \Z$ are all solutions.  But which are unique?  Note that if $a = n + b$ then $\frac{\phi + 2 \pi a}{n} = \frac{\phi + 2 \pi b}{n} + 2 \pi \equiv \frac{\phi + 2 \pi b}{n} \mod{2 \pi}$.  Therefore we have $n$ solutions, where $a \in \{0,\cdots, n-1\}$.
 	\item[7]
 	\begin{enumerate}
 		\item Let $z,w \in \C$ such that $z = re^{i \theta}$, $\bar{z}w \neq 1$, $r = |z| < 1$, $|w| < 1$.  Then we have that 
@@ -79,6 +85,8 @@
 		\|\frac{r-w}{1-r\bar{w}} \| &< 1\\
 		\|\frac{r-w}{1-r\bar{w}} \| &< 1\\
 		\end{align*}
+		Note that our choice of $z$ doesn't matter since if we define $w' = we^{i \theta}$
+		$|\frac{w - re^{i\theta}}{1 - \bar{w}re^{i\theta}}| =|e^{i \theta}|  |\frac{w - re^{i\theta}}{1 - \bar{w}re^{i\theta}}| = |\frac{we^{i\theta} - r}{1 - \bar{w'}r} = |\frac{\bar{w} - r}{1 - \bar{w'}r}|$.  Thus we have proven the desired inequality.
 		\item For a fixed $w \in \mathbb{D}$ let $F(z) = \frac{w - z}{1 - \bar{w}z}$ 
 		\begin{enumerate}
 			\item  We know that $F$ maps from $\mathbb{D} \to \mathbb{D}$ by the proof above.  $F$ being holomorphic is 
@@ -102,8 +110,62 @@
 			Furthermore this implies that $F$ is bijective since we have found an inverse.
 		\end{enumerate}
 	\end{enumerate}
-	\item[9]
-	\item[10] need to clarify if we can swap the order of the x and y partial derivatives
+	\item[9] Let $f(z) = f(r,\theta) = u(r,\theta) + i v(r,\theta) = u(x(r,\theta),y(r,\theta)) + i v(x(r,\theta),y(r,\theta))$ where $z = re^{i\theta}$.  
+	with $- \pi < \theta < \pi$.  Note if we treat 
+	$f$ as a function from $\R^2 \to \R^2$ then by the multivariable chain rule we have that
+	\begin{align*}
+	\begin{bmatrix}
+	 \partial_r u & \partial_\theta u\\
+	 \partial_r v & \partial_\theta v
+	\end{bmatrix} &= \begin{bmatrix}
+	\partial_x u & \partial_y u\\
+	\partial_x v & \partial_y v
+	\end{bmatrix}
+	\begin{bmatrix}
+	\partial_rx & \partial_\theta x\\
+	\partial_ry & \partial_\theta y
+	\end{bmatrix}\\
+	&= 
+	\begin{bmatrix}
+	\partial_x u & \partial_y u\\
+	\partial_x v & \partial_y v
+	\end{bmatrix}	 
+	\begin{bmatrix}
+	\cos(\theta) & -r \sin(\theta)\\
+	\sin(\theta) & r \cos(\theta)
+	\end{bmatrix}\\
+	&= \begin{bmatrix}
+	\partial_x u \cos(\theta) + \partial_y u \sin(\theta) & - \partial_x u r \sin (\theta) + \partial_y u r \cos(\theta)\\
+	\partial_x v \cos(\theta) + \partial_y v \sin(\theta) & - \partial_x v r \sin (\theta) + \partial_y v r \cos(\theta)
+	\end{bmatrix}
+	\end{align*}
+	Therefore 
+	\begin{align*}
+	\partial_r u &= \partial_x u \cos(\theta) + \partial_y u \sin(\theta)\\
+	&= \partial_y v \cos(\theta) - \partial_x v \sin(\theta)\\
+	&= \frac{1}{r}(\partial_y v r\cos(\theta) - \partial_x v r\sin(\theta)\\
+	&= \frac{1}{r}\partial_\theta v
+	\end{align*}
+	and 
+	\begin{align*}
+	\frac{1}{r} \partial_\theta u &= \frac{1}{r} (- \partial_x u r \sin (\theta) + \partial_y u r \cos(\theta))\\
+	&= - \partial_x u  \sin (\theta) + \partial_y u  \cos(\theta)\\
+	&= - \partial_y v \sin(\theta) - \partial_x v \cos(\theta)\\
+	&= - \partial_r v
+	\end{align*}
+	Note that by the requirements above on $z$ we ensure that $z$ is uniquely determined.
+	Using this fact we can observe that $\log(z) = \log(r) + i \theta = u + i v$, and 
+	we have that $\partial_r \log(r) = \frac{1}{r} = \frac{1}{r} 1 = \frac{1}{r} \partial_\theta \theta$ and $\frac{1}{r} \partial_\theta u = \frac{1}{r} 0 = 0 = -\partial_r \theta$.  Thus $\log(z)$ is holomorphic on the spe
+	\item[10] Note that 
+	\begin{align*}
+		4 \partial_z \partial_{\bar{z}} &= 4 \frac{1}{2} (\partial_x - i \partial_y)\frac{1}{2}(\partial_x + i \partial_y)\\
+		&=  \partial_x^2 + \partial_y^2 - i \partial_y \partial_x + i \partial_x \partial_y\\
+		&= \partial_x^2 + \partial_y^2 - i \partial_x \partial_y + i \partial_y \partial_x\\
+		&= (\partial_x + i \partial_y)(\partial_x - i \partial_y)\\
+		&= 4 \frac{1}{2}(\partial_x + i \partial_y)\frac{1}{2}(\partial_x - i \partial_y)\\
+		&= 4 \partial_{\bar{z}} \partial_z
+	\end{align*}
+	Thus $4 \partial_z \partial_{\bar{z}} = 4 \frac{1}{2} (\partial_x - i \partial_y)\frac{1}{2}(\partial_x + i \partial_y) = \partial_x^2 + \partial_y^2 - i \partial_y \partial_x + i \partial_x \partial_y = \partial_x^2 + \partial_y^2 - i \partial_y \partial_x + i \partial_y \partial_x = \partial_x^2 + \partial_y^2$
 	\item[13] Assume $f: \Omega \to \C$ is holomorphic and $\Omega$ is an open set.  Let $F:\R^2 \to \C$ where 
 	$f(x+iy) = F(x,y) = u(x,y) + i v(x,y)$.
 	\begin{enumerate}
@@ -134,14 +196,69 @@ $$
 	Thus $\det J_F = 0$.  Therefore $|f'(z)| = 0$.  Thus $f$ is constant.  
 	\end{enumerate}
 	\item[14]
+	\begin{align*}
+		\sum_{n = M}^N a_n b_n &= \sum_{n = M}^N (B_{n} - B_{n-1}) a_n\\
+		&= \sum_{n = M}^N B_{n} a_n - \sum_{n = M}^N B_{n-1} a_n\\
+		&= \sum_{n = M}^N B_{n} a_n - \sum_{n = M-1}^{N-1} B_{n} a_{n+1}\\
+		&= B_N a_N - B_{M-1} a_M + \sum_{n=M}^{N-1} B_n(a_n - a_{n+1}
+	\end{align*}
 	\item[16]
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item For $a_n = (\log(n))^2$, note that $1 \leq \log(n)^2$ for $n > 2$.  
+		Additionally since all polynomials grow faster than log, then $(\log(n))^2 \leq (\sqrt{n})^2 = n$.  Thus $1 \leq (\log(n))^2 \leq n^{\frac{1}{n}} \to 1$ for sufficently large $n$.  Thus the radius of convergence is 1.   
+		\item For $a_n = n!$, we know that for sufficently large $n$ that $n! > (n/2)^{n/2}$.  Therefore $\sqrt{n/2} = (n/2)^{\frac{n}{2n}} \leq \sqrt[n]{n!}$, which implies that 
+		$\sqrt[n]{n!} = \infty$.  Therefore the radius of convergence is 0.
+		\item If $a_n = \frac{n^2}{4^n + 3n}$ then $\frac{n^2}{4^n} \geq a_n$ and
+		$\frac{n^2}{2\cdot 4^n} \leq a_n$.  Therefore 
+		$\frac{1}{4} \leq \sqrt[n]{\frac{n^2}{2\cdot 4^n}}\frac{n^{2/n}}{\sqrt[n]{2}4}
+		\leq a_n \leq \frac{n^{2/n}}{4} \to \frac{1}{4}$.  Thus by squeeze theorem 
+		$\lim a_n = \frac{1}{4}$ and the radius of convergence is 4.
 	\end{enumerate}
-	\item[17]
+	\item[17] Let $\{a_n\}_{n \in \N} \subset \C$ such that $L = \lim \frac{|a_{n+1}|}{|a_n|}$ and let $\epsilon > 0$.  Note there exists some $N \in \N$ such that for all 
+	$n \geq N$ $|\frac{|a_{n+1}|}{|a_n|} - L | < \epsilon$.  Therefore, 
+	$ |a_n| (L-\epsilon) < |a_{n+1}| < |a_n| (L+\epsilon)$.  Additionally, 
+	we have that $|a_n| = |\frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots \frac{a_{N+1}}{a_N}a_N| $ .  Thus, $(L - \epsilon)^{n-N}|a_N| < |a_{n+1}| < (L+\epsilon)^{n - N}|a_N|$.  Taking the $n$-th root we find that 
+	$(L - \epsilon)^{1 - \frac{N}{n}}|a_N|^{1/n} < |a_{n+1}|^{1/n} < (L+\epsilon)^{1 - \frac{N}{n}}|a_N|^{1/n}$.  Note that taking the $n$-th root of a constant sends it to 1, thus in the limit $L - \epsilon < |a_{n+1}|^{1/n} < L + \epsilon$.  Note if we reindex $a_n$ we get that $\lim \sqrt[n]{|a_n|} = L$.  
 	\item[19]
+	\begin{enumerate}
+		\item The power series $\sum n z^n$ has the radius of convergence 0 since 
+		$\lim n = \infty$.  Thus it doesn't converge for any point on the unit circle
+		\item The power series converges for every point on the unit circle since 
+		$| \sum_{n=1}^N \frac{z^n}{n^2} | \leq \sum_{n=1}^N \frac{|z^n|}{n^2} = 
+		\sum_{n=1}^N \frac{1}{n^2} \to \frac{\pi^2}{6}	$
+		\item Note if we fix $z$ such that $|z| = 1$ and $z \neq 1$ that 
+		$\frac{1}{|1-z|}$ is bounded, and let it equal $b$.  Additionally, 
+		$|1-z^n| \leq |1 - (-1) | = 2$.  Now let $\epsilon > 0$ be fixed.  We know that there exists $N_1 \geq M_1 \in \N$ such that $\frac{8}{M_1 b} < \epsilon$.  Furthermore 
+		there exists $N_2 \geq M_2 \in \N$ such that $|\sum_{n=M_2}^{N_2} \frac{1}{n(n+1)}| < \frac{b \epsilon}{4}$.  Finally there exists $N_2 \geq M_3$ such that 
+		$|\sum_{n=M_3}^{N_3} \frac{z^2}{n^2}| < \frac{b \epsilon}{4}$.  Now if we take
+		$M = \max{M_1, M_2. M_3}$ and $N = \min{N_1, N_2, N_3}$ and that $M < N$, then
+		\begin{align*}
+		|\sum_{n=M}^N \frac{z^n}{n}| &= |\frac{1}{N}\frac{1-z^N}{1-z} - \frac{1}{M}\frac{1-z^{M-1}}{1-z}+ \sum_{n=M}^{N-1}\left(\frac{1}{n} - \frac{1}{n+1} \right) \frac{1-z^n}{1-z}|\\
+		&\leq \frac{1}{N}\frac{2}{b} + \frac{1}{M} \frac{2}{b} + \frac{1}{b} \left( \sum_{n=M}^{N-1} \frac{1}{n(n+1)} +| \sum_{n=M}^{N-1} \frac{z^n}{n(n+1)}| \right)\\
+		& \leq \frac{\epsilon}{4} + \frac{\epsilon}{4} + \frac{\epsilon}{4} + 
+		\frac{1}{b} | \sum_{n=M}^{N-1} \frac{z^n}{n^2}|\\
+		&< \frac{\epsilon}{4} + \frac{\epsilon}{4} + \frac{\epsilon}{4} + \frac{\epsilon}{4} = \epsilon 
+		\end{align*}
+		Therefore the series converges when $z\neq 1$.  
+	\end{enumerate}
 	\item[23]
+	Let $f(x) = \begin{cases} 0 & x \leq 0\\ e^{\frac{-1}{x^2}} & x > 0\end{cases}$.  
+	Note that $\frac{d}{dx} f(x) = \begin{cases} 0 & x \leq 0\\ \frac{2}{x^3}e^{\frac{-1}{x^2}} & x > 0\end{cases}$ and $\frac{d^2}{dx^2} f(x) = \begin{cases} 0 & x \leq 0\\ \frac{4-x^2}{x^6} e^{\frac{-1}{x^2}} & x > 0\end{cases}$.
+	I claim that $f^{(n)} (x) = \frac{P_n(x)}{x^{3n}}f(x)$ where $\deg(P_n(x)) = 2(n-1)$.  Note that the base cases have been demonstrated.  Now for my induction step, take
+	$f^(n)(x) = \frac{P_n(x)}{x^{3n}}f(x)$.  If $x \leq 0$ then the function should be 0, otherwise if $x>0$ then \begin{align*}
+	f^{(n+1)}(x) &= \frac{d}{dx}\frac{P_n(x)}{x^{3n}}e^{\frac{-1}{x^2}}\\
+	&= frac{P_n(x)}{x^{3n}} \frac{2}{x^3}e^{\frac{-1}{x^2}} + \frac{P_n' x^{3n} - 3n P_n(x)x^{3n - 1}}{x^{6n}}e^{\frac{-1}{x^2}}\\
+	&= \frac{2P_n(x) + x^3 P_n'(x) - 3 n x^2 P_n(x)}{x^{3n+3}}e^{\frac{-1}{x^2}}
+	\end{align*}
+	which gives us the induction step in the degree of the bottom polynomial, and in 
+	the numerator the degree of the polynomial is $2n$ since $\deg(P_n') = 2(n-1) - 1$
+	and when multiplied by $x^3$ we get $2(n-1) - 1 + 3 = 2n$.  Since the formula holds,
+	then we claim that $\lim_{x \to 0} f^{(n)}(x) = 0$.  Note that if we approach from 
+	the left then we trivially get 0.  Therefore we must approch from the right.  
+	To do so I will make a change of variables with $x = \frac{1}{y}$.  Now our limit 
+	becomes $\lim_{y \to \infty} f^{(n)} (\frac{1}{y}) = \frac{y^{3n} P_n(\frac{1}{y})}{e^{y^2}}$.  Note that since $P_n$ has degree $2(n-1)$ then $y^{3n} P_n(\frac{1}{y})$
+	is a polynomial in $y$ with degree $n + 2$.  Thus we're taking the limit to infinity 
+	of a polynomial over an exponential.  Thus the limit goes to 0.  Since all derivatives of $f$ vanish at the origin then the power series is just 0.  However that 
+	implies that $f = 0$, however since $f \neq 0$ then $f$ isn't represented by it's power series, thus implying that $f$ is not analytic.  
 \end{enumerate}
 \end{document}

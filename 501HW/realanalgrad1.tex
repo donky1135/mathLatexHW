@@ -1,0 +1,110 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{503 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 1\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1] Let $(x,d)$ be a seperable metric space, and $Y \subseteq X$ endowed with the 
+	metric $d_Y$.  Let $S$ be the seperable subset of $X$.  Then we can define the 
+	topology of $X$, $\mathcal{O}_X$ as the arbitrary union of sets in $\mathcal{B} = \{B_{r}(x): r \in \Q_{>0}, x \in S\}$.  Note this definition holds because irrational from rational 
+	ball radiuses one can put together irrational ball radiuses, and then from there 
+	construct arbitrary open sets.  Now to define a countable dense subset of $Y$, one 
+	just has to construct the set $\{Y \cap B: B \in \mathcal{B}, Y \cap B \neq \emptyset \}$.  Note that this serves as an effective basis for the subset topology of $Y$, therefore
+	for each $B_Y$ in our basis if we pick one element, then we have found a countable dense subset for $Y$, thus making $Y$ seperable.
+	
+	\iffalse Note that if $Y = \emptyset$ then $Y$ fails to have a dense set by definition, so assume $Y \subseteq X, Y \neq \emptyset$.  Since $(X,d)$ is seperable then there exists $S \subseteq X$ such that $cl(S) \supseteq X$ and $|S| \leq \aleph_0$.   Note that if $Y$ is not the empty set then $S \cap Y$ must be 
+	non-empty.  Otherwise if $S \cap Y = \emptyset$, then either $Y = \emptyset$ or 
+	$Y =  cl(S) \backslash X$.  Note that the second option is a contradiction since 
+	by definition $Y \not \subseteq X$.  The first option is eliminated by the first note of the proof.  Thus let $S_Y = S \cap Y$.  We claim that $S_Y$ is dense in $Y$.  Let $y \in Y$.
+	For all $O_Y \subseteq Y$ with $y \in O_Y$ which are open under the subset topology (where $O_Y = O \cap Y, O \subseteq X$, $O$ is open), we just need to show that 
+	$S_Y \cap O_Y \neq \emptyset$.  This means we must show that $S \cap Y \cap O \neq \emptyset$.   Since we're assuming that $Y \cap O \neq \emptyset$ then all conditions hold.  
+	Therefore $S_Y \cap O_Y \neq \emptyset$.  
+	\fi
+	\iffalse Note that if $Y = \emptyset$ then $Y$ fails to have a dense set by definition, so assume $Y \subseteq X, Y \neq \emptyset$.  Since $(X,d)$ is seperable then there exists $S \subseteq X$ such that $cl(S) = X$ and $|S| \leq \aleph_0$.  We 
+	claim that $S_Y = S \cap Y$ is a coutable dense subset of $Y$. Trivially $S_Y = S \cap Y \subseteq Y$.  Note that $S_Y$ is still countable since $|S_Y| = |S \cap Y|$ which implies that $|S_Y| \leq \aleph_0$ 
+	and $|S_Y| \leq |Y|$. 
+	 \fi
+	\item[3] Let $(X,d)$ be a compact metric space
+	\begin{enumerate}
+		\item Suppose not, then $f: X \to X$ is continuous and not onto, and has the 
+		property that for all possible $x_0 \in X$ and $r > 0$ there exists $x \in X$
+		such that $d(f(x),x_0) < r$.  Since $f$ is not onto then there exists a set 
+		$E \subset X$ such that for all $x \in X, f(x) \not \in E$.  Choose $e \in E$, 
+		then for all $n \in \N$, we can define $x_n$ such that $d(f(x_n),x_0) < \frac{1}{n}$.  Clearly $\lim f(x_n) = x_0$, and since $X$ is a compact metric space then there 
+		should exists $x' \in X$ such that $\lim x_n = x'$ and $f(x') = x_0$.  However 
+		this contradicts $f$ being not onto, demonstrating the desired result.  
+		\item Let $f: X \to X$ be an isometry.  We want to show that it is bijective, and thus need to show that is is injective and surjective.
+		\begin{itemize}
+			\item To show that $f$ is injective, suppose for $x,y \in X$ that 
+			$f(x) = f(y)$.  Then $d(f(x),f(y)) = 0$.  Since $f$ is an isometry then
+			$d(x,y) = 0$.  Note this is only true if $x = y$.  Therefore $f$ is 
+			injective.
+			\item It is important to note that by the definition given above $f$ must be 
+			continuous, as for all $\epsilon > 0$, if $x,y \in X, d(x,y) < \epsilon$ 
+			then $d(f(x),f(y)) < \epsilon$.  If we then assume for contradiction that 
+			$f$ is not onto then the theorem proved above holds and there exists 
+			$x_0 \in X, r > 0$ such that for all $x \in X, d(f(x), x_0) \geq r$.  Let the 
+			sequence $x_n$ be given by $x_{n+1} = f(x_n)$.  Note that since compactness
+			implies sequential compactness in a metric space then there exists $x_{n_k}$ 
+			such that $\lim x_{n_k} = l$.  Therefore there exists $p,q\in \N, q < p$ such that 
+			$d(x_{n_p}, L), d(x_{n_q}, L) < \frac{r}{2}$.  Thus $d(x_0, x_{p - q}) = d(x_q, x_p) \leq d(x_{n_p}, L) + d(x_{n_q}, L) < r$.  This contradicts the above statement since
+			$x_{p-q} \in Im(f)$.  
+		\end{itemize}
+	\end{enumerate}
+	\item[4] Let $X$ be a compact metric space with metric $d$ and $f: X \to \C$ be continuous. Let $\epsilon > 0$ be given. We know by the Heine-Cantor theorem that there exists $1 > \delta > 0$ such that if $x,y \in X, d(x,y) < \delta, |f(x) - f(y)| < \epsilon/2$.
+	Therefore for each point $x \in X$ we can cover $X$ with $\bigcup_{x \in X} B_\delta(x)$
+	and since $X$ is compact we can choose $x_1,\cdots,x_n$ such that $X \subseteq \bigcup_{i = 1}^n B_\delta(x_i)$.  Furthermore we can arrange our found points $x_1,\cdots, x_n$ by which points are closest, where we can define to be  $z_1 = x_1, z_i = \min_{x \in \{x_1,\cdots,x_n\}\backslash \{z_1,\cdots, z_{i-1}\}} d(x, z_{i-1})$.  Furthermore, $d(z_i,z_{i-1}) < \delta$ since the balls are guarenteed to overlap to enclose $X$.  Thus 
+	given an $x,y \in X$, we can choose the $z_i, z_j$ balls to which $x$ and $y$ belong respectively, then define $|f(x) - f(y)| \leq |f(x) - f(z_i)| + \sum_{l = i + 1}^{j} |f(z_l) - f(z_{l-1})| + |f(z_j) - f(y)| < \epsilon |i - j + 1| < \frac{n\epsilon}{\delta}d(x,y) + \epsilon$.  Note that the path taken through the balls might not be optimal, so our bets 
+	can be hedged via assuming the worse case scenario of having to pass through all the balls when the ideal path travels through one.  
+	\item[5]
+	\begin{enumerate}
+		\item Let $(X,d)$ be a complete metric space where bounded sets are totally bounded and $A \subset X$ to be bounded and $B \subset X$ to be compact. 		Note that if one takes $A \cap B \neq \emptyset$ then the minimum is given 
+		by $x_1 \in A \cap B$ with $d(x_1,x_1) = 0 \leq d(x,y)$ for all $x \in A, y \in B$.
+		Therefore one can assume that $A \cap B = \emptyset$.  Additionally since $X$ is 
+		a complete metric space then $B$ is bounded and since $B$ is bounded then 
+		$B$ is totally bounded.  Therefore $B$ has sequential compactness.  We want to 
+		show that there exists $x_1 \in A, x_2 \in B$ such that $d(x_1,x_2) \leq d(x,y)$
+		for all $x \in A, y \in B$.  Assume not.  Then there exists $(a_n) \subset A$
+		and $(b_n) \subset B$ such that $\lim d(a_n,b_n) = 0$.  However, this implies that 
+		$(b_n)$ has a convergent subsequence, $(b_{n_k})$ with $\lim b_{n_k} = b$, and since $n_k$ can be chosen such that $d(a_{n_k}, b_{n_k}) < \frac{\epsilon}{2}$ and $d(b_{n_k}, b) < \frac{\epsilon}{2}$ then $d(a_{n_k}, b) \leq d(a_{n_k}, b_{n_k}) + d(b_{n_k}, b) < \epsilon$.  This implies that $A$ has a limit point contained within $B$, and since $A$ is 
+		closed then that limit point is contained within $A$.  Thus $A \cap B \neq \emptyset$ which is a contradiction. 
+		\item The sequences $(2^k + \frac{1}{k})_{k \in \N}$ and $(2^k)_{k \in \N}$ are 
+		examples, as the terms of the sequence will get arbitrarily close, but both diverge.  
+	\end{enumerate}
+\end{enumerate}
+\end{document}
