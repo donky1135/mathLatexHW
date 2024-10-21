@@ -1,0 +1,15 @@
+will initialize with 8 bytes of meta-data.
+Note that 4 bytes can be used by flags, and 4 bytes can store the pointer to the next block
+Note that we are committed to O(n) time, therefore every operation is free to go through the entire heap
+Errors to detect
+1. attempt to malloc() too much memory
+	=> print error message, return NULL
+2. attempt to free address outside the heap
+3. attempt to free address within the heap, but not at the start of an object
+	=> print error message, terminate process with exit(2)
+4. attempt to free address within the heap, at the start of an object, but that object is not allocated
+
+Alignment 
+    all objects must begin at adresses divisble by 8
+    easiest 
+

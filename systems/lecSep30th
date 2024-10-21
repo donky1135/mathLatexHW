@@ -1,0 +1,49 @@
+const
+---------
+
+const int x = 123;
+	//disallows assigning to x
+
+const int *p;
+	//p points to 
+
+string.h
+-------
+(lots of useful memory functions)
+
+many good functions:
+	size_t strlen(char *);
+
+	size_t strnlen(char *, size_t);
+		fixed length string string size return
+
+	char *strcpy(char *dest, char *source);
+
+		copy chars from sourse to dest, iterates until it hits
+		a null terminator
+
+	char *strcat(char *dest, char *source);
+
+		copies chars from source to end of dest 
+		(first iterates through dest to find '\0')
+
+	char *strncpy(char *dest, char *src, size_t max_bytes);
+
+	void *memcpy(void *dest, const void *src, size_t n)
+		copies the specified number of bytes from the source to the destination
+
+		note that before in C99 void * and char * were the same
+
+	cloning a sttring:
+
+	char *s = ....;
+
+	unsigned slen = strlen(s);
+	char *copy = malloc(s+1)
+
+	char *p = "foo";
+	char *q = malloc(4);
+	// note the differences:
+	p = q (the pointers are now the same)
+	// vs
+	strcpy(p,q) (the pointers are different, but the values are the same)

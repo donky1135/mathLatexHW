@@ -1,0 +1,104 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 3\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1] Let $\mathcal{M}$ be a $\sigma$-algebra and $(U_n){n \in \N} \subset \mathcal{M}$ be sequence contained in $\mathcal{M}$ with the property that all $U_n$ 
+	are distinct.  We want to show that $\mathcal{M}$ is uncountable.  Consider the sequence 
+	$C_1 = U_1, C_2 = U_2 \backslash U_1, C_m = U_m \backslash \bigcup_{i=1}^{m - 1} U_i$.  Note that since the sets are distinct then that implies there exists for 
+	every $j \in \N$ a unique $x_j \in X$ such that $x_j \in U_j$.  Thus 
+	$\emptyset \neq \{x_{j}\} \subset C_j$.  We claim that $C_j \cap C_i = \emptyset$
+	for all $i,j \in \N, i \neq j$.  Assume WLOG that $i < j$.  Then $C_j$ explicily have any 
+	elements in $U_i$.  Since $C_i \subseteq U_i$ then $C_i \cap C_j = \emptyset$.  
+	Now since each $C_i$ is guarenteed to be unique, then we can construct the bijection
+	between counable binary sequences and the countable union of elements in $(C_i)$.
+	Note that this is achieved by assigning each binary digit, $b_i$, to whether 
+	$C_i$ is included in the union.  Note that by the distinctness of each element in 
+	$(C_i)$ that each union is unique.  Since the set of countable binary sequences is 
+	uncountable, then the set of countable union of elements from the constructed sequence is countable.  Therefore since our constructed sequence is in $\mathcal{M}$
+	then $\mathcal{M}$ necessarily contains an uncountable number of elements.  It can't
+	have more than an uncountable number since only countable unions can be taken.  
+	\item[4] Let $(X, \mathcal{M})$ be a measurable space and $f: X \to \R$.  We want 
+	to show that if $A \cup B = X, A, B \in \mathcal{M}$, then $f$ is $\mathcal{M}, \mathcal{B}_\R$ measurable iff the restriction of $f$ to $A$ and $B$ is measurable too.
+	\begin{itemize}
+		\item $\Rightarrow$ Let $f$ be $\mathcal{M},\mathcal{B}_\R$ measurable.  
+		Note that the restriction to $A$ or $B$ is just a subset of $\mathcal{M}$ with 
+		the restriction that $f_A^{-1}(S) \subseteq A$.  If values that are outside 
+		of the range of $f_A$ are asked of it then this still doesn' affect what $f_A^{-1}$ returns.  Thus for any $S \in \mathcal{B}_\R,$ $f_A^{-1}((a,b)) = f^{-1}((a,b)) \cap A \in \mathcal{A}$, where $\mathcal{A}$ is the algebra over $A$ with 
+		respect to $\mathcal{M}$.  Note that the same applies to $B$. 
+		\item $\Leftarrow$.  For all $S \in \mathcal{B}_\R$, 
+		$f_A^{-1}(S) \in \mathcal{A},f_B^{-1}(S) \in \mathcal{B}$, $\mathcal{A}, \mathcal{B}$ are the algebras over $A,B$ contained in $\mathcal{M}$.  Note that 
+		the inverse of the restriction is equivalent to taking the intersection of the function inverse and the chosen set.  Therefore $f^{-1}(S) = f^{-1}(S) \cap X = f^{-1}(S) \cap (A \cup B) =
+		f^{-1}(S) \cap A \cup f^{-1}(S) \cap B = f_A^{-1}(S) \cup f_B^{-1}(S)$, which 
+		both of those are in $\mathcal{M}$, thus $f^{-1}(S) \in \mathcal{M}$
+	\end{itemize}
+	\item[5] Let $f: \R \to \R$ be monotone.  Note that $f$
+	is discontinuous in only countably many places.  Let the continuous portions (on their disjoint open set restriction)
+	be denoted by the sequence $\{f_n\}_{n \in \N}$, allowing us to write 
+	$f(x) = \cup_{i=1}^\infty f_i(x)$.    Let $S \in \mathcal{B}_\R$.  
+	Consider $f^{-1}(S)$.  Note that by our definition $f^{-1}(x) = \bigcup_{i=1}^\infty f^{-1}_i(x)$.  Since each $f_i^{-1}$ is continuous on it's restriction, which is an open
+	set in $\R$, then each $f_i^{-1}(S) \in \mathcal{B}_\R$, thus the countable 
+	union of sets in the borel algebra is in the borel algebra.  Therefore 
+	$f^{-1}(S) \in \mathcal{B}_\R$
+	\item[7] Let $(X, \mathcal{M}, \mu)$ be a measure space with $\mu(X) < \infty$, $(f_n)_{n \in \N}$ be given by $f_i: \mathcal{M} \to \R$ as a sequence of measurable functions, and suppose there exists $E \in \mathcal{M}, \mu(E) = 0$, where 
+	for all $x \in E^c, \sup_{n \in \N}|f_n(x)| < \infty$.  Consider the sets 
+	$S_n = \{x: \sup_{n \in \N}|f_n(x)| > n\}$ where $n \in \N$.  Note that $S_{i+1} \subseteq S_{i}$ since it is possible that there exists elements $x \in S_i$ such that 
+	$\sup_{n \in \N} |f_n(x)| < i + 1$.  Therefore $\lim \mu(S_n) = \mu(\lim S_n)$.
+	Note that if $x \in X, \sup_{n \in \N}|f(x)| = \infty$ then necessarily, $x \in E$.
+	Additionally this implies that $x \in \bigcap_{i=1}^\infty S_i$.  Since 
+	$\bigcap_{n=1}^\infty S_n = \lim S_n$, then necessarily 
+	$\lim S_n \subseteq E$.  Then $\mu(\lim S_n) \leq \mu(E) = 0$, thus $\lim \mu(S_n) = 0$, which implies for all $\epsilon > 0$ we can always find a $n$ sufficently large such
+	 that $\mu(S_n) < \epsilon$.  Note that if $\mu(X) < \infty$ is relaxed then we 
+	 can take $X = \N$ and have $\mu(S) = |S|$.  Note that the functions $f_n(x) = 
+	 \begin{cases} x & x < n\\ n & x >= n \end{cases}$ are measurable functions since 
+	 any open set in $\R$ containing a natural number between $1$ and $n$ will 
+	 just include that in the inverse image of $f_n$, and since all finite subsets are 
+	 in the $\sigma$ algebra of $\N$.
+	 Additionally, for each $y \in \N$, $\sup_{n \in \N} |f_n(y)| = y$.  Therefore 
+	 $E = \emptyset$.  However for any $C> 0$, $\mu (\{x \in \N: \sup_{n \in \N}|f_n(x)| > C\}) = \infty$.    
+	\item[8] Let $(X, \mathcal{M}, \mu)$ be a measure space with $\mu(X) < \infty$.  
+	Let $\{E_n\}_{n \in \N} \subset \mathcal{M}$, and let $E$ be the set of 
+	all points such that $x \in E_n$ for an infinite number of $n$, and let $\mu(E) = 0$.  Let $F_1 = \bigcup_{n=1}^\infty E_n$, and $F_i = \bigcup_{n = i}^\infty E_n$.
+	Note that $F_{i+1} \subseteq F_i$ and $\bigcap_{i=1}^\infty F_i = \bigcap_{i=1}^\infty E_i$.  Since $x \in \bigcap_{i=1}^\infty E_i$ implies that $x \in E$ then 
+	$\bigcap_{i=1}^\infty E_i \subset E$.  Therefore $\lim \mu(E_n) = \mu(\bigcap_{n=1}^\infty E_n) \leq \mu(E) = 0$, which implies that $\lim \mu(E_n) = 0$.  If the condition 
+	that $\mu(X) < \infty$ is relaxed then taking $X = \R$ we have the sequence 
+	$E_n = (n,n+1)$.  Note that $E = \emptyset$, thus $\mu(E) = 0$, however 
+	$\mu(E_n) = 1$.  
+\end{enumerate}
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 4\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[1] Let $X$ be a set, $\mu^*$ be an outer measure on $X$,
+	$\{A_j\}_{j \in \N}$ be a sequence pf $\mu^*$ measurable disjoint sets, and 
+	$E \subset X$.  We want to show that
+	$\mu^*(E \cap ( \bigcup_{i=1}^\infty A_j)) = \sum_{i=1}^\infty \mu^*(E \cap A_j) $.  Note that $$\mu^*(E \cap ( \bigcup_{i=1}^\infty A_j)) = 
+	\mu^*(\bigcup_{i=1}^\infty (E \cap A_j)) \leq \sum_{i=1}^\infty \mu^*(E \cap A_j)
+	$$ by the subadditivity of $\mu^*$.  Therefore we must show the inequality in 
+	the opposite direction. If we consider that for arbitrary $j$
+	\begin{align*}
+	\mu^*(E \cap (\cup_{i=1}^\infty A_i)) &= \mu^*(E \cap (\cup_{i=1}^\infty A_i) \cap A_j) + \mu^*(E \cap (\cup_{i=1}^\infty A_i) \cap A_j^c)\\
+	&= \mu^*(E \cap A_j) + \mu^*(E \cap (\cup_{i=1, i \neq j}^\infty A_i))
+	\end{align*}
+
+	since $(\cup_{i=1}^\infty A_i) \cap A_j = \cup_{i=1}^\infty (A_i \cap A_j) =
+	A_j$ as if $i \neq j$ then $A_i \cap A_j = \emptyset$ by definition
+	and $(\cup_{i=1}^\infty A_i) \cap A_j^c = \cup_{i=1}^\infty (A_i \cap A_j^c) = \cup_{i=1, i \neq j}^\infty A_i)
+	$ since for all $i \neq j, A_j^c \cap A_i = A_i$.  Therefore we have by induction 
+	that 
+	$\mu^*(E \cap ( \bigcup_{i=1}^\infty A_j)) = \sum_{i=1}^n \mu^*(E \cap A_i) + 
+	\mu^*(E \cap ( \bigcup_{i=n+1}^\infty A_j))$.  Therefore $mu^*(E \cap ( \bigcup_{i=1}^\infty A_j)) \geq \sum_{i=1}^n \mu^*(E \cap A_i)$.  Since this holds for all $n$, then 
+	it holds for the limit.  Therefore we have equality.  
+	\item[2] Let $\mu^*$ be an outer measure on $X$ with $\mu^*(X) < \infty$, and let 
+	$\nu^*(E) = \sqrt{\mu^*(E)}$ be defined for all $E \subseteq X$.  To show that 
+	$\nu^*$ is an outer measure, we must show the following:
+	\begin{itemize}
+		\item $\nu^*(\emptyset) = \sqrt{\mu^*(\emptyset)} = \sqrt{0} = 0$
+		\item If $B_1 \subseteq B_2 \subseteq X$ then we know that $\mu^*(B_1) \leq \mu^*(B_2)$.  Therefore $\sqrt{\mu^*(B_1)} \leq \sqrt{\mu^*(B_2)}$, which implies that
+		$\nu^*(B_1) \leq \nu^*(B_2)$
+		\item Let $\{B_j\}_{j\in \N} \subseteq 2^X $.  Then consider that 
+		\begin{align*}
+			\nu^*(\cup_{j=1}^\infty B_j) &= \sqrt{\mu^*(\cup_{j=1}^\infty B_j)}\\
+			&\leq \sqrt{\sum_{j=1}^\infty \mu^*( B_j)}\\
+			&= \sqrt{\sum_{j=1}^\infty \nu^*( B_j)^2}\\
+			&\leq \sum_{j=1}^\infty \nu^*( B_j)
+		\end{align*}
+		Note that since all the values are positive and infinity is an exceptable value
+		that the inequalities hold.
+\end{itemize}
+	Now to show that $A$ is $\nu^*$ measurable iff $\nu^*(A^c) = 0$ or $\nu^*(A) = 0$.
+	\begin{itemize}
+		\item $(\Rightarrow)$.  Suppose $A$ is $\nu^*$ measurable.  Then 
+		$\nu^*(X) = \nu^*(A) + \nu^*(A^c)$.  Therefore, 
+		\begin{align*}
+			\sqrt{\mu^*(X)} &= \sqrt{\mu^*(A)} + \sqrt{\mu^*(A^c)}\\
+			\mu^*(X) &= \mu^*(A) + \mu^*(A^c) + 2 \sqrt{\mu^*(A)\mu^*(A^c)}\\
+			&\geq \mu^*(X) + 2 \sqrt{\mu^*(A)\mu^*(A^c)}\\
+			\mu^*(X) &\geq \mu^*(X) + 2 \sqrt{\mu^*(A)\mu^*(A^c)}\\
+			0 \geq 2 \sqrt{\mu^*(A)\mu^*(A^c)}\\
+		\end{align*}
+		Note that this final inequality implies that either $\mu^*(A) = 0$ or 
+		$\mu^*(A^c) = 0$.  Since these inequalities are maintained under the square root 
+		then the first direction has been shown.
+		\item $(\Leftarrow)$  Suppose WLOG that $\nu^*(A^c) = 0$.  
+		Then for arbitrary $E \subseteq X$, 
+		$0 \leq \nu^*(E \cap A^c) \leq \nu^*(A^c) = 0$ which implies that 
+		$\nu^*(E \cap A^c) = 0$. Therefore 
+		$\nu^*(E) \leq \nu^*(A \cap E) + \nu^*(A^c \cap E) = \nu^*(A \cap E) \leq \mu^*(E)$ which implies 
+		that $\nu^*(E) = \nu^*(A \cap E) + \nu^*(A^c \cap E)$.  
+\end{itemize}		 
+	\item[3] Let $\mu^*$ be the Lesbegue outer measure, and $A \subset [0,1]$.  We must show that 
+	$1 = \mu^*(A) + \mu^*(A^c)$ iff $A$ is Lesbesgue measurable.  
+	\begin{itemize}
+		\item $(\Rightarrow)$ Suppose $A$ is $\mu^*$-measurable.  Then 
+		$1 = \mu^*([0,1]) = \mu^*(A) + \mu^*(A^c)$.
+		\item $(\Leftarrow)$ Suppose not.  Then $1 = \mu^*(A) + \mu^*(A^c)$ and 
+		$A$ is not $\mu^*$-measurable.  Therefore there exists $E \subset [0,1]$ such that 
+		$\mu^*(E) \neq \mu^*(E \cap A) + \mu^*(E \cap A^c)$.  We know by subadditivity 
+		that $\mu^*(E) \leq \mu^*(E \cap A) + \mu^*(E \cap A^c)$, there our inequality 
+		is strict with $\mu^*(E) < \mu^*(E \cap A) + \mu^*(E \cap A^c)$.  If we assume our
+		set $E$ is $\mu^*$-measurable then we have that 
+		\begin{align*}
+		1 &= \mu^*(A) + \mu^*(A^c)\\
+		&= \mu^*(A\cap E) + \mu^*(A \cap E^c) + \mu^*(A^c\cap E)  + \mu^*(A^c \cap E^c)\\
+		&> \mu^*(E) + \mu^*(A\cap E^c)  + \mu^*(A^c \cap E^c)\\
+		1 - \mu^*(E) &> \mu^*(A\cap E^c)  + \mu^*(A^c \cap E^c)\\
+		\mu^*(E^c) &> \mu^*(A\cap E^c)  + \mu^*(A^c \cap E^c)\\
+		\end{align*}
+		Note that by subadditivity that 
+		$		\mu^*(E^c) \leq \mu^*(A\cap E^c)  + \mu^*(A^c \cap E^c)\\
+$ Therefore we have a contradiction.  Now assume that $E$ is not measurable.  
+	Let the sequence $E_n$ be the sets such that $E \subseteq E_n, E_n = \bigcup_{i=1}^\infty (a_i, b_i], a_i < b_i, \mu^*(E_n) \leq \mu^*(E) + \frac{1}{n}$.  Note we can 
+	always choose a cover which overshoots by at most $\frac{1}{n}$, as $\mu^*(E)$ is
+	an infimum.  Therefore we can choose $N \in \N$ such that 
+	$\frac{1}{n} < \mu^*(E \cap A) + \mu^*(E \cap A^c) - \mu^*(E)$.  Therefore
+	$\mu^* \leq \mu^*(E_N) \leq \mu^*(E) + \frac{1}{N} < \mu^*(E \cap A) + \mu^*(E \cap A^c) \leq mu^*(E_N \cap A) + \mu^*(E_N \cap A^c)$, thus we have found a measurable set, $E_N$ such that $\mu(E_n) < \mu^*(E_N \cap A) + \mu^*(E_N \cap A^c)$, and as we have 
+	shown previously is a contradiction.  Therefore $A$ must be Lesbesgue measurable.
+	\end{itemize}
+	\item[5] Let $E \subset [0,1]$ with the property that for some $r \in (0,1)$, 
+	every open interval $I$ in $[0,1]$ $\mu^*(E \cap I) \leq r \mu^*(I)$.  
+	Note that if we take $I = (0,1)$ we have that $\mu^*(E) = \mu^*(E \cap I) \leq r \mu^*((0,1)) = r$.  Therefore $\mu^*(E) \leq r$.  Since $\mu^*(E)$ is the infimum of 
+	the measures of the covers of $E$ with open sets then there exists an open cover
+	$\mu^*(\cup_{i=1}^\infty (a_i,b_i)) = r + \epsilon$ for some small $\epsilon > 0$.
+	Therefore $\mu^*(E) = \mu^*(E \cap \cup_{i=1}^\infty (a_i,b_i)) 
+	\leq \sum_{i=1}^\infty \mu^*(E\cap (a_i,b_i)) \leq r(r+\epsilon)$.  Note that $\epsilon \to 0$, therefore $\mu^*(E) \leq r^2$.  If this holds up to $n$, where 
+	$\mu^*(E) \leq r^n$, then there exists an open cover where 
+	$E \subseteq \bigcup_{i=1}^\infty (a_i, b_i)$ and $\mu^*(\bigcup_{i=1}^\infty (a_i, b_i)) = r^n + \epsilon$.  Therefore 
+	$$
+		\mu^*(E) = \mu^*(E \cap 	\bigcup_{i=1}^\infty (a_i, b_i)) 
+		\leq \sum_{i=1}^\infty \mu^*(E \cap (a_i, b_i)) \leq 
+		\sum_{i=1}^\infty r \mu^*((a_i,b_i)) = r^{n+1} + \epsilon r^n.
+	$$
+	Since the choice of $\epsilon$ was arbitrary then $\mu^*(E) \leq r^{n+1}$.
+	Since $0 < r < 1$, then $\lim r^n = 0$, thus $\mu^*(E) = 0$.  
+\end{enumerate}
+\end{document}

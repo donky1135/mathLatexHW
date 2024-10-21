@@ -1,0 +1,131 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 5\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6] Let $\mu$ be the Lesbesgue measure on $\R$ and let $E \subset \R$ be a Lesbesgue measurable set with 
+	$\mu(E) > 0$.  We want to show that the set $E - E = \{ x - y: x,y \in E\}$
+	contains an open interval centered at the origin.  Since $\mu(E) > 0$ then we can
+	write $\mu(E) = \sum_{n = -\infty}^\infty \mu(E \cap (n,n+1))$ and be assured that 
+	there exists $n'$ such that $\mu(E \cap [n',n'+1]) > 0$.  If we consider $E - n$ 
+	then we can apply problem 5 and find an open interval $I \subseteq (n,n+1)$ such that $\mu(E \cap I) > r \mu(I)$ for all $r \in (0,1)$.  Note that this implies that 
+	$\mu(E \cap I) = \mu(I)$.  Therefore we know for arbitrary $\epsilon > 0$ 
+	that $\mu(E \cap [n,n+1] \Delta I) < \epsilon$.  We claim that the function 
+	$\phi(x) = \mu((E\cap I)\cap (E \cap I + x))$ is continuous.  Note that for the 
+	function $\psi(x) = \mu(E \cap I \cap I + x)$ we can compute it exactly, given that 
+	there exists $n < a < b < n+1$ such that $I = (a,b)$ then we have that 
+	$\psi(x) - \psi(y) = \mu( E \cap I \cap I + x) - \mu(E \cap I \cap I + y)  b - a - |x| + b - a + |y| = |y| - |x|$.  where $x,y \in (a-b, b -a)$.  Furthermore, if we consider 
+	$\phi(x) - \psi(x) = \mu((E\cap I)\cap (E \cap I + x)) - \mu(I \cap I + x)$, 
+	since we have that 
+	\begin{align*}
+	\mu((E\cap I)\cap (E \cap I + x) \Delta (I \cap I + x)) &= \mu( (I \cap I + x) \backslash (E\cap I)\cap (E \cap I + x))\\
+	&= \mu(
+	\end{align*}
+	I didn't have complete time, but if I could sus out the convergence of the 
+	$\phi$ then from that one can take an $\epsilon$ neighborhood around some $\psi$ 
+	which is non-zero, then from there you can look at the set it gives out in $\psi^{-1}$.  Since this will be an open set you can then subtract every element by 
+	every element within the delta neighborhood, which has the effect of translating
+	the neighborhood to have an edge on the origin, include the origin, then reflect
+	it accross the axis to reflect sign flips of the elements subtracting.
+	\item[7] Let $\mathcal{F}$ be a countable family of lesbesgue measurable functions, $E$ be a lesbesgue measurable set with $\mu(E) < \infty$ with the property for each 
+	$x \in E$ there exists $M_x < \infty$ such that for all $f \in \mathcal{F}, |f(x)| \leq M_x$, and $\epsilon >0$.  We want to construct a closed set $F \subset E$ such that there exists $M > 0$ that for all $x \in F, f \in \mathcal{F}, f(x) \leq M$ with 
+	$\mu(E \cap F^c) \leq \epsilon$.  Let 
+	$f' = \sup_{f \in \mathcal{F}} f$.  Note that $f'$ is a Lesbesgue measurable 
+	function.  Note that since every point $x \in E$ every function in $\mathcal{F}$
+	has a finite pointwise bound.  Therefore $f'$ takes on $\R$ values on $E$.  
+	Therefore $f'^{-1}((-\infty,\infty)) \cap E = E$, as every point in $E$ is 
+	eventually included.  Therefore there exists $\infty > M > 0$ such that 
+	$\mu(f'^{-1}([-M,M]) \cap E) \geq \mu(E) - \epsilon/2$.  Furthermore by the inner 
+	regularity of $\mu$ we have that there exists $F \subset f'^{-1}([-M,M]) \cap E$
+	such that $\mu(F) \geq \mu(f'^{-1}([-M,M]) \cap E) - \epsilon/2$.  Therefore we have that
+	\begin{align*}
+		\mu(E) &= \mu(F) + \mu(E \cap F^c)\\
+		&\geq \mu(E) - \epsilon + \mu(E \cap F^c)\\
+		\epsilon &\geq \mu(E \cap F^c)
+	\end{align*}
+	Additionally, by taking the preimage of $[-M,M]$ of the sup of the functions of 
+	$\mathcal{F}$ the uniform boundedness is implied.  
+	\item[8] Let $E$ be a non-lesbesgue measurable set and let $A$ be a lesbesgue measurable set of measure 0.  We claim that $E \cap A^c$ is not Lesbesgue measurable.
+	Suppose not.  Then $E \cap A^c$ is lesbesgue measurble  Additionally, since $E$ is
+	not Lesbesgue measurable then there exists $C \subset \R$ such that 
+	$\mu^*(C) < \mu^*(E \cap C) + \mu^*(E^c \cap C)$, where $\mu^*$ is the outer lesbesgue measure.  Furthermore, we note that 
+	$E \cap A$ must be Lesbesgue measurable since $E \cap A \subseteq A$, and therefore
+	$0 \leq \mu^*(E \cap A) \leq \mu(A) = 0$, which by the definition of the completeness
+	of measure spaces implies that $E\cap A$ is Lebesgue measurable (a similar 
+	argument works for $\mu^*(E^c \cap A)$.  Since $A \cap E, A \cap E^c, A^c \cap E$
+	are all measurable then their union is measurable, $A \cup E$, and the 
+	complement of their union is measurable, $A^c \cap E^c$.  
+	
+	Therefore 
+	we have that 
+	\begin{align*}
+	\mu^*(C) &< \mu^*(C \cap E) + \mu^*(C \cap E^c)\\
+	&= \mu^*(C \cap E \cap A) +\mu^*(C \cap E \cap A^c) + \mu^*(C \cap E^c \cap A)
+	+\mu^*(C \cap E^c \cap A^c)\\
+	&= \mu^*(C \cap (E \cup A)) + \mu^*(C \cap E^c \cap A^c)\\
+	&= \mu^*c(C).
+	\end{align*}
+	Note that this is a contradiction.  
+	\item[9] Let $A_0 \subset A_1 \subset \cdots \subset A_n \subset \cdots [0,1]$.
+	We want to show that $\lim \mu^*(A_n) = \mu^*(\bigcup_{n=1}^\infty A_n)$.
+	Note by the outer regularity of $\mu^*$ there exists $B_n$ open such that 
+	$A_n \subset B_n$ and $\mu^*(B_n) \leq \mu^*(A_n) + 2^{-n}$, and 
+	$C_n = \cap_{m=n}^\infty B_m$.  Since each $C_n$ is a measurable set then we 
+	have that $\lim \mu(C_n) = \mu(\cup_{n=1}^\infty C_n)$.
+	Note that $\mu(\cup_{n=1}^\infty C_n) \leq \sum_{n=1}^\infty \mu(C_n)$.
+	Furthermore, if we consider that (I ran out of time, sorry).
+	\item[10] Let $\mu$ be the Lebesgue measure on $\R$, and let $0 \leq a < b \leq 1$.
+	We will construct an open set $U \subset [0,1]$ such that $\mu(A) = a, \mu(B) = b$.
+	If we restrict ourselves to the interval $[0,b]$, and choose an $\alpha \geq 1$ 
+	such that $\frac{a}{b} < x', 1 - 2x'^\alpha - x', x' >0$.  Then we begin to 
+	construct the set $C$ as follows: for $C_1$, we remove the middle $r$ portion of 
+	$[0,b]$ and we're left with $[0, \frac{r}{2}] \cup [\frac{r}{2} - b, b]$.  Then for 
+	$C_2$ we remove the middle $r^(\alpha + 1)$ terms from each remaining interval, 
+	divinding them in two.  At the $n$th step we remove $2^{n-1}r^{1+\alpha(n-1)}$ from 
+	the collective remaining intervals.  The final set we end up with is
+	$C = \cap_{j=1}^\infty C_j$.  Note that $C$ is closed.  For our desired set, we take
+	$U = C^c$.  Note that $\mu(U) = b - b\sum_{i=1}^\infty 2^{n-1} r^{1 + \alpha(n-1)}
+	= b\frac{1 - 2r^\alpha - r}{1 - 2r^\alpha}$.  Note that since $\frac{a}{b} < 1 - 2x'^\alpha - x'$ then we have that the numerator is not 0, and ensure that the function
+	will be positive.  Then we can choose a positive $r$ such that $a = \frac{1 - 2r^\alpha - r}{1 - 2r^\alpha}$, since the area function is continuous on $[0,x']$, and
+	by the the intermediate value theorem since $r = 0$ corresponds to 1 and $r=x'$ 
+	corresponds to 0, and in the region our function is positive.  Therefore 
+	$\mu(U) = b \frac{a}{b} = a$.  Furthermore, $\mu(\bar{U}) = b$ since $U$ is the 
+	interval excluding well chosen limit points.  
+\end{enumerate}
+\end{document}

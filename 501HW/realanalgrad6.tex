@@ -1,0 +1,67 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 6\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item
+	\item Let $\{f_n\}_{n \in \N} \subset L^+(X,\mathcal{M},\mu)$ such that 
+	$f_n \to f$ pointwise and such that $\lim \int_X f_n d\mu = \int_X fd\mu < \infty$.  
+	Let $E \in \mathcal{M}$.  Note that $1_E |f - f_n| \leq |f - f_n|$ for all $n \in \N$.  Therefore
+	$\lim_{n \to \infty} int_E |f - f_n| d \mu \leq \lim_{n \to \infty} \int_X |f - f_n| d \mu = 0$.  Therefore 
+	$ \lim_{n \to \infty} \int_E |f - f_n| d \mu  = 0$ which implies that
+	$\lim_{n \to \infty} \int_E f_n d \mu = \int_E f d \mu$.
+	\item Let $\mu$ be the Lebesgue measure on $\R$, $f \in L^1(\R, \mathcal{B}_\R,\mu)$
+	and for $n \in \N$ define $f_n(x) = f(x) \sin^n(x)$.  We want to show that 
+	$\lim_{n\to \infty} \int_\R f_n d\mu = 0$.  We claim that 
+	$f'(x) = \lim_{n \to \infty }|f_n(x)| = \begin{cases} |f(x)| & x = \pi (n + \frac{1}{2}), n \in \Z\\
+	0 & \text{ otherwise}
+	\end{cases}$.  Note if $x \neq \pi (n + \frac{1}{2}), n \in \Z$, we have that
+	$\sin(x) < 1$.  Therefore $\lim |\sin^n(x)| = 0$.  Otherwise, if 
+	$x = \pi (n + \frac{1}{2})$ then we have that $|\sin(x)| = 1$.  Therefore 
+	$\lim |f(x) \sin^n(x)| = |f(x)|$.  Additionally since for any $n \in \N$, 
+	$|f(x)\sin^n(x)| \leq |f(x)|$, and $|f(x)| \in L^+(\R, \mathcal{B}_\R,\mu)$ 
+	then by the LDCT we have that 
+	$\int_\R f'(x) d \mu = \lim_{n \to \infty} \int_R |f_n(x)| d \mu$.  Note that 
+	since $f'$ is non-zero on a countable set, then necessarily $\int_\R f'(x) = 0$.
+	Thus $\lim_{n \to \infty} \int_R f_n(x) = 0$.
+	\item
+	\item
+	\item	
+\end{enumerate}
+\end{document}
