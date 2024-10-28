@@ -39,13 +39,34 @@
 }
 \begin{document}
 \begin{enumerate}
-	\item
+	\item Let $\{f_n\}_{n \in \N},\{g_n\}_{n \in \N},\{h_n\}_{n \in \N}$ be sequences of real valued Lebesgue 
+	integrable functions which converge almost everywhere to $f,g,h$ respectively.  Additionally suppose that 
+	$f_n \leq g_n \leq h_n$ for all $n$ and that 
+	$\lim \int_\R f_n d \mu = \int_\R f d \mu,\lim \int_\R h_n d \mu = \int_\R h d \mu$.  We note that 
+	$0 \leq g_n - f_n$ and $0 \leq h_n - g_n$.  Therefore we have that
+	$$
+		\int g_nd \mu - \int f_n d \mu\int g_n - f_n d \mu= \int \lim(g_n - f_n)d \mu 
+$$
+$$		
+		\leq \liminf \int (g_n - f_n)d \mu = \liminf \int g_nd \mu - 
+		\int f_nd \mu	
+	$$
+	$$
+		\int h_nd \mu - \int g_nd \mu = \int h_n - f_n d \mu= \int \lim (h_n - g_n)d \mu 
+		$$
+		$$
+		\leq \liminf \int (h_n - g_n)d \mu = \int h_nd \mu -\int \limsup g_nd \mu
+	$$
+	Therefore we have that $\int g \leq \liminf \int g_n$ and $\int g \geq \limsup \int g_n$.  Thus 
+	$\int g d \mu= \lim \int g_n d \mu$
 	\item Let $\{f_n\}_{n \in \N} \subset L^+(X,\mathcal{M},\mu)$ such that 
 	$f_n \to f$ pointwise and such that $\lim \int_X f_n d\mu = \int_X fd\mu < \infty$.  
 	Let $E \in \mathcal{M}$.  Note that $1_E |f - f_n| \leq |f - f_n|$ for all $n \in \N$.  Therefore
-	$\lim_{n \to \infty} int_E |f - f_n| d \mu \leq \lim_{n \to \infty} \int_X |f - f_n| d \mu = 0$.  Therefore 
+	$\lim_{n \to \infty} \int_E |f - f_n| d \mu \leq \lim_{n \to \infty} \int_X |f - f_n| d \mu = 0$.  Therefore 
 	$ \lim_{n \to \infty} \int_E |f - f_n| d \mu  = 0$ which implies that
-	$\lim_{n \to \infty} \int_E f_n d \mu = \int_E f d \mu$.
+	$\lim_{n \to \infty} \int_E f_n d \mu = \int_E f d \mu$.  Note that if
+	$\int f d \mu = \infty$ then everything collapses since $f$ is now not in $L^1$ or almost everywhere equivalent to something in $L^1$, which is what the entire proof
+	is based upon.  
 	\item Let $\mu$ be the Lebesgue measure on $\R$, $f \in L^1(\R, \mathcal{B}_\R,\mu)$
 	and for $n \in \N$ define $f_n(x) = f(x) \sin^n(x)$.  We want to show that 
 	$\lim_{n\to \infty} \int_\R f_n d\mu = 0$.  We claim that 
@@ -60,8 +81,33 @@
 	$\int_\R f'(x) d \mu = \lim_{n \to \infty} \int_R |f_n(x)| d \mu$.  Note that 
 	since $f'$ is non-zero on a countable set, then necessarily $\int_\R f'(x) = 0$.
 	Thus $\lim_{n \to \infty} \int_R f_n(x) = 0$.
-	\item
-	\item
-	\item	
+	\item Let $\{f_n\}$ be a sequence of integrable functions from $[0,1]$ to $[0,\infty]$ with the property that
+	$\int_{[0,1]} f_n d \mu = 1, \int_{(\frac{1}{n}, 1]} f_n d \mu \leq \frac{1}{n}$.  We claim that it is impossible
+	for $g(x) = \sup_{n \in \N} f_n(x)$ to be integrable.  Assume not.  Note by the inequality given to us we have 
+	that $\int_{[0,1/n]} f_n d \mu \geq 1 - \frac{1}{n}$.  Therefore we have that $\lim \int_{[0,1/n]} f_n d \mu = 1$.
+	Additionally, note that $f_n 1_{[0,\frac{1}{n}}$ are integrable functions.  Furthermore, $\lim f_n 1_{[0,\frac{1}{n}} = 0$ almost everywhere since for every $x \in (0,1]$ there exists $n\in \N$ such that $\frac{1}{n} < x$.  Additionally,
+	since $g$ is integrable and we know that $|f_n(x) 1_{[0,1/n]}(x)| \leq g(x)$.  Therefore by LDCT 
+	$\lim \int_{[0,1]} f_n 1_{[0,1/n]} d \mu = 0$.  This is a contradiction since it was previously established 
+	that the limit was 1.
+	\item Let  $f_n(x) = \frac{1}{1+e^{nx}}$.  Note that on $[0,1]$ that $\lim f_n = 1_{[0,1]}$ almost everywhere.  
+	Addtionally $\lim \delta(x) f_n(x) = \delta(x)1_{[0,1]}(x)$ holds for all $x \neq 0$.  Furthermore 
+	$|\delta(x) f_n(x)| \leq |\delta(x)1_{[0,1]}|$ as $f_n(x) \leq 1$, and the contribution of $\delta(x)$ doesn't matter.
+	Therefore $0.5 = \lim \int_{[0,1]} |f_n(x) \delta(x)| d\mu = \int_{[0,1]} \delta  d \mu = 1$, which is a 
+	contradiction.
+	\item Let $\{f_n\}$ be a sequence in $L^1(X,\mathcal{M},\mu)$ such that $f \to f_n$ pointwise and there exists 
+	some function $g \in L^1(X,\mathcal{M},\mu)$ such that $|f_n| \leq g$ for all $n \in \N$, and $\epsilon > 0$.
+	Note that our assumptions give us by the LDCT that $\lim \|f - f_n\|_1 = 0$.  Since the sequence converges in 
+	$L^1$ then there necessarily exists a sequence $n_k$ such that for all $n,m \geq n_k$ then 
+	$\|f_n - f_m\|_1 < 2^{-k}$.  Additionally let $D_k = \{x \in X: |f_{n_k} - f_{n_{k+1}}| > 2^{-k/2}\}$.
+	Observe that $\mu(D_k)2^{-k/2} < \|f_{n_k} - f_{n_{k+1}}\|_1 < 2^{-k}$.  Therefore $\mu(D_k) < 2^{-k/2}$
+	Furthermore if we take the measure of $\bigcup_{k=N}^\infty D_k$ then we have that
+	$\mu(\bigcup_{k=N}^\infty D_k) \leq \sum_{k=N}^\infty \mu(D_k) < \sum_{k=N}^\infty 2^{-k/2} = \frac{2^{1 - \frac{N}{2}}}{2 - \sqrt{2}}$.  Note that we can find a sufficently large $N_\epsilon$ such that $\mu(\bigcup_{k=N}^\infty D_k)< \epsilon$.
+	Thus $E_\epsilon =\bigcup_{k=N}^\infty D_k $
+		
+	Furthermore, to show that there is uniform continuity on the complement, we have that if $x \in(\bigcup_{k=N}^\infty D_k)^c$ then we have for every $n \geq N$ that $|f_n(x) - f(x)| = |f_n(x) - f_{k_N}| + \sum_{l = N+1}^\infty |f_{k_l}(x) - f_{k_{l+1}}(x)|< 2^{-N} + \frac{2^{1 - \frac{N+1}{2}}}{2 - \sqrt{2}} $
+	\iffalse Let $E_{n,k} = \{x \in X: |f_n(x) - f(x) | > 2^{-k}\}$, $\epsilon > 0$.  Note that by theorem 4.4 part 1 we have for all
+	$n\in \N$ there	exists $k_n \in \N$ such that $\int_{E_{n,k_n}} |f_n - f| d \mu < \epsilon$.  Note that by this 
+	construction we have that $\mu(E_{n,k_n}$
+	\fi
 \end{enumerate}
 \end{document}
