@@ -1,0 +1,75 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 7\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[7] Let $\{f_n\}$ be a sequence in $L^1(X, \mathcal{M},\mu)$ such that $f_n \to f$ uniformly, $\mu(X) < \infty$.
+	We want to show that $f \in L^1$ and $\lim \|f - f_n\|_1 = 0$.  Note that for some $\epsilon > 0$ there exists 
+	$N_\epsilon$ such that for all $n \geq N_\epsilon$ we have that $|f - f_n| < \frac{\epsilon}{\mu(X)}$.  
+	Therefore $\int_X |f - f_n| d\mu < \frac{\epsilon}{\mu(X)} \int_x d \mu = \epsilon$.  Therefore in the limit it goes 
+	to zero.  Additionally $\int_X |f| d \mu \leq \int_X |f - f_n| d \mu + \int_X |f_n| d \mu < \infty + \epsilon =
+	 \infty$, giving us that $f \in L^1$.  Note that this fails to hold if $\mu(X) = \infty$.  In particular if one 
+	 takes the functions $f_n(x) = \sum_{k=1}^\infty \frac{1}{k^{1+\frac{1}{n}}}1_{(k-1,k)}(x)$, each $\int_\R |f_n| d \mu$ is guarenteed to converge by the p-series tests.  However if one takes $n$ to infinity you get the harmonic series,
+	 which diverges.  
+	
+	\item[8] Let $f(x) = x^{-1/2}1_{(0,1)}, \{q_n\}_{n \in \N}$ be an enumeration of the rationals, and 
+	$g(x) = \sum_{n=1}^\infty f(x - q_n)$.  We claim that $g \in L^1$.  Note that first each $2^{-n}f(x - q_n)$ is an 
+	integrable function, therefore we can interchange the  sum and the integral:
+	$\int_\R |g| d \mu = \int_\R \sum_{n=1}^\infty 2^{-n} f(x-q_n) d\mu = \sum_{n=1}^\infty \int_\R 2^{-n}f(x-q_n) d\mu$.
+	Furthermore, by the construction of $f,$ $\int_\R f(x-q_n) d \mu = \int_\R f d \mu$, since the shifting of both the function and the indidcator exactly cancel out.  Therefore $\int_\R |g| = \sum_{n=1}^\infty 2^{-n}\int_\R f d \mu = 
+	\sum_{n=1}^\infty 2^{1-n} = 1$.  We additionally claim for all intervals $I \subset \R, \lambda \geq 1$ that
+	$\mu(I \cap \{x: g(x) > \lambda\}) > 0$.   Let $(a,b) = I, \lambda \geq 1$, and let $q_a, q_b$ be rational numbers such that 
+	$a < q_a < q_b < b$  and $q_b - q_a < 1$.  If we then consider $2^{-\alpha}f(x - \frac{q_b + q_a}{2})$ where 
+	$\alpha$ is the index of $\frac{q_b + q_a}{2}$ we are guaranteed that $g$ has a singularity contained within said 
+	interval.  Furthermore, the interval $(\frac{q_b + q_a}{2}, \min(\frac{1}{\frac{q_b + q_a}{2} +\lambda^2}, q_b)$ is
+	guaranteed to be of non-zero measure.  Thus $\mu(I \cap \{x: g(x) > \lambda\}) > 0$.
+	
+	\item[9]
+	\item[10]
+	\item[11]
+	\item[12]
+	\item[13] Let $(X, \mathcal{M}, \mu)$ be a measure space, $\mu$ is a semifinite measure, $f$ is a non-negative 
+	function measurable function such that for all $g \in L^+(X,\mathcal{M}, \mu)$, 
+	$$
+	\int_X fg d\mu < \infty.
+	$$
+	We claim that $f$ is uniformly bounded almost everywhere.  Suppose not.  Then for all $M > 0$ there exists 
+	a set $E_M$ such that for all $x \in E_M, f(x) > M$
+\end{enumerate}
+\end{document}
