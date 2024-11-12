@@ -58,12 +58,36 @@
 	$a < q_a < q_b < b$  and $q_b - q_a < 1$.  If we then consider $2^{-\alpha}f(x - \frac{q_b + q_a}{2})$ where 
 	$\alpha$ is the index of $\frac{q_b + q_a}{2}$ we are guaranteed that $g$ has a singularity contained within said 
 	interval.  Furthermore, the interval $(\frac{q_b + q_a}{2}, \min(\frac{1}{\frac{q_b + q_a}{2} +\lambda^2}, q_b)$ is
-	guaranteed to be of non-zero measure.  Thus $\mu(I \cap \{x: g(x) > \lambda\}) > 0$.
-	If we consider the function 
-	\item[9]
+	guaranteed to be of non-zero measure.  Thus $\mu(I \cap \{x: g(x) > \lambda\}) > 0$.  Note that since $g$ is finite
+	almost everywhere, then on that same set $g^2$ is finite.  However by cauchy-schwarz we have that 
+	$$
+     \sum_{n=1}^\infty 4^{-n}f(x-q_n)^2  \leq g^2.
+	$$
+	Since for a single $n$, we have that $\int_\R f(x - q_n)^2 = \int_0^1 \frac{1}{x} dx = \infty$, and since the rationals are dense in $\R$ then every interval will necessarily contain a term which diverges, thus making it not integrable on said interval.
+	\item[9] Let $f_n(x) = 1_{E_n}(x)$ be a cauchy sequence of indicators in $L^1(X,\mathcal M, \mu)$.  Note by the completion of 
+	$L^1$ then there exists $f \in L^1$ such that $\lim f_n = f$ almost everywhere.  Note that since the set $E$ where they 
+	disagree is a set of measure zero, we can simply multiple $f$ by $1_{E^c}$, which ensures that $f 1_{E^c}$  is an 
+	indicator function.  As on $E^c, f$ is an indicator function since it can only be $1$ or $0$.  On $E$ if we set 
+	all values to $0$ then it still is an indicator function.  Since they differ only on a set of measure 0 then the 
+	sequence converges to an indicator function in $L^1$.
 	\item[10]
-	\item[11]
-	\item[12]
+	\item[11] Let $t_n$ be some sequence converging to $t > 0$. Note that $f(x)g(t_n x) \leq M|f(x)|$ for all $x \in \R$ and $\int_\R M |f(x)|d \mu < \infty$.  Thus by LDCT we have that $\lim F(t_n) = \int_\R \lim f(x) g(t_n x) d\mu$.  
+	Furthermore any constant postitive "multiple" of the set is still of measure zero.  Therefore $\lim g(t_nx) = g(tx)$.
+	Thus $\lim F(t_n) = F(t)$.  Thus $F$ is continuous.
+	 
+	\item[12] Let $(X,\mathcal M, \mu)$ be a finite measure space, $\{f_n\}$ be a sequence of integrable functions such that 
+	$f_n \to 0$ in measure and $\sup \| |f_n|^2 \|_1 < \infty$.  We claim that the sequence converges to 0 in $L^1$.
+	Let $\epsilon > 0$ and $E_{n,\epsilon} = \{x: |f(x)| \geq \epsilon\}$.  Note that $\lim \mu(E_{n,\epsilon}) = 0$ 
+	for all $\epsilon$ and that  
+	\begin{align*}
+	|\int_X f_n d \mu|^2 &\leq |\int_{E_{n,\epsilon}} f_n|^2 + |\int_{E_{n,\epsilon}^c} f_n|^2 +|\int_{E_{n,\epsilon}} f_n||\int_{E_{n,\epsilon}^c} f_n|\\
+	&\leq |\int_{E_{n,\epsilon}} f_n|^2 + \epsilon \mu(X)|\int_{E_{n,\epsilon}} f_n| + \epsilon^2\mu(X) \\
+	&\leq \mu(E_{n,\epsilon})\int_X |f_n|^2 d \mu + \epsilon \mu(X)|\int_{E_{n,\epsilon}} f_n|+ \epsilon^2\mu(X)^2
+	\end{align*}
+	Since $\sup \||f_n|^2\|_1 < \infty$, then let $M = \sup \||f_n|^2\|_1$.  Additionally, since $\lim 
+	\mu(E_{n,\epsilon}) = 0$ then $\lim \int_{E_{n,\epsilon}} f_n d\mu = 0$ as an integral on a set of measure zero is 
+	zero.  Therefore the inequality is bounded by $\epsilon^2 \mu(X)^2$, therefore the integral goes to zero.
+	
 	\item[13] Let $(X, \mathcal{M}, \mu)$ be a measure space, $\mu$ is a semifinite measure, $f$ is a non-negative 
 	function measurable function such that for all $g \in L^+(X,\mathcal{M}, \mu)$, 
 	$$
