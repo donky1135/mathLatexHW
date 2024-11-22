@@ -1,0 +1,151 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 8\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let $X$ and $Y$ be sets, and let $\mathcal{A}$ and $\mathcal{B}$ be algebras
+	of sets in $X$ and $Y$ . Let $m$ be a premeasure on $\mathcal A$, and let $n$ be a
+	premeasure on $\mathcal B$. Show that if $m$ and $n$ are semifinite, then so is 
+	$m \otimes n$.  Let $A \in \mathcal{A} \otimes \mathcal{B}$ with 
+	$m \otimes n (A) = \infty$.  Let $r > 0$, and WLOG assume  that $r > 1$.  Note by
+	definition of the product algebra there exists 
+	$A_1 \in \mathcal{A}, A_2 \in \mathcal{B}$ such that $A_1 \times A_2 = A$.
+	The fact that $m \otimes n(A) = m(A_1)n(A_2) = \infty$ generates three cases
+ 	\begin{enumerate}
+ 		\item if $m(A_1) = n(A_2) = \infty$, then by the semifinitude of $n$ and $m$
+ 		there exists $B_1 \subset A_1, B_2 \subset A_2$ such that 
+ 		$r < m(B_1), n(B_2) < \infty$, therefore $r < m(B_1)n(B_2) = m \otimes n(B_1 \times B_2) < \infty$, and 
+ 		$B_1 \times B_2 \in \mathcal{A} \otimes \mathcal{B}$.
+ 		\item If $m(A_1) < \infty, n(A_2) = \infty$, then we can choose 
+ 		$B_2 \subset A_2$ such that $\frac{r}{m(A_1)} < m(B_2) < \infty$.
+ 		Therefore $r = m(A_1) \frac{r}{m(A_1)} < m(A_1) n(B_2)= m \otimes n(A_1 \times B_2) $, and $A_1 \times B_2 \in \mathcal{A}\otimes \mathcal{B}$.
+ 		\item if $A_2$ is finite and $A_1$ is infinite then the proof is the same as above.
+ 		
+	\end{enumerate}
+	Thus the product measure is semi-finite.
+	\item Let $X = Y = [0,1]$, $\mathcal{M} = \mathcal{N}$ be the Borel $\sigma$ 
+	algebra on $[0,1]$, $\mu$ be the borel measure, $\nu$ be the counting measure on 
+	$(X,\mathcal{M})$ and $(Y,\mathcal{N})$ respectively
+	\begin{enumerate}
+		\item We claim that $\nu$ is not $\sigma$-finite.  Let $A_n$ be a sequence in 
+		$\mathcal{N}$ such that $\cup_{n=1}^\infty A_n = Y$.  Since the union of the 
+		sets is countable, and $Y$ is uncountable, implies there has to exists an 
+		uncountable set $A_m$.  Thus the $\sigma$-finite condition of 
+		all sets in the sequence being finite is violated, as $\nu(A_m) = \infty$.
+		\item Let $f: X \times Y \to \{0,1\}$ be given by 
+		$f(x,y) = \begin{cases}1 & x  = y\\ 0 & x \neq y \end{cases}$.  Note that 
+		to show that $f$ is measurable we just need to compute 
+		$f^{-1}(\{0\})$ and $f^{-1}(\{1\})$. Note that
+		$f^{-1}(\{1\}) = \{(x,x): x \in [0,1]\}$.  We can approximate this set via 
+		squares in the following way: consider the sequence 
+		$\{D_n\}_{n \in \N} \subset \mathcal{B}_{\R} \times \mathcal{B}_{\R}$ 
+		
+		defined by 		
+		
+		$D_0 = [0,1]\times [0,1], D_n = 
+		\cup_{i=0}^{2^n-1} ([\frac{i}{2^n},
+		\frac{i+1}{2^{n}}],[\frac{i-1}{2^n},\frac{i+1}{2^{n}}])$.
+		Note that for an arbitrary point $(x,y)$ where $x \neq y$, there exists an 
+		$m \in \N$ such that $\frac{1}{2^m} < |x-y|$, therefore $(x,y) \not \in D_m$.
+		Thus the countable intersection $\cap_{m=1}^\infty D_m \in \mathcal{B}_{\R} \times \mathcal{B}_{\R}$, therefore $f^{-1}(\{1\})$ is measurable.  Since $f^{-1}(\{1\})^c = f^{-1}(\{0\})$, and the product $\sigma$-algebra is closed 
+		under complements,
+		then $f^{-1}(\{0\})$ is measurable. 
+				
+		\iffalse
+		If we consider the standard 
+		topology on $\R^2$ we have that the line is closed.  Since the product topology
+		on $\R \times \R$ is equvalent to the topology on $\R^2$ then $f^{-1}(\{1\})$
+		is measurable.  
+		\fi
+		
+		\item We want to compute $\int_X (\int_Y f(x,\cdot)d \nu )d \mu$ and 
+		$\int_Y (\int_X f(\cdot,y)d \mu) d \nu$ 
+		\begin{itemize}
+			\item For $\int_X (\int_Y f(x,\cdot)d \nu )d \mu$, note that 
+			$\int_Y f(x,\cdot) \nu = 1$ since $f(x,\cdot) = 1_{\{x\}}(y)$ giving us
+			$\int_Y f(x,\cdot0) \nu = \nu(\{x\}) = 1$.  Therefore 
+			$\int_X (\int_Y f(x,\cdot)d \nu )d \mu = \int_X 1d \mu =1$
+			\item For $\int_Y (\int_X f(\cdot,y)d \mu) d \nu$, note that 
+			$\int_X f(\cdot,y)d \mu = 0$ by similar reasoning above, with the exception
+			being that $\mu(\{y\}) = 0$.  Thus the entire integral is 0.
+		\end{itemize}
+	\end{enumerate}
+	\item Let $X = Y = \N$, and let $\mathcal{N} = \mathcal{M} = 2^\N$.  Let 
+	$\nu = \mu$ be counting measures.  Let 
+	$f(x,y) = \begin{cases}1 & x = y\\ -1 & x = y + 1 \\ 0 & \text{ otws}\end{cases}$.
+	We must compute $\int_{X \times Y} |f(x,y)| d \mu \otimes \nu$, 
+	$\int_X (\int_Y f(x,\cdot)d \nu )d \mu$, and 
+		$\int_Y (\int_X f(\cdot,y)d \mu) d \nu$.  Note that 
+		$f$ is measurable since $f^{-1}(1) = \{(x,x): x \in \N\}$,
+		$f^{-1}(-1) = \{(x+1,x): x \in \N\}$ are measurable, implying that that 
+		$f^{-1}(0) = f^{-1}(\{1\}) \cup f^{-1}(\{-1\})$ is measurable.  Note that 
+		\begin{align*}
+			\int_{X \times Y} |f(x,y)| d \mu \otimes \nu &= \int_{f^{-1}(1)} |f(x,y)| d \mu \otimes \nu + \int_{f^{-1}(-1)} |f(x,y)| d \mu \otimes \nu\\
+			&= \sum_{n=1}^\infty \mu \otimes \nu(\{(n,n)\}) + \sum_{n=1}^\infty \mu \otimes \nu(\{(n+1,n)\})\\
+			&= \sum_{n=1}^\infty \mu(\{n\}) \nu(\{n\}) + \sum_{n=1}^\infty \mu(\{n+1\}) \nu(\{n\})\\
+			&= \sum_{n=1}^\infty 1 + \sum_{n=1}^\infty 1\\
+			&= \infty
+		\end{align*}		 
+		\begin{align*}
+			\int_X (\int_Y f(x,\cdot)d \nu )d \mu &=f(1,1)\nu(\{1\})  +  \int_{X\backslash \{1\}} f(x,x)\nu(\{x\}) + f(x,x-1)\nu(\{x-1\})  d\mu\\
+			&= 1 + \sum_{x=2}^\infty (\nu(\{x\}) - \nu(\{x-1\}))\mu(x)\\
+			&= 1
+		\end{align*}
+		\begin{align*}
+		\int_Y (\int_X f(\cdot,y)d \mu) d \nu &= \int_Y f(y,y) \mu(\{y\}) + f(y+1,y)\mu(\{y+1\}) d\nu\\
+		&= \sum_{y=1}^\infty (f(y,y) + f(y+1,y))\nu(\{y\})\\
+		&= \sum_{y=1}^\infty (1 - 1)\\
+		&= 0
+		\end{align*}
+	\item Let $f \in L^1(\R, \mathcal{B}_\R, \mu)$ and let $ g(x) = \sum_{n=-\infty}^\infty f(x+n)$.  We want to show that $g(x)$ converges absolutely almost everywhere.
+	Note that for each $n$ we have that $f(x+n) = f \circ \tau_n$, where 
+	$\tau_n(x) = x + n$.  It has been shown in theorem 5.25 that $\mu \circ \tau_n = \mu$.  Therefore, if we consider $\int_0^1 \sum_{n=-\infty}^\infty |f(x+n)| d \mu(x)$, we have that 
+	\begin{align*}	
+	\int_0^1 \sum_{n=-\infty}^\infty |f(x+n)| d \mu(x) &= \int_0^1 \sum_{n=-\infty}^\infty |f \circ \tau_n|d\mu\\
+	&= \sum_{n=-\infty}^\infty \int_0^1 |f \circ \tau_n| d \mu\\
+	&= \sum_{n=-\infty}^\infty \int_{n}^{n+1} |f| d \mu\\
+	&= \int_\R |f| d 
+	< \infty
+	\end{align*}
+	Therefore on the interval $[0,1]$ $g$ converges absolutely almost everywhere.   Note that 
+	this same proof can be applied to an arbitrary interval $[m,m+1]$ for $m \in \Z$.
+	Thus $g$ converges absolutely for arbitrary $x \in \R$ almost everywhere.
+	
+\end{enumerate}
+\end{document}
