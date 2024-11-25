@@ -1,0 +1,110 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 9\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let $\mathcal{H}$ be a seperable infinite dimensional Hilbert space, $\{u_n\}$ be an 
+	orthonormal basis, $\{c_j\}$ be a sequence of non-negative numbers,
+	and $C \subset \mathcal{H} $ be defined as 
+	$$C = \{f \in \mathcal{H}: \| f \| \leq 1 \text{ and } |\langle u_j, f \rangle|\leq c_j\}$$.
+	We claim that $C$ is closed and bounded.  Note that $C$ is trivially bounded since $C$ is a subset of the 
+	closed unit ball. To show that $C$ is closed, consider the sequence $\{f_n\} \subset C$ with 
+	$\lim f_n = f$.  Note that all Hilbert spaces are complete with respect to their norms.  We must show that 
+	$f \in C$.  If we let $\epsilon > 0$ and choose a sufficently large 
+	$N_\epsilon$ such that for all $n \geq N_\epsilon$, $\|f\| \leq \|f - f_n\| + \|f_n\| \leq \epsilon + 1$ then 
+	we can say that $\|f\| \leq 1$.  Furthermore, for an arbitrary $j \in \N$, note that 
+	$$
+	| \langle u_j, f \rangle | \leq | \langle u_j, f - f_n \rangle | + | \langle u_j, f_n \rangle | \leq  | \langle u_j, f - f_n \rangle | + c_j
+	$$
+	And since $|\langle u_j, f\rangle\| \leq \|f\|$ then it is bounded and continuous, therefore the limit can be taken
+	to the inside and by the linearity of $\langle u_j, \cdot \rangle$ we have that 
+	$| \langle u_j, f \rangle | \leq |\langle u_j, 0 \rangle| +   c_j = c_j$.  
+	Now we claim that $C$ is compact if and only if $\{c_j\} \in \ell^2$
+	\begin{itemize}
+		\item $\Rightarrow$ Assume that $C$ is compact.  Then it is totally bounded.  Therefore for a given 
+		$\epsilon > 0$, there exists $U_1,\cdots,U_N$ such that for $f \in C$, there exists $n'$ such that 
+		$\|l_{n'} - f\| < \epsilon$
+		\item $\Leftarrow$ Assume that $\sum_{j=1}^\infty c_j^2 < \infty$.  Let $\epsilon > 0$.   
+		I believe there's some way to ensure that there is a sufficently large $N$ to then go and 
+		ensure that the high dimensional rectangular prism in $\C^N$ described by 
+		$\prod_{j=1}^N [0,c_j]$ is covered by $\epsilon$ balls.  Then from this one can ensure via parsval's inequality
+		that things are contained within an infinite dimensional ball.  This clearly implies total boundedness, 
+		implying compactness.
+	\end{itemize}
+	\item Let $\mu$ denote Lebesgue measure on $\R$. Let $g \in L^2(\R, \mathcal{B}, \mu)$ and let 
+	$\{f_n\}_{n \in \N}$ be a sequence in $L^2(\R, \mathcal{B},\mu)$ such that for some $C < \infty$, 
+	$\|f_n\| \leq C$, and such that $\lim f_n(x) = f(x)$ a.e. We want to show that 
+	$\lim \langle g, f_n\rangle = \langle g, f\rangle$.  We claim that $\{\bar{g}f_n\}_{n \in \N}$ is
+	uniformly integrable.  Let $\epsilon > 0$, $E$ be a measurable set such that $\mu(E) < \delta$.  
+	We want to show that $\int_E \bar{g}f d\mu < \epsilon$.  Note that 
+	$\int_E |g||f_n| d\mu < \frac{1}{2} \int_E t |g|^2 + \frac{1}{t} |f|^2 d \mu \leq \frac{1}{2} \int_E t |g|^2 \mu + \frac{1}{2t}C^2$ 
+	Note that if we let $t = \frac{C^2}{\epsilon}$ then we have that $\int_E |g||f_n| d\mu < \frac{1}{2} \int_E t |g|^2 \mu + \frac{\epsilon}{2}$.
+	Now we are free to choose our $E$ and $\delta$ such that $\int_E |g|^2 < \frac{\epsilon^2}{C^2}$, thus ensuring that $\bar{g}f_n$ is 
+	uniformly integrable.  Therefore $\lim |\langle g, f\rangle - \langle g, f_n\rangle| \leq \lim \int_\R |\bar{g}f - \bar{g} f_n| d \mu = 0$
+	by Vitali's lemma, giving us $\lim \langle g, f_n\rangle = \langle g, f\rangle$
+	\item Let $(X,\mathcal{M},\mu)$ be a measure space, $\{f_n\}$ be a convergent sequence in 
+	$L^2(X,\mathcal{M},\mu)$ with $f \in L^2(X,\mathcal{M},\mu)$ being the limit, $\{g_n\}$ a sequence of 
+	$(X, \mathcal{M})$ measurable functions such that for some $C < \infty$, $g_n \leq C$ 
+	almost everywhere, and such that $g(x) = \lim g_n(x)$ exists almost everywhere.  We want to show that 
+	$\lim f_ng_n = fg \in L^2(X,\mathcal{M},\mu)$.  Consider the functions $|f_ng_n - f g|^2$  Note that pointwise
+	we have that $\lim |f_ng_n - f g|^2 = 0$ almost everywhere.  Consider that 
+	$\|f_ng_n - f g\| \leq \| f_n (g_n-g)\| + \|g(f_n - f)\| $.  First to bound $\| f_n (g_n-g)\|$, we have that
+	$|f_n (g_n-g)| \leq 2C|f_n|$. Since 
+	
+	$|f_ng_n - f g|^2 \leq 2(|f_n|^2|g_n|^2 + |f|^2|g|^2) \leq 2C^2(|f_n|^2 + |f|^2)$.  
+	\item Let $\mathcal{H}$ be a seperable Hilbert space, and $\{u_n\}_{n \in \N}$ an orthonormal sequence. 
+	Suppose for contradiction that there exists 	$f' \in \mathcal{H}$ such that $\lim \|f' - u_n\| = 0$ and 
+	for all $f \in \mathcal{H}$ $\lim \langle f, u_n\rangle = 0$.  Then we have that 
+	$$
+	0 = \lim | \langle u_n, f' \rangle | = \lim \| f'\| - \frac{1}{2} \| u_n - f'\|^2 	= \| f'\|
+	$$
+	Therefore $f' = 0$.  However this is a contradiction as if $f' = 0$ then 
+	$0 \lim \| u_n - f'\| = \lim \| u_n\| = 1$.  Therefore the above condition is impossible.  
+	\item Let $\mu$ be the Lebesgue measure on the unit circle, $E$ be a Borel measurable set on the unit circle. 
+	We want to show that $\lim_{j \to \infty} \int_E \sin(jx)d \mu = \lim_{j \to \infty} \int_E \cos(jx)d \mu = 0$.
+	Note that the functions $\{e^{inx}\}_{n \in \Z}$ form a complete orthonormal basis.  Therefore since 
+	$E$ is Borel measurable then $1_E$ is in $L^1$ and similarly $1_E^2 = 1_E \in L^2$.  Thus 
+	with $\alpha_n = \int_E e^{-inx}d \mu = \int_{S^1} 1_E e^{-inx}d \mu$ we have that 
+	$1_E = \sum_{n = -\infty}^\infty \alpha_n e^{-inx}$ and $\mu(E) = \sum_{n = -\infty}^\infty |\alpha_n|^2$
+	Note that this implies that as $N$ gets large $|\alpha_N|^2$ and $|\alpha_{-N}|^2$ gets arbitrarily small.  
+	Since $e^{inx} = \cos(nx) + i \sin(nx)$ then each of the integrals gets arbitrarily small as $N$ gets large.
+	Given an arbitrary increasing sequence of natural numbers $n_k$ and the set $E$ where 
+	$x \in E, \sin(n_k x)$ exists, 
+\end{enumerate}
+\end{document}
