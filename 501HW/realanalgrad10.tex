@@ -1,0 +1,112 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 10\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item[6]
+	\begin{align*}
+	&\frac{1}{4}(\|f+g\|^2 - \|f - g\|^2 - i \|f+ig\|^2 + i\|f-ig\|^2)\\
+	&\frac{1}{4}(\langle f + g, f+ g\rangle - \langle f - g, f - g\rangle - i\langle f + ig, f + ig\rangle + i \langle f - ig, f - ig \rangle)\\
+	&\frac{1}{4}(\|f\|^2 + \|g\|^2 + 2 Re(\langle f,g \rangle) - \|f\|^2 - \|g\|^2  + 2 Re(\langle f,g\rangle) +\\
+	&i(-\|f\|^2 + \|g\|^2  + 2Im(\langle f,g\rangle) + \|f\|^2 - \|g\|^2 +  2Im(\langle f, g \rangle))\\
+	& \frac{1}{4}(4Re(\langle f,g\rangle) + 4 Im (\langle f,g\rangle)\\
+	&= \langle f,g\rangle
+	\end{align*}
+	\item[7] Let $\mathcal{H} = L^2([0,\infty), \mathcal{B}, \mu)$.  We claim that the function
+	$f: (0,\infty) \to \mathcal{H}$ given by 
+	$f(t) = 1_{[0,t)}$ is continuous and has 
+	the property for all $t \in (0,\infty)$
+	that for all $r < s < t$ we have that 
+	$\langle f(t) - f(s), f(s) - f(r) \rangle$.  Note that $f$ is continuous since 
+	for a given $\epsilon > 0$ we have that if $|t-s| < \epsilon^2$ with WLOG 
+	$t > s$ then 
+	$$
+	\|f(t) - f(s)\| = \sqrt{\int_{(0,\infty)} | |1_{(0,t]} - 1_{(0,s]}|^2d\mu} =
+	\sqrt{\int_{(0,\infty)} | |1_{(s,t]}|^2d\mu} <
+	\sqrt{\epsilon^2} = \epsilon.
+	$$
+	Furthmore the self orthogonality comes from the fact that 
+	\begin{align*}
+		\langle f(t) - f(s), f(s) - f(r) \rangle &= \langle f(t), f(s) \rangle + 
+		\langle f(s), f(r) \rangle - \langle f(s), f(s) \rangle - \langle f(t), f(r) \rangle \\
+		&= s + r - s - r\\
+		&= 0
+	\end{align*}
+	For a general Hilbert space we have that:
+		\item[8]
+		
+
+	\item[9] Let $\{f_n\}_{n \in \N}$ be a weakly convergent sequenece in a Hilbert 
+	space $\mathcal{H}$ with limit $f$.  We want to show that 
+	$\lim \| f - f_n\| = 0$ iff $\lim \|f_n\| = \|f\|$.
+	\begin{itemize}
+		\item $\Rightarrow$ Suppose that $\lim \|f - f_n\| = 0$.  Then we have 
+		that $$\lim \|f\|^2 + \|f_n\|^2 - 2 Re(\langle f,f_n \rangle) = 0$$
+		Note by the weak convergence of $f_n$ we have that 
+		$\lim \|f\|^2 + \|f_n\|^2 = 2\|f\|^2$, therefore 
+		$\lim \|f_n\|^2 = \|f\|^2$, which implies our desired result
+		\item $\Leftarrow$ Suppose that $\lim \|f_n\| = \|f\|$.  
+		Then we have be the parallelogram law that 
+		\begin{align*}
+		\lim \|f - f_n\|^2 &= \lim 2\|f\|^2 + 2\|f_n\|^2 - \|f + f_n\|^2\\
+		&= \lim 4 \|f\|^2 - \|f\|^2 - \|f_n\|^2 - 2Re <f,f_n>\\
+		&= 4 \|f\|^2 - \|f\|^2 - \|f\|^2 - 2\|f\|^2\\
+		&= 0
+		\end{align*}
+		Note that the last line is true because of the weak convergence of $f_n$.
+		Therefore $\lim \|f - f_n\| = 0$.
+		\iffalse Then by the 
+		identity proven in the proof of cauchy-schwarz we have that
+		$\|f\|^2 = \lim |\langle f, f_n\rangle| = \lim \|f\| \|f_n\| - \frac{1}{2}\|f\|\|f_n\|\|f/\|f\| - f_n/\|f_n\|\|^2$ which implies that 
+		$0 = \lim \|f\|\|f_n\|\|f/\|f\| - f_n/\|f_n\|\|^2 = \lim \|f - f_n\|^2$.
+		Note that one can exclude the scenario where $\|f\| = 0$ since if it was 
+		then $f= 0$ and the convergence in norm is trivially true.  Therefore
+		\fi
+	\end{itemize}
+	\item[10]
+	Let $\mu$ be the Borel measure on $[0,1]$, $C$ be the set of real valued measurable
+	functions $f$ on $[0,1]$ such that $\int_{[-1,1]} f^2 d \mu = 1, 
+	\int_{[-1,1]} x^j f d \mu = 0$ for $j \in \{0,1,2\}$.  
+	The maximizing value of $\int_{[-1,1]} x^3 f(x) d\mu$ is 
+	$\frac{2\sqrt{2}}{5\sqrt{7}}$, however I don't know how to prove this.  
+	I believe if I applied gram-schmidt then there would've been a point in which 
+	the inner product was taken between computable polynomials, however I 
+	did not have enough time to do this.
+\end{enumerate}
+\end{document}
