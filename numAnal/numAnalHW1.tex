@@ -1,0 +1,117 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{Numerical Analysis homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework \\
+	Numerical Analysis
+}
+\lhead{
+	Alex Valentino\\
+	Collaborators: Irshad Guliyev, Jay Patwardhan
+}
+\begin{document}
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item 38.625 can be represented as $1*1.00110101*2^5$
+		\item -10.25 can be represented as $-1*1.01001*2^3$
+		\item 5.6 can be represented as $1*1.01\overline{1001}*2^2$
+	\end{enumerate}
+	Note that all of the answer above were arrived at by manually dividing the given answers by the largest possible power of 2, converting that
+	into binary, then shifting until appropriate.  
+	\item Consider a system which can stores numbers in the following way: $\sigma * a * 2^e$ where 
+	$\sigma \in \{-1,1\}, 1 \leq a \leq 2, -1022 \leq e \leq 1023$ and $a$ has 10 bits of precision (i.e. 
+	$a = 1.a_1a_2a_3\ldots a_{10}$). 
+	\begin{enumerate}
+		\item 5.6 round up: $1 * 1.0110011010 *2^2$, this is because the expression with more bits of the mantissa is 1.01100110011001, thus 
+		to round up we just add the machine epsilon to bump it up. 
+		\item 5.6 round to nearest: $1 * 1.0110011010 *2^2$ Note that to round down we would have a mantissa of $1.0110011001$, and since 
+		as shown above with the expanded mantissa that the first decimal in the expanded mantissa not found within the original mantissa is $1$, and there are additional bits after it implies that the rounded number is infact closer to the true value.
+		\item -5.6 using round toward 0: $-1 * 1.0110011001 *2^2$.  Here I noted that rounding towards zero would in fact mean rounding up this negative number, or effectively rounding down the mantissa.  This is observed
+		\item -5.6 using round down $-1 * 1.0110011010 *2^2$.  Since we're rounding down a negative number that means that the mantissa of the number is increasing.  Therefore we use the rounded up mantissa we've seen before.  
+	\end{enumerate}
+	\item Consider a very limited floating-point system that expresses numbers in the form $a*2^e$.  
+	In this system: the significand $a$ follows the form $1.a_1a_2a_3$ where each $a_i \in \{0,1\}$ and
+	$e \in \{-1,0,1\}$.  
+	\begin{enumerate}
+		\item What is the largest number that can be represented in this system?  That would have to be $3.75$ or 
+		$11.11$ in binary.
+		\item What is the smallest positive number that can be represented?  That would have to be $0.5$ or 
+		$0.1000$ in binary
+		\item What is the machine epsilon?  That is, the smallest $\epsilon > 0$ such that $1+\epsilon$ is 
+		representable.  The $\epsilon$ would have to be $0.125$ or $0.001$ in binary.  This is the case because 
+		after the assumed $1$ in the decimal, there are three decimals of precision.  Therefore one can choose the last 
+		digit to be 1, yielding $1.001$
+	\end{enumerate}
+	\item In the Simpsons, Homer dreamed up the equation $1782^{12} + 1841^{12} = 1922^{12}$.  Did Homer disprover 
+	Fermat's last theorem?
+	\begin{enumerate}
+		\item Compute $\sqrt[12]{1782^{12} + 1841^{12}}$ in matlab with format short.  What does matlab report, and what 
+		happens if you put in format long?
+		\begin{itemize}
+			\item The short formatted answer is 1922
+			\item The long formatted answer is 1921.999999955876
+		\end{itemize}
+		\item Determine the absolute and relative error of $1782^{12} + 1841^{12} \approx 1922^{12}$
+			\begin{itemize}
+				\item Absolute error: $-7.0021199503409775*10^{29}$, obtained via finding the difference between $1782^{12} + 1841^{12}$ and
+				$1922^{12}$
+				\item Relative error: $-2.755427056723427*10^{-10}$.  I simply divided the value given above by $1922^12$ (In the definitions you guys give there isn't absolute value signs, they can be applied if that's how you mean to define them)
+			\end{itemize}
+		\item prove that the equality is false.  We note that mod 2 that $x^2 \equiv x \mod{2}$ since $0^2 \equiv 0 \mod{2}$ and $1^2 \equiv 1 \mod{2}$.  Therefore $1782^{12} + 1841^{12} \equiv 1782 + 1841 \equiv 0 + 1 = 1 \mod{2}$.
+		Additionally, $1922 \equiv 0 \mod{2}$.  Since the parity of both sides of the equality is unequal, then 
+		the equality for the integers is false.  
+	\end{enumerate}
+	\item Let $x_A = 2.63$  If it was rounded to that amount, then $2.625 \leq x_T \leq 2.635$.  Therefore 
+	$|x_T - x_A| \leq 0.005$.
+	\begin{itemize}
+		\item $\sin(x)$: For the absolute error $E$ we have that $$|E| = |\sin(x_A) - \sin(x_T)| \approx |\cos(2.63)|*|x_T - x_A| \leq  0.005*|\cos(2.63)| = 0.005*0.871 = 0.004355$$
+		Note that the first approximation is gotten from the slides, and employs the mean value theorem $f(b) - f(a) = f'(c)(b-a)$, where
+		$c \in (a,b)$, assuming the differentiability of $f$ on the previously stated interval and continuity of the smallest closed set 
+		containing that interval.
+		For the relative error we have to bound $\sin(x_t)$ from below.  Note that since $\frac{\pi}{2} \leq x_T \leq \pi$ that $\sin$ is decreasing on the interval which contains $x_T$.  Therefore $\sin(2.635) \leq \sin(x_T)$.  Thus 
+		we have that $Rel(\sin(x_T)) = \frac{|E|}{|\sin(x_T)|} \leq \frac{0.004355}{0.4825} = 0.009025$.
+		Therefore $-0.004355 \leq E \leq 0.004355$ and $-0.009025 \leq Rel(\sin(x_A)) \leq 0.009025$
+		\item $\ln(x)$: For the absolute error $E$ we have that 
+		$$
+		|E| = |\ln(x_A) - \ln(x_T)| \approx |\frac{1}{x_A}||x_T - x_A| = \frac{1}{2.63}|x_T - x_A| \leq 0.001901
+		$$
+		since $\frac{d}{dx}\ln(x) = \frac{1}{x}$ by the mean value theorem.
+		Since $\ln(x)$ is an increasing function we can lower-bound it by evaluating it on the lower bound for $x_T$, 
+		$2.625$, $\ln(2.625) = 0.96508 \leq \ln(x_T)$.  Therefore the relative error is:
+		$Rel(\ln(x_A)) = \frac{|E|}{|ln(x_T)|} \leq \frac{0.001901}{0.96508} = 0.0019697$.
+		This gives us the following bounds:
+		$-0.001901 \leq E \leq 0.001901$\\
+		$-0.0019697 \leq Rel(\ln(x_A)) \leq 0.0019697$
+	\end{itemize}
+\end{enumerate}
+\end{document}
