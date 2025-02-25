@@ -38,7 +38,37 @@
 	Alex Valentino\\
 }
 \begin{document}
-\begin{enumerate}
-	\item
-\end{enumerate}
+\begin{itemize}
+	\item{Problem 1} Consider the following bank database with 6 tables. For each table, the primary key is underlined.
+	\begin{center}
+	$\begin{array}{c|c}
+	Table & Attributes\\
+	\hline
+	branch & (\underline{branch\_name}, branch\_city, assets)\\
+	\hline	
+	customer & (\underline{ID}, customer\_name, street, city)\\
+	\hline	
+	loan & (\underline{loan\_number}, branch\_name, amount)\\
+	\hline
+	borrower & (\underline{CustomerID, loan\_number})\\
+	\hline
+	account & (\underline{account\_number}, branch\_name, balance)\\
+	\hline
+	depositor & (\underline{CustomerID, account\_number})
+	\end{array}	$
+	\end{center}
+	\begin{enumerate}
+		\item \textit{Find the ID and name of customers who live in "Boston".}\\
+		$\Pi_{ID, customer\_name}(\sigma_{city = "Boston"}(customer))$
+		\item \textit{Find the ID of each borrower who has a loan in branch "Edison."}\\
+		$ \Pi_{CustomerID}(\sigma_{branch\_name = "Edison"}(borrower \bowtie_{borrower.loan\_number = loan.loan\_number} loan))$
+		\item \textit{Find the ID and names of customers who have deposits in "Edison" branch but do not have loans in "Edison" branch.}\\
+		$\Pi_{CustomerID}(\sigma_{branch\_name = "Edison"}) -$\\
+		$ \Pi_{ID, customer\_name}(\sigma_{branch\_name = "Edison"}($\\$customer \bowtie_{customer.ID = borrower.CustomerID} borrower \bowtie_{borrower.loan\_number = loan.loan\_number} loan))$
+	\end{enumerate}
+	\item{Problem 2}
+	\begin{enumerate}
+		\item 
+	\end{enumerate}
+\end{itemize}
 \end{document}
