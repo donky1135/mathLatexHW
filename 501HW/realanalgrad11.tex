@@ -1,0 +1,119 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{501 homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 11\\
+	501
+}
+\lhead{
+	Alex Valentino\\
+}
+\begin{document}
+\begin{enumerate}
+	\item Let $\phi: [0,1] \to [0,1]$ be a continuously differentiable increasing
+	 function with $\phi(0) = 0, \phi(1) = 1$, $F: [0,1] \to [0,1]$ an absolutely
+	 continuous function,$K = \sup_{c \in [0,1]} \phi'(c)$, and $G = \phi \circ F \circ \phi^{-1}$.  We claim that $G \in BV[0,1]$.  Note that for an arbitrary partition 
+	 $0 = x_1 < x_2 < \cdots  < x_{n-1} < x_n = 1$ of $[0,1]$ we have that 
+	 $\{y_i\} = \{\phi^{-1}(x_i)\}$ is also a partition of $[0,1]$ by virtue of $\phi^{-1}$
+	 being an increasing function preserving the end points.  Therefore
+	 $\sum_{i=1}^{n-1} |G(x_{i+1}) - G(x_i)| \leq K 
+	 \sum_{i=1}^{n-1} |F(y_{i+1}) - F(y_i)| \leq K \| F\|_{BV}$, which implies that 
+	 $\|G\|_{BV} \leq K\|F\|_{BV}$, giving us that $G \in BV[0,1]$.  Now to show 
+	 that our choice of $K$ is the optimal one, note that it must hold for all 
+	 absolutely continuous functions on the unit square.  Therefore it must hold for 
+	 $F = x$.  If we take $\alpha < K$ to satisfy the inequality 
+	 $\|G\|_{BV} \leq \alpha\|F\|_{BV}$, hen we have for all possible partitions 
+	 $\{x_i\}_{i \in [n]}$ that $\sum_{i=1}^{n-1} |\phi(F(x_{i+1})) - \phi(F(x_i))|
+	 \leq \alpha   \sum_{j=1}^{m-1} |F(y_{j+1}) - F(y_{j})|$, where $\{y_j\}_{j \in [m]}$ is the optimal partition.  Note that we can refine the partition $\{x_i\}$ with 
+	 an infinite number of pairs of points which correspond to the slope $K$.
+	 Note that we can also refine the optimal partition by taking those same pairs and 
+	 inserting them into $\{y_j\}$. Note that at some point there's going to be 
+	 a critical mass where $|\phi(F(z)) - \phi(F(w))| = K|F(z)-F(w)| < \alpha |F(z)-F(w)|$, which we can do due to the mean value theorem
+	 which is a contradiction.  Thus $K$ is optimal.
+	\item Let $F,G$ be absolutely continuous on $[0,1]$.  We want to show that $FG$
+	is absolutely continuous.  Let $\epsilon > 0$, then there exists 
+	$\delta_{1\epsilon}, \delta_{2\epsilon} > 0$ and let $\delta = \min\{\delta_{1\epsilon}, \delta_{2\epsilon} \}$ such that if  $\{(a_j, b_j)\}_{j \in [n]}$ is a collection
+	of disjoint intervals contained in $[0,1]$, where 
+	$\sum_{j=1}^n |b_j - a_j| < \delta$, then 
+	$\sum_{j=1}^n |F(a_j) - F(b_j)|, \sum_{j=1}^n |G(a_j) - G(b_j)| < \epsilon$.    
+	Note that since $F,G$ are absolutely continuous then they are uniformly continuous.
+	Since they are defined over a finite interval, then there exists $M_F, M_G > 0$
+	such that $|F| \leq M_F, |G| \leq M_G$.   Note that 
+	\begin{align*}
+		\sum_{j=1}^n |F(a_j)G(a_j) - F(b_j)G(b_j)| &= \sum_{j=1}^n |F(a_j)G(a_j) - F(a_j)G(b_j) + F(a_j)G(b_j) - F(b_j)G(b_j)|\\
+		&\leq \sum_{j=1}^n |F(a_j)||G(a_j) - G(b_j)| + |G(b_j)||F(a_j) - F(b_j)|\\
+		&\leq \sum_{j=1}^n M_F|G(a_j) - G(b_j)| + M_G|F(a_j) - F(b_j)|\\
+		&< (M_F + M_G)\epsilon
+	\end{align*}
+	Therefore $FG$ is absolutely continuous.  
+	\item Let $\mu$ be the lebesgue measure on $\R$, $T : [0,1] \to \R$ be an 
+	absolutely continuous function, $A$ a borel set in $[0,1]$ 
+	such that $\mu(A) = 0$. To show that $\mu(T(A)) = 0$, we will show for arbitrary 
+	$\epsilon > 0$ that we can find a cover via disjoint open intervals 
+	$\{a_j, b_j\}_{j \in [n]}$ whose 
+	length is small enough such that $\mu(T(A)) \leq \sum_{j=1}^n \mu(T((a_j, b_j)) \leq \epsilon$.  Let $\epsilon > 0$.  Then we have that there exists $\delta_\epsilon > 0$ 
+	upon which the collective length of a collection of disjoint intervals being less
+	than $\delta_\epsilon$ implies the measure with respect to $T$ is $\epsilon$.  Note
+	that since $E$ is Borel and bounded we can find exactly that collection of interval such that 
+	$A \subset \bigcup_{j=1}^n (a_j, b_j), \mu(\bigcup_{j=1}^n (a_j, b_j)) < \delta_\epsilon$.  Therefore
+	$$
+	\mu(T(A)) \leq \sum_{j=1}^n \mu_T((a_j,b_j)) = \sum_{j=1}^n |T(b_j) - T(a_j)| < 
+	\epsilon.
+	$$ 
+	Since $\epsilon$ is arbitrary then $\mu(T(A)) = 0$.  
+	\item We want to prove that $F:\R \to \C$ is Lipschitz if and only if $F$ is 
+	absolutely continuous with a bounded derivative.  
+	\begin{itemize}
+		\item $(\Rightarrow)$ Suppose that $F$ is Lipschitz.  Then there exists 
+		$L > 0$ such that for all $x,y \in \R$ we have that 
+		$|F(x) - F(y)| < L |x-y|$.  Let $\epsilon > 0$.  Note that if 
+		we have a set of disjoint intervals  $\{(a_j,b_j)\}_{j \in [n]}$ with 
+		$\sum_{j=1}^n |a_j - b_j| < \frac{\epsilon}{L}$ then we have that 
+		$\sum_{j=1}^n |F(a_j) - F(b_j)| < L \sum_{j=1}^n |a_j - b_j| < L\frac{\epsilon}{L} = \epsilon$. Therefore $F$ is absoluely continuous.  Now suppose for contradiction 
+		that $F$ has an unbounded derivative.  Then there exists a sequence in which 
+		$\lim_{n \to \infty} |F'(x_n)| = \infty$.  Note that there exists $N' \in \N$ 
+		such that for all $m \geq N', |F'(x_m)| > L$.  However, since $F$ is Lipschitz
+		we have that for all $h , | \frac{F(x_m + h) - F(x_m)}{h}| < L$, which by the
+		definition of the derivative and the order limit theorem gives us
+		$\lim_{h \to 0} | \frac{F(x_m + h) - F(x_m)}{h}| = |F'(x_m)| \leq L$.
+		This is a contradiction since $|F'(x_m)| > L$.  Thus $F$ has a bounded 
+		derivative.  
+		\item $(\Leftarrow)$ Suppose that $F$ is absoluely continuous and has a 
+		bounded derivative.  We want to show that it is Lipschitz.  Let $x,y \in \R,
+		x < y$, and $K = \sup |F'|$ .
+		If we consider
+		only the real part of $F$, $G = Re(F)$, we have that $|G(x) - G(y)| = 
+		|\int_{[x,y]} G' dm | \leq K m([x,y]) = K | x - y|$.  Note that the same
+		can be done for the imaginary part, thus we have that $|F(x) - F(y)| \leq K\sqrt{2} |x-y|$, making $F$ Lipschitz
+	\end{itemize}
+\end{enumerate}
+\end{document}

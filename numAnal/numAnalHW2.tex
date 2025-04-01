@@ -1,0 +1,207 @@
+\documentclass[12pt, letterpaper]{article}
+\date{\today}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{amsthm,latexsym,amsfonts,graphicx,epsfig,comment}
+\pgfplotsset{compat=1.16}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+
+\usepackage{changepage}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\Po}{\mathcal{P}}
+\newcommand{\Pro}{\mathbb{P}}
+\author{Alex Valentino}
+\title{Numerical Analysis homework}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+\rhead{
+	Homework 2\\
+	Numerical Analysis
+}
+\lhead{
+	Alex Valentino\\
+	Collaborators: Irshad Guliyev (iag38), Jay Patwardhan (jap600)
+}
+\begin{document}
+\begin{itemize}
+	\item{Question 1} \textit{Consider the equation $x^4 = x^3 + 10$. We want to use the
+bisection method to solve this equation}
+	\begin{enumerate}
+		\item \textit{Reformulate solving this equation as a root-finding problem.}\\
+		We can reformulate the problem as a root finding one by finding the root of the 
+		function $f(x) = x^4 - x^3 - 10$, and for the sake of optimization the function
+		can be written as $f(x) = x^3(x-1) - 10$
+		\item \textit{Find an interval $[a, b]$ of length one that contains a solution of
+		 this equation. Explain why your interval satisfies the condition.}\\
+		 Note that $f(3) = 44$ and $f(2) = -2$.  Therefore by the intermediate value 
+		 theorem we have that there exists $c \in [a,b]$ such that $f(c) = 0$ 
+		\item \textit{Starting with your interval $[a, b]$, how many iterations of the bisection method are
+required to approximate the solution within an accuracy of $10^{-10}$ (aka, the absolute
+error is in $[-10^{-10} , 10^{-10} ]$)?}\\
+		Since our interval is of length $1$, then $E_1 \leq \frac{1}{2}(3-2) = \frac{1}{2}$.  Since 
+		$E_{n+1} \leq 2^{-1}E_n$ and $E_n \leq 2^{-n+1}E_1 = 2^{-n}$, then we have that
+		\begin{align*}
+			2^{-n} \leq 10^{-begin{itemize}
+	\item{Question 1} fsdf
+	\item{Question 2} fds
+\end{itemize}10}\\
+			2^n \geq 10^{10}\\
+			\log_2(2^n) \geq \log_2(10^{10})\\
+			n \geq 33.2192
+\end{align*}		 
+	Therefore the minimum number of iterations required is 34.
+	\end{enumerate}
+	\item{Question 2} \textit{Assume that evaluating $f(x)$ for a given $x\in \R$
+	requires	 processor time t, while all other arithmetic operations take a negligible
+	amount of time compared to t. Prove that performing n iterations of the secant
+	method on $f(x)$ requires a total time of $tn$ (aka, how much time do you need to
+	calculate xn). (Hint: Previously computed function values can be reused in 
+	subsequent iterations.)}
+	Let $x_0, x_1$ be the starting guesses for the secant method with 
+	subsiquent terms defined as: 
+	$$x_{n+1} = x_n - f(x_n) \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}.$$
+	To prove the claim that computing $x_n$ takes $tn$ time, we will
+	be using induction.  For the base case, note that to compute 
+	$x_2$ we have the formulabegin{itemize}
+	\item{Question 1} fsdf
+	\item{Question 2} fds
+\end{itemize}: 
+	$$
+		x_{2} = x_1 - f(x_1) \frac{x_1 - x_{0}}{f(x_1) - f(x_{0})}
+	$$
+	Note that there are two unique calls to $f$, $f(x_0), f(x_1)$,
+	which have a combined run time of $2t$.  Therefore we have 
+	demonstrated the base case.  The induction hypothesis is 
+	for all $k \in \N$ if $k < n$ then the run time to compute 
+	$x_k$ is $tk$.  Now to compute $x_n$ where $n > 2$, we have the formula:
+	$$
+	x_{n} = x_{n-1} - f(x_{n-1}) \frac{x_{n-1} - x_{n-2}}{f(x_{n-1}) - f(x_{n-2})}.
+	$$
+	Note that to compute $x_{n-1}$ takes time $t(n-1)$ by the 
+	induction hypothesis.  Additionally, to compute $x_{n-1}$ the 
+	term $f(x_{n-2})$ was computed and saved, but not $f(x_{n-1})$, 
+	therefore we only must compute $f(x_{n-1})$.  Since that will 
+	take exactly time $t$ then we have a total run time for 
+	$t + t(n-1) = tn$.  
+	\item{Question 3} \textit{On most computers, the computation of $\sqrt{a}$ is based on Newton’s
+method for finding a root of f $(x) = x^2 - a$. Here, we assume $a > 0$. We want to use Newton’s
+method to solve this root-finding problem.}
+	\begin{enumerate}
+		\item \textit{What is the iteration formula of Newton’s method for the above $f (x)$?}
+		The formula is 
+		\begin{align*}
+			x_n &= x_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})}\\
+			x_n &= x_{n-1} - \frac{x_{n-1}^2 - a}{2x_{n-1}}\\
+			x_n &= \frac{a}{2x_{n-1}} - \frac{x_{n-1}}{2} 	
+		\end{align*}
+		\item \textit{Note that $x^* = \sqrt{a}$ is a root of $f(x)$.  Derive the error and relative error formulas}\\
+		\begin{itemize}
+			\item For the error we have that:
+			\begin{align*}
+				\sqrt{a} - x_{n+1} &= \sqrt{a} + \frac{x_n}{2} - \frac{a}{2x_n}\\
+				&=   \sqrt{a} - \sqrt{a} + \frac{x_n}{2} + \frac{2}{2x_n}\sqrt{a}x_n - \frac{a}{2x_n}\\
+				&= \frac{x_n^2 + 2 x_n \sqrt{a} - a}{2x_n}\\
+				&= \frac{-(a - 2 x_n \sqrt{a} - x_n^2)}{2x_n}\\
+				&= \frac{-(\sqrt{a}-x_n)^2}{2x_n}
+			\end{align*}
+			\item For the relative error we have that: 
+			\begin{align*}
+			Rel(x_{n+1}) &= \frac{\sqrt{a} - x_{n+1}}{\sqrt{a}}\\
+			&= \frac{- \frac{(\sqrt{a}-x_n)^2}{2x_n}}{\sqrt{a}}\\
+			&= - \frac{\sqrt{a}(\sqrt{a}-x_n)^2}{2ax_n}\\
+			&= -\frac{\sqrt{a}}{2x_n} \frac{(\sqrt{a}-x_n)^2}{a}\\
+			&= -\frac{\sqrt{a}}{2x_n} \left( \frac{\sqrt{a}-x_n}{\sqrt{a}} \right)^2\\
+			&= -\frac{\sqrt{a}}{2x_n} Rel(x_n)^2
+			\end{align*}
+		\end{itemize}
+		\item \textit{For $x_0$ near $a$, the last formula becomes
+			$$
+			Rel(x_{n+1}) \approx -\frac{1}{2}Rel(x_n)^2
+			$$		
+			Assume $Rel(x_0) = 0.1$, use this formula to estimate the relative error in $x_1, x_2, x_3$.}
+			\begin{itemize}
+				\item $Rel(x_1) = -0.005$
+				\item $Rel(x_2) = -0.0000125$
+				\item $Rel(x_3) = -0.000000000078125$
+			\end{itemize}
+	\end{enumerate}
+	\item{Question 4} \textit{Let the function $g(x) = \frac{x^2+ 4}{5}$}
+	\begin{enumerate}
+		\item \textit{Find the fixed point(s) of $g(x)$}\\
+		Note that the fixed point $y$ will satisfy $y = g(y)$.  Therefore we have the equation 
+		\begin{align*}
+			y &= g(y)\\
+			y &= \frac{y^2 + 4}{5}\\
+			5y &= y^2 + 4\\
+			0 &= y^2 - 5y + 4\\
+			0 &= (y - 4)(y - 1)\\
+			y &= 1,4
+		\end{align*}
+		Thus the fixed points are $1,4$.
+		\item \textit{Would the fixed point iteration, $x_{n+1} = g(x_n )$, converge to a fixed point in the interval
+		$[0, 2]$ for all initial guesses $x_0 \in [0, 2]$? Please explain why.}\\
+		The function $g(x)$ would converge in the interval $[0,2]$ to 1 since $g'(x) = \frac{2}{5}x$, therefore for any possible 
+		guess $x_0$ within $[0,2]$ we have that $0 \leq g'(x_0) \leq \frac{4}{5} < 1$, thus making $g$ a contraction in that interval.
+		Furthermore, they would all converge to 1 since for a delta $\delta = 1$ we have $[ 1 - \delta, 1 + \delta] = [0,2]$.  
+		Thus by the theorem in the slides on febuary 14th 1 is the single fixed point which all values in the interval 
+		$[0,2]$ converge to.  
+	\end{enumerate}
+	\item{Question 5}  \textit{Let $f (x) = \sin(x)$. Let $p_1 (x), p_3 (x), p_5 (x)$ be the Taylor polynomials of degree 1, 3, 
+	and 5 for $f (x)$ and the point of approximation be 0}
+	Note that the chain of derivatives for $\sin(0)$ goes 
+	$1, 0, -1, 0$ reflecting the derivatives: 
+	$$\sin \to \cos \to -\sin \to -\cos \to \sin$$ when evaluated at 0.  Therefore the only terms that exists are 
+	the odd ones, thus giving the power series representation:
+	$$
+	\sin(x) = \sum_{i=0}^\infty (-1)^i \frac{x^{2i+1}}{(2i+1)!}
+	$$
+	where $i$ represents the $i+1$th odd natural number.  These facts will inform my solutions to the following 
+	problems:
+	\begin{enumerate}
+		\item \textit{What are $p_1(x), p_3(x), p_5(x)$?}
+		\begin{itemize}
+			\item $p_1(x) = x$
+			\item $p_3(x) = x - \frac{x^3}{6}$
+			\item $p_5(x) = x - \frac{x^3}{6} + \frac{x^5}{120}$
+		\end{itemize}
+		\item \textit{What are $p_{2n-1}(x)$ and $p_{2n}(x)$ for interger $n\geq 1$?}
+		\begin{itemize}
+			\item $p_{2n-1}(x) = \sum_{i=0}^{n-1}(-1)^{i}\frac{x^{2i+1}}{(2i+1)!}$
+			\item $p_{2n}(x) = \sum_{i=0}^{n-1}(-1)^i\frac{x^{2i+1}}{(2i+1)!}$, note that there is no change since that 
+			$\frac{d}{dx^{2n}}\sin(0)= \pm \sin(0) = 0$
+		\end{itemize}
+		\item \textit{Compare the values of $f(x), p_1(x), p_3(x), p_5(x)$ for $x = \pm \frac{\pi}{2},\pm \frac{\pi}{3},
+		\pm \frac{\pi}{4}$.}
+		\begin{adjustwidth}{-3cm}{}
+		\begin{tabular}{c|cccc}
+		$x$ & $p_1(x)$& $p_3(x)$& $p_5(x)$ & $f(x)$\\
+		\hline
+$\pm \frac{\pi}{2}$ & $\pm 1.5707963267948966$ & $\pm 0.9248322292886504$ & $\pm 1.0045248555348174$ & $\pm 1.0$\\
+$\pm \frac{\pi}{3}$ & $\pm 1.0471975511965976$ & $\pm 0.8558007815651173$ & $\pm 0.8662952837868347$ & $\pm 0.8660254037844386$\\
+$\pm \frac{\pi}{4}$ & $\pm 0.7853981633974483$ & $\pm 0.7046526512091675$ & $\pm 0.7071430457793603$ & $\pm 0.7071067811865475$\\
+		\end{tabular}
+		
+		\end{adjustwidth}
+		
+	\end{enumerate}
+\end{itemize}
+\end{document}

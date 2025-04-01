@@ -13,6 +13,7 @@
 \pgfplotsset{compat=1.16}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage[notransparent]{svg}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta,arrows}
 \newcommand{\Z}{\mathbb{Z}}
@@ -62,13 +63,54 @@
 		$\Pi_{ID, customer\_name}(\sigma_{city = "Boston"}(customer))$
 		\item \textit{Find the ID of each borrower who has a loan in branch "Edison."}\\
 		$ \Pi_{CustomerID}(\sigma_{branch\_name = "Edison"}(borrower \bowtie_{borrower.loan\_number = loan.loan\_number} loan))$
-		\item \textit{Find the ID and names of customers who have deposits in "Edison" branch but do not have loans in "Edison" branch.}\\
-		$\Pi_{CustomerID}(\sigma_{branch\_name = "Edison"}) -$\\
-		$ \Pi_{ID, customer\_name}(\sigma_{branch\_name = "Edison"}($\\$customer \bowtie_{customer.ID = borrower.CustomerID} borrower \bowtie_{borrower.loan\_number = loan.loan\_number} loan))$
+		\item \textit{Find the ID and names of customers who have deposits in "Edison" branch but do not have loans in "Edison" branch.}
+		\begin{align*}
+			& 		\Pi_{ID, customer\_name}(\sigma_{branch\_name = "Edison"}(\\ 
+		& customer \bowtie_{customer.ID = despositor.CustomerID}\\
+		& depositor
+		\bowtie_{depositor.account\_number = account.account\_number} account))\\
+		&- \Pi_{ID, customer\_name}(\sigma_{branch\_name = "Edison"}(\\
+		&customer \bowtie_{customer.ID = borrower.CustomerID} borrower \bowtie_{borrower.loan\_number = loan.loan\_number} loan))		
+		\end{align*}
+		\item Find the ID and names of customers who have at least one account in every branch 
+		with assets exceeding 1,000,000.\\
+		Let $milAcc = \Pi_{ID, customer\_name, branch\_name}$\\ $(\sigma_{balance > 1,000,000}(customer \bowtie_{customer.ID = account.customer\_ID} account))$ and\\
+		$B = \Pi_{branch\_name}(branch)$.
+		Then the desired result can be found via 
+		$$
+		\Pi_{ID, customer\_name}(milAcc) - \Pi_{ID, customer\_name} (\Pi_{ID, customer\_name}(milAcc) \times B - milAcc) 		
+		$$		
+		Or the divison operator between $milAcc$ and $B$, via finding all possible combinations between branch 
+		and accounts with at least a million dollars, excluding the ones that actually exists, then excluding the set
+		of non-sense names (or those who didn't already have entries corresponding to the cartisean product), 
+		from the set of total accounts.  
+		
 	\end{enumerate}
-	\item{Problem 2}
+	\item{Problem 2} Consider the following employee database with 3 tables. 
+	For each table, the primary key is underlined.
+	\begin{center}
+	$\begin{array}{c|c}
+	Table & Attributes\\
+	\hline
+	employee & (\underline{ID}, person\_name, street, city)\\
+	\hline	
+	works & (\underline{EmployeeID, company\_name},salary)\\
+	\hline	
+	company & (\underline{company\_name},city)
+	\end{array}	$
+	
+	\end{center}
 	\begin{enumerate}
-		\item 
+		\item Please show the relational algebra for the following queries.
+		\begin{enumerate}
+			\item Find ID and names of employees working for NVIDIA.\\
+			$\Pi_{ID, person\_name}(\sigma_{company\_name="NVIDIA"}(employee \bowtie_{employee.ID = works.EmployeeID} works))$
+			\item Find ID and names of employees who work and live in different cities.\\
+			$\Pi_{ID, person\_name}(\sigma_{employee.city \neq company.city}(employee \bowtie_{employee.ID = works.EmployeeID} works \bowtie_{works.company\_name = company.company\_name} company))$
+		\end{enumerate}
+		\item Please draw a query tree for the query (2). Find ID and names of employees who work and
+live in different cities.\\
+		\includegraphics[scale=.5]{HW1TreeDiagram.jpeg}		
 	\end{enumerate}
 \end{itemize}
 \end{document}

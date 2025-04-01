@@ -1,0 +1,111 @@
+<svg width="650pt" height="332pt" viewBox="0.00 0.00 649.50 332.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>%3</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-328 645.5,-328 645.5,4 -4,4"></polygon>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<text text-anchor="middle" x="243" y="-302.3" font-family="Times,serif" font-size="14.00" fill="#000000">π</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<text text-anchor="middle" x="162" y="-230.3" font-family="Times,serif" font-size="14.00" fill="#000000">employee . id, employee . person_name</text>
+</g>
+<!-- n0&#45;&#45;n1 -->
+<g id="edge9" class="edge">
+<title>n0--n1</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M222.5603,-287.8314C210.2813,-276.9167 194.711,-263.0764 182.4332,-252.1628"></path>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<text text-anchor="middle" x="325" y="-230.3" font-family="Times,serif" font-size="14.00" fill="#000000">σ</text>
+</g>
+<!-- n0&#45;&#45;n2 -->
+<g id="edge10" class="edge">
+<title>n0--n2</title>
+<path fill="none" stroke="#000000" d="M263.6921,-287.8314C276.1226,-276.9167 291.8852,-263.0764 304.3146,-252.1628"></path>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<text text-anchor="middle" x="251" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">employee . city &lt;&gt; company . city</text>
+</g>
+<!-- n2&#45;&#45;n3 -->
+<g id="edge7" class="edge">
+<title>n2--n3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M306.3267,-215.8314C295.1088,-204.9167 280.8841,-191.0764 269.6674,-180.1628"></path>
+</g>
+<!-- n4 -->
+<g id="node5" class="node">
+<title>n4</title>
+<text text-anchor="start" x="395" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">⋈</text>
+</g>
+<!-- n2&#45;&#45;n4 -->
+<g id="edge8" class="edge">
+<title>n2--n4</title>
+<path fill="none" stroke="#000000" d="M343.9257,-215.8314C355.2951,-204.9167 369.712,-191.0764 381.0804,-180.1628"></path>
+</g>
+<!-- n5 -->
+<g id="node6" class="node">
+<title>n5</title>
+<text text-anchor="start" x="194" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">⋈</text>
+</g>
+<!-- n4&#45;&#45;n5 -->
+<g id="edge4" class="edge">
+<title>n4--n5</title>
+<path fill="none" stroke="#000000" d="M372.7272,-147.6875C369.815,-146.3632 366.8689,-145.1058 364,-144 308.459,-122.592 290.541,-129.408 235,-108 232.1311,-106.8942 229.185,-105.6368 226.2728,-104.3125"></path>
+</g>
+<!-- n9 -->
+<g id="node10" class="node">
+<title>n9</title>
+<text text-anchor="middle" x="400" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">works . company_name = company . company_name</text>
+</g>
+<!-- n4&#45;&#45;n9 -->
+<g id="edge5" class="edge">
+<title>n4--n9</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M400,-143.8314C400,-133 400,-119.2876 400,-108.4133"></path>
+</g>
+<!-- n10 -->
+<g id="node11" class="node">
+<title>n10</title>
+<text text-anchor="middle" x="608" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">company</text>
+</g>
+<!-- n4&#45;&#45;n10 -->
+<g id="edge6" class="edge">
+<title>n4--n10</title>
+<path fill="none" stroke="#000000" d="M427.094,-153.8642C459.9749,-143.8232 516.9798,-125.8759 565,-108 568.0338,-106.8706 571.1693,-105.6548 574.3008,-104.407"></path>
+</g>
+<!-- n6 -->
+<g id="node7" class="node">
+<title>n6</title>
+<text text-anchor="middle" x="35" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">employee</text>
+</g>
+<!-- n5&#45;&#45;n6 -->
+<g id="edge1" class="edge">
+<title>n5--n6</title>
+<path fill="none" stroke="#000000" d="M171.9187,-78.1107C144.0795,-65.8886 100.6105,-46.8046 70.1381,-33.4265"></path>
+</g>
+<!-- n7 -->
+<g id="node8" class="node">
+<title>n7</title>
+<text text-anchor="middle" x="199" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">employee . id = works . employee_id</text>
+</g>
+<!-- n5&#45;&#45;n7 -->
+<g id="edge2" class="edge">
+<title>n5--n7</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M199,-71.8314C199,-61 199,-47.2876 199,-36.4133"></path>
+</g>
+<!-- n8 -->
+<g id="node9" class="node">
+<title>n8</title>
+<text text-anchor="middle" x="355" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">works</text>
+</g>
+<!-- n5&#45;&#45;n8 -->
+<g id="edge3" class="edge">
+<title>n5--n8</title>
+<path fill="none" stroke="#000000" d="M226.0441,-76.2649C229.0536,-74.8 232.084,-73.3524 235,-72 271.8472,-54.9103 282.1528,-53.0897 319,-36 321.916,-34.6476 324.9464,-33.2 327.9559,-31.7351"></path>
+</g>
+</g>
+</svg>

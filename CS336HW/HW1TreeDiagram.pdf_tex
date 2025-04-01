@@ -1,0 +1,79 @@
+%% Creator: Inkscape 1.2.2 (b0a8486541, 2022-12-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'HW1TreeDiagram.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{649.49998507bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.51116243)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{HW1TreeDiagram.pdf}}%
+    \put(0.38029253,0.47159351){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}π\end{tabular}}}}%
+    \put(0.25558122,0.36073903){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}employee . id, employee . person_name\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{HW1TreeDiagram.pdf}}%
+    \put(0.50654349,0.36073903){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}σ\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{HW1TreeDiagram.pdf}}%
+    \put(0.39260971,0.24988453){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}employee . city <> company . city\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{HW1TreeDiagram.pdf}}%
+    \put(0.61431871,0.24988453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}⋈\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{HW1TreeDiagram.pdf}}%
+    \put(0.30484988,0.13903003){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}⋈\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{HW1TreeDiagram.pdf}}%
+    \put(0.62201693,0.13903003){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}works . company_name = company . company_name\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{HW1TreeDiagram.pdf}}%
+    \put(0.94226328,0.13903003){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}company\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{HW1TreeDiagram.pdf}}%
+    \put(0.06004619,0.02817552){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}employee\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{HW1TreeDiagram.pdf}}%
+    \put(0.31254811,0.02817552){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}employee . id = works . employee_id\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{HW1TreeDiagram.pdf}}%
+    \put(0.55273287,0.02817552){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}works\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{HW1TreeDiagram.pdf}}%
+  \end{picture}%
+\endgroup%
